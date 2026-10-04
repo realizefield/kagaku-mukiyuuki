@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>化学（無機化学・有機化学）｜GAMBA化学 江原予備校</title>
+<style>
+:root{
+  --bg:#f0f4ff;
+  --card:#fff;
+  --primary:#2563eb;
+  --primary-light:#dbeafe;
+  --primary-dark:#1e40af;
+  --accent:#dc2626;
+  --accent-light:#fee2e2;
+  --success:#16a34a;
+  --success-light:#dcfce7;
+  --warn:#d97706;
+  --warn-light:#fffbeb;
+  --purple:#7c3aed;
+  --purple-light:#ede9fe;
+  --text:#1e293b;
+  --text-sub:#64748b;
+  --border:#bfdbfe;
+  --radius:14px;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  font-family:"BIZ UDGothic","BIZ UDPGothic","Meiryo","Hiragino Sans",sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.8;
+  padding-bottom:40px;
+}
+.topnav{
+  background:var(--primary-dark);
+  color:#fff;
+  padding:10px 16px;
+  font-weight:bold;
+  font-size:1rem;
+  letter-spacing:.5px;
+  position:sticky;
+  top:0;
+  z-index:60;
+}
+.hero{
+  background:linear-gradient(135deg,var(--primary-dark),var(--primary));
+  color:#fff;
+  padding:28px 16px 24px;
+  text-align:center;
+}
+.hero h1{margin:0;font-size:1.4rem;}
+.hero p{margin:8px 0 0;font-size:.88rem;opacity:.92;}
+
+main.wrap{max-width:860px;margin:0 auto;padding:20px 16px;}
+
+.section-head{
+  font-weight:bold;
+  font-size:1.05rem;
+  color:var(--primary-dark);
+  margin:28px 0 14px;
+  padding-left:12px;
+  border-left:4px solid var(--primary);
+}
+.section-head.organic{border-left-color:var(--success);color:#15803d;}
+
+.unit-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media(max-width:600px){.unit-grid{grid-template-columns:1fr;}}
+
+.unit-card{
+  background:var(--card);
+  border-radius:var(--radius);
+  box-shadow:0 2px 10px rgba(37,99,235,.08);
+  padding:16px 18px;
+  text-decoration:none;
+  color:inherit;
+  display:block;
+  transition:transform .15s,box-shadow .15s;
+  border:1px solid var(--border);
+}
+.unit-card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(37,99,235,.14);}
+.unit-num{
+  display:inline-block;
+  background:var(--primary);
+  color:#fff;
+  width:26px;height:26px;
+  border-radius:50%;
+  text-align:center;
+  line-height:26px;
+  font-size:.82rem;
+  font-weight:bold;
+  margin-right:8px;
+}
+.unit-card.appendix .unit-num{background:var(--purple);}
+.unit-title{font-size:1rem;font-weight:bold;color:var(--text);}
+.unit-desc{font-size:.8rem;color:var(--text-sub);margin-top:8px;line-height:1.7;}
+.unit-tag{
+  display:inline-block;
+  font-size:.68rem;
+  font-weight:bold;
+  padding:2px 9px;
+  border-radius:20px;
+  margin-top:10px;
+  background:var(--primary-light);
+  color:var(--primary-dark);
+}
+.unit-card.appendix .unit-tag{background:var(--purple-light);color:var(--purple);}
+
+.organic-note{
+  background:var(--success-light);
+  border:1px dashed var(--success);
+  border-radius:var(--radius);
+  padding:18px;
+  text-align:center;
+  font-size:.86rem;
+  color:#15803d;
+}
+
+.about-box{
+  background:var(--warn-light);
+  border-left:4px solid var(--warn);
+  border-radius:8px;
+  padding:12px 16px;
+  margin:20px 0;
+  font-size:.86rem;
+}
+.about-box .tag{font-weight:bold;color:var(--warn);margin-right:4px;}
+
+footer{text-align:center;padding:24px 16px 8px;font-size:.74rem;color:var(--text-sub);}
+</style>
+</head>
+<body>
+
+<div class="topnav">⚗️ GAMBA 化学</div>
+<div class="hero">
+  <h1>化学（無機化学・有機化学）</h1>
+  <p>江原予備校 GAMBA化学シリーズ　－　大学入学共通テスト対応教材</p>
+</div>
+
+<main class="wrap">
+
+  <div class="about-box"><span class="tag">📌 このページについて</span> 大学入学共通テストレベルに対応した無機化学・有機化学の教材一覧です。各単元は、タブ切替・小テスト・練習問題・確認問題などのインタラクティブな要素つきで、スマホ・タブレットでも学習できます。</div>
+
+  <div class="section-head">無機化学（7単元＋発展編）</div>
+  <div class="unit-grid">
+
+    <a class="unit-card" href="mukikagaku_01.html">
+      <div class="unit-title"><span class="unit-num">①</span>総論</div>
+      <div class="unit-desc">無機化学全体の学び方、元素の分類、周期表の基本的な見方を学ぶ導入単元。</div>
+      <div class="unit-tag">① 総論</div>
+    </a>
+
+    <a class="unit-card" href="mukikagaku_02_halogen.html">
+      <div class="unit-title"><span class="unit-num">②</span>ハロゲン</div>
+      <div class="unit-desc">F・Cl・Br・Iの性質、ハロゲン化水素、漂白・殺菌作用など頻出ポイントを整理。</div>
+      <div class="unit-tag">② ハロゲン</div>
+    </a>
+
+    <a class="unit-card" href="mukikagaku_03_oxygen.html">
+      <div class="unit-title"><span class="unit-num">③</span>酸素・硫黄</div>
+      <div class="unit-desc">酸素の同素体、硫黄の化合物（SO₂・H₂SO₄など）の製法と性質を学ぶ。</div>
+      <div class="unit-tag">③ 酸素・硫黄</div>
+    </a>
+
+    <a class="unit-card" href="mukikagaku_04_nitrogen.html">
+      <div class="unit-title"><span class="unit-num">④</span>窒素・リン</div>
+      <div class="unit-desc">アンモニア・硝酸の工業的製法（ハーバー法・オストワルト法）とリンの化合物。</div>
+      <div class="unit-tag">④ 窒素・リン</div>
+    </a>
+
+    <a class="unit-card" href="mukikagaku_05_carbon_silicon.html">
+      <div class="unit-title"><span class="unit-num">⑤</span>炭素・ケイ素</div>
+      <div class="unit-desc">炭素の同素体、CO・CO₂の性質、ケイ素の工業的利用（ガラス・半導体など）。</div>
+      <div class="unit-tag">⑤ 炭素・ケイ素</div>
+    </a>
+
+    <a class="unit-card" href="mukikagaku_06_alkali.html">
+      <div class="unit-title"><span class="unit-num">⑥</span>アルカリ金属・アルカリ土類金属</div>
+      <div class="unit-desc">Na・K等の1族元素と、Ca・Ba等の2族元素の性質・反応・工業的製法。</div>
+      <div class="unit-tag">⑥ アルカリ金属・アルカリ土類金属</div>
+    </a>
+
+    <a class="unit-card" href="mukikagaku_07_iron.html">
+      <div class="unit-title"><span class="unit-num">⑦</span>遷移元素・鉄</div>
+      <div class="unit-desc">鉄の製錬、Fe²⁺・Fe³⁺の検出反応、Cu・Cr・Mnなど遷移元素の性質。</div>
+      <div class="unit-tag">⑦ 遷移元素・鉄</div>
+    </a>
+
+    <a class="unit-card appendix" href="mukikagaku_07b_chindden_bunri.html">
+      <div class="unit-title"><span class="unit-num">⑦</span>沈殿の分離（発展編）</div>
+      <div class="unit-desc">陽イオンの系統分析。複数の金属イオンを試薬で1種類ずつ分離していく考え方を図解で学ぶ。</div>
+      <div class="unit-tag">⑦発展編</div>
+    </a>
+
+  </div>
+
+  <div class="section-head organic">有機化学</div>
+  <div class="organic-note">有機化学の単元は準備中です。炭化水素・アルコール・カルボン酸・芳香族化合物などを順次追加していきます。</div>
+
+</main>
+
+<footer>© 江原予備校 / NPO法人Toppa</footer>
+
+</body>
+</html>
