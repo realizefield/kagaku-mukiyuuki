@@ -1,0 +1,1527 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>無機化学① 水素・希ガス | GAMBA化学</title>
+<style>
+:root{
+  --bg:#f0f4ff;
+  --card:#fff;
+  --primary:#2563eb;
+  --primary-light:#dbeafe;
+  --primary-dark:#1e40af;
+  --accent:#dc2626;
+  --accent-light:#fee2e2;
+  --success:#16a34a;
+  --success-light:#dcfce7;
+  --warn:#d97706;
+  --warn-light:#fffbeb;
+  --purple:#7c3aed;
+  --purple-light:#ede9fe;
+  --text:#1e293b;
+  --text-sub:#64748b;
+  --border:#bfdbfe;
+  --radius:14px;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  font-family:"BIZ UDPGothic","Meiryo",sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.8;
+  padding-bottom:40px;
+}
+
+/* ---------- topnav / hero ---------- */
+.topnav{
+  background:var(--primary-dark);
+  color:#fff;
+  padding:10px 16px;
+  font-weight:bold;
+  font-size:1rem;
+  letter-spacing:.5px;
+  position:sticky;
+  top:0;
+  z-index:60;
+}
+.hero{
+  background:linear-gradient(135deg,var(--primary-dark),var(--primary));
+  color:#fff;
+  padding:20px 16px 18px;
+  text-align:center;
+}
+.hero h1{margin:0;font-size:1.3rem;}
+.hero p{margin:6px 0 0;font-size:.82rem;opacity:.92;}
+
+.tabnav{
+  display:flex;
+  max-width:780px;
+  margin:0 auto;
+  padding:10px 12px 0;
+  gap:8px;
+  position:sticky;
+  top:40px;
+  background:var(--bg);
+  z-index:55;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+}
+.tab-btn{
+  flex:none;
+  min-width:78px;
+  padding:11px 8px;
+  border:2px solid var(--primary);
+  background:#fff;
+  color:var(--primary-dark);
+  border-radius:12px 12px 0 0;
+  font-size:.85rem;
+  font-weight:bold;
+  cursor:pointer;
+  white-space:nowrap;
+}
+.tab-btn.active{background:var(--primary);color:#fff;}
+.wrap{max-width:780px;margin:0 auto;padding:4px 12px 0;}
+.tab-content{display:none;}
+.tab-content.active{display:block;animation:fade .25s;}
+@keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+/* ---------- unit / stage ---------- */
+.unit{
+  background:var(--card);
+  border-radius:var(--radius);
+  margin:16px 0;
+  box-shadow:0 1px 4px rgba(0,0,0,.08);
+  border:1px solid var(--border);
+  overflow:hidden;
+}
+.unit-title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  background:var(--primary-light);
+  color:var(--primary-dark);
+  font-size:1.05rem;
+  font-weight:bold;
+  padding:14px 16px;
+}
+.unit-num{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:30px;height:30px;
+  border-radius:50%;
+  background:var(--primary);
+  color:#fff;
+  font-size:.95rem;
+  flex:none;
+}
+.stage{padding:4px 16px 18px;}
+.stage h3{font-size:1rem;color:var(--primary-dark);margin:20px 0 8px;border-left:5px solid var(--primary);padding-left:8px;}
+
+.read-box{
+  background:var(--primary-light);
+  border-radius:10px;
+  padding:12px 14px;
+  margin:10px 0;
+  font-size:.95rem;
+}
+
+.key-box{
+  background:var(--warn-light);
+  border:2px solid var(--warn);
+  border-radius:10px;
+  padding:12px 14px;
+  margin:12px 0;
+  font-size:.93rem;
+}
+.key-box .tag{font-weight:bold;color:var(--warn);}
+
+.important-box{
+  background:var(--accent-light);
+  border:2px solid var(--accent);
+  border-radius:10px;
+  padding:12px 14px;
+  margin:12px 0;
+  font-size:.93rem;
+}
+.important-box .tag{font-weight:bold;color:var(--accent);}
+
+/* 暗記法 */
+.mnemonic-box{
+  background:var(--purple-light);
+  border:2px dashed var(--purple);
+  border-radius:10px;
+  padding:12px 14px;
+  margin:12px 0;
+  font-size:.93rem;
+}
+.mnemonic-box .tag{font-weight:bold;color:var(--purple);display:block;margin-bottom:4px;}
+.mnemonic-box .phrase{font-size:1.02rem;font-weight:bold;color:#4c1d95;}
+
+.eq{
+  background:#f1f5f9;
+  border-radius:8px;
+  padding:9px 12px;
+  margin:6px 0;
+  font-size:1rem;
+  font-weight:600;
+  text-align:center;
+  letter-spacing:.3px;
+  overflow-x:auto;
+}
+
+/* ---------- 相関図（フローチェーン） ---------- */
+.flow-diagram{margin:14px 0;}
+.flow-row{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  margin:8px 0;
+  overflow-x:auto;
+  padding:2px 0;
+}
+.flow-box{
+  flex:none;
+  min-width:108px;
+  text-align:center;
+  background:#fff;
+  border:2px solid var(--primary);
+  border-radius:10px;
+  padding:8px 10px;
+  font-size:.82rem;
+  font-weight:bold;
+  color:var(--primary-dark);
+}
+.flow-box.result{background:var(--primary);color:#fff;border-color:var(--primary-dark);}
+.flow-box.byproduct{background:#f1f5f9;border-color:#94a3b8;color:var(--text-sub);font-weight:normal;}
+.flow-arrow{
+  flex:none;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  font-size:1.3rem;
+  color:var(--primary);
+  min-width:46px;
+}
+.flow-arrow .cond{font-size:.68rem;color:var(--text-sub);font-weight:normal;white-space:nowrap;}
+.flow-note{
+  text-align:center;
+  font-size:.78rem;
+  color:var(--text-sub);
+  margin-top:2px;
+}
+
+/* ---------- まとめ表 ---------- */
+.tbl-wrap{overflow-x:auto;margin:12px 0;}
+.summary-tbl{
+  width:100%;
+  border-collapse:collapse;
+  font-size:.86rem;
+  min-width:420px;
+}
+.summary-tbl th{
+  background:var(--primary);
+  color:#fff;
+  padding:8px 6px;
+  font-weight:bold;
+}
+.summary-tbl td{
+  border-bottom:1px solid var(--border);
+  padding:8px 6px;
+  text-align:center;
+}
+.summary-tbl tr:nth-child(even) td{background:#f8faff;}
+
+/* ---------- なぜ？ポップアップ ---------- */
+.why-btn{
+  display:inline-block;
+  margin:10px 0;
+  padding:9px 16px;
+  background:var(--purple-light);
+  border:1px solid var(--purple);
+  border-radius:20px;
+  color:var(--purple);
+  font-size:.85rem;
+  font-weight:bold;
+  cursor:pointer;
+}
+.popup-overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(15,23,42,.55);
+  z-index:200;
+  align-items:center;
+  justify-content:center;
+  padding:16px;
+}
+.popup-overlay.show{display:flex;}
+.popup-box{
+  background:#fff;
+  border-radius:16px;
+  max-width:420px;
+  max-height:80vh;
+  overflow-y:auto;
+  padding:20px;
+  position:relative;
+}
+.popup-box h4{margin:0 0 10px;color:var(--purple);font-size:1rem;}
+.popup-close{
+  position:absolute;
+  top:10px;right:14px;
+  background:none;
+  border:none;
+  font-size:1.3rem;
+  color:var(--text-sub);
+  cursor:pointer;
+}
+
+/* ---------- 穴埋めチャレンジ ---------- */
+.fill-item{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:14px 16px;
+  margin:14px 0;
+}
+.fill-item .q-no{
+  display:inline-block;
+  background:var(--primary);
+  color:#fff;
+  font-size:.75rem;
+  font-weight:bold;
+  border-radius:12px;
+  padding:2px 10px;
+  margin-bottom:8px;
+}
+.fill-sentence{font-size:.98rem;margin:8px 0;}
+.blank{
+  display:inline-block;
+  min-width:64px;
+  border-bottom:2px solid var(--primary);
+  text-align:center;
+  font-weight:bold;
+  color:var(--primary-dark);
+  padding:0 4px;
+  margin:0 2px;
+}
+.blank.filled{background:var(--primary-light);border-radius:4px;}
+.blank.correct{background:var(--success-light);border-bottom-color:var(--success);color:var(--success);}
+.blank.wrong{background:var(--accent-light);border-bottom-color:var(--accent);color:var(--accent);}
+.chip-bank{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
+.chip{
+  background:var(--accent-light);
+  border:1px solid var(--accent);
+  color:var(--primary-dark);
+  border-radius:20px;
+  padding:6px 14px;
+  font-size:.9rem;
+  cursor:pointer;
+}
+.chip:active{transform:scale(.95);}
+.chip.used{opacity:.35;pointer-events:none;}
+.fill-check-btn,.fill-reset-btn{
+  margin-top:10px;margin-right:8px;
+  padding:8px 18px;border:none;border-radius:20px;
+  font-weight:bold;cursor:pointer;font-size:.88rem;
+}
+.fill-check-btn{background:var(--primary);color:#fff;}
+.fill-reset-btn{background:#e2e8f0;color:var(--text);}
+.fill-feedback{margin-top:8px;font-size:.88rem;font-weight:bold;}
+.fill-feedback.ok{color:var(--success);}
+.fill-feedback.bad{color:var(--accent);}
+
+/* ---------- q4（4択） ---------- */
+.q4{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:14px 16px;
+  margin:14px 0;
+}
+.q4.mini{background:#f8faff;}
+.q4-no{
+  display:inline-block;
+  background:var(--accent);
+  color:#fff;
+  font-size:.72rem;
+  font-weight:bold;
+  border-radius:12px;
+  padding:2px 10px;
+  margin-bottom:8px;
+}
+.q4-no.practice{background:var(--purple);}
+.q4-text{font-size:.96rem;font-weight:600;margin:4px 0 10px;}
+.q4-choices{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.q4-c{
+  text-align:left;
+  padding:9px 10px;
+  border:2px solid #cbd5e1;
+  border-radius:10px;
+  background:#fff;
+  font-size:.85rem;
+  cursor:pointer;
+}
+.q4-c.correct{background:var(--success-light);border-color:var(--success);}
+.q4-c.wrong{background:var(--accent-light);border-color:var(--accent);}
+.q4-c.disabled{pointer-events:none;}
+.q4-exp{
+  display:none;
+  margin-top:10px;
+  background:var(--primary-light);
+  border-left:4px solid var(--primary);
+  border-radius:0 8px 8px 0;
+  padding:10px 12px;
+  font-size:.86rem;
+  color:var(--primary-dark);
+}
+.q4-exp.show{display:block;}
+
+/* ---------- minitest（○×） ---------- */
+.minitest{
+  background:#f8faff;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:14px 16px;
+  margin:14px 0;
+}
+.mt-text{font-size:.95rem;font-weight:600;margin:4px 0 10px;}
+.mt-choices{display:flex;gap:10px;}
+.mt-c{
+  flex:1;
+  padding:10px;
+  border:2px solid #cbd5e1;
+  border-radius:10px;
+  background:#fff;
+  font-size:1rem;
+  font-weight:bold;
+  cursor:pointer;
+}
+.mt-c.correct{background:var(--success-light);border-color:var(--success);}
+.mt-c.wrong{background:var(--accent-light);border-color:var(--accent);}
+.mt-c.disabled{pointer-events:none;}
+.mt-exp{
+  display:none;
+  margin-top:10px;
+  background:#fff;
+  border-left:4px solid var(--primary);
+  border-radius:0 8px 8px 0;
+  padding:10px 12px;
+  font-size:.86rem;
+  color:var(--primary-dark);
+}
+.mt-exp.show{display:block;}
+
+/* ---------- 確認テスト footer ---------- */
+.check-footer{text-align:center;margin:24px 0;}
+.score-box{
+  display:inline-block;
+  background:var(--primary);
+  color:#fff;
+  border-radius:16px;
+  padding:14px 28px;
+  font-size:1.1rem;
+  font-weight:bold;
+}
+.celebrate-msg{
+  display:none;
+  position:fixed;
+  top:36%;left:50%;
+  transform:translate(-50%,-50%);
+  background:#fff;
+  border:3px solid var(--primary);
+  border-radius:20px;
+  padding:22px 30px;
+  font-size:1.15rem;
+  font-weight:bold;
+  color:var(--primary-dark);
+  box-shadow:0 8px 30px rgba(0,0,0,.25);
+  z-index:1000;
+  text-align:center;
+}
+
+/* ---------- confetti ---------- */
+.confetti-piece{
+  position:fixed;
+  top:-20px;
+  width:8px;height:14px;
+  z-index:999;
+  pointer-events:none;
+  animation:confettiFall linear forwards;
+}
+@keyframes confettiFall{
+  from{transform:translateY(0) rotate(0deg);opacity:1;}
+  to{transform:translateY(105vh) rotate(720deg);opacity:0;}
+}
+
+/* ---------- フラッシュカード ---------- */
+.card-mode-buttons{display:flex;gap:8px;margin:12px 0;flex-wrap:wrap;}
+.mode-btn{
+  flex:1;
+  min-width:90px;
+  padding:9px 6px;
+  border:2px solid var(--primary);
+  background:#fff;
+  color:var(--primary-dark);
+  border-radius:20px;
+  font-size:.82rem;
+  font-weight:bold;
+  cursor:pointer;
+}
+.mode-btn.active{background:var(--primary);color:#fff;}
+.flash-progress{
+  text-align:center;
+  font-size:.85rem;
+  color:var(--text-sub);
+  font-weight:bold;
+  margin:4px 0 10px;
+}
+.flashcard-wrap{margin:10px 0;}
+.flashcard{
+  position:relative;
+  min-height:180px;
+  background:var(--card);
+  border:3px solid var(--primary);
+  border-radius:16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:22px 18px;
+  cursor:pointer;
+  box-shadow:0 2px 10px rgba(37,99,235,.12);
+  transition:opacity .18s, transform .18s;
+}
+.flashcard.flipped{background:var(--primary-light);border-color:var(--primary-dark);}
+.flashcard.anim{opacity:0;transform:scale(.96);}
+.card-face-label{
+  position:absolute;
+  top:10px;left:14px;
+  font-size:.72rem;
+  font-weight:bold;
+  color:var(--text-sub);
+}
+.card-text-front{font-size:1.08rem;font-weight:bold;color:var(--primary-dark);}
+.card-text-back{font-size:1.1rem;font-weight:bold;color:var(--primary-dark);letter-spacing:.3px;}
+.flash-hint{text-align:center;font-size:.78rem;color:var(--text-sub);margin-top:8px;}
+.flash-nav{display:flex;gap:8px;margin-top:14px;}
+.flash-nav button{
+  flex:1;
+  padding:10px 4px;
+  border:none;
+  border-radius:20px;
+  font-weight:bold;
+  font-size:.86rem;
+  cursor:pointer;
+  background:#e2e8f0;
+  color:var(--text);
+}
+.flash-nav button.flip-btn{background:var(--primary);color:#fff;}
+</style>
+</head>
+<body>
+
+<div class="topnav">⚗️ GAMBA 化学</div>
+<div class="hero">
+  <h1>無機化学① 水素・希ガス</h1>
+  <p>江原予備校 GAMBA 大学入学共通テスト対応教材</p>
+</div>
+
+<div class="tabnav">
+  <button class="tab-btn active" data-tab="study">① 学習</button>
+  <button class="tab-btn" data-tab="fill">② 穴埋め</button>
+  <button class="tab-btn" data-tab="check">③ 確認テスト</button>
+  <button class="tab-btn" data-tab="cards">④ カード</button>
+</div>
+
+<main class="wrap">
+
+<!-- ============ ① 学習 ============ -->
+<div class="tab-content active" id="tab-study">
+
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">1</span>水素 H₂</div>
+    <div class="stage">
+
+      <div class="read-box">水素は，無色・無臭で，すべての気体の中でもっとも軽い気体です。水にはほとんど溶けません。酸素と結びつきやすく，燃えると水になる性質（還元性）をもっています。</div>
+
+      <div class="minitest" data-correct="o">
+        <div class="mt-text">Q. 水素はすべての気体の中でもっとも軽い。 ○か×か？</div>
+        <div class="mt-choices">
+          <button class="mt-c" data-v="o">○ 正しい</button>
+          <button class="mt-c" data-v="x">× 誤り</button>
+        </div>
+        <div class="mt-exp"></div>
+      </div>
+
+      <h3>工業的製法３つ — 合言葉は「水蒸気」</h3>
+      <div class="key-box"><span class="tag">🔑 ポイント</span> 水素は工業的に3つの方法でつくられます。どれも「水蒸気 H₂O」を何かにぶつけて水素を取り出す，という共通点があります。1つずつ，小さなステップで確認していきましょう。</div>
+
+      <div class="key-box"><span class="tag">🔑 ポイント</span> 3つとも原料はちがいますが，やっていることは同じ：「水蒸気(H₂O)をぶつけて水素(H₂)を取り出す」。下の図で，3本の矢印がどれも水蒸気と反応していることを確かめましょう。</div>
+
+      <div class="flow-diagram">
+        <div class="flow-row">
+          <div class="flow-box">熱したコークス<br>C</div>
+          <div class="flow-arrow">→<span class="cond">＋水蒸気</span></div>
+          <div class="flow-box result">H₂</div>
+          <div class="flow-arrow">＋</div>
+          <div class="flow-box byproduct">CO</div>
+        </div>
+        <div class="flow-note">C ＋ H₂O → CO ＋ H₂（この混合気体を「水性ガス」といいます）</div>
+
+        <div class="flow-row">
+          <div class="flow-box">赤熱した鉄<br>Fe</div>
+          <div class="flow-arrow">→<span class="cond">＋水蒸気</span></div>
+          <div class="flow-box result">H₂</div>
+          <div class="flow-arrow">＋</div>
+          <div class="flow-box byproduct">Fe₃O₄</div>
+        </div>
+        <div class="flow-note">3Fe ＋ 4H₂O → Fe₃O₄ ＋ 4H₂（Fe₃O₄＝四酸化三鉄）</div>
+
+        <div class="flow-row">
+          <div class="flow-box">メタン<br>CH₄</div>
+          <div class="flow-arrow">→<span class="cond">＋水蒸気<br>（Ni触媒）</span></div>
+          <div class="flow-box result">H₂</div>
+          <div class="flow-arrow">＋</div>
+          <div class="flow-box byproduct">CO</div>
+        </div>
+        <div class="flow-note">CH₄ ＋ H₂O → CO ＋ 3H₂（Ni：ニッケル触媒・高温）</div>
+      </div>
+
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">小テスト①</div>
+        <div class="q4-text">Q. 赤熱したコークス（C）に水蒸気を当てて生じる，CO と H₂ の混合気体の名前は？</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．天然ガス</button>
+          <button class="q4-c" data-v="b">b．水性ガス</button>
+          <button class="q4-c" data-v="c">c．都市ガス</button>
+          <button class="q4-c" data-v="d">d．合成ガス</button>
+        </div>
+        <div class="q4-exp">📘 C＋H₂O→CO＋H₂ で生じるCOとH₂の混合気体を「水性ガス」といいます。「水（蒸気）」からできるガスだと覚えると結びつきやすいです。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="c">
+        <div class="q4-no practice">小テスト②</div>
+        <div class="q4-text">Q. 赤熱した鉄Feに水蒸気を当てたときにできる黒色の酸化鉄は何ですか？</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．酸化鉄(Ⅱ)</button>
+          <button class="q4-c" data-v="b">b．酸化鉄(Ⅲ)</button>
+          <button class="q4-c" data-v="c">c．四酸化三鉄</button>
+          <button class="q4-c" data-v="d">d．水酸化鉄</button>
+        </div>
+        <div class="q4-exp">📘 3Fe＋4H₂O→Fe₃O₄＋4H₂ です。生じるFe₃O₄は「四酸化三鉄」という特別な名前をもちます。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">小テスト③</div>
+        <div class="q4-text">Q. メタンCH₄に水蒸気を当てて水素をつくるとき，使われる触媒は何ですか？</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．白金Pt</button>
+          <button class="q4-c" data-v="b">b．ニッケルNi</button>
+          <button class="q4-c" data-v="c">c．鉄Fe</button>
+          <button class="q4-c" data-v="d">d．二酸化マンガンMnO₂</button>
+        </div>
+        <div class="q4-exp">📘 CH₄＋H₂O→CO＋3H₂ の反応は，Ni（ニッケル）触媒を使って高温で行います。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">小テスト④</div>
+        <div class="q4-text">Q. 「C ＋ H₂O → CO ＋（　）」。空欄に入るのはどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．H₂</button>
+          <button class="q4-c" data-v="b">b．O₂</button>
+          <button class="q4-c" data-v="c">c．H₂O</button>
+          <button class="q4-c" data-v="d">d．CO₂</button>
+        </div>
+        <div class="q4-exp">📘 原子の数を数えると，左辺のHが2個なので，右辺にはH₂が必要です。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">小テスト⑤</div>
+        <div class="q4-text">Q. 3つの製法（コークス・鉄・メタン）すべてに共通して使われる材料は何ですか？</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．水蒸気H₂O</button>
+          <button class="q4-c" data-v="b">b．酸素O₂</button>
+          <button class="q4-c" data-v="c">c．二酸化炭素CO₂</button>
+          <button class="q4-c" data-v="d">d．水素H₂</button>
+        </div>
+        <div class="q4-exp">📘 3つとも水蒸気H₂Oを原料にぶつけて水素H₂を取り出す，という共通点があります。</div>
+      </div>
+
+      <h3>水の電気分解</h3>
+      <div class="read-box">水だけでは電気を通しにくいため，少量の水酸化ナトリウム NaOH を溶かして電流を通しやすくします。NaOHは水に溶けると Na⁺ と OH⁻ に電離するので，水溶液の中には「Na⁺」「OH⁻」「H₂O（水そのもの）」の3つがそろっています。</div>
+
+      <h3>反応式は自分で組み立てられる</h3>
+      <div class="key-box"><span class="tag">🔑 ステップで考える</span> 反応式を丸暗記しなくても，「どのイオンが材料になるか」を考えれば自分で組み立てられます。</div>
+
+      <div class="read-box"><b>ステップ①　陰極（－）の材料を考える</b><br>陰極では，電子 e⁻ を「受け取る」反応（還元）が起こります。水溶液中には Na⁺・OH⁻・H₂O がありますが，Na⁺はとても反応しにくいイオンです。そこで，<b>水そのもの H₂O</b> が電子を受け取って反応します。</div>
+      <div class="eq">材料は H₂O　→　2H₂O ＋ 2e⁻ → H₂ ＋ 2OH⁻</div>
+
+      <div class="read-box"><b>ステップ②　陽極（＋）の材料を考える</b><br>陽極では，電子を「失う」反応（酸化）が起こります。水溶液中に多く存在する <b>OH⁻</b> が電子を手放して酸化され，O₂ が発生します。</div>
+      <div class="eq">材料は OH⁻　→　4OH⁻ → O₂ ＋ 2H₂O ＋ 4e⁻</div>
+
+      <div class="important-box"><span class="tag">⚠️ よくある間違い</span> 陰極でH₂ができるときの材料は OH⁻ ではなく H₂O です。OH⁻ が材料になるのは，陽極でO₂ができるときだけ，と整理しておきましょう。</div>
+
+      <div class="tbl-wrap">
+        <table class="summary-tbl">
+          <tr><th></th><th>材料</th><th>反応</th><th>生成物</th></tr>
+          <tr><td>陰極（－）</td><td>H₂O</td><td>還元（e⁻を受け取る）</td><td>H₂</td></tr>
+          <tr><td>陽極（＋）</td><td>OH⁻</td><td>酸化（e⁻を失う）</td><td>O₂</td></tr>
+        </table>
+      </div>
+
+      <div class="mnemonic-box">
+        <span class="tag">📝 暗記法（ゴロ合わせ）</span>
+        <span class="phrase">「いんきょく・すいそ，ようきょく・さんそ」</span><br>
+        陰極(いんきょく)→水素(すいそ)，陽極(ようきょく)→酸素(さんそ)。リズムで声に出して覚えましょう。体積比は水素：酸素＝2：1です。
+      </div>
+
+      <div class="flow-diagram">
+        <div class="flow-row">
+          <div class="flow-box">陰極（－）<br><span style="font-weight:normal;">材料：H₂O</span></div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-box result">H₂ 発生</div>
+        </div>
+        <div class="flow-row">
+          <div class="flow-box">陽極（＋）<br><span style="font-weight:normal;">材料：OH⁻</span></div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-box result">O₂ 発生</div>
+        </div>
+        <div class="flow-note">相関図：陰極の材料はH₂O，陽極の材料はOH⁻。材料がちがう点に注目しましょう</div>
+      </div>
+
+      <button class="why-btn" data-popup="p1">🤔 なぜNaOHを少し溶かすの？</button>
+
+      <h3>反応式づくり練習（四択）</h3>
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">練習①</div>
+        <div class="q4-text">Q. 陰極（－）でH₂が発生する反応の「材料」になっているのはどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．OH⁻</button>
+          <button class="q4-c" data-v="b">b．H₂O</button>
+          <button class="q4-c" data-v="c">c．Na⁺</button>
+          <button class="q4-c" data-v="d">d．H⁺</button>
+        </div>
+        <div class="q4-exp">📘 Na⁺は反応しにくく，電子を受け取るのは水 H₂O です。OH⁻は陽極で使われる材料なので，ここでは不正解です。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="c">
+        <div class="q4-no practice">練習②</div>
+        <div class="q4-text">Q. 陽極（＋）でO₂が発生する反応の「材料」になっているのはどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．H₂O</button>
+          <button class="q4-c" data-v="b">b．Na⁺</button>
+          <button class="q4-c" data-v="c">c．OH⁻</button>
+          <button class="q4-c" data-v="d">d．H⁺</button>
+        </div>
+        <div class="q4-exp">📘 水溶液中に多く存在するOH⁻が電子を失って酸化され，O₂が発生します。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">練習③</div>
+        <div class="q4-text">Q. 陰極の反応式「2H₂O ＋ 2e⁻ → H₂ ＋ 2（　）」。空欄に入るのはどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．OH⁻</button>
+          <button class="q4-c" data-v="b">b．O²⁻</button>
+          <button class="q4-c" data-v="c">c．H⁺</button>
+          <button class="q4-c" data-v="d">d．Na⁺</button>
+        </div>
+        <div class="q4-exp">📘 材料のH₂Oが電子を受け取ってH₂ができると，残った酸素と水素はOH⁻になります。原子の数を数えて確かめてみましょう。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">練習④</div>
+        <div class="q4-text">Q. 陽極の反応式「4OH⁻ → O₂ ＋ 2H₂O ＋ 4（　）」。空欄に入るのはどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．e⁻</button>
+          <button class="q4-c" data-v="b">b．H⁺</button>
+          <button class="q4-c" data-v="c">c．OH⁻</button>
+          <button class="q4-c" data-v="d">d．Na⁺</button>
+        </div>
+        <div class="q4-exp">📘 OH⁻が酸化されるとき，電子e⁻を失います。失った電子の数は，できたO₂に対応する分だけ右辺に書きます。</div>
+      </div>
+
+      <div class="minitest" data-correct="x">
+        <div class="mt-text">Q. 水の電気分解で加えるNaOHは，反応によって水素や酸素に変化していく。 ○か×か？</div>
+        <div class="mt-choices">
+          <button class="mt-c" data-v="o">○ 正しい</button>
+          <button class="mt-c" data-v="x">× 誤り</button>
+        </div>
+        <div class="mt-exp"></div>
+      </div>
+
+      <h3>まとめ：水素のつくり方</h3>
+      <div class="tbl-wrap">
+        <table class="summary-tbl">
+          <tr><th>原料</th><th>反応式</th><th>副生成物</th></tr>
+          <tr><td>コークス C</td><td>C＋H₂O→CO＋H₂</td><td>CO（水性ガス）</td></tr>
+          <tr><td>鉄 Fe</td><td>3Fe＋4H₂O→Fe₃O₄＋4H₂</td><td>Fe₃O₄（四酸化三鉄）</td></tr>
+          <tr><td>メタン CH₄</td><td>CH₄＋H₂O→CO＋3H₂</td><td>CO（Ni触媒）</td></tr>
+          <tr><td>水の電気分解</td><td>2H₂O＋2e⁻→H₂＋2OH⁻（陰極）</td><td>O₂（陽極）</td></tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">2</span>希ガス（18族）</div>
+    <div class="stage">
+
+      <div class="read-box">希ガスは，価電子が0個で，すでに安定な電子配置をもっています。そのため，他の原子と結合して化合物をつくることがほとんどなく，単体は1個の原子だけでバラバラに存在する「単原子分子」の気体です。</div>
+
+      <div class="key-box"><span class="tag">🔑 ポイント</span> 希ガスは反応性に乏しいからこそ，「安全に光る・冷やす・守る」用途にたくさん使われています。</div>
+
+      <div class="important-box"><span class="tag">⚠️ 注意</span> 「最外殻電子はすべて8個」は誤りです。ヘリウムHeだけは最外殻（K殻）が2個で満たされています。</div>
+
+      <div class="minitest" data-correct="x">
+        <div class="mt-text">Q. 希ガス原子はすべて最外殻電子が8個である。 ○か×か？</div>
+        <div class="mt-choices">
+          <button class="mt-c" data-v="o">○ 正しい</button>
+          <button class="mt-c" data-v="x">× 誤り</button>
+        </div>
+        <div class="mt-exp"></div>
+      </div>
+
+      <h3>分子量で考える「軽い・重い」</h3>
+      <div class="read-box">空気の平均分子量は29です。表の中で29より小さいのはHeとNeの2つだけ。この2つだけが空気より軽く，他の希ガスは空気より重いと分かります。</div>
+
+      <div class="tbl-wrap">
+        <table class="summary-tbl">
+          <tr><th>元素</th><th>分子量</th><th>空気(29)と比べて</th><th>主な用途</th></tr>
+          <tr><td>He（ヘリウム）</td><td>4</td><td>↑ 軽い</td><td>気球・飛行船・冷却材</td></tr>
+          <tr><td>Ne（ネオン）</td><td>20</td><td>↑ 軽い</td><td>ネオンサイン</td></tr>
+          <tr><td>Ar（アルゴン）</td><td>40</td><td>↓ 重い</td><td>電球の封入ガス・溶接</td></tr>
+          <tr><td>Kr（クリプトン）</td><td>84</td><td>↓ 重い</td><td>高性能電球</td></tr>
+          <tr><td>Xe（キセノン）</td><td>131</td><td>↓ 重い</td><td>写真用ストロボ</td></tr>
+        </table>
+      </div>
+
+      <div class="q4 mini" data-correct="c">
+        <div class="q4-no practice">小テスト①</div>
+        <div class="q4-text">Q. ヘリウムHeの利用方法として正しいものは？</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．ネオンサインの発光</button>
+          <button class="q4-c" data-v="b">b．電球の封入ガス</button>
+          <button class="q4-c" data-v="c">c．気球・飛行船・冷却材</button>
+          <button class="q4-c" data-v="d">d．写真用ストロボ</button>
+        </div>
+        <div class="q4-exp">📘 ヘリウムHeは水素に次いで軽く不燃性なので，気球・飛行船や冷却材（極低温の寒剤）に利用されます。ネオンサインはNe，電球・溶接はAr，ストロボはXeです。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">小テスト②</div>
+        <div class="q4-text">Q. ネオンNeの利用方法として正しいものは？</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．ネオンサインの発光</button>
+          <button class="q4-c" data-v="b">b．電球の封入ガス</button>
+          <button class="q4-c" data-v="c">c．気球・飛行船・冷却材</button>
+          <button class="q4-c" data-v="d">d．写真用ストロボ</button>
+        </div>
+        <div class="q4-exp">📘 ネオンNeは放電すると赤橙色に光る性質があり，ネオンサインに使われます。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">小テスト③</div>
+        <div class="q4-text">Q. アルゴンArの利用方法として正しいものは？</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．気球・飛行船・冷却材</button>
+          <button class="q4-c" data-v="b">b．電球の封入ガス・溶接</button>
+          <button class="q4-c" data-v="c">c．ネオンサインの発光</button>
+          <button class="q4-c" data-v="d">d．写真用ストロボ</button>
+        </div>
+        <div class="q4-exp">📘 アルゴンArは空気中にもっとも多く含まれる希ガスで，反応しにくいので電球の封入ガスや溶接時の保護ガスに使われます。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="d">
+        <div class="q4-no practice">小テスト④</div>
+        <div class="q4-text">Q. キセノンXeの利用方法として正しいものは？</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．気球・飛行船・冷却材</button>
+          <button class="q4-c" data-v="b">b．電球の封入ガス・溶接</button>
+          <button class="q4-c" data-v="c">c．ネオンサインの発光</button>
+          <button class="q4-c" data-v="d">d．写真用ストロボ</button>
+        </div>
+        <div class="q4-exp">📘 キセノンXeは強い光を一瞬出せるので，写真用ストロボなどに利用されます。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">小テスト⑤</div>
+        <div class="q4-text">Q. 希ガスの中で，空気より軽いのはどれとどれですか？</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．HeとNe</button>
+          <button class="q4-c" data-v="b">b．ArとKr</button>
+          <button class="q4-c" data-v="c">c．XeとRn</button>
+          <button class="q4-c" data-v="d">d．すべて空気より重い</button>
+        </div>
+        <div class="q4-exp">📘 空気の平均分子量29より小さいのはHe(4)とNe(20)だけです。この2つだけが空気より軽くなります。</div>
+      </div>
+
+      <h3>空気中で一番多い希ガスは？／イオン化エネルギーの傾向</h3>
+      <div class="important-box"><span class="tag">⚠️ 注意</span> 「希ガスの中でいちばん軽いHe・Neが空気中に多い」と誤解しやすいですが，実際に空気中にもっとも多く含まれる希ガスは<b>アルゴンAr</b>（約0.9%）です。軽さと存在量は別の話だと整理しておきましょう。</div>
+
+      <div class="read-box">イオン化エネルギー（原子から電子を1個取り去るのに必要なエネルギー）は，同じ周期では原子番号が大きいほど大きくなる傾向があります。希ガスは安定な電子配置をもつため，同じ周期の中でイオン化エネルギーが最大になります。たとえば同じ第3周期のネオンNe（第2周期）とアルゴンAr（第3周期）を比べると，周期表で上にあるNeの方がイオン化エネルギーは大きくなります。</div>
+
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">小テスト⑥</div>
+        <div class="q4-text">Q. 空気中にもっとも多く含まれる希ガスはどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．ヘリウムHe</button>
+          <button class="q4-c" data-v="b">b．アルゴンAr</button>
+          <button class="q4-c" data-v="c">c．ネオンNe</button>
+          <button class="q4-c" data-v="d">d．キセノンXe</button>
+        </div>
+        <div class="q4-exp">📘 空気中で最も多い希ガスはアルゴンArです（約0.9%）。「軽い＝多い」ではない点に注意しましょう。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">小テスト⑦</div>
+        <div class="q4-text">Q. ネオンNeとアルゴンArのイオン化エネルギーを比べると，どちらが大きいですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．ネオンNeの方が大きい</button>
+          <button class="q4-c" data-v="b">b．アルゴンArの方が大きい</button>
+          <button class="q4-c" data-v="c">c．まったく同じ</button>
+          <button class="q4-c" data-v="d">d．比較できない</button>
+        </div>
+        <div class="q4-exp">📘 ネオンNeの方がイオン化エネルギーは大きくなります。希ガスは安定な電子配置をもち電子を奪われにくいため，同族の中でも原子番号が小さいほどイオン化エネルギーが大きい傾向があります。</div>
+      </div>
+
+      <div class="minitest" data-correct="x">
+        <div class="mt-text">Q. 希ガスの中で空気中に最も多く含まれるのはヘリウムHeである。 ○か×か？</div>
+        <div class="mt-choices">
+          <button class="mt-c" data-v="o">○ 正しい</button>
+          <button class="mt-c" data-v="x">× 誤り</button>
+        </div>
+        <div class="mt-exp"></div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- ============ ② 穴埋めチャレンジ ============ -->
+<div class="tab-content" id="tab-fill">
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">✎</span>穴埋めチャレンジ</div>
+    <div class="stage">
+      <div class="read-box">下のチップをタップして，反応式の空欄をうめましょう。まちがえても大丈夫，「やり直す」でもう一度チャレンジできます。</div>
+    </div>
+  </div>
+
+  <div class="fill-item" data-fill="f1">
+    <div class="q-no">問1</div>
+    <div class="fill-sentence">陰極の反応式：2H₂O ＋ 2e⁻ → <span class="blank" data-blank="0" data-ans="H2">　</span> ＋ 2<span class="blank" data-blank="1" data-ans="OH-">　</span></div>
+    <div class="chip-bank">
+      <span class="chip" data-val="H2">H₂</span>
+      <span class="chip" data-val="OH-">OH⁻</span>
+      <span class="chip" data-val="O2">O₂</span>
+      <span class="chip" data-val="H+">H⁺</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+
+  <div class="fill-item" data-fill="f2">
+    <div class="q-no">問2</div>
+    <div class="fill-sentence">陽極の反応式：4OH⁻ → <span class="blank" data-blank="0" data-ans="O2">　</span> ＋ 2H₂O ＋ 4<span class="blank" data-blank="1" data-ans="e-">　</span></div>
+    <div class="chip-bank">
+      <span class="chip" data-val="O2">O₂</span>
+      <span class="chip" data-val="e-">e⁻</span>
+      <span class="chip" data-val="H2">H₂</span>
+      <span class="chip" data-val="H2O">H₂O</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+
+  <div class="fill-item" data-fill="f3">
+    <div class="q-no">問3</div>
+    <div class="fill-sentence">熱したコークスに水蒸気を当てる反応：C ＋ H₂O → <span class="blank" data-blank="0" data-ans="CO">　</span> ＋ <span class="blank" data-blank="1" data-ans="H2">　</span>（この混合気体を<b>水性ガス</b>といいます）</div>
+    <div class="chip-bank">
+      <span class="chip" data-val="CO">CO</span>
+      <span class="chip" data-val="H2">H₂</span>
+      <span class="chip" data-val="CO2">CO₂</span>
+      <span class="chip" data-val="O2">O₂</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+
+  <div class="fill-item" data-fill="f4">
+    <div class="q-no">問4</div>
+    <div class="fill-sentence">赤熱した鉄に水蒸気を当てる反応：3Fe ＋ 4H₂O → <span class="blank" data-blank="0" data-ans="Fe3O4">　</span> ＋ 4<span class="blank" data-blank="1" data-ans="H2">　</span></div>
+    <div class="chip-bank">
+      <span class="chip" data-val="Fe3O4">Fe₃O₄</span>
+      <span class="chip" data-val="H2">H₂</span>
+      <span class="chip" data-val="FeO">FeO</span>
+      <span class="chip" data-val="O2">O₂</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+
+  <div class="fill-item" data-fill="f5">
+    <div class="q-no">問5</div>
+    <div class="fill-sentence">メタンの水蒸気改質（<span class="blank" data-blank="0" data-ans="Ni">　</span>触媒）：CH₄ ＋ H₂O → CO ＋ 3<span class="blank" data-blank="1" data-ans="H2">　</span></div>
+    <div class="chip-bank">
+      <span class="chip" data-val="Ni">Ni</span>
+      <span class="chip" data-val="H2">H₂</span>
+      <span class="chip" data-val="Pt">Pt</span>
+      <span class="chip" data-val="Fe">Fe</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+</div>
+
+<!-- ============ ③ 確認テスト ============ -->
+<div class="tab-content" id="tab-check">
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">✓</span>確認テスト（12問）</div>
+    <div class="stage">
+      <div class="read-box">すべての問題に答えると，結果が表示されます。自分のペースでゆっくり進めましょう。</div>
+    </div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="b">
+    <div class="q4-no">第1問</div>
+    <div class="q4-text">水の電気分解で，電流を通しやすくするために少量溶かす物質は何ですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．食塩（NaCl）</button>
+      <button class="q4-c" data-v="b">b．水酸化ナトリウム（NaOH）</button>
+      <button class="q4-c" data-v="c">c．砂糖</button>
+      <button class="q4-c" data-v="d">d．エタノール</button>
+    </div>
+    <div class="q4-exp">📘 水だけではイオンが少なく電流が流れにくいため，NaOHを少量溶かしてイオンを増やします。NaOH自身は反応せず，水だけが分解されます。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="a">
+    <div class="q4-no">第2問</div>
+    <div class="q4-text">水の電気分解の陰極で起こる反応式として正しいものはどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．2H₂O＋2e⁻→H₂＋2OH⁻</button>
+      <button class="q4-c" data-v="b">b．4OH⁻→O₂＋2H₂O＋4e⁻</button>
+      <button class="q4-c" data-v="c">c．2H₂O→O₂＋4H⁺＋4e⁻</button>
+      <button class="q4-c" data-v="d">d．H₂＋2OH⁻→2H₂O＋2e⁻</button>
+    </div>
+    <div class="q4-exp">📘 陰極（－）では還元反応が起こり，水が水素と水酸化物イオンに分解されます。「いんきょく・すいそ」でしたね。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="b">
+    <div class="q4-no">第3問</div>
+    <div class="q4-text">水の電気分解の陽極で起こる反応式として正しいものはどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．2H₂O＋2e⁻→H₂＋2OH⁻</button>
+      <button class="q4-c" data-v="b">b．4OH⁻→O₂＋2H₂O＋4e⁻</button>
+      <button class="q4-c" data-v="c">c．2H₂＋O₂→2H₂O</button>
+      <button class="q4-c" data-v="d">d．Na⁺＋e⁻→Na</button>
+    </div>
+    <div class="q4-exp">📘 陽極（＋）では酸化反応が起こり，4OH⁻→O₂↑＋2H₂O＋4e⁻ となって酸素が発生します。「ようきょく・さんそ」でしたね。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="b">
+    <div class="q4-no">第4問</div>
+    <div class="q4-text">赤熱したコークス（C）に水蒸気を当てたときの反応式はどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．C＋2H₂O→CO₂＋2H₂</button>
+      <button class="q4-c" data-v="b">b．C＋H₂O→CO＋H₂</button>
+      <button class="q4-c" data-v="c">c．2C＋O₂→2CO</button>
+      <button class="q4-c" data-v="d">d．C＋O₂→CO₂</button>
+    </div>
+    <div class="q4-exp">📘 C＋H₂O→CO＋H₂ です。生じたCOとH₂の混合気体を「水性ガス」と呼びます。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="b">
+    <div class="q4-no">第5問</div>
+    <div class="q4-text">赤熱したコークスに水蒸気を当てて生じる CO と H₂ の混合気体の名称は何ですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．天然ガス</button>
+      <button class="q4-c" data-v="b">b．水性ガス</button>
+      <button class="q4-c" data-v="c">c．都市ガス</button>
+      <button class="q4-c" data-v="d">d．合成ガス</button>
+    </div>
+    <div class="q4-exp">📘 C＋H₂O→CO＋H₂ で生じるCOとH₂の混合気体を「水性ガス」といいます。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="b">
+    <div class="q4-no">第6問</div>
+    <div class="q4-text">赤熱した鉄（Fe）に水蒸気を当てたときの反応式はどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．Fe＋H₂O→FeO＋H₂</button>
+      <button class="q4-c" data-v="b">b．3Fe＋4H₂O→Fe₃O₄＋4H₂</button>
+      <button class="q4-c" data-v="c">c．2Fe＋3H₂O→Fe₂O₃＋3H₂</button>
+      <button class="q4-c" data-v="d">d．Fe₂O₃＋3H₂→2Fe＋3H₂O</button>
+    </div>
+    <div class="q4-exp">📘 3Fe＋4H₂O→Fe₃O₄＋4H₂ です。生じる酸化鉄 Fe₃O₄ は「四酸化三鉄」といいます。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="c">
+    <div class="q4-no">第7問</div>
+    <div class="q4-text">前の問題で生じる Fe₃O₄ の物質名は何ですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．酸化鉄(Ⅱ)</button>
+      <button class="q4-c" data-v="b">b．酸化鉄(Ⅲ)</button>
+      <button class="q4-c" data-v="c">c．四酸化三鉄</button>
+      <button class="q4-c" data-v="d">d．水酸化鉄</button>
+    </div>
+    <div class="q4-exp">📘 Fe₃O₄は鉄の酸化物の中でも特別な名称を持ち，「四酸化三鉄」と呼ばれます（磁性をもつ黒色の物質です）。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="b">
+    <div class="q4-no">第8問</div>
+    <div class="q4-text">メタン CH₄ に高温の水蒸気を反応させて水素をつくるとき，使われる触媒は何ですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．白金 Pt</button>
+      <button class="q4-c" data-v="b">b．ニッケル Ni</button>
+      <button class="q4-c" data-v="c">c．鉄 Fe</button>
+      <button class="q4-c" data-v="d">d．二酸化マンガン MnO₂</button>
+    </div>
+    <div class="q4-exp">📘 CH₄＋H₂O→CO＋3H₂ の反応はNi（ニッケル）触媒を使って高温で行います。「コ・テ・メ」のメ＝メタンでしたね。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="a">
+    <div class="q4-no">第9問</div>
+    <div class="q4-text">希ガス原子がもつ価電子の数は何個ですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．0個</button>
+      <button class="q4-c" data-v="b">b．1個</button>
+      <button class="q4-c" data-v="c">c．2個</button>
+      <button class="q4-c" data-v="d">d．8個（すべて共通）</button>
+    </div>
+    <div class="q4-exp">📘 希ガスはすでに安定な電子配置をとっているため，結合に使われる価電子は0個です。なお，最外殻電子はHeだけ2個，他は8個です。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="b">
+    <div class="q4-no">第10問</div>
+    <div class="q4-text">ヘリウム He の利用方法として正しいものはどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．ネオンサインの発光に使う</button>
+      <button class="q4-c" data-v="b">b．気球や飛行船，冷却材に使う</button>
+      <button class="q4-c" data-v="c">c．電球や蛍光灯の封入ガスに使う</button>
+      <button class="q4-c" data-v="d">d．写真のフラッシュ(ストロボ)に使う</button>
+    </div>
+    <div class="q4-exp">📘 ヘリウムHeは水素に次いで軽く不燃性なので，気球・飛行船や冷却材に利用されます。「ヘーＮと軽い」でしたね。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="b">
+    <div class="q4-no">第11問</div>
+    <div class="q4-text">空気中にもっとも多く含まれる希ガスはどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．ヘリウムHe</button>
+      <button class="q4-c" data-v="b">b．アルゴンAr</button>
+      <button class="q4-c" data-v="c">c．ネオンNe</button>
+      <button class="q4-c" data-v="d">d．キセノンXe</button>
+    </div>
+    <div class="q4-exp">📘 空気中で最も多い希ガスはアルゴンArです（約0.9%）。He・Neは軽いですが，存在量は少量です。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="a">
+    <div class="q4-no">第12問</div>
+    <div class="q4-text">ネオンNeとアルゴンArでは，どちらのイオン化エネルギーが大きいですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．ネオンNeの方が大きい</button>
+      <button class="q4-c" data-v="b">b．アルゴンArの方が大きい</button>
+      <button class="q4-c" data-v="c">c．同じ大きさ</button>
+      <button class="q4-c" data-v="d">d．希ガスにイオン化エネルギーの差はない</button>
+    </div>
+    <div class="q4-exp">📘 原子番号が小さいNeの方がイオン化エネルギーは大きくなります。希ガスは安定な電子配置をもち，同族内では原子番号が小さいほど電子を奪われにくい傾向があります。</div>
+  </div>
+
+  <div class="check-footer">
+    <div class="score-box" id="score-box" style="display:none;"></div>
+  </div>
+</div>
+
+<!-- ============ ④ フラッシュカード ============ -->
+<div class="tab-content" id="tab-cards">
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">4</span>反応式フラッシュカード</div>
+    <div class="stage">
+      <div class="read-box">カードをタップすると裏の反応式が見られます。自分でめくる「手動」のほか，「3秒後自動」「5秒後自動」を選ぶと，表→裏→次のカードと自動で進みます。</div>
+
+      <div class="card-mode-buttons">
+        <button class="mode-btn active" data-mode="manual">手動</button>
+        <button class="mode-btn" data-mode="3">3秒後自動</button>
+        <button class="mode-btn" data-mode="5">5秒後自動</button>
+      </div>
+
+      <div class="flash-progress"><span id="card-pos">1</span> / <span id="card-total">5</span></div>
+
+      <div class="flashcard-wrap">
+        <div class="flashcard" id="flashcard">
+          <span class="card-face-label" id="card-face-label">表（問題）</span>
+          <div class="card-text-front" id="card-text"></div>
+        </div>
+      </div>
+      <div class="flash-hint" id="flash-hint">カードをタップすると答えがめくれます</div>
+
+      <div class="flash-nav">
+        <button id="card-prev">◀ 前へ</button>
+        <button id="card-flip" class="flip-btn">めくる</button>
+        <button id="card-next">次へ ▶</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<div class="popup-overlay" id="popup-p1">
+  <div class="popup-box">
+    <button class="popup-close" data-close="p1">×</button>
+    <h4>🤔 なぜNaOHを少し溶かすの？</h4>
+    <p>純粋な水は，電離するイオンの量がとても少ないため，電流がほとんど流れません。NaOHを溶かすと，Na⁺とOH⁻が多く存在するようになり，電流が流れやすくなります。ただし，NaOH自身は反応に使われず，水の分解だけが進みます。</p>
+    <p>💡 イメージ：NaOHは「電気の通り道を作る案内役」。反応の主役はあくまで水 H₂O です。</p>
+  </div>
+</div>
+
+<div class="celebrate-msg" id="celebrate-msg">🎉 全問正解です！<br>よくできました！</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- タブ切替 ---------- */
+  var tabBtns = document.querySelectorAll(".tab-btn");
+  var tabContents = document.querySelectorAll(".tab-content");
+  for (var i=0;i<tabBtns.length;i++){
+    tabBtns[i].addEventListener("click", function(){
+      var target = this.getAttribute("data-tab");
+      for (var j=0;j<tabBtns.length;j++){ tabBtns[j].classList.remove("active"); }
+      for (var k=0;k<tabContents.length;k++){ tabContents[k].classList.remove("active"); }
+      this.classList.add("active");
+      document.getElementById("tab-"+target).classList.add("active");
+      window.scrollTo({top:0, behavior:"smooth"});
+      if (target !== "cards") stopCardAuto();
+    });
+  }
+
+  /* ---------- なぜ？ポップアップ ---------- */
+  var whyBtns = document.querySelectorAll(".why-btn");
+  for (var w=0;w<whyBtns.length;w++){
+    whyBtns[w].addEventListener("click", function(){
+      var id = this.getAttribute("data-popup");
+      document.getElementById("popup-"+id).classList.add("show");
+    });
+  }
+  var closeBtns = document.querySelectorAll(".popup-close");
+  for (var cb=0;cb<closeBtns.length;cb++){
+    closeBtns[cb].addEventListener("click", function(){
+      var id = this.getAttribute("data-close");
+      document.getElementById("popup-"+id).classList.remove("show");
+    });
+  }
+  var overlays = document.querySelectorAll(".popup-overlay");
+  for (var ov=0;ov<overlays.length;ov++){
+    overlays[ov].addEventListener("click", function(ev){
+      if (ev.target === this) this.classList.remove("show");
+    });
+  }
+
+  /* ---------- 穴埋めチャレンジ ---------- */
+  var fillItems = document.querySelectorAll(".fill-item");
+  for (var f=0; f<fillItems.length; f++){
+    (function(item){
+      var blanks = item.querySelectorAll(".blank");
+      var chips = item.querySelectorAll(".chip");
+      var feedback = item.querySelector(".fill-feedback");
+      var checkBtn = item.querySelector(".fill-check-btn");
+      var resetBtn = item.querySelector(".fill-reset-btn");
+
+      function nextEmptyBlank(){
+        for (var b=0;b<blanks.length;b++){
+          if (!blanks[b].classList.contains("filled")) return blanks[b];
+        }
+        return null;
+      }
+
+      for (var c=0;c<chips.length;c++){
+        chips[c].addEventListener("click", function(){
+          if (this.classList.contains("used")) return;
+          var target = nextEmptyBlank();
+          if (!target) return;
+          target.textContent = this.textContent;
+          target.classList.add("filled");
+          target.setAttribute("data-filled-val", this.getAttribute("data-val"));
+          this.classList.add("used");
+        });
+      }
+
+      checkBtn.addEventListener("click", function(){
+        var allFilled = true, allCorrect = true;
+        for (var b=0;b<blanks.length;b++){
+          if (!blanks[b].classList.contains("filled")){ allFilled = false; continue; }
+          var ok = blanks[b].getAttribute("data-filled-val") === blanks[b].getAttribute("data-ans");
+          blanks[b].classList.remove("correct","wrong");
+          blanks[b].classList.add(ok?"correct":"wrong");
+          if (!ok) allCorrect = false;
+        }
+        if (!allFilled){
+          feedback.textContent = "まだ空欄があります。チップをすべて置きましょう。";
+          feedback.className = "fill-feedback bad";
+          return;
+        }
+        if (allCorrect){
+          feedback.textContent = "✅ 正解です！この反応式を声に出して読んでみましょう。";
+          feedback.className = "fill-feedback ok";
+          launchConfetti(30);
+        } else {
+          feedback.textContent = "❌ ちがう場所があります。「やり直す」からもう一度挑戦しましょう。";
+          feedback.className = "fill-feedback bad";
+        }
+      });
+
+      resetBtn.addEventListener("click", function(){
+        for (var b=0;b<blanks.length;b++){
+          blanks[b].textContent = "　";
+          blanks[b].classList.remove("filled","correct","wrong");
+          blanks[b].removeAttribute("data-filled-val");
+        }
+        for (var c2=0;c2<chips.length;c2++){ chips[c2].classList.remove("used"); }
+        feedback.textContent = "";
+        feedback.className = "fill-feedback";
+      });
+    })(fillItems[f]);
+  }
+
+  /* ---------- q4（4択）共通処理 ---------- */
+  var finalTotal = document.querySelectorAll(".final-q4").length;
+  var finalAnsweredCount = 0;
+  var finalCorrectCount = 0;
+
+  var q4Blocks = document.querySelectorAll(".q4");
+  for (var q=0;q<q4Blocks.length;q++){
+    (function(block){
+      var correctV = block.getAttribute("data-correct");
+      var btns = block.querySelectorAll(".q4-c");
+      var exp = block.querySelector(".q4-exp");
+      var isFinal = block.classList.contains("final-q4");
+      var answered = false;
+      for (var b=0;b<btns.length;b++){
+        btns[b].addEventListener("click", function(){
+          if (answered) return;
+          answered = true;
+          var v = this.getAttribute("data-v");
+          var isCorrect = (v === correctV);
+          for (var x=0;x<btns.length;x++){
+            btns[x].classList.add("disabled");
+            if (btns[x].getAttribute("data-v") === correctV) btns[x].classList.add("correct");
+          }
+          if (!isCorrect) this.classList.add("wrong");
+          if (exp) exp.classList.add("show");
+          if (isCorrect) launchConfetti(isFinal?0:24);
+          if (isFinal){
+            finalAnsweredCount++;
+            if (isCorrect) finalCorrectCount++;
+            checkFinalDone();
+          }
+        });
+      }
+    })(q4Blocks[q]);
+  }
+
+  /* ---------- minitest（○×）共通処理 ---------- */
+  var mtBlocks = document.querySelectorAll(".minitest");
+  for (var m=0;m<mtBlocks.length;m++){
+    (function(block){
+      var correctV = block.getAttribute("data-correct");
+      var btns = block.querySelectorAll(".mt-c");
+      var exp = block.querySelector(".mt-exp");
+      var answered = false;
+      for (var b=0;b<btns.length;b++){
+        btns[b].addEventListener("click", function(){
+          if (answered) return;
+          answered = true;
+          var v = this.getAttribute("data-v");
+          var isCorrect = (v === correctV);
+          for (var x=0;x<btns.length;x++){
+            btns[x].classList.add("disabled");
+            if (btns[x].getAttribute("data-v") === correctV) btns[x].classList.add("correct");
+          }
+          if (!isCorrect) this.classList.add("wrong");
+          if (exp){
+            exp.textContent = isCorrect ? "📘 そのとおりです！よく理解できています。" : "📘 もう一度，上の説明を読み直してみましょう。";
+            exp.classList.add("show");
+          }
+          if (isCorrect) launchConfetti(24);
+        });
+      }
+    })(mtBlocks[m]);
+  }
+
+  function checkFinalDone(){
+    if (finalAnsweredCount < finalTotal) return;
+    var box = document.getElementById("score-box");
+    box.style.display = "inline-block";
+    box.textContent = "結果：" + finalTotal + "問中 " + finalCorrectCount + "問 正解！";
+    if (finalCorrectCount === finalTotal){
+      launchConfetti(80);
+      var msg = document.getElementById("celebrate-msg");
+      msg.style.display = "block";
+      setTimeout(function(){ msg.style.display = "none"; }, 2200);
+    }
+  }
+
+  /* ---------- コンフェッティ（DOM div方式） ---------- */
+  var CONFETTI_COLORS = ["#f472b6","#facc15","#34d399","#60a5fa","#f87171","#a78bfa","#fb923c","#2dd4bf"];
+
+  function launchConfetti(count){
+    if (!count) return;
+    for (var i=0;i<count;i++){
+      var piece = document.createElement("div");
+      piece.className = "confetti-piece";
+      var size = 6 + Math.random()*6;
+      piece.style.left = (Math.random()*100) + "vw";
+      piece.style.width = size + "px";
+      piece.style.height = (size*1.6) + "px";
+      piece.style.background = CONFETTI_COLORS[Math.floor(Math.random()*CONFETTI_COLORS.length)];
+      piece.style.borderRadius = (Math.random()<0.5 ? "50%" : "2px");
+      var duration = 1.8 + Math.random()*1.4;
+      piece.style.animationDuration = duration + "s";
+      piece.style.animationDelay = (Math.random()*0.3) + "s";
+      document.body.appendChild(piece);
+      (function(el, dur){
+        setTimeout(function(){ if (el.parentNode) el.parentNode.removeChild(el); }, (dur+0.5)*1000);
+      })(piece, duration);
+    }
+  }
+
+  /* ---------- フラッシュカード ---------- */
+  var CARDS = [
+    {front:"① コークス C に水蒸気をあてる反応式は？", back:"C ＋ H₂O → CO ＋ H₂"},
+    {front:"② 赤熱した鉄 Fe に水蒸気をあてる反応式は？", back:"3Fe ＋ 4H₂O → Fe₃O₄ ＋ 4H₂"},
+    {front:"③ メタン CH₄ に水蒸気をあてる反応式は？（Ni触媒）", back:"CH₄ ＋ H₂O → CO ＋ 3H₂"},
+    {front:"④ 水の電気分解：陰極（－）の反応式は？", back:"2H₂O ＋ 2e⁻ → H₂ ＋ 2OH⁻"},
+    {front:"⑤ 水の電気分解：陽極（＋）の反応式は？", back:"4OH⁻ → O₂ ＋ 2H₂O ＋ 4e⁻"},
+    {front:"⑥ 空気中にもっとも多い希ガスは？", back:"アルゴンAr（約0.9%）"},
+    {front:"⑦ NeとArでイオン化エネルギーが大きいのは？", back:"Ne（原子番号が小さいほど大きい）"}
+  ];
+  var cardIndex = 0, cardFlipped = false, cardAutoTimer = null, cardAutoSeconds = 0;
+  var flashcardEl = document.getElementById("flashcard");
+  var cardTextEl = document.getElementById("card-text");
+  var cardLabelEl = document.getElementById("card-face-label");
+  var cardPosEl = document.getElementById("card-pos");
+  var cardTotalEl = document.getElementById("card-total");
+  var flashHintEl = document.getElementById("flash-hint");
+  var modeBtns = document.querySelectorAll(".mode-btn");
+
+  function renderCard(){
+    var c = CARDS[cardIndex];
+    cardPosEl.textContent = (cardIndex+1);
+    if (cardFlipped){
+      flashcardEl.classList.add("flipped");
+      cardLabelEl.textContent = "裏（答え）";
+      cardTextEl.className = "card-text-back";
+      cardTextEl.textContent = c.back;
+      flashHintEl.textContent = "タップ，または「次へ」で次のカードへ";
+    } else {
+      flashcardEl.classList.remove("flipped");
+      cardLabelEl.textContent = "表（問題）";
+      cardTextEl.className = "card-text-front";
+      cardTextEl.textContent = c.front;
+      flashHintEl.textContent = "カードをタップすると答えがめくれます";
+    }
+  }
+
+  function flipCardAnim(cb){
+    flashcardEl.classList.add("anim");
+    setTimeout(function(){
+      cb();
+      flashcardEl.classList.remove("anim");
+    }, 160);
+  }
+
+  function flipCard(){
+    flipCardAnim(function(){ cardFlipped = !cardFlipped; renderCard(); });
+  }
+  function nextCard(){
+    flipCardAnim(function(){
+      cardIndex = (cardIndex+1) % CARDS.length;
+      cardFlipped = false;
+      renderCard();
+    });
+  }
+  function prevCard(){
+    flipCardAnim(function(){
+      cardIndex = (cardIndex-1+CARDS.length) % CARDS.length;
+      cardFlipped = false;
+      renderCard();
+    });
+  }
+
+  function clearCardAutoTimer(){
+    if (cardAutoTimer){ clearInterval(cardAutoTimer); cardAutoTimer = null; }
+  }
+  function setActiveMode(mode){
+    for (var mb=0; mb<modeBtns.length; mb++){
+      modeBtns[mb].classList.toggle("active", modeBtns[mb].getAttribute("data-mode") === mode);
+    }
+  }
+  function startCardAuto(seconds){
+    clearCardAutoTimer();
+    cardAutoSeconds = seconds;
+    cardAutoTimer = setInterval(function(){
+      if (!cardFlipped){
+        flipCardAnim(function(){ cardFlipped = true; renderCard(); });
+      } else {
+        flipCardAnim(function(){
+          cardIndex = (cardIndex+1) % CARDS.length;
+          cardFlipped = false;
+          renderCard();
+        });
+      }
+    }, seconds*1000);
+  }
+  function stopAutoIfManualTap(){
+    if (cardAutoSeconds !== 0){
+      cardAutoSeconds = 0;
+      setActiveMode("manual");
+      clearCardAutoTimer();
+    }
+  }
+  function stopCardAuto(){
+    cardAutoSeconds = 0;
+    clearCardAutoTimer();
+    setActiveMode("manual");
+  }
+
+  if (cardTotalEl) cardTotalEl.textContent = CARDS.length;
+
+  if (flashcardEl){
+    flashcardEl.addEventListener("click", function(){ stopAutoIfManualTap(); flipCard(); });
+  }
+  var cardFlipBtn = document.getElementById("card-flip");
+  if (cardFlipBtn) cardFlipBtn.addEventListener("click", function(){ stopAutoIfManualTap(); flipCard(); });
+  var cardNextBtn = document.getElementById("card-next");
+  if (cardNextBtn) cardNextBtn.addEventListener("click", function(){ stopAutoIfManualTap(); nextCard(); });
+  var cardPrevBtn = document.getElementById("card-prev");
+  if (cardPrevBtn) cardPrevBtn.addEventListener("click", function(){ stopAutoIfManualTap(); prevCard(); });
+
+  for (var mb2=0; mb2<modeBtns.length; mb2++){
+    modeBtns[mb2].addEventListener("click", function(){
+      var mode = this.getAttribute("data-mode");
+      setActiveMode(mode);
+      if (mode === "manual"){
+        cardAutoSeconds = 0;
+        clearCardAutoTimer();
+      } else {
+        startCardAuto(parseInt(mode,10));
+      }
+    });
+  }
+
+  if (flashcardEl) renderCard();
+
+})();
+</script>
+
+</body>
+</html>

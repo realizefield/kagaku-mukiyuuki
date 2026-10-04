@@ -1,0 +1,1655 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>無機化学④ 窒素とその化合物 | GAMBA化学</title>
+<style>
+:root{
+  --bg:#f0f4ff;
+  --card:#fff;
+  --primary:#2563eb;
+  --primary-light:#dbeafe;
+  --primary-dark:#1e40af;
+  --accent:#dc2626;
+  --accent-light:#fee2e2;
+  --success:#16a34a;
+  --success-light:#dcfce7;
+  --warn:#d97706;
+  --warn-light:#fffbeb;
+  --purple:#7c3aed;
+  --purple-light:#ede9fe;
+  --text:#1e293b;
+  --text-sub:#64748b;
+  --border:#bfdbfe;
+  --radius:14px;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  font-family:"BIZ UDPGothic","Meiryo",sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.8;
+  padding-bottom:40px;
+}
+
+/* ---------- topnav / hero ---------- */
+.topnav{
+  background:var(--primary-dark);
+  color:#fff;
+  padding:10px 16px;
+  font-weight:bold;
+  font-size:1rem;
+  letter-spacing:.5px;
+  position:sticky;
+  top:0;
+  z-index:60;
+}
+.hero{
+  background:linear-gradient(135deg,var(--primary-dark),var(--primary));
+  color:#fff;
+  padding:20px 16px 18px;
+  text-align:center;
+}
+.hero h1{margin:0;font-size:1.3rem;}
+.hero p{margin:6px 0 0;font-size:.82rem;opacity:.92;}
+
+.tabnav{
+  display:flex;
+  max-width:780px;
+  margin:0 auto;
+  padding:10px 12px 0;
+  gap:8px;
+  position:sticky;
+  top:40px;
+  background:var(--bg);
+  z-index:55;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+}
+.tab-btn{
+  flex:none;
+  min-width:78px;
+  padding:11px 8px;
+  border:2px solid var(--primary);
+  background:#fff;
+  color:var(--primary-dark);
+  border-radius:12px 12px 0 0;
+  font-size:.85rem;
+  font-weight:bold;
+  cursor:pointer;
+  white-space:nowrap;
+}
+.tab-btn.active{background:var(--primary);color:#fff;}
+.wrap{max-width:780px;margin:0 auto;padding:4px 12px 0;}
+.tab-content{display:none;}
+.tab-content.active{display:block;animation:fade .25s;}
+@keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+/* ---------- unit / stage ---------- */
+.unit{
+  background:var(--card);
+  border-radius:var(--radius);
+  margin:16px 0;
+  box-shadow:0 1px 4px rgba(0,0,0,.08);
+  border:1px solid var(--border);
+  overflow:hidden;
+}
+.unit-title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  background:var(--primary-light);
+  color:var(--primary-dark);
+  font-size:1.05rem;
+  font-weight:bold;
+  padding:14px 16px;
+}
+.unit-num{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:30px;height:30px;
+  border-radius:50%;
+  background:var(--primary);
+  color:#fff;
+  font-size:.95rem;
+  flex:none;
+}
+.stage{padding:4px 16px 18px;}
+.stage h3{font-size:1rem;color:var(--primary-dark);margin:20px 0 8px;border-left:5px solid var(--primary);padding-left:8px;}
+
+.read-box{
+  background:var(--primary-light);
+  border-radius:10px;
+  padding:12px 14px;
+  margin:10px 0;
+  font-size:.95rem;
+}
+
+.key-box{
+  background:var(--warn-light);
+  border:2px solid var(--warn);
+  border-radius:10px;
+  padding:12px 14px;
+  margin:12px 0;
+  font-size:.93rem;
+}
+.key-box .tag{font-weight:bold;color:var(--warn);}
+
+.important-box{
+  background:var(--accent-light);
+  border:2px solid var(--accent);
+  border-radius:10px;
+  padding:12px 14px;
+  margin:12px 0;
+  font-size:.93rem;
+}
+.important-box .tag{font-weight:bold;color:var(--accent);}
+
+/* 暗記法 */
+.mnemonic-box{
+  background:var(--purple-light);
+  border:2px dashed var(--purple);
+  border-radius:10px;
+  padding:12px 14px;
+  margin:12px 0;
+  font-size:.93rem;
+}
+.mnemonic-box .tag{font-weight:bold;color:var(--purple);display:block;margin-bottom:4px;}
+.mnemonic-box .phrase{font-size:1.02rem;font-weight:bold;color:#4c1d95;}
+
+.eq{
+  background:#f1f5f9;
+  border-radius:8px;
+  padding:9px 12px;
+  margin:6px 0;
+  font-size:1rem;
+  font-weight:600;
+  text-align:center;
+  letter-spacing:.3px;
+  overflow-x:auto;
+}
+
+/* ---------- 相関図（フローチェーン） ---------- */
+.flow-diagram{margin:14px 0;}
+.flow-row{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  margin:8px 0;
+  overflow-x:auto;
+  padding:2px 0;
+}
+.flow-box{
+  flex:none;
+  min-width:108px;
+  text-align:center;
+  background:#fff;
+  border:2px solid var(--primary);
+  border-radius:10px;
+  padding:8px 10px;
+  font-size:.82rem;
+  font-weight:bold;
+  color:var(--primary-dark);
+}
+.flow-box.result{background:var(--primary);color:#fff;border-color:var(--primary-dark);}
+.flow-box.byproduct{background:#f1f5f9;border-color:#94a3b8;color:var(--text-sub);font-weight:normal;}
+.flow-arrow{
+  flex:none;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  font-size:1.3rem;
+  color:var(--primary);
+  min-width:46px;
+}
+.flow-arrow .cond{font-size:.68rem;color:var(--text-sub);font-weight:normal;white-space:nowrap;}
+.flow-note{
+  text-align:center;
+  font-size:.78rem;
+  color:var(--text-sub);
+  margin-top:2px;
+}
+
+/* ---------- まとめ表 ---------- */
+.tbl-wrap{overflow-x:auto;margin:12px 0;}
+.summary-tbl{
+  width:100%;
+  border-collapse:collapse;
+  font-size:.86rem;
+  min-width:420px;
+}
+.summary-tbl th{
+  background:var(--primary);
+  color:#fff;
+  padding:8px 6px;
+  font-weight:bold;
+}
+.summary-tbl td{
+  border-bottom:1px solid var(--border);
+  padding:8px 6px;
+  text-align:center;
+}
+.summary-tbl tr:nth-child(even) td{background:#f8faff;}
+
+/* ---------- なぜ？ポップアップ ---------- */
+.why-btn{
+  display:inline-block;
+  margin:10px 0;
+  padding:9px 16px;
+  background:var(--purple-light);
+  border:1px solid var(--purple);
+  border-radius:20px;
+  color:var(--purple);
+  font-size:.85rem;
+  font-weight:bold;
+  cursor:pointer;
+}
+.popup-overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(15,23,42,.55);
+  z-index:200;
+  align-items:center;
+  justify-content:center;
+  padding:16px;
+}
+.popup-overlay.show{display:flex;}
+.popup-box{
+  background:#fff;
+  border-radius:16px;
+  max-width:420px;
+  max-height:80vh;
+  overflow-y:auto;
+  padding:20px;
+  position:relative;
+}
+.popup-box h4{margin:0 0 10px;color:var(--purple);font-size:1rem;}
+.popup-close{
+  position:absolute;
+  top:10px;right:14px;
+  background:none;
+  border:none;
+  font-size:1.3rem;
+  color:var(--text-sub);
+  cursor:pointer;
+}
+
+/* ---------- 穴埋めチャレンジ ---------- */
+.fill-item{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:14px 16px;
+  margin:14px 0;
+}
+.fill-item .q-no{
+  display:inline-block;
+  background:var(--primary);
+  color:#fff;
+  font-size:.75rem;
+  font-weight:bold;
+  border-radius:12px;
+  padding:2px 10px;
+  margin-bottom:8px;
+}
+.fill-sentence{font-size:.98rem;margin:8px 0;}
+.blank{
+  display:inline-block;
+  min-width:64px;
+  border-bottom:2px solid var(--primary);
+  text-align:center;
+  font-weight:bold;
+  color:var(--primary-dark);
+  padding:0 4px;
+  margin:0 2px;
+}
+.blank.filled{background:var(--primary-light);border-radius:4px;}
+.blank.correct{background:var(--success-light);border-bottom-color:var(--success);color:var(--success);}
+.blank.wrong{background:var(--accent-light);border-bottom-color:var(--accent);color:var(--accent);}
+.chip-bank{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
+.chip{
+  background:var(--accent-light);
+  border:1px solid var(--accent);
+  color:var(--primary-dark);
+  border-radius:20px;
+  padding:6px 14px;
+  font-size:.9rem;
+  cursor:pointer;
+}
+.chip:active{transform:scale(.95);}
+.chip.used{opacity:.35;pointer-events:none;}
+.fill-check-btn,.fill-reset-btn{
+  margin-top:10px;margin-right:8px;
+  padding:8px 18px;border:none;border-radius:20px;
+  font-weight:bold;cursor:pointer;font-size:.88rem;
+}
+.fill-check-btn{background:var(--primary);color:#fff;}
+.fill-reset-btn{background:#e2e8f0;color:var(--text);}
+.fill-feedback{margin-top:8px;font-size:.88rem;font-weight:bold;}
+.fill-feedback.ok{color:var(--success);}
+.fill-feedback.bad{color:var(--accent);}
+
+/* ---------- q4（4択） ---------- */
+.q4{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:14px 16px;
+  margin:14px 0;
+}
+.q4.mini{background:#f8faff;}
+.q4-no{
+  display:inline-block;
+  background:var(--accent);
+  color:#fff;
+  font-size:.72rem;
+  font-weight:bold;
+  border-radius:12px;
+  padding:2px 10px;
+  margin-bottom:8px;
+}
+.q4-no.practice{background:var(--purple);}
+.q4-text{font-size:.96rem;font-weight:600;margin:4px 0 10px;}
+.q4-choices{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.q4-c{
+  text-align:left;
+  padding:9px 10px;
+  border:2px solid #cbd5e1;
+  border-radius:10px;
+  background:#fff;
+  font-size:.85rem;
+  cursor:pointer;
+}
+.q4-c.correct{background:var(--success-light);border-color:var(--success);}
+.q4-c.wrong{background:var(--accent-light);border-color:var(--accent);}
+.q4-c.disabled{pointer-events:none;}
+.q4-exp{
+  display:none;
+  margin-top:10px;
+  background:var(--primary-light);
+  border-left:4px solid var(--primary);
+  border-radius:0 8px 8px 0;
+  padding:10px 12px;
+  font-size:.86rem;
+  color:var(--primary-dark);
+}
+.q4-exp.show{display:block;}
+
+/* ---------- minitest（○×） ---------- */
+.minitest{
+  background:#f8faff;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:14px 16px;
+  margin:14px 0;
+}
+.mt-text{font-size:.95rem;font-weight:600;margin:4px 0 10px;}
+.mt-choices{display:flex;gap:10px;}
+.mt-c{
+  flex:1;
+  padding:10px;
+  border:2px solid #cbd5e1;
+  border-radius:10px;
+  background:#fff;
+  font-size:1rem;
+  font-weight:bold;
+  cursor:pointer;
+}
+.mt-c.correct{background:var(--success-light);border-color:var(--success);}
+.mt-c.wrong{background:var(--accent-light);border-color:var(--accent);}
+.mt-c.disabled{pointer-events:none;}
+.mt-exp{
+  display:none;
+  margin-top:10px;
+  background:#fff;
+  border-left:4px solid var(--primary);
+  border-radius:0 8px 8px 0;
+  padding:10px 12px;
+  font-size:.86rem;
+  color:var(--primary-dark);
+}
+.mt-exp.show{display:block;}
+
+/* ---------- 確認テスト footer ---------- */
+.check-footer{text-align:center;margin:24px 0;}
+.score-box{
+  display:inline-block;
+  background:var(--primary);
+  color:#fff;
+  border-radius:16px;
+  padding:14px 28px;
+  font-size:1.1rem;
+  font-weight:bold;
+}
+.celebrate-msg{
+  display:none;
+  position:fixed;
+  top:36%;left:50%;
+  transform:translate(-50%,-50%);
+  background:#fff;
+  border:3px solid var(--primary);
+  border-radius:20px;
+  padding:22px 30px;
+  font-size:1.15rem;
+  font-weight:bold;
+  color:var(--primary-dark);
+  box-shadow:0 8px 30px rgba(0,0,0,.25);
+  z-index:1000;
+  text-align:center;
+}
+
+/* ---------- confetti ---------- */
+.confetti-piece{
+  position:fixed;
+  top:-20px;
+  width:8px;height:14px;
+  z-index:999;
+  pointer-events:none;
+  animation:confettiFall linear forwards;
+}
+@keyframes confettiFall{
+  from{transform:translateY(0) rotate(0deg);opacity:1;}
+  to{transform:translateY(105vh) rotate(720deg);opacity:0;}
+}
+
+/* ---------- フラッシュカード ---------- */
+.card-mode-buttons{display:flex;gap:8px;margin:12px 0;flex-wrap:wrap;}
+.mode-btn{
+  flex:1;
+  min-width:90px;
+  padding:9px 6px;
+  border:2px solid var(--primary);
+  background:#fff;
+  color:var(--primary-dark);
+  border-radius:20px;
+  font-size:.82rem;
+  font-weight:bold;
+  cursor:pointer;
+}
+.mode-btn.active{background:var(--primary);color:#fff;}
+.flash-progress{
+  text-align:center;
+  font-size:.85rem;
+  color:var(--text-sub);
+  font-weight:bold;
+  margin:4px 0 10px;
+}
+.flashcard-wrap{margin:10px 0;}
+.flashcard{
+  position:relative;
+  min-height:180px;
+  background:var(--card);
+  border:3px solid var(--primary);
+  border-radius:16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:22px 18px;
+  cursor:pointer;
+  box-shadow:0 2px 10px rgba(37,99,235,.12);
+  transition:opacity .18s, transform .18s;
+}
+.flashcard.flipped{background:var(--primary-light);border-color:var(--primary-dark);}
+.flashcard.anim{opacity:0;transform:scale(.96);}
+.card-face-label{
+  position:absolute;
+  top:10px;left:14px;
+  font-size:.72rem;
+  font-weight:bold;
+  color:var(--text-sub);
+}
+.card-text-front{font-size:1.08rem;font-weight:bold;color:var(--primary-dark);}
+.card-text-back{font-size:1.1rem;font-weight:bold;color:var(--primary-dark);letter-spacing:.3px;}
+.flash-hint{text-align:center;font-size:.78rem;color:var(--text-sub);margin-top:8px;}
+.flash-nav{display:flex;gap:8px;margin-top:14px;}
+.flash-nav button{
+  flex:1;
+  padding:10px 4px;
+  border:none;
+  border-radius:20px;
+  font-weight:bold;
+  font-size:.86rem;
+  cursor:pointer;
+  background:#e2e8f0;
+  color:var(--text);
+}
+.flash-nav button.flip-btn{background:var(--primary);color:#fff;}
+</style>
+</head>
+<body>
+
+<div class="topnav">⚗️ GAMBA 化学</div>
+<div class="hero">
+  <h1>無機化学④ 窒素とその化合物</h1>
+  <p>江原予備校 GAMBA 大学入学共通テスト対応教材</p>
+</div>
+
+<div class="tabnav">
+  <button class="tab-btn active" data-tab="study">① 学習</button>
+  <button class="tab-btn" data-tab="fill">② 穴埋め</button>
+  <button class="tab-btn" data-tab="check">③ 確認テスト</button>
+  <button class="tab-btn" data-tab="cards">④ カード</button>
+</div>
+
+<main class="wrap">
+
+<!-- ============ ① 学習 ============ -->
+<div class="tab-content active" id="tab-study">
+
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">1</span>窒素N₂の単体</div>
+    <div class="stage">
+
+      <div class="read-box">窒素N₂は，空気中に体積比で約78%含まれる無色・無臭の気体です。常温では化学的にとても安定していて，他の物質と反応しにくい性質があります。</div>
+
+      <div class="key-box"><span class="tag">🔑 ポイント</span> 液体窒素（沸点－196℃）は，とても低い温度をつくれるため冷却剤として広く利用されています。</div>
+
+      <div class="read-box">窒素のつくり方は2つあります。</div>
+      <div class="eq">実験室的製法：NH₄NO₂ → N₂ ＋ 2H₂O（亜硝酸アンモニウムの加熱分解）</div>
+      <div class="read-box">工業的には，液体空気の分留によってつくられます（酸素のつくり方と同じ原理です）。</div>
+
+      <div class="minitest" data-correct="x">
+        <div class="mt-text">Q. 窒素は常温で反応性が高く，さまざまな物質と反応しやすい。 ○か×か？</div>
+        <div class="mt-choices">
+          <button class="mt-c" data-v="o">○ 正しい</button>
+          <button class="mt-c" data-v="x">× 誤り</button>
+        </div>
+        <div class="mt-exp"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">2</span>アンモニアNH₃の性質とつくり方</div>
+    <div class="stage">
+
+      <div class="read-box">アンモニアNH₃は刺激臭のある無色の気体です。空気より軽く，水に非常によく溶けるので，捕集には上方置換法を使います。水溶液は弱塩基性を示します。</div>
+      <div class="eq">NH₃ ＋ H₂O → NH₄⁺ ＋ OH⁻</div>
+
+      <div class="key-box"><span class="tag">🔑 ステップで考える</span> アンモニアには2つのつくり方があります。工業的には窒素と水素を直接反応させ，実験室ではアンモニウム塩に強塩基を加えてつくります。</div>
+
+      <div class="flow-diagram">
+        <div class="flow-row">
+          <div class="flow-box">窒素N₂<br>＋水素H₂</div>
+          <div class="flow-arrow">→<span class="cond">Fe₃O₄触媒<br>高温・高圧</span></div>
+          <div class="flow-box result">NH₃</div>
+        </div>
+        <div class="flow-note">N₂ ＋ 3H₂ → 2NH₃（ハーバー・ボッシュ法／工業的製法）</div>
+
+        <div class="flow-row">
+          <div class="flow-box">塩化アンモニウム<br>NH₄Cl</div>
+          <div class="flow-arrow">→<span class="cond">Ca(OH)₂<br>加熱</span></div>
+          <div class="flow-box result">NH₃</div>
+          <div class="flow-arrow">＋</div>
+          <div class="flow-box byproduct">CaCl₂＋H₂O</div>
+        </div>
+        <div class="flow-note">2NH₄Cl ＋ Ca(OH)₂ → CaCl₂ ＋ 2H₂O ＋ 2NH₃（実験室的製法）</div>
+      </div>
+
+      <div class="read-box">アンモニアの検出には，濃塩酸を近づける方法があります。塩化アンモニウムNH₄Clの白煙（白いけむり）が生じます。</div>
+      <div class="eq">NH₃ ＋ HCl → NH₄Cl</div>
+
+      <button class="why-btn" data-popup="p1">🤔 なぜソーダ石灰で乾燥させるの？</button>
+
+      <div class="important-box"><span class="tag">⚠️ よくある間違い</span> アンモニアは塩基性の気体なので，酸性の乾燥剤（濃硫酸・十酸化四リン）は使えません。中和反応が起きてしまうからです。塩化カルシウムCaCl₂も，CaCl₂・8NH₃という化合物をつくるため使えません。正しい乾燥剤は「ソーダ石灰」です。</div>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">小テスト①</div>
+        <div class="q4-text">Q. アンモニアの捕集に用いる方法はどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．上方置換法</button>
+          <button class="q4-c" data-v="b">b．下方置換法</button>
+          <button class="q4-c" data-v="c">c．水上置換法</button>
+          <button class="q4-c" data-v="d">d．ろ過</button>
+        </div>
+        <div class="q4-exp">📘 アンモニアは空気より軽く，水に非常に溶けやすいので上方置換法で集めます。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">小テスト②</div>
+        <div class="q4-text">Q. アンモニアの工業的製法を何といいますか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．オストワルト法</button>
+          <button class="q4-c" data-v="b">b．ハーバー・ボッシュ法</button>
+          <button class="q4-c" data-v="c">c．ソルベー法</button>
+          <button class="q4-c" data-v="d">d．接触法</button>
+        </div>
+        <div class="q4-exp">📘 N₂＋3H₂→2NH₃。鉄の化合物（Fe₃O₄）を触媒に，高温・高圧で直接反応させます。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="c">
+        <div class="q4-no practice">小テスト③</div>
+        <div class="q4-text">Q. アンモニアの乾燥剤として適切なものはどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．濃硫酸</button>
+          <button class="q4-c" data-v="b">b．塩化カルシウム</button>
+          <button class="q4-c" data-v="c">c．ソーダ石灰</button>
+          <button class="q4-c" data-v="d">d．十酸化四リン</button>
+        </div>
+        <div class="q4-exp">📘 アンモニアは塩基性の気体なので，中性〜塩基性の乾燥剤であるソーダ石灰を使います。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="d">
+        <div class="q4-no practice">小テスト④</div>
+        <div class="q4-text">Q. 「NH₃＋HCl→（　）」。空欄に入るのはどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．N₂</button>
+          <button class="q4-c" data-v="b">b．NH₄OH</button>
+          <button class="q4-c" data-v="c">c．HNO₃</button>
+          <button class="q4-c" data-v="d">d．NH₄Cl</button>
+        </div>
+        <div class="q4-exp">📘 アンモニアに濃塩酸を近づけると，塩化アンモニウムNH₄Clの白煙が生じます。これがアンモニアの検出法です。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">小テスト⑤</div>
+        <div class="q4-text">Q. アンモニア水溶液の性質はどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．強酸性</button>
+          <button class="q4-c" data-v="b">b．弱塩基性</button>
+          <button class="q4-c" data-v="c">c．中性</button>
+          <button class="q4-c" data-v="d">d．強塩基性</button>
+        </div>
+        <div class="q4-exp">📘 NH₃＋H₂O→NH₄⁺＋OH⁻ となり，OH⁻が生じるので弱塩基性を示します。</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">3</span>一酸化窒素NOと二酸化窒素NO₂</div>
+    <div class="stage">
+
+      <div class="read-box">銅Cuに硝酸を加えると，硝酸の「濃さ」によってできる気体が変わります。これは「どちらが材料になっているか」を考えるとわかりやすくなります。</div>
+
+      <div class="key-box"><span class="tag">🔑 ステップで考える</span> 硝酸が「濃いか薄いか」で，生成する気体が決まります。<br>・薄い硝酸（希硝酸）が材料 → NO（一酸化窒素）ができる<br>・濃い硝酸（濃硝酸）が材料 → NO₂（二酸化窒素）ができる</div>
+
+      <div class="eq">3Cu ＋ 8HNO₃（希）→ 3Cu(NO₃)₂ ＋ 2NO ＋ 4H₂O</div>
+      <div class="eq">Cu ＋ 4HNO₃（濃）→ Cu(NO₃)₂ ＋ 2NO₂ ＋ 2H₂O</div>
+
+      <div class="tbl-wrap">
+        <table class="summary-tbl">
+          <tr><th></th><th>NO</th><th>NO₂</th></tr>
+          <tr><td>色</td><td>無色</td><td>赤褐色</td></tr>
+          <tr><td>水への溶解</td><td>溶けにくい</td><td>溶けやすい</td></tr>
+          <tr><td>捕集法</td><td>水上置換</td><td>下方置換</td></tr>
+          <tr><td>材料の硝酸</td><td>希硝酸</td><td>濃硝酸</td></tr>
+        </table>
+      </div>
+
+      <div class="read-box">NOは空気にふれると，すぐに酸化されてNO₂に変わります。</div>
+      <div class="eq">2NO ＋ O₂ → 2NO₂</div>
+
+      <div class="important-box"><span class="tag">⚠️ 注意</span> NO₂は水に溶けると硝酸になり，NOが副生します。この反応は，次に学ぶ硝酸の工業的製法（オストワルト法）でとても重要になります。</div>
+      <div class="eq">3NO₂ ＋ H₂O → 2HNO₃ ＋ NO</div>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">練習①</div>
+        <div class="q4-text">Q. 銅に希硝酸（薄い硝酸）を加えたとき，発生する気体はどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．NO</button>
+          <button class="q4-c" data-v="b">b．NO₂</button>
+          <button class="q4-c" data-v="c">c．H₂</button>
+          <button class="q4-c" data-v="d">d．N₂</button>
+        </div>
+        <div class="q4-exp">📘 希硝酸（薄い硝酸）が材料のときは，NO（一酸化窒素，無色）が発生します。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">練習②</div>
+        <div class="q4-text">Q. 「Cu＋4HNO₃（濃）→Cu(NO₃)₂＋（　）＋2H₂O」。空欄に入るのはどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．NO</button>
+          <button class="q4-c" data-v="b">b．2NO₂</button>
+          <button class="q4-c" data-v="c">c．N₂</button>
+          <button class="q4-c" data-v="d">d．O₂</button>
+        </div>
+        <div class="q4-exp">📘 濃硝酸が材料のときは，NO₂（二酸化窒素，赤褐色）が発生します。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">小テスト①</div>
+        <div class="q4-text">Q. NO（一酸化窒素）の色はどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．無色</button>
+          <button class="q4-c" data-v="b">b．赤褐色</button>
+          <button class="q4-c" data-v="c">c．黄緑色</button>
+          <button class="q4-c" data-v="d">d．淡青色</button>
+        </div>
+        <div class="q4-exp">📘 NOは無色で水に溶けにくい気体です。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">小テスト②</div>
+        <div class="q4-text">Q. NO₂（二酸化窒素）の色はどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．無色</button>
+          <button class="q4-c" data-v="b">b．赤褐色</button>
+          <button class="q4-c" data-v="c">c．黄緑色</button>
+          <button class="q4-c" data-v="d">d．淡青色</button>
+        </div>
+        <div class="q4-exp">📘 NO₂は赤褐色で刺激臭のある有毒な気体です。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="c">
+        <div class="q4-no practice">小テスト③</div>
+        <div class="q4-text">Q. NOの捕集法はどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．上方置換法</button>
+          <button class="q4-c" data-v="b">b．下方置換法</button>
+          <button class="q4-c" data-v="c">c．水上置換法</button>
+          <button class="q4-c" data-v="d">d．ろ過</button>
+        </div>
+        <div class="q4-exp">📘 NOは水に溶けにくいので，水上置換法で集めます。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="d">
+        <div class="q4-no practice">小テスト④</div>
+        <div class="q4-text">Q. 「2NO＋O₂→（　）」。空欄に入るのはどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．N₂O</button>
+          <button class="q4-c" data-v="b">b．NO₃</button>
+          <button class="q4-c" data-v="c">c．N₂O₄</button>
+          <button class="q4-c" data-v="d">d．2NO₂</button>
+        </div>
+        <div class="q4-exp">📘 NOは空気中の酸素とすぐに反応し，NO₂に変わります。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">小テスト⑤</div>
+        <div class="q4-text">Q. 銅に加える硝酸が「濃硝酸」のとき，発生する気体の色はどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．赤褐色</button>
+          <button class="q4-c" data-v="b">b．無色</button>
+          <button class="q4-c" data-v="c">c．黄緑色</button>
+          <button class="q4-c" data-v="d">d．青色</button>
+        </div>
+        <div class="q4-exp">📘 濃硝酸が材料のときはNO₂（赤褐色）が発生します。希硝酸のときはNO（無色）です。</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">4</span>硝酸HNO₃とオストワルト法</div>
+    <div class="stage">
+
+      <div class="read-box">濃硝酸は無色・揮発性の液体で，強い酸です。光によって分解されやすいため，褐色びんに保存します。</div>
+      <div class="eq">4HNO₃ → 4NO₂ ＋ 2H₂O ＋ O₂</div>
+
+      <div class="important-box"><span class="tag">⚠️ 注意</span> 硝酸は酸化力がとても強く，イオン化傾向が水素より小さい銅Cuや銀Agも溶かします。ただし，アルミニウムAlや鉄Feなどは濃硝酸には溶けません。表面に緻密な酸化被膜ができて保護される「不動態」という状態になるためです。</div>
+
+      <div class="key-box"><span class="tag">🔑 ポイント</span> 濃硝酸に入れても不動態をつくり溶けにくい代表的な金属は，鉄Fe・ニッケルNi・アルミニウムAl・クロムCr・コバルトCoの5つです。</div>
+
+      <div class="read-box">濃硝酸と濃塩酸を体積比1：3で混ぜた溶液を「王水」といいます。王水は，金や白金のように非常に反応しにくい金属も溶かすことができます。</div>
+
+      <div class="key-box"><span class="tag">🔑 ステップで考える</span> 硝酸の工業的製法「オストワルト法」は，アンモニアを3段階で酸化させていく方法です。相関図で流れをつかみましょう。</div>
+
+      <div class="flow-diagram">
+        <div class="flow-row">
+          <div class="flow-box">アンモニア<br>NH₃</div>
+          <div class="flow-arrow">→<span class="cond">Pt触媒<br>＋O₂</span></div>
+          <div class="flow-box result">NO</div>
+          <div class="flow-arrow">＋</div>
+          <div class="flow-box byproduct">H₂O</div>
+        </div>
+        <div class="flow-note">4NH₃ ＋ 5O₂ → 4NO ＋ 6H₂O</div>
+
+        <div class="flow-row">
+          <div class="flow-box">一酸化窒素<br>NO</div>
+          <div class="flow-arrow">→<span class="cond">＋O₂</span></div>
+          <div class="flow-box result">NO₂</div>
+        </div>
+        <div class="flow-note">2NO ＋ O₂ → 2NO₂</div>
+
+        <div class="flow-row">
+          <div class="flow-box">二酸化窒素<br>NO₂</div>
+          <div class="flow-arrow">→<span class="cond">＋H₂O</span></div>
+          <div class="flow-box result">硝酸<br>HNO₃</div>
+          <div class="flow-arrow">＋</div>
+          <div class="flow-box byproduct">NO（回収）</div>
+        </div>
+        <div class="flow-note">3NO₂ ＋ H₂O → 2HNO₃ ＋ NO</div>
+      </div>
+
+      <div class="read-box">3つの反応をまとめると，次の1つの式で表せます。</div>
+      <div class="eq">NH₃ ＋ 2O₂ → HNO₃ ＋ H₂O</div>
+
+      <div class="read-box">尿素は，アンモニアと二酸化炭素を高温・高圧で反応させてつくられ，窒素肥料や尿素樹脂の原料として利用されています。</div>
+      <div class="eq">NH₃ ＋ CO₂ → CO(NH₂)₂ ＋ H₂O</div>
+
+      <div class="minitest" data-correct="o">
+        <div class="mt-text">Q. 濃硝酸は光によって分解されやすいため，褐色びんに保存する。 ○か×か？</div>
+        <div class="mt-choices">
+          <button class="mt-c" data-v="o">○ 正しい</button>
+          <button class="mt-c" data-v="x">× 誤り</button>
+        </div>
+        <div class="mt-exp"></div>
+      </div>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">小テスト①</div>
+        <div class="q4-text">Q. 濃硝酸の保存方法として正しいのはどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．褐色びんに保存する</button>
+          <button class="q4-c" data-v="b">b．透明びんに保存する</button>
+          <button class="q4-c" data-v="c">c．金属容器に保存する</button>
+          <button class="q4-c" data-v="d">d．冷凍して保存する</button>
+        </div>
+        <div class="q4-exp">📘 濃硝酸は光で分解されやすい（4HNO₃→4NO₂＋2H₂O＋O₂）ので，褐色びんに保存します。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="c">
+        <div class="q4-no practice">小テスト②</div>
+        <div class="q4-text">Q. 濃硝酸に入れても不動態をつくり溶けない金属はどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．銅Cu</button>
+          <button class="q4-c" data-v="b">b．銀Ag</button>
+          <button class="q4-c" data-v="c">c．アルミニウムAl</button>
+          <button class="q4-c" data-v="d">d．水銀Hg</button>
+        </div>
+        <div class="q4-exp">📘 Fe・Ni・Al・Cr・Coは濃硝酸で不動態をつくり，溶けにくくなります。CuやAgは溶けます。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">小テスト③</div>
+        <div class="q4-text">Q. 濃硝酸と濃塩酸を体積比1：3で混ぜた溶液を何といいますか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．希硝酸</button>
+          <button class="q4-c" data-v="b">b．王水</button>
+          <button class="q4-c" data-v="c">c．不動態</button>
+          <button class="q4-c" data-v="d">d．緩衝液</button>
+        </div>
+        <div class="q4-exp">📘 王水は金や白金のように反応しにくい金属も溶かせる，非常に酸化力の強い混合溶液です。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="d">
+        <div class="q4-no practice">小テスト④</div>
+        <div class="q4-text">Q. 硝酸の工業的製法を何といいますか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．ハーバー・ボッシュ法</button>
+          <button class="q4-c" data-v="b">b．ソルベー法</button>
+          <button class="q4-c" data-v="c">c．接触法</button>
+          <button class="q4-c" data-v="d">d．オストワルト法</button>
+        </div>
+        <div class="q4-exp">📘 オストワルト法は，NH₃→NO→NO₂→HNO₃の順にアンモニアを酸化していく製法です。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">小テスト⑤</div>
+        <div class="q4-text">Q. オストワルト法の出発材料はどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．アンモニアNH₃</button>
+          <button class="q4-c" data-v="b">b．塩化ナトリウムNaCl</button>
+          <button class="q4-c" data-v="c">c．炭酸カルシウムCaCO₃</button>
+          <button class="q4-c" data-v="d">d．塩素Cl₂</button>
+        </div>
+        <div class="q4-exp">📘 アンモニアを触媒（Pt）を使って酸化し，NO→NO₂→HNO₃の順に変化させます。</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">5</span>半反応式で銅と硝酸の反応をつくる</div>
+    <div class="stage">
+
+      <div class="read-box">「希硝酸ならNO，濃硝酸ならNO₂」というパターンは，丸暗記しなくても半反応式を2本立てて足し合わせれば自分で導けます。Cuの半反応式はどちらも共通で，硝酸側の半反応式だけが濃さによって変わります。</div>
+
+      <div class="eq">共通の半反応式：Cu → Cu²⁺ ＋ 2e⁻</div>
+
+      <h3>①希硝酸の場合</h3>
+      <div class="key-box"><span class="tag">🔑 ステップで考える</span> 希硝酸は電子を3個受け取ってNOになります。</div>
+      <div class="eq">HNO₃ ＋ 3H⁺ ＋ 3e⁻ → NO ＋ 2H₂O ……②</div>
+      <div class="read-box">①と②で電子の数（2個と3個）をそろえるため，①×3＋②×2とします。</div>
+      <div class="eq">①×3：3Cu → 3Cu²⁺ ＋ 6e⁻</div>
+      <div class="eq">②×2：2HNO₃ ＋ 6H⁺ ＋ 6e⁻ → 2NO ＋ 4H₂O</div>
+      <div class="eq">足すと：3Cu ＋ 2HNO₃ ＋ 6H⁺ → 3Cu²⁺ ＋ 2NO ＋ 4H₂O</div>
+      <div class="read-box">両辺にNO₃⁻を6個加えて，見た目の分子式にそろえます（Cu²⁺の電荷とつり合うように硝酸イオンを補います）。</div>
+      <div class="eq">3Cu ＋ 8HNO₃ → 3Cu(NO₃)₂ ＋ 2NO ＋ 4H₂O</div>
+
+      <h3>②濃硝酸の場合</h3>
+      <div class="key-box"><span class="tag">🔑 ステップで考える</span> 濃硝酸は電子を1個だけ受け取ってNO₂になります（希硝酸より酸化力の使い方が「浅い」イメージです）。</div>
+      <div class="eq">HNO₃ ＋ H⁺ ＋ e⁻ → NO₂ ＋ H₂O ……③</div>
+      <div class="read-box">①と③で電子の数（2個と1個）をそろえるため，①＋③×2とします。</div>
+      <div class="eq">①：Cu → Cu²⁺ ＋ 2e⁻</div>
+      <div class="eq">③×2：2HNO₃ ＋ 2H⁺ ＋ 2e⁻ → 2NO₂ ＋ 2H₂O</div>
+      <div class="eq">足すと：Cu ＋ 2HNO₃ ＋ 2H⁺ → Cu²⁺ ＋ 2NO₂ ＋ 2H₂O</div>
+      <div class="read-box">両辺にNO₃⁻を2個加えて分子式にそろえます。</div>
+      <div class="eq">Cu ＋ 4HNO₃ → Cu(NO₃)₂ ＋ 2NO₂ ＋ 2H₂O</div>
+
+      <div class="important-box"><span class="tag">⚠️ よくある間違い</span> 希硝酸の半反応式は「3e⁻を受け取ってNO」，濃硝酸の半反応式は「1e⁻を受け取ってNO₂」です。受け取る電子の数がちがうという違いが，そのまま係数のちがい（希硝酸は8HNO₃，濃硝酸は4HNO₃）に直結しています。</div>
+
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">小テスト①</div>
+        <div class="q4-text">Q. 希硝酸がCuを酸化してNOになるときの半反応式はどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．HNO₃＋H⁺＋e⁻→NO₂＋H₂O</button>
+          <button class="q4-c" data-v="b">b．HNO₃＋3H⁺＋3e⁻→NO＋2H₂O</button>
+          <button class="q4-c" data-v="c">c．HNO₃→NO＋H₂O</button>
+          <button class="q4-c" data-v="d">d．2HNO₃＋2e⁻→2NO＋O₂</button>
+        </div>
+        <div class="q4-exp">📘 希硝酸は電子を3個受け取ってNOになります：HNO₃＋3H⁺＋3e⁻→NO＋2H₂O。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">小テスト②</div>
+        <div class="q4-text">Q. Cuが酸化されてCu²⁺になる半反応式はどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．Cu→Cu²⁺＋2e⁻</button>
+          <button class="q4-c" data-v="b">b．Cu²⁺→Cu＋2e⁻</button>
+          <button class="q4-c" data-v="c">c．Cu＋2e⁻→Cu²⁺</button>
+          <button class="q4-c" data-v="d">d．Cu→Cu²⁺＋e⁻</button>
+        </div>
+        <div class="q4-exp">📘 Cuは電子を2個失ってCu²⁺になります：Cu→Cu²⁺＋2e⁻。この半反応式は希硝酸・濃硝酸どちらの場合でも共通です。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="c">
+        <div class="q4-no practice">小テスト③</div>
+        <div class="q4-text">Q. 希硝酸の反応で，Cuの半反応式「Cu→Cu²⁺＋2e⁻」と硝酸の半反応式「HNO₃＋3H⁺＋3e⁻→NO＋2H₂O」を足し合わせるとき，電子の数をそろえるにはどうしますか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．両方を2倍する</button>
+          <button class="q4-c" data-v="b">b．両方を3倍する</button>
+          <button class="q4-c" data-v="c">c．Cuの式を3倍，硝酸の式を2倍する</button>
+          <button class="q4-c" data-v="d">d．そのまま足せばよい</button>
+        </div>
+        <div class="q4-exp">📘 電子の数の最小公倍数は6なので，Cu側（2e⁻）を3倍，硝酸側（3e⁻）を2倍して，どちらも6e⁻にそろえてから足します。</div>
+      </div>
+
+      <div class="minitest" data-correct="o">
+        <div class="mt-text">Q. 濃硝酸は，希硝酸よりも受け取る電子の数が少ない（1個）半反応式でNO₂になる。 ○か×か？</div>
+        <div class="mt-choices">
+          <button class="mt-c" data-v="o">○ 正しい</button>
+          <button class="mt-c" data-v="x">× 誤り</button>
+        </div>
+        <div class="mt-exp"></div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- ============ ② 穴埋めチャレンジ ============ -->
+<div class="tab-content" id="tab-fill">
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">✎</span>穴埋めチャレンジ</div>
+    <div class="stage">
+      <div class="read-box">下のチップをタップして，反応式の空欄をうめましょう。まちがえても大丈夫，「やり直す」でもう一度チャレンジできます。</div>
+    </div>
+  </div>
+
+  <div class="fill-item" data-fill="f1">
+    <div class="q-no">問1</div>
+    <div class="fill-sentence">アンモニアの工業的製法：N₂ ＋ <span class="blank" data-blank="0" data-ans="3H2">　</span> → 2NH₃</div>
+    <div class="chip-bank">
+      <span class="chip" data-val="3H2">3H₂</span>
+      <span class="chip" data-val="H2">H₂</span>
+      <span class="chip" data-val="2H2">2H₂</span>
+      <span class="chip" data-val="O2">O₂</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+
+  <div class="fill-item" data-fill="f2">
+    <div class="q-no">問2</div>
+    <div class="fill-sentence">アンモニアの実験室的製法：2NH₄Cl ＋ Ca(OH)₂ → CaCl₂ ＋ 2H₂O ＋ <span class="blank" data-blank="0" data-ans="2NH3">　</span></div>
+    <div class="chip-bank">
+      <span class="chip" data-val="2NH3">2NH₃</span>
+      <span class="chip" data-val="NH3">NH₃</span>
+      <span class="chip" data-val="N2">N₂</span>
+      <span class="chip" data-val="NH4Cl">NH₄Cl</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+
+  <div class="fill-item" data-fill="f3">
+    <div class="q-no">問3</div>
+    <div class="fill-sentence">アンモニアの検出：NH₃ ＋ HCl → <span class="blank" data-blank="0" data-ans="NH4Cl">　</span></div>
+    <div class="chip-bank">
+      <span class="chip" data-val="NH4Cl">NH₄Cl</span>
+      <span class="chip" data-val="NH3">NH₃</span>
+      <span class="chip" data-val="NH4OH">NH₄OH</span>
+      <span class="chip" data-val="N2">N₂</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+
+  <div class="fill-item" data-fill="f4">
+    <div class="q-no">問4</div>
+    <div class="fill-sentence">銅と希硝酸：3Cu ＋ 8HNO₃ → 3Cu(NO₃)₂ ＋ <span class="blank" data-blank="0" data-ans="2NO">　</span> ＋ 4H₂O</div>
+    <div class="chip-bank">
+      <span class="chip" data-val="2NO">2NO</span>
+      <span class="chip" data-val="NO2">NO₂</span>
+      <span class="chip" data-val="2NO2">2NO₂</span>
+      <span class="chip" data-val="N2">N₂</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+
+  <div class="fill-item" data-fill="f5">
+    <div class="q-no">問5</div>
+    <div class="fill-sentence">NO₂が水に溶ける反応：3NO₂ ＋ H₂O → <span class="blank" data-blank="0" data-ans="2HNO3">　</span> ＋ NO</div>
+    <div class="chip-bank">
+      <span class="chip" data-val="2HNO3">2HNO₃</span>
+      <span class="chip" data-val="HNO3">HNO₃</span>
+      <span class="chip" data-val="HNO2">HNO₂</span>
+      <span class="chip" data-val="H2O">H₂O</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+
+  <div class="fill-item" data-fill="f6">
+    <div class="q-no">問6</div>
+    <div class="fill-sentence">Cuの半反応式：Cu → Cu²⁺ ＋ 2<span class="blank" data-blank="0" data-ans="e-">　</span></div>
+    <div class="chip-bank">
+      <span class="chip" data-val="e-">e⁻</span>
+      <span class="chip" data-val="H+">H⁺</span>
+      <span class="chip" data-val="O2">O₂</span>
+      <span class="chip" data-val="H2O">H₂O</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+
+  <div class="fill-item" data-fill="f7">
+    <div class="q-no">問7</div>
+    <div class="fill-sentence">希硝酸の半反応式：HNO₃ ＋ 3H⁺ ＋ 3e⁻ → <span class="blank" data-blank="0" data-ans="NO">　</span> ＋ 2<span class="blank" data-blank="1" data-ans="H2O">　</span></div>
+    <div class="chip-bank">
+      <span class="chip" data-val="NO">NO</span>
+      <span class="chip" data-val="H2O">H₂O</span>
+      <span class="chip" data-val="NO2">NO₂</span>
+      <span class="chip" data-val="N2">N₂</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+</div>
+
+<!-- ============ ③ 確認テスト ============ -->
+<div class="tab-content" id="tab-check">
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">✓</span>確認テスト（14問）</div>
+    <div class="stage">
+      <div class="read-box">すべての問題に答えると，結果が表示されます。自分のペースでゆっくり進めましょう。</div>
+    </div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="b">
+    <div class="q4-no">第1問</div>
+    <div class="q4-text">空気中に体積比で約78%含まれる気体はどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．酸素</button>
+      <button class="q4-c" data-v="b">b．窒素</button>
+      <button class="q4-c" data-v="c">c．二酸化炭素</button>
+      <button class="q4-c" data-v="d">d．アルゴン</button>
+    </div>
+    <div class="q4-exp">📘 窒素N₂は空気中に約78%含まれ，常温では化学的に安定しています。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="c">
+    <div class="q4-no">第2問</div>
+    <div class="q4-text">窒素の実験室的製法はどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．液体空気の分留</button>
+      <button class="q4-c" data-v="b">b．MnO₂触媒による分解</button>
+      <button class="q4-c" data-v="c">c．亜硝酸アンモニウムの加熱分解</button>
+      <button class="q4-c" data-v="d">d．電気分解</button>
+    </div>
+    <div class="q4-exp">📘 NH₄NO₂→N₂＋2H₂O。液体空気の分留は工業的製法です。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="b">
+    <div class="q4-no">第3問</div>
+    <div class="q4-text">アンモニアの工業的製法を何といいますか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．オストワルト法</button>
+      <button class="q4-c" data-v="b">b．ハーバー・ボッシュ法</button>
+      <button class="q4-c" data-v="c">c．ソルベー法</button>
+      <button class="q4-c" data-v="d">d．接触法</button>
+    </div>
+    <div class="q4-exp">📘 N₂＋3H₂→2NH₃。Fe₃O₄を触媒に，高温・高圧で直接反応させます。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="c">
+    <div class="q4-no">第4問</div>
+    <div class="q4-text">アンモニアの乾燥に用いる適切な乾燥剤はどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．濃硫酸</button>
+      <button class="q4-c" data-v="b">b．塩化カルシウム</button>
+      <button class="q4-c" data-v="c">c．ソーダ石灰</button>
+      <button class="q4-c" data-v="d">d．十酸化四リン</button>
+    </div>
+    <div class="q4-exp">📘 アンモニアは塩基性の気体なので，中性〜塩基性のソーダ石灰を使います。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="a">
+    <div class="q4-no">第5問</div>
+    <div class="q4-text">アンモニアの検出反応で生じる白煙の正体はどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．塩化アンモニウムNH₄Cl</button>
+      <button class="q4-c" data-v="b">b．硝酸アンモニウムNH₄NO₃</button>
+      <button class="q4-c" data-v="c">c．水H₂O</button>
+      <button class="q4-c" data-v="d">d．塩化水素HCl</button>
+    </div>
+    <div class="q4-exp">📘 NH₃＋HCl→NH₄Cl の白煙でアンモニアを検出します。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="b">
+    <div class="q4-no">第6問</div>
+    <div class="q4-text">銅に希硝酸を加えたとき発生する気体の色はどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．赤褐色</button>
+      <button class="q4-c" data-v="b">b．無色</button>
+      <button class="q4-c" data-v="c">c．黄緑色</button>
+      <button class="q4-c" data-v="d">d．淡青色</button>
+    </div>
+    <div class="q4-exp">📘 希硝酸（薄い硝酸）が材料のときはNO（無色）が発生します。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="a">
+    <div class="q4-no">第7問</div>
+    <div class="q4-text">銅に濃硝酸を加えたとき発生する気体の色はどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．赤褐色</button>
+      <button class="q4-c" data-v="b">b．無色</button>
+      <button class="q4-c" data-v="c">c．黄緑色</button>
+      <button class="q4-c" data-v="d">d．淡青色</button>
+    </div>
+    <div class="q4-exp">📘 濃硝酸が材料のときはNO₂（赤褐色）が発生します。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="c">
+    <div class="q4-no">第8問</div>
+    <div class="q4-text">濃硝酸に入れても不動態をつくり溶けない金属はどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．銅Cu</button>
+      <button class="q4-c" data-v="b">b．銀Ag</button>
+      <button class="q4-c" data-v="c">c．アルミニウムAl</button>
+      <button class="q4-c" data-v="d">d．水銀Hg</button>
+    </div>
+    <div class="q4-exp">📘 Fe・Ni・Al・Cr・Coは濃硝酸で不動態をつくります。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="d">
+    <div class="q4-no">第9問</div>
+    <div class="q4-text">硝酸の工業的製法を何といいますか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．ハーバー・ボッシュ法</button>
+      <button class="q4-c" data-v="b">b．ソルベー法</button>
+      <button class="q4-c" data-v="c">c．接触法</button>
+      <button class="q4-c" data-v="d">d．オストワルト法</button>
+    </div>
+    <div class="q4-exp">📘 NH₃→NO→NO₂→HNO₃の順にアンモニアを酸化していく製法です。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="b">
+    <div class="q4-no">第10問</div>
+    <div class="q4-text">濃硝酸と濃塩酸を体積比1：3で混ぜた溶液を何といいますか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．希硝酸</button>
+      <button class="q4-c" data-v="b">b．王水</button>
+      <button class="q4-c" data-v="c">c．不動態</button>
+      <button class="q4-c" data-v="d">d．緩衝液</button>
+    </div>
+    <div class="q4-exp">📘 王水は金や白金のように反応しにくい金属も溶かせます。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="a">
+    <div class="q4-no">第11問</div>
+    <div class="q4-text">Cuが酸化されてCu²⁺になるときの半反応式はどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．Cu→Cu²⁺＋2e⁻</button>
+      <button class="q4-c" data-v="b">b．Cu²⁺＋2e⁻→Cu</button>
+      <button class="q4-c" data-v="c">c．Cu→Cu²⁺＋e⁻</button>
+      <button class="q4-c" data-v="d">d．Cu＋2e⁻→Cu²⁺</button>
+    </div>
+    <div class="q4-exp">📘 Cuは電子を2個失ってCu²⁺になります：Cu→Cu²⁺＋2e⁻。この半反応式は希硝酸・濃硝酸どちらでも共通です。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="c">
+    <div class="q4-no">第12問</div>
+    <div class="q4-text">濃硝酸がCuを酸化してNO₂になるときの半反応式はどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．HNO₃＋3H⁺＋3e⁻→NO＋2H₂O</button>
+      <button class="q4-c" data-v="b">b．HNO₃→NO₂＋H₂O</button>
+      <button class="q4-c" data-v="c">c．HNO₃＋H⁺＋e⁻→NO₂＋H₂O</button>
+      <button class="q4-c" data-v="d">d．2HNO₃＋2e⁻→N₂O₄</button>
+    </div>
+    <div class="q4-exp">📘 濃硝酸は電子を1個だけ受け取ってNO₂になります：HNO₃＋H⁺＋e⁻→NO₂＋H₂O。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="b">
+    <div class="q4-no">第13問</div>
+    <div class="q4-text">希硝酸の反応でCuとHNO₃の半反応式を足し合わせるとき，電子の数をそろえる倍率として正しいものはどれですか（Cu→Cu²⁺＋2e⁻とHNO₃＋3H⁺＋3e⁻→NO＋2H₂O）。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．Cu側を2倍，硝酸側を3倍</button>
+      <button class="q4-c" data-v="b">b．Cu側を3倍，硝酸側を2倍</button>
+      <button class="q4-c" data-v="c">c．どちらも2倍</button>
+      <button class="q4-c" data-v="d">d．どちらも3倍</button>
+    </div>
+    <div class="q4-exp">📘 電子の数2個と3個の最小公倍数は6。Cu側（2e⁻）を3倍，硝酸側（3e⁻）を2倍して，両方とも6e⁻にそろえます。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="d">
+    <div class="q4-no">第14問</div>
+    <div class="q4-text">希硝酸と濃硝酸で，受け取る電子の数がちがうことが原因で生じるちがいはどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．Cuが溶けるかどうか</button>
+      <button class="q4-c" data-v="b">b．発生する気体の有無</button>
+      <button class="q4-c" data-v="c">c．反応が起こる温度</button>
+      <button class="q4-c" data-v="d">d．生成する気体がNOかNO₂か</button>
+    </div>
+    <div class="q4-exp">📘 希硝酸は3e⁻を受け取ってNOに，濃硝酸は1e⁻を受け取ってNO₂になります。この電子数のちがいが生成物のちがいに直結しています。</div>
+  </div>
+
+  <div class="check-footer">
+    <div class="score-box" id="score-box" style="display:none;"></div>
+  </div>
+</div>
+
+<!-- ============ ④ フラッシュカード ============ -->
+<div class="tab-content" id="tab-cards">
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">4</span>反応式フラッシュカード</div>
+    <div class="stage">
+      <div class="read-box">カードをタップすると裏の反応式が見られます。自分でめくる「手動」のほか，「3秒後自動」「5秒後自動」を選ぶと，表→裏→次のカードと自動で進みます。</div>
+
+      <div class="card-mode-buttons">
+        <button class="mode-btn active" data-mode="manual">手動</button>
+        <button class="mode-btn" data-mode="3">3秒後自動</button>
+        <button class="mode-btn" data-mode="5">5秒後自動</button>
+      </div>
+
+      <div class="flash-progress"><span id="card-pos">1</span> / <span id="card-total">5</span></div>
+
+      <div class="flashcard-wrap">
+        <div class="flashcard" id="flashcard">
+          <span class="card-face-label" id="card-face-label">表（問題）</span>
+          <div class="card-text-front" id="card-text"></div>
+        </div>
+      </div>
+      <div class="flash-hint" id="flash-hint">カードをタップすると答えがめくれます</div>
+
+      <div class="flash-nav">
+        <button id="card-prev">◀ 前へ</button>
+        <button id="card-flip" class="flip-btn">めくる</button>
+        <button id="card-next">次へ ▶</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<div class="popup-overlay" id="popup-p1">
+  <div class="popup-box">
+    <button class="popup-close" data-close="p1">×</button>
+    <h4>🤔 なぜソーダ石灰で乾燥させるの？</h4>
+    <p>アンモニアNH₃は塩基性の気体なので，酸性の乾燥剤を使うと中和反応が起きてしまい，NH₃自体が無くなってしまいます。濃硫酸や十酸化四リンは酸性なので使えません。</p>
+    <p>塩化カルシウムCaCl₂は中性ですが，CaCl₂・8NH₃という化合物をつくってNH₃を吸着してしまうため，これも使えません。</p>
+    <p>💡 ソーダ石灰（CaOとNaOHの混合物）は塩基性で，しかもNH₃と化合物をつくらないので，安心して使える乾燥剤なのです。</p>
+  </div>
+</div>
+
+<div class="celebrate-msg" id="celebrate-msg">🎉 全問正解です！<br>よくできました！</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- タブ切替 ---------- */
+  var tabBtns = document.querySelectorAll(".tab-btn");
+  var tabContents = document.querySelectorAll(".tab-content");
+  for (var i=0;i<tabBtns.length;i++){
+    tabBtns[i].addEventListener("click", function(){
+      var target = this.getAttribute("data-tab");
+      for (var j=0;j<tabBtns.length;j++){ tabBtns[j].classList.remove("active"); }
+      for (var k=0;k<tabContents.length;k++){ tabContents[k].classList.remove("active"); }
+      this.classList.add("active");
+      document.getElementById("tab-"+target).classList.add("active");
+      window.scrollTo({top:0, behavior:"smooth"});
+      if (target !== "cards") stopCardAuto();
+    });
+  }
+
+  /* ---------- なぜ？ポップアップ ---------- */
+  var whyBtns = document.querySelectorAll(".why-btn");
+  for (var w=0;w<whyBtns.length;w++){
+    whyBtns[w].addEventListener("click", function(){
+      var id = this.getAttribute("data-popup");
+      document.getElementById("popup-"+id).classList.add("show");
+    });
+  }
+  var closeBtns = document.querySelectorAll(".popup-close");
+  for (var cb=0;cb<closeBtns.length;cb++){
+    closeBtns[cb].addEventListener("click", function(){
+      var id = this.getAttribute("data-close");
+      document.getElementById("popup-"+id).classList.remove("show");
+    });
+  }
+  var overlays = document.querySelectorAll(".popup-overlay");
+  for (var ov=0;ov<overlays.length;ov++){
+    overlays[ov].addEventListener("click", function(ev){
+      if (ev.target === this) this.classList.remove("show");
+    });
+  }
+
+  /* ---------- 穴埋めチャレンジ ---------- */
+  var fillItems = document.querySelectorAll(".fill-item");
+  for (var f=0; f<fillItems.length; f++){
+    (function(item){
+      var blanks = item.querySelectorAll(".blank");
+      var chips = item.querySelectorAll(".chip");
+      var feedback = item.querySelector(".fill-feedback");
+      var checkBtn = item.querySelector(".fill-check-btn");
+      var resetBtn = item.querySelector(".fill-reset-btn");
+
+      function nextEmptyBlank(){
+        for (var b=0;b<blanks.length;b++){
+          if (!blanks[b].classList.contains("filled")) return blanks[b];
+        }
+        return null;
+      }
+
+      for (var c=0;c<chips.length;c++){
+        chips[c].addEventListener("click", function(){
+          if (this.classList.contains("used")) return;
+          var target = nextEmptyBlank();
+          if (!target) return;
+          target.textContent = this.textContent;
+          target.classList.add("filled");
+          target.setAttribute("data-filled-val", this.getAttribute("data-val"));
+          this.classList.add("used");
+        });
+      }
+
+      checkBtn.addEventListener("click", function(){
+        var allFilled = true, allCorrect = true;
+        for (var b=0;b<blanks.length;b++){
+          if (!blanks[b].classList.contains("filled")){ allFilled = false; continue; }
+          var ok = blanks[b].getAttribute("data-filled-val") === blanks[b].getAttribute("data-ans");
+          blanks[b].classList.remove("correct","wrong");
+          blanks[b].classList.add(ok?"correct":"wrong");
+          if (!ok) allCorrect = false;
+        }
+        if (!allFilled){
+          feedback.textContent = "まだ空欄があります。チップをすべて置きましょう。";
+          feedback.className = "fill-feedback bad";
+          return;
+        }
+        if (allCorrect){
+          feedback.textContent = "✅ 正解です！この反応式を声に出して読んでみましょう。";
+          feedback.className = "fill-feedback ok";
+          launchConfetti(30);
+        } else {
+          feedback.textContent = "❌ ちがう場所があります。「やり直す」からもう一度挑戦しましょう。";
+          feedback.className = "fill-feedback bad";
+        }
+      });
+
+      resetBtn.addEventListener("click", function(){
+        for (var b=0;b<blanks.length;b++){
+          blanks[b].textContent = "　";
+          blanks[b].classList.remove("filled","correct","wrong");
+          blanks[b].removeAttribute("data-filled-val");
+        }
+        for (var c2=0;c2<chips.length;c2++){ chips[c2].classList.remove("used"); }
+        feedback.textContent = "";
+        feedback.className = "fill-feedback";
+      });
+    })(fillItems[f]);
+  }
+
+  /* ---------- q4（4択）共通処理 ---------- */
+  var finalTotal = document.querySelectorAll(".final-q4").length;
+  var finalAnsweredCount = 0;
+  var finalCorrectCount = 0;
+
+  var q4Blocks = document.querySelectorAll(".q4");
+  for (var q=0;q<q4Blocks.length;q++){
+    (function(block){
+      var correctV = block.getAttribute("data-correct");
+      var btns = block.querySelectorAll(".q4-c");
+      var exp = block.querySelector(".q4-exp");
+      var isFinal = block.classList.contains("final-q4");
+      var answered = false;
+      for (var b=0;b<btns.length;b++){
+        btns[b].addEventListener("click", function(){
+          if (answered) return;
+          answered = true;
+          var v = this.getAttribute("data-v");
+          var isCorrect = (v === correctV);
+          for (var x=0;x<btns.length;x++){
+            btns[x].classList.add("disabled");
+            if (btns[x].getAttribute("data-v") === correctV) btns[x].classList.add("correct");
+          }
+          if (!isCorrect) this.classList.add("wrong");
+          if (exp) exp.classList.add("show");
+          if (isCorrect) launchConfetti(isFinal?0:24);
+          if (isFinal){
+            finalAnsweredCount++;
+            if (isCorrect) finalCorrectCount++;
+            checkFinalDone();
+          }
+        });
+      }
+    })(q4Blocks[q]);
+  }
+
+  /* ---------- minitest（○×）共通処理 ---------- */
+  var mtBlocks = document.querySelectorAll(".minitest");
+  for (var m=0;m<mtBlocks.length;m++){
+    (function(block){
+      var correctV = block.getAttribute("data-correct");
+      var btns = block.querySelectorAll(".mt-c");
+      var exp = block.querySelector(".mt-exp");
+      var answered = false;
+      for (var b=0;b<btns.length;b++){
+        btns[b].addEventListener("click", function(){
+          if (answered) return;
+          answered = true;
+          var v = this.getAttribute("data-v");
+          var isCorrect = (v === correctV);
+          for (var x=0;x<btns.length;x++){
+            btns[x].classList.add("disabled");
+            if (btns[x].getAttribute("data-v") === correctV) btns[x].classList.add("correct");
+          }
+          if (!isCorrect) this.classList.add("wrong");
+          if (exp){
+            exp.textContent = isCorrect ? "📘 そのとおりです！よく理解できています。" : "📘 もう一度，上の説明を読み直してみましょう。";
+            exp.classList.add("show");
+          }
+          if (isCorrect) launchConfetti(24);
+        });
+      }
+    })(mtBlocks[m]);
+  }
+
+  function checkFinalDone(){
+    if (finalAnsweredCount < finalTotal) return;
+    var box = document.getElementById("score-box");
+    box.style.display = "inline-block";
+    box.textContent = "結果：" + finalTotal + "問中 " + finalCorrectCount + "問 正解！";
+    if (finalCorrectCount === finalTotal){
+      launchConfetti(80);
+      var msg = document.getElementById("celebrate-msg");
+      msg.style.display = "block";
+      setTimeout(function(){ msg.style.display = "none"; }, 2200);
+    }
+  }
+
+  /* ---------- コンフェッティ（DOM div方式） ---------- */
+  var CONFETTI_COLORS = ["#f472b6","#facc15","#34d399","#60a5fa","#f87171","#a78bfa","#fb923c","#2dd4bf"];
+
+  function launchConfetti(count){
+    if (!count) return;
+    for (var i=0;i<count;i++){
+      var piece = document.createElement("div");
+      piece.className = "confetti-piece";
+      var size = 6 + Math.random()*6;
+      piece.style.left = (Math.random()*100) + "vw";
+      piece.style.width = size + "px";
+      piece.style.height = (size*1.6) + "px";
+      piece.style.background = CONFETTI_COLORS[Math.floor(Math.random()*CONFETTI_COLORS.length)];
+      piece.style.borderRadius = (Math.random()<0.5 ? "50%" : "2px");
+      var duration = 1.8 + Math.random()*1.4;
+      piece.style.animationDuration = duration + "s";
+      piece.style.animationDelay = (Math.random()*0.3) + "s";
+      document.body.appendChild(piece);
+      (function(el, dur){
+        setTimeout(function(){ if (el.parentNode) el.parentNode.removeChild(el); }, (dur+0.5)*1000);
+      })(piece, duration);
+    }
+  }
+
+  /* ---------- フラッシュカード ---------- */
+  var CARDS = [
+    {front:"① アンモニアの工業的製法（ハーバー・ボッシュ法）は？", back:"N₂ ＋ 3H₂ → 2NH₃（Fe₃O₄触媒）"},
+    {front:"② アンモニアの実験室的製法は？", back:"2NH₄Cl ＋ Ca(OH)₂ → CaCl₂ ＋ 2H₂O ＋ 2NH₃"},
+    {front:"③ 銅と希硝酸の反応（NOが発生）は？", back:"3Cu ＋ 8HNO₃ → 3Cu(NO₃)₂ ＋ 2NO ＋ 4H₂O"},
+    {front:"④ 銅と濃硝酸の反応（NO₂が発生）は？", back:"Cu ＋ 4HNO₃ → Cu(NO₃)₂ ＋ 2NO₂ ＋ 2H₂O"},
+    {front:"⑤ 二酸化窒素が水に溶ける反応は？", back:"3NO₂ ＋ H₂O → 2HNO₃ ＋ NO"},
+    {front:"⑥ Cuの半反応式は？", back:"Cu → Cu²⁺ ＋ 2e⁻"},
+    {front:"⑦ 希硝酸の半反応式は？", back:"HNO₃ ＋ 3H⁺ ＋ 3e⁻ → NO ＋ 2H₂O"},
+    {front:"⑧ 濃硝酸の半反応式は？", back:"HNO₃ ＋ H⁺ ＋ e⁻ → NO₂ ＋ H₂O"}
+  ];
+  var cardIndex = 0, cardFlipped = false, cardAutoTimer = null, cardAutoSeconds = 0;
+  var flashcardEl = document.getElementById("flashcard");
+  var cardTextEl = document.getElementById("card-text");
+  var cardLabelEl = document.getElementById("card-face-label");
+  var cardPosEl = document.getElementById("card-pos");
+  var cardTotalEl = document.getElementById("card-total");
+  var flashHintEl = document.getElementById("flash-hint");
+  var modeBtns = document.querySelectorAll(".mode-btn");
+
+  function renderCard(){
+    var c = CARDS[cardIndex];
+    cardPosEl.textContent = (cardIndex+1);
+    if (cardFlipped){
+      flashcardEl.classList.add("flipped");
+      cardLabelEl.textContent = "裏（答え）";
+      cardTextEl.className = "card-text-back";
+      cardTextEl.textContent = c.back;
+      flashHintEl.textContent = "タップ，または「次へ」で次のカードへ";
+    } else {
+      flashcardEl.classList.remove("flipped");
+      cardLabelEl.textContent = "表（問題）";
+      cardTextEl.className = "card-text-front";
+      cardTextEl.textContent = c.front;
+      flashHintEl.textContent = "カードをタップすると答えがめくれます";
+    }
+  }
+
+  function flipCardAnim(cb){
+    flashcardEl.classList.add("anim");
+    setTimeout(function(){
+      cb();
+      flashcardEl.classList.remove("anim");
+    }, 160);
+  }
+
+  function flipCard(){
+    flipCardAnim(function(){ cardFlipped = !cardFlipped; renderCard(); });
+  }
+  function nextCard(){
+    flipCardAnim(function(){
+      cardIndex = (cardIndex+1) % CARDS.length;
+      cardFlipped = false;
+      renderCard();
+    });
+  }
+  function prevCard(){
+    flipCardAnim(function(){
+      cardIndex = (cardIndex-1+CARDS.length) % CARDS.length;
+      cardFlipped = false;
+      renderCard();
+    });
+  }
+
+  function clearCardAutoTimer(){
+    if (cardAutoTimer){ clearInterval(cardAutoTimer); cardAutoTimer = null; }
+  }
+  function setActiveMode(mode){
+    for (var mb=0; mb<modeBtns.length; mb++){
+      modeBtns[mb].classList.toggle("active", modeBtns[mb].getAttribute("data-mode") === mode);
+    }
+  }
+  function startCardAuto(seconds){
+    clearCardAutoTimer();
+    cardAutoSeconds = seconds;
+    cardAutoTimer = setInterval(function(){
+      if (!cardFlipped){
+        flipCardAnim(function(){ cardFlipped = true; renderCard(); });
+      } else {
+        flipCardAnim(function(){
+          cardIndex = (cardIndex+1) % CARDS.length;
+          cardFlipped = false;
+          renderCard();
+        });
+      }
+    }, seconds*1000);
+  }
+  function stopAutoIfManualTap(){
+    if (cardAutoSeconds !== 0){
+      cardAutoSeconds = 0;
+      setActiveMode("manual");
+      clearCardAutoTimer();
+    }
+  }
+  function stopCardAuto(){
+    cardAutoSeconds = 0;
+    clearCardAutoTimer();
+    setActiveMode("manual");
+  }
+
+  if (cardTotalEl) cardTotalEl.textContent = CARDS.length;
+
+  if (flashcardEl){
+    flashcardEl.addEventListener("click", function(){ stopAutoIfManualTap(); flipCard(); });
+  }
+  var cardFlipBtn = document.getElementById("card-flip");
+  if (cardFlipBtn) cardFlipBtn.addEventListener("click", function(){ stopAutoIfManualTap(); flipCard(); });
+  var cardNextBtn = document.getElementById("card-next");
+  if (cardNextBtn) cardNextBtn.addEventListener("click", function(){ stopAutoIfManualTap(); nextCard(); });
+  var cardPrevBtn = document.getElementById("card-prev");
+  if (cardPrevBtn) cardPrevBtn.addEventListener("click", function(){ stopAutoIfManualTap(); prevCard(); });
+
+  for (var mb2=0; mb2<modeBtns.length; mb2++){
+    modeBtns[mb2].addEventListener("click", function(){
+      var mode = this.getAttribute("data-mode");
+      setActiveMode(mode);
+      if (mode === "manual"){
+        cardAutoSeconds = 0;
+        clearCardAutoTimer();
+      } else {
+        startCardAuto(parseInt(mode,10));
+      }
+    });
+  }
+
+  if (flashcardEl) renderCard();
+
+})();
+</script>
+
+</body>
+</html>

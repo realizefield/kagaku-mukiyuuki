@@ -1,0 +1,1634 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>無機化学⑦ 遷移元素・鉄 | GAMBA化学</title>
+<style>
+:root{
+  --bg:#f0f4ff;
+  --card:#fff;
+  --primary:#2563eb;
+  --primary-light:#dbeafe;
+  --primary-dark:#1e40af;
+  --accent:#dc2626;
+  --accent-light:#fee2e2;
+  --success:#16a34a;
+  --success-light:#dcfce7;
+  --warn:#d97706;
+  --warn-light:#fffbeb;
+  --purple:#7c3aed;
+  --purple-light:#ede9fe;
+  --text:#1e293b;
+  --text-sub:#64748b;
+  --border:#bfdbfe;
+  --radius:14px;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  font-family:"BIZ UDPGothic","Meiryo",sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.8;
+  padding-bottom:40px;
+}
+
+/* ---------- topnav / hero ---------- */
+.topnav{
+  background:var(--primary-dark);
+  color:#fff;
+  padding:10px 16px;
+  font-weight:bold;
+  font-size:1rem;
+  letter-spacing:.5px;
+  position:sticky;
+  top:0;
+  z-index:60;
+}
+.hero{
+  background:linear-gradient(135deg,var(--primary-dark),var(--primary));
+  color:#fff;
+  padding:20px 16px 18px;
+  text-align:center;
+}
+.hero h1{margin:0;font-size:1.3rem;}
+.hero p{margin:6px 0 0;font-size:.82rem;opacity:.92;}
+
+.tabnav{
+  display:flex;
+  max-width:780px;
+  margin:0 auto;
+  padding:10px 12px 0;
+  gap:8px;
+  position:sticky;
+  top:40px;
+  background:var(--bg);
+  z-index:55;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+}
+.tab-btn{
+  flex:none;
+  min-width:78px;
+  padding:11px 8px;
+  border:2px solid var(--primary);
+  background:#fff;
+  color:var(--primary-dark);
+  border-radius:12px 12px 0 0;
+  font-size:.85rem;
+  font-weight:bold;
+  cursor:pointer;
+  white-space:nowrap;
+}
+.tab-btn.active{background:var(--primary);color:#fff;}
+.wrap{max-width:780px;margin:0 auto;padding:4px 12px 0;}
+.tab-content{display:none;}
+.tab-content.active{display:block;animation:fade .25s;}
+@keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+/* ---------- unit / stage ---------- */
+.unit{
+  background:var(--card);
+  border-radius:var(--radius);
+  margin:16px 0;
+  box-shadow:0 1px 4px rgba(0,0,0,.08);
+  border:1px solid var(--border);
+  overflow:hidden;
+}
+.unit-title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  background:var(--primary-light);
+  color:var(--primary-dark);
+  font-size:1.05rem;
+  font-weight:bold;
+  padding:14px 16px;
+}
+.unit-num{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:30px;height:30px;
+  border-radius:50%;
+  background:var(--primary);
+  color:#fff;
+  font-size:.95rem;
+  flex:none;
+}
+.stage{padding:4px 16px 18px;}
+.stage h3{font-size:1rem;color:var(--primary-dark);margin:20px 0 8px;border-left:5px solid var(--primary);padding-left:8px;}
+
+.read-box{
+  background:var(--primary-light);
+  border-radius:10px;
+  padding:12px 14px;
+  margin:10px 0;
+  font-size:.95rem;
+}
+
+.key-box{
+  background:var(--warn-light);
+  border:2px solid var(--warn);
+  border-radius:10px;
+  padding:12px 14px;
+  margin:12px 0;
+  font-size:.93rem;
+}
+.key-box .tag{font-weight:bold;color:var(--warn);}
+
+.important-box{
+  background:var(--accent-light);
+  border:2px solid var(--accent);
+  border-radius:10px;
+  padding:12px 14px;
+  margin:12px 0;
+  font-size:.93rem;
+}
+.important-box .tag{font-weight:bold;color:var(--accent);}
+
+/* 暗記法 */
+.mnemonic-box{
+  background:var(--purple-light);
+  border:2px dashed var(--purple);
+  border-radius:10px;
+  padding:12px 14px;
+  margin:12px 0;
+  font-size:.93rem;
+}
+.mnemonic-box .tag{font-weight:bold;color:var(--purple);display:block;margin-bottom:4px;}
+.mnemonic-box .phrase{font-size:1.02rem;font-weight:bold;color:#4c1d95;}
+
+.eq{
+  background:#f1f5f9;
+  border-radius:8px;
+  padding:9px 12px;
+  margin:6px 0;
+  font-size:1rem;
+  font-weight:600;
+  text-align:center;
+  letter-spacing:.3px;
+  overflow-x:auto;
+}
+
+/* ---------- 相関図（フローチェーン） ---------- */
+.flow-diagram{margin:14px 0;}
+.flow-row{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  margin:8px 0;
+  overflow-x:auto;
+  padding:2px 0;
+}
+.flow-box{
+  flex:none;
+  min-width:108px;
+  text-align:center;
+  background:#fff;
+  border:2px solid var(--primary);
+  border-radius:10px;
+  padding:8px 10px;
+  font-size:.82rem;
+  font-weight:bold;
+  color:var(--primary-dark);
+}
+.flow-box.result{background:var(--primary);color:#fff;border-color:var(--primary-dark);}
+.flow-box.byproduct{background:#f1f5f9;border-color:#94a3b8;color:var(--text-sub);font-weight:normal;}
+.flow-arrow{
+  flex:none;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  font-size:1.3rem;
+  color:var(--primary);
+  min-width:46px;
+}
+.flow-arrow .cond{font-size:.68rem;color:var(--text-sub);font-weight:normal;white-space:nowrap;}
+.flow-note{
+  text-align:center;
+  font-size:.78rem;
+  color:var(--text-sub);
+  margin-top:2px;
+}
+
+/* ---------- まとめ表 ---------- */
+.tbl-wrap{overflow-x:auto;margin:12px 0;}
+.summary-tbl{
+  width:100%;
+  border-collapse:collapse;
+  font-size:.86rem;
+  min-width:420px;
+}
+.summary-tbl th{
+  background:var(--primary);
+  color:#fff;
+  padding:8px 6px;
+  font-weight:bold;
+}
+.summary-tbl td{
+  border-bottom:1px solid var(--border);
+  padding:8px 6px;
+  text-align:center;
+}
+.summary-tbl tr:nth-child(even) td{background:#f8faff;}
+
+/* ---------- なぜ？ポップアップ ---------- */
+.why-btn{
+  display:inline-block;
+  margin:10px 0;
+  padding:9px 16px;
+  background:var(--purple-light);
+  border:1px solid var(--purple);
+  border-radius:20px;
+  color:var(--purple);
+  font-size:.85rem;
+  font-weight:bold;
+  cursor:pointer;
+}
+.popup-overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(15,23,42,.55);
+  z-index:200;
+  align-items:center;
+  justify-content:center;
+  padding:16px;
+}
+.popup-overlay.show{display:flex;}
+.popup-box{
+  background:#fff;
+  border-radius:16px;
+  max-width:420px;
+  max-height:80vh;
+  overflow-y:auto;
+  padding:20px;
+  position:relative;
+}
+.popup-box h4{margin:0 0 10px;color:var(--purple);font-size:1rem;}
+.popup-close{
+  position:absolute;
+  top:10px;right:14px;
+  background:none;
+  border:none;
+  font-size:1.3rem;
+  color:var(--text-sub);
+  cursor:pointer;
+}
+
+/* ---------- 穴埋めチャレンジ ---------- */
+.fill-item{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:14px 16px;
+  margin:14px 0;
+}
+.fill-item .q-no{
+  display:inline-block;
+  background:var(--primary);
+  color:#fff;
+  font-size:.75rem;
+  font-weight:bold;
+  border-radius:12px;
+  padding:2px 10px;
+  margin-bottom:8px;
+}
+.fill-sentence{font-size:.98rem;margin:8px 0;}
+.blank{
+  display:inline-block;
+  min-width:64px;
+  border-bottom:2px solid var(--primary);
+  text-align:center;
+  font-weight:bold;
+  color:var(--primary-dark);
+  padding:0 4px;
+  margin:0 2px;
+}
+.blank.filled{background:var(--primary-light);border-radius:4px;}
+.blank.correct{background:var(--success-light);border-bottom-color:var(--success);color:var(--success);}
+.blank.wrong{background:var(--accent-light);border-bottom-color:var(--accent);color:var(--accent);}
+.chip-bank{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
+.chip{
+  background:var(--accent-light);
+  border:1px solid var(--accent);
+  color:var(--primary-dark);
+  border-radius:20px;
+  padding:6px 14px;
+  font-size:.9rem;
+  cursor:pointer;
+}
+.chip:active{transform:scale(.95);}
+.chip.used{opacity:.35;pointer-events:none;}
+.fill-check-btn,.fill-reset-btn{
+  margin-top:10px;margin-right:8px;
+  padding:8px 18px;border:none;border-radius:20px;
+  font-weight:bold;cursor:pointer;font-size:.88rem;
+}
+.fill-check-btn{background:var(--primary);color:#fff;}
+.fill-reset-btn{background:#e2e8f0;color:var(--text);}
+.fill-feedback{margin-top:8px;font-size:.88rem;font-weight:bold;}
+.fill-feedback.ok{color:var(--success);}
+.fill-feedback.bad{color:var(--accent);}
+
+/* ---------- q4（4択） ---------- */
+.q4{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:14px 16px;
+  margin:14px 0;
+}
+.q4.mini{background:#f8faff;}
+.q4-no{
+  display:inline-block;
+  background:var(--accent);
+  color:#fff;
+  font-size:.72rem;
+  font-weight:bold;
+  border-radius:12px;
+  padding:2px 10px;
+  margin-bottom:8px;
+}
+.q4-no.practice{background:var(--purple);}
+.q4-text{font-size:.96rem;font-weight:600;margin:4px 0 10px;}
+.q4-choices{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.q4-c{
+  text-align:left;
+  padding:9px 10px;
+  border:2px solid #cbd5e1;
+  border-radius:10px;
+  background:#fff;
+  font-size:.85rem;
+  cursor:pointer;
+}
+.q4-c.correct{background:var(--success-light);border-color:var(--success);}
+.q4-c.wrong{background:var(--accent-light);border-color:var(--accent);}
+.q4-c.disabled{pointer-events:none;}
+.q4-exp{
+  display:none;
+  margin-top:10px;
+  background:var(--primary-light);
+  border-left:4px solid var(--primary);
+  border-radius:0 8px 8px 0;
+  padding:10px 12px;
+  font-size:.86rem;
+  color:var(--primary-dark);
+}
+.q4-exp.show{display:block;}
+
+/* ---------- minitest（○×） ---------- */
+.minitest{
+  background:#f8faff;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:14px 16px;
+  margin:14px 0;
+}
+.mt-text{font-size:.95rem;font-weight:600;margin:4px 0 10px;}
+.mt-choices{display:flex;gap:10px;}
+.mt-c{
+  flex:1;
+  padding:10px;
+  border:2px solid #cbd5e1;
+  border-radius:10px;
+  background:#fff;
+  font-size:1rem;
+  font-weight:bold;
+  cursor:pointer;
+}
+.mt-c.correct{background:var(--success-light);border-color:var(--success);}
+.mt-c.wrong{background:var(--accent-light);border-color:var(--accent);}
+.mt-c.disabled{pointer-events:none;}
+.mt-exp{
+  display:none;
+  margin-top:10px;
+  background:#fff;
+  border-left:4px solid var(--primary);
+  border-radius:0 8px 8px 0;
+  padding:10px 12px;
+  font-size:.86rem;
+  color:var(--primary-dark);
+}
+.mt-exp.show{display:block;}
+
+/* ---------- 確認テスト footer ---------- */
+.check-footer{text-align:center;margin:24px 0;}
+.score-box{
+  display:inline-block;
+  background:var(--primary);
+  color:#fff;
+  border-radius:16px;
+  padding:14px 28px;
+  font-size:1.1rem;
+  font-weight:bold;
+}
+.celebrate-msg{
+  display:none;
+  position:fixed;
+  top:36%;left:50%;
+  transform:translate(-50%,-50%);
+  background:#fff;
+  border:3px solid var(--primary);
+  border-radius:20px;
+  padding:22px 30px;
+  font-size:1.15rem;
+  font-weight:bold;
+  color:var(--primary-dark);
+  box-shadow:0 8px 30px rgba(0,0,0,.25);
+  z-index:1000;
+  text-align:center;
+}
+
+/* ---------- confetti ---------- */
+.confetti-piece{
+  position:fixed;
+  top:-20px;
+  width:8px;height:14px;
+  z-index:999;
+  pointer-events:none;
+  animation:confettiFall linear forwards;
+}
+@keyframes confettiFall{
+  from{transform:translateY(0) rotate(0deg);opacity:1;}
+  to{transform:translateY(105vh) rotate(720deg);opacity:0;}
+}
+
+/* ---------- フラッシュカード ---------- */
+.card-mode-buttons{display:flex;gap:8px;margin:12px 0;flex-wrap:wrap;}
+.mode-btn{
+  flex:1;
+  min-width:90px;
+  padding:9px 6px;
+  border:2px solid var(--primary);
+  background:#fff;
+  color:var(--primary-dark);
+  border-radius:20px;
+  font-size:.82rem;
+  font-weight:bold;
+  cursor:pointer;
+}
+.mode-btn.active{background:var(--primary);color:#fff;}
+.flash-progress{
+  text-align:center;
+  font-size:.85rem;
+  color:var(--text-sub);
+  font-weight:bold;
+  margin:4px 0 10px;
+}
+.flashcard-wrap{margin:10px 0;}
+.flashcard{
+  position:relative;
+  min-height:180px;
+  background:var(--card);
+  border:3px solid var(--primary);
+  border-radius:16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:22px 18px;
+  cursor:pointer;
+  box-shadow:0 2px 10px rgba(37,99,235,.12);
+  transition:opacity .18s, transform .18s;
+}
+.flashcard.flipped{background:var(--primary-light);border-color:var(--primary-dark);}
+.flashcard.anim{opacity:0;transform:scale(.96);}
+.card-face-label{
+  position:absolute;
+  top:10px;left:14px;
+  font-size:.72rem;
+  font-weight:bold;
+  color:var(--text-sub);
+}
+.card-text-front{font-size:1.08rem;font-weight:bold;color:var(--primary-dark);}
+.card-text-back{font-size:1.1rem;font-weight:bold;color:var(--primary-dark);letter-spacing:.3px;}
+.flash-hint{text-align:center;font-size:.78rem;color:var(--text-sub);margin-top:8px;}
+.flash-nav{display:flex;gap:8px;margin-top:14px;}
+.flash-nav button{
+  flex:1;
+  padding:10px 4px;
+  border:none;
+  border-radius:20px;
+  font-weight:bold;
+  font-size:.86rem;
+  cursor:pointer;
+  background:#e2e8f0;
+  color:var(--text);
+}
+.flash-nav button.flip-btn{background:var(--primary);color:#fff;}
+</style>
+</head>
+<body>
+
+<div class="topnav">⚗️ GAMBA 化学</div>
+<div class="hero">
+  <h1>無機化学⑦ 遷移元素・鉄</h1>
+  <p>江原予備校 GAMBA 大学入学共通テスト対応教材</p>
+</div>
+
+<div class="tabnav">
+  <button class="tab-btn active" data-tab="study">① 学習</button>
+  <button class="tab-btn" data-tab="fill">② 穴埋め</button>
+  <button class="tab-btn" data-tab="check">③ 確認テスト</button>
+  <button class="tab-btn" data-tab="cards">④ カード</button>
+</div>
+
+<main class="wrap">
+
+<!-- ============ ① 学習 ============ -->
+<div class="tab-content active" id="tab-study">
+
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">1</span>遷移元素の特徴</div>
+    <div class="stage">
+
+      <div class="read-box">周期表の3族〜11族の元素を「遷移元素」といいます。鉄Fe・銅Cu・銀Agなどが代表例です。これまで学んできたアルカリ金属などの「典型元素」とは，いくつかの点で性質が違います。</div>
+
+      <div class="tbl-wrap">
+        <table class="summary-tbl">
+          <tr><th></th><th>典型元素</th><th>遷移元素</th></tr>
+          <tr><td>化合物の色</td><td>無色のものが多い</td><td>色のついたものが多い</td></tr>
+          <tr><td>酸化数</td><td>決まった価数が多い</td><td>複数の酸化数をとる</td></tr>
+          <tr><td>密度・融点</td><td>比較的小さい・低い</td><td>大きい・高いものが多い</td></tr>
+        </table>
+      </div>
+
+      <div class="key-box"><span class="tag">🔑 ポイント</span> 遷移元素の化合物には，CuSO₄（青色）やKMnO₄（赤紫色）のように，色のついたものが多くあります。また，同じ元素でも複数の酸化数（イオンの価数）をとることが大きな特徴です。鉄はFe²⁺とFe³⁺の2種類の陽イオンをつくります。</div>
+
+      <div class="minitest" data-correct="x">
+        <div class="mt-text">Q. 遷移元素の化合物は，典型元素と同じく無色のものがほとんどである。 ○か×か？</div>
+        <div class="mt-choices">
+          <button class="mt-c" data-v="o">○ 正しい</button>
+          <button class="mt-c" data-v="x">× 誤り</button>
+        </div>
+        <div class="mt-exp"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">2</span>鉄の製錬と性質</div>
+    <div class="stage">
+
+      <div class="read-box">鉄Feは，天然には酸化鉄（鉄鉱石）として存在します。これを一酸化炭素COで還元して，鉄の単体を取り出します。⑤の炭素の単元で学んだCOの還元反応と同じです。</div>
+      <div class="eq">Fe₂O₃ ＋ 3CO → 2Fe ＋ 3CO₂</div>
+
+      <div class="key-box"><span class="tag">🔑 ポイント</span> このとき使うCOは，コークス（炭素）を燃やして発生させます。溶鉱炉の中で，酸化鉄が還元されて鉄になります。</div>
+
+      <div class="read-box">鉄は湿った空気中で酸化され，さびやすい金属です。一方で，濃硝酸には溶けません。</div>
+
+      <div class="important-box"><span class="tag">⚠️ 注意</span> ④の窒素の単元で学んだ「不動態」を覚えていますか。鉄Feは，アルミニウムAlなどと同じく，濃硝酸に入れると表面に緻密な酸化被膜ができ，不動態となって溶けません。</div>
+
+      <div class="q4 mini" data-correct="d">
+        <div class="q4-no practice">小テスト①</div>
+        <div class="q4-text">Q. 「Fe₂O₃＋3CO→2Fe＋（　）」。空欄に入るのはどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．CO</button>
+          <button class="q4-c" data-v="b">b．O₂</button>
+          <button class="q4-c" data-v="c">c．Fe₃O₄</button>
+          <button class="q4-c" data-v="d">d．3CO₂</button>
+        </div>
+        <div class="q4-exp">📘 COが還元剤としてFe₂O₃から酸素を奪い，自身はCO₂になります。鉄の製錬の基本反応です。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">小テスト②</div>
+        <div class="q4-text">Q. 鉄の製錬で還元剤としてはたらく物質はどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．酸素O₂</button>
+          <button class="q4-c" data-v="b">b．一酸化炭素CO</button>
+          <button class="q4-c" data-v="c">c．水素H₂</button>
+          <button class="q4-c" data-v="d">d．塩素Cl₂</button>
+        </div>
+        <div class="q4-exp">📘 コークスから発生するCOが還元剤としてはたらき，酸化鉄を還元して鉄を取り出します。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="c">
+        <div class="q4-no practice">小テスト③</div>
+        <div class="q4-text">Q. 鉄Feを濃硝酸に入れるとどうなりますか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．すぐに激しく溶ける</button>
+          <button class="q4-c" data-v="b">b．水素を発生して溶ける</button>
+          <button class="q4-c" data-v="c">c．不動態をつくり溶けない</button>
+          <button class="q4-c" data-v="d">d．燃えて灰になる</button>
+        </div>
+        <div class="q4-exp">📘 鉄は濃硝酸に入れると，表面に緻密な酸化被膜ができる「不動態」となり溶けません。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">小テスト④</div>
+        <div class="q4-text">Q. 鉄とともに，濃硝酸で不動態をつくる金属はどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．アルミニウムAl</button>
+          <button class="q4-c" data-v="b">b．銅Cu</button>
+          <button class="q4-c" data-v="c">c．銀Ag</button>
+          <button class="q4-c" data-v="d">d．ナトリウムNa</button>
+        </div>
+        <div class="q4-exp">📘 Fe・Ni・Al・Cr・Coは濃硝酸で不動態をつくります。④の窒素の単元で学んだ内容です。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">小テスト⑤</div>
+        <div class="q4-text">Q. 鉄鉱石の主成分である酸化鉄はどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．FeCl₃</button>
+          <button class="q4-c" data-v="b">b．Fe₂O₃</button>
+          <button class="q4-c" data-v="c">c．FeSO₄</button>
+          <button class="q4-c" data-v="d">d．Fe(OH)₃</button>
+        </div>
+        <div class="q4-exp">📘 鉄鉱石には酸化鉄Fe₂O₃が多く含まれており，これをCOで還元して鉄を取り出します。</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">3</span>鉄(Ⅱ)イオンと鉄(Ⅲ)イオンの違い</div>
+    <div class="stage">
+
+      <div class="read-box">鉄は，Fe²⁺（鉄(Ⅱ)イオン）とFe³⁺（鉄(Ⅲ)イオン）の2種類の陽イオンをつくります。色も性質もはっきり違います。</div>
+
+      <div class="tbl-wrap">
+        <table class="summary-tbl">
+          <tr><th></th><th>Fe²⁺</th><th>Fe³⁺</th></tr>
+          <tr><td>色</td><td>淡緑色</td><td>黄褐色</td></tr>
+          <tr><td>水酸化物の沈殿</td><td>Fe(OH)₂（緑白色）</td><td>Fe(OH)₃（赤褐色）</td></tr>
+        </table>
+      </div>
+
+      <div class="eq">Fe²⁺ ＋ 2OH⁻ → Fe(OH)₂↓（緑白色）</div>
+      <div class="eq">Fe³⁺ ＋ 3OH⁻ → Fe(OH)₃↓（赤褐色）</div>
+
+      <div class="important-box"><span class="tag">⚠️ 注意</span> Fe²⁺は空気中で容易に酸化されて，Fe³⁺に変化してしまいます。淡緑色のFe²⁺水溶液を放置すると，だんだん黄褐色のFe³⁺に変わっていくのはこのためです。</div>
+
+      <button class="why-btn" data-popup="p1">🤔 なぜFe²⁺は酸化されやすいの？</button>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">小テスト①</div>
+        <div class="q4-text">Q. Fe²⁺（鉄(Ⅱ)イオン）の色はどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．淡緑色</button>
+          <button class="q4-c" data-v="b">b．黄褐色</button>
+          <button class="q4-c" data-v="c">c．赤褐色</button>
+          <button class="q4-c" data-v="d">d．青色</button>
+        </div>
+        <div class="q4-exp">📘 Fe²⁺は淡緑色です。空気中で酸化されると黄褐色のFe³⁺になります。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">小テスト②</div>
+        <div class="q4-text">Q. Fe³⁺（鉄(Ⅲ)イオン）の色はどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．淡緑色</button>
+          <button class="q4-c" data-v="b">b．黄褐色</button>
+          <button class="q4-c" data-v="c">c．無色</button>
+          <button class="q4-c" data-v="d">d．青色</button>
+        </div>
+        <div class="q4-exp">📘 Fe³⁺は黄褐色です。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="c">
+        <div class="q4-no practice">小テスト③</div>
+        <div class="q4-text">Q. Fe²⁺に塩基を加えると生じる沈殿の色はどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．赤褐色</button>
+          <button class="q4-c" data-v="b">b．青色</button>
+          <button class="q4-c" data-v="c">c．緑白色</button>
+          <button class="q4-c" data-v="d">d．白色</button>
+        </div>
+        <div class="q4-exp">📘 Fe²⁺＋2OH⁻→Fe(OH)₂↓（緑白色）です。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">小テスト④</div>
+        <div class="q4-text">Q. Fe³⁺に塩基を加えると生じる沈殿の色はどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．赤褐色</button>
+          <button class="q4-c" data-v="b">b．緑白色</button>
+          <button class="q4-c" data-v="c">c．黒色</button>
+          <button class="q4-c" data-v="d">d．無色</button>
+        </div>
+        <div class="q4-exp">📘 Fe³⁺＋3OH⁻→Fe(OH)₃↓（赤褐色）です。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="d">
+        <div class="q4-no practice">小テスト⑤</div>
+        <div class="q4-text">Q. 淡緑色のFe²⁺水溶液を空気中に放置すると，どうなりますか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．色は変わらない</button>
+          <button class="q4-c" data-v="b">b．無色になる</button>
+          <button class="q4-c" data-v="c">c．青色になる</button>
+          <button class="q4-c" data-v="d">d．酸化されて黄褐色になる</button>
+        </div>
+        <div class="q4-exp">📘 Fe²⁺は空気中の酸素で容易に酸化され，黄褐色のFe³⁺に変化します。</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">4</span>鉄イオンの検出反応</div>
+    <div class="stage">
+
+      <div class="read-box">Fe²⁺とFe³⁺は，特定の試薬を加えることでお互いを見分けることができます。</div>
+
+      <div class="key-box"><span class="tag">🔑 ポイント</span> ヘキサシアニド鉄錯体を使った検出では，どちらも「濃青色」の沈殿になります。ペアが入れ替わっている点に注意しましょう。</div>
+
+      <div class="tbl-wrap">
+        <table class="summary-tbl">
+          <tr><th>検出対象</th><th>加える試薬</th><th>結果</th></tr>
+          <tr><td>Fe²⁺</td><td>ヘキサシアニド鉄(Ⅲ)酸カリウム K₃[Fe(CN)₆]</td><td>濃青色沈殿</td></tr>
+          <tr><td>Fe³⁺</td><td>ヘキサシアニド鉄(Ⅱ)酸カリウム K₄[Fe(CN)₆]</td><td>濃青色沈殿</td></tr>
+          <tr><td>Fe³⁺</td><td>チオシアン酸カリウム KSCN</td><td>血赤色に変化</td></tr>
+        </table>
+      </div>
+
+      <div class="important-box"><span class="tag">⚠️ よくある間違い</span> 「Fe²⁺には鉄(Ⅱ)の試薬，Fe³⁺には鉄(Ⅲ)の試薬」と覚えると逆になってしまいます。正しくは「検出したいイオンとは違う価数」の試薬を使います。</div>
+
+      <div class="read-box">特にFe³⁺とKSCNの反応は，色の変化がはっきりしていて鋭敏なため，鉄(Ⅲ)イオンの検出によく使われる，試験でも頻出の反応です。</div>
+
+      <div class="q4 mini" data-correct="c">
+        <div class="q4-no practice">小テスト①</div>
+        <div class="q4-text">Q. Fe²⁺にK₃[Fe(CN)₆]を加えると生じる沈殿の色はどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．赤褐色</button>
+          <button class="q4-c" data-v="b">b．血赤色</button>
+          <button class="q4-c" data-v="c">c．濃青色</button>
+          <button class="q4-c" data-v="d">d．黄色</button>
+        </div>
+        <div class="q4-exp">📘 Fe²⁺にヘキサシアニド鉄(Ⅲ)酸カリウムを加えると濃青色沈殿を生じます。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="c">
+        <div class="q4-no practice">小テスト②</div>
+        <div class="q4-text">Q. Fe³⁺にK₄[Fe(CN)₆]を加えると生じる沈殿の色はどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．緑白色</button>
+          <button class="q4-c" data-v="b">b．血赤色</button>
+          <button class="q4-c" data-v="c">c．濃青色</button>
+          <button class="q4-c" data-v="d">d．白色</button>
+        </div>
+        <div class="q4-exp">📘 Fe³⁺にヘキサシアニド鉄(Ⅱ)酸カリウムを加えると濃青色沈殿を生じます。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">小テスト③</div>
+        <div class="q4-text">Q. Fe³⁺にチオシアン酸カリウムKSCNを加えると，何色に変化しますか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．濃青色</button>
+          <button class="q4-c" data-v="b">b．血赤色</button>
+          <button class="q4-c" data-v="c">c．緑白色</button>
+          <button class="q4-c" data-v="d">d．無色</button>
+        </div>
+        <div class="q4-exp">📘 Fe³⁺はKSCNを加えると血赤色に変化します。鉄(Ⅲ)イオンの検出によく使われる反応です。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">小テスト④</div>
+        <div class="q4-text">Q. Fe²⁺の検出に使う試薬はどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．K₃[Fe(CN)₆]</button>
+          <button class="q4-c" data-v="b">b．K₄[Fe(CN)₆]</button>
+          <button class="q4-c" data-v="c">c．KSCN</button>
+          <button class="q4-c" data-v="d">d．KMnO₄</button>
+        </div>
+        <div class="q4-exp">📘 Fe²⁺にはヘキサシアニド鉄(Ⅲ)酸カリウムK₃[Fe(CN)₆]を使い，濃青色沈殿で検出します。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="d">
+        <div class="q4-no practice">小テスト⑤</div>
+        <div class="q4-text">Q. チオシアン酸カリウムによる検出で，鋭敏な色の変化を示すのはどちらのイオンですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．Fe²⁺</button>
+          <button class="q4-c" data-v="b">b．Na⁺</button>
+          <button class="q4-c" data-v="c">c．Cu²⁺</button>
+          <button class="q4-c" data-v="d">d．Fe³⁺</button>
+        </div>
+        <div class="q4-exp">📘 Fe³⁺はKSCNと反応して血赤色になり，鉄(Ⅲ)イオンの検出に広く使われます。</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">5</span>銅Cu²⁺イオンの反応</div>
+    <div class="stage">
+
+      <div class="read-box">銅Cuの化合物も，鉄と同じく特有の色をもちます。硫酸銅(Ⅱ)CuSO₄の水溶液は青色で，このCu²⁺イオンに塩基を加えると，青白色の水酸化銅(Ⅱ)Cu(OH)₂が沈殿します。</div>
+      <div class="eq">Cu²⁺ ＋ 2OH⁻ → Cu(OH)₂↓（青白色）</div>
+
+      <div class="key-box"><span class="tag">🔑 ステップで考える</span> ここに過剰のアンモニア水NH₃aqを加えると，いったん沈殿したCu(OH)₂が再び溶けて，深青色の溶液に変わります。これは，Cu²⁺にNH₃が4つ配位結合した「テトラアンミン銅(Ⅱ)イオン」という錯イオンができるためです。</div>
+      <div class="eq">Cu(OH)₂ ＋ 4NH₃ → [Cu(NH₃)₄]²⁺ ＋ 2OH⁻（深青色の溶液）</div>
+
+      <div class="important-box"><span class="tag">⚠️ 注意</span> 「青白色沈殿→過剰のアンモニアで深青色の溶液になる」という変化は，Cu²⁺を見分けるための代表的な反応として重要です。色の変化の順番（青白→深青）をセットで覚えましょう。</div>
+
+      <button class="why-btn" data-popup="p2">🤔 錯イオンって何？</button>
+
+      <div class="minitest" data-correct="o">
+        <div class="mt-text">Q. Cu(OH)₂の沈殿に過剰のアンモニア水を加えると，深青色の溶液になる。 ○か×か？</div>
+        <div class="mt-choices">
+          <button class="mt-c" data-v="o">○ 正しい</button>
+          <button class="mt-c" data-v="x">× 誤り</button>
+        </div>
+        <div class="mt-exp"></div>
+      </div>
+
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">小テスト①</div>
+        <div class="q4-text">Q. Cu²⁺に塩基を加えると生じる沈殿の色はどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．赤褐色</button>
+          <button class="q4-c" data-v="b">b．青白色</button>
+          <button class="q4-c" data-v="c">c．黒色</button>
+          <button class="q4-c" data-v="d">d．黄色</button>
+        </div>
+        <div class="q4-exp">📘 Cu²⁺＋2OH⁻→Cu(OH)₂↓（青白色）です。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="d">
+        <div class="q4-no practice">小テスト②</div>
+        <div class="q4-text">Q. Cu(OH)₂に過剰のアンモニア水を加えると，何色の溶液になりますか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．血赤色</button>
+          <button class="q4-c" data-v="b">b．淡緑色</button>
+          <button class="q4-c" data-v="c">c．黄褐色</button>
+          <button class="q4-c" data-v="d">d．深青色</button>
+        </div>
+        <div class="q4-exp">📘 [Cu(NH₃)₄]²⁺（テトラアンミン銅(Ⅱ)イオン）となり，深青色の溶液になります。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">小テスト③</div>
+        <div class="q4-text">Q. [Cu(NH₃)₄]²⁺のように，金属イオンに分子やイオンが結合してできるイオンを何といいますか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．錯イオン</button>
+          <button class="q4-c" data-v="b">b．同位体</button>
+          <button class="q4-c" data-v="c">c．同素体</button>
+          <button class="q4-c" data-v="d">d．両性イオン</button>
+        </div>
+        <div class="q4-exp">📘 金属イオンにNH₃などが配位結合してできるイオンを「錯イオン」といいます。</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">6</span>クロムCrとマンガンMnの化合物の色</div>
+    <div class="stage">
+
+      <div class="read-box">クロムCrとマンガンMnも，遷移元素らしく特有の色をもつ化合物をつくります。共通テストでは，色の変化そのものが問われることが多い分野です。</div>
+
+      <h3>クロム酸イオンと二クロム酸イオン：液性で色が変わる</h3>
+      <div class="read-box">クロム酸イオンCrO₄²⁻（黄色）は，酸性にすると二クロム酸イオンCr₂O₇²⁻（橙赤色）に変化します。逆に塩基性にすると，また黄色のCrO₄²⁻にもどります。</div>
+
+      <div class="eq">2CrO₄²⁻（黄色） ＋ 2H⁺ → Cr₂O₇²⁻（橙赤色） ＋ H₂O</div>
+      <div class="eq">Cr₂O₇²⁻（橙赤色） ＋ 2OH⁻ → 2CrO₄²⁻（黄色） ＋ H₂O</div>
+
+      <div class="key-box"><span class="tag">🔑 ポイント</span> 「酸性にすると黄色→橙赤色」「塩基性にすると橙赤色→黄色」。色と液性をセットで覚えておくと，グラフや実験問題で迷いません。</div>
+
+      <h3>過マンガン酸カリウムKMnO₄：赤紫色の酸化剤</h3>
+      <div class="read-box">過マンガン酸カリウムKMnO₄は黒紫色の結晶で，水に溶けると赤紫色の過マンガン酸イオンMnO₄⁻になります。硫酸酸性のもとでは強い酸化剤としてはたらき，反応すると淡い赤色のMn²⁺に変化します。</div>
+
+      <div class="important-box"><span class="tag">⚠️ 注意</span> 「濃い赤紫色のMnO₄⁻ → 反応すると淡い赤色のMn²⁺」という色の変化は，酸化還元滴定でも色の変化が終点の目印になる重要な反応です。</div>
+
+      <div class="minitest" data-correct="x">
+        <div class="mt-text">Q. クロム酸イオンCrO₄²⁻を酸性にすると，黄色のまま変化しない。 ○か×か？</div>
+        <div class="mt-choices">
+          <button class="mt-c" data-v="o">○ 正しい</button>
+          <button class="mt-c" data-v="x">× 誤り</button>
+        </div>
+        <div class="mt-exp"></div>
+      </div>
+
+      <div class="q4 mini" data-correct="c">
+        <div class="q4-no practice">小テスト①</div>
+        <div class="q4-text">Q. クロム酸イオンCrO₄²⁻を酸性にすると何色に変化しますか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．無色</button>
+          <button class="q4-c" data-v="b">b．黄色のまま</button>
+          <button class="q4-c" data-v="c">c．橙赤色</button>
+          <button class="q4-c" data-v="d">d．濃青色</button>
+        </div>
+        <div class="q4-exp">📘 2CrO₄²⁻＋2H⁺→Cr₂O₇²⁻＋H₂O。酸性にすると橙赤色の二クロム酸イオンになります。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">小テスト②</div>
+        <div class="q4-text">Q. 過マンガン酸イオンMnO₄⁻の色はどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．黄緑色</button>
+          <button class="q4-c" data-v="b">b．赤紫色</button>
+          <button class="q4-c" data-v="c">c．青白色</button>
+          <button class="q4-c" data-v="d">d．無色</button>
+        </div>
+        <div class="q4-exp">📘 MnO₄⁻は赤紫色です。硫酸酸性下で反応すると淡い赤色のMn²⁺に変わります。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="d">
+        <div class="q4-no practice">小テスト③</div>
+        <div class="q4-text">Q. Cr₂O₇²⁻（橙赤色）に塩基を加えるとどうなりますか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．無色になる</button>
+          <button class="q4-c" data-v="b">b．黒色沈殿を生じる</button>
+          <button class="q4-c" data-v="c">c．変化しない</button>
+          <button class="q4-c" data-v="d">d．黄色のCrO₄²⁻にもどる</button>
+        </div>
+        <div class="q4-exp">📘 Cr₂O₇²⁻＋2OH⁻→2CrO₄²⁻＋H₂O。塩基性にすると黄色にもどります。</div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- ============ ② 穴埋めチャレンジ ============ -->
+<div class="tab-content" id="tab-fill">
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">✎</span>穴埋めチャレンジ</div>
+    <div class="stage">
+      <div class="read-box">下のチップをタップして，反応式の空欄をうめましょう。まちがえても大丈夫，「やり直す」でもう一度チャレンジできます。</div>
+    </div>
+  </div>
+
+  <div class="fill-item" data-fill="f1">
+    <div class="q-no">問1</div>
+    <div class="fill-sentence">鉄の製錬：Fe₂O₃ ＋ 3CO → 2Fe ＋ <span class="blank" data-blank="0" data-ans="3CO2">　</span></div>
+    <div class="chip-bank">
+      <span class="chip" data-val="3CO2">3CO₂</span>
+      <span class="chip" data-val="CO2">CO₂</span>
+      <span class="chip" data-val="3O2">3O₂</span>
+      <span class="chip" data-val="Fe3O4">Fe₃O₄</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+
+  <div class="fill-item" data-fill="f2">
+    <div class="q-no">問2</div>
+    <div class="fill-sentence">Fe²⁺の水酸化物沈殿：Fe²⁺ ＋ 2OH⁻ → <span class="blank" data-blank="0" data-ans="FeOH2">　</span>↓（緑白色）</div>
+    <div class="chip-bank">
+      <span class="chip" data-val="FeOH2">Fe(OH)₂</span>
+      <span class="chip" data-val="FeOH3">Fe(OH)₃</span>
+      <span class="chip" data-val="FeO">FeO</span>
+      <span class="chip" data-val="Fe2O3">Fe₂O₃</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+
+  <div class="fill-item" data-fill="f3">
+    <div class="q-no">問3</div>
+    <div class="fill-sentence">Fe³⁺の水酸化物沈殿：Fe³⁺ ＋ 3OH⁻ → <span class="blank" data-blank="0" data-ans="FeOH3">　</span>↓（赤褐色）</div>
+    <div class="chip-bank">
+      <span class="chip" data-val="FeOH3">Fe(OH)₃</span>
+      <span class="chip" data-val="FeOH2">Fe(OH)₂</span>
+      <span class="chip" data-val="FeO">FeO</span>
+      <span class="chip" data-val="Fe2O3">Fe₂O₃</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+
+  <div class="fill-item" data-fill="f4">
+    <div class="q-no">問4</div>
+    <div class="fill-sentence">Fe³⁺の検出：Fe³⁺にKSCNを加えると<span class="blank" data-blank="0" data-ans="chiaka">　</span>に変化する</div>
+    <div class="chip-bank">
+      <span class="chip" data-val="chiaka">血赤色</span>
+      <span class="chip" data-val="noukon">濃青色</span>
+      <span class="chip" data-val="ryokuhaku">緑白色</span>
+      <span class="chip" data-val="muiro">無色</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+
+  <div class="fill-item" data-fill="f5">
+    <div class="q-no">問5</div>
+    <div class="fill-sentence">鉄と濃硝酸の関係：Feは濃硝酸には<span class="blank" data-blank="0" data-ans="fudoutai">　</span>をつくり溶けない</div>
+    <div class="chip-bank">
+      <span class="chip" data-val="fudoutai">不動態</span>
+      <span class="chip" data-val="chokai">潮解</span>
+      <span class="chip" data-val="fuukai">風解</span>
+      <span class="chip" data-val="shouka">昇華</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+
+  <div class="fill-item" data-fill="f6">
+    <div class="q-no">問6</div>
+    <div class="fill-sentence">Cu²⁺の沈殿反応：Cu²⁺ ＋ 2OH⁻ → <span class="blank" data-blank="0" data-ans="CuOH2">　</span></div>
+    <div class="chip-bank">
+      <span class="chip" data-val="CuOH2">Cu(OH)₂</span>
+      <span class="chip" data-val="CuO">CuO</span>
+      <span class="chip" data-val="CuCl2">CuCl₂</span>
+      <span class="chip" data-val="Cu2O">Cu₂O</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+
+  <div class="fill-item" data-fill="f7">
+    <div class="q-no">問7</div>
+    <div class="fill-sentence">クロム酸イオンの液性変化：2CrO₄²⁻ ＋ 2H⁺ → <span class="blank" data-blank="0" data-ans="Cr2O7">　</span> ＋ H₂O</div>
+    <div class="chip-bank">
+      <span class="chip" data-val="Cr2O7">Cr₂O₇²⁻</span>
+      <span class="chip" data-val="CrO4">CrO₄²⁻</span>
+      <span class="chip" data-val="Cr2O3">Cr₂O₃</span>
+      <span class="chip" data-val="CrO3">CrO₃</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+</div>
+
+<!-- ============ ③ 確認テスト ============ -->
+<div class="tab-content" id="tab-check">
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">✓</span>確認テスト（14問）</div>
+    <div class="stage">
+      <div class="read-box">すべての問題に答えると，結果が表示されます。自分のペースでゆっくり進めましょう。</div>
+    </div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="b">
+    <div class="q4-no">第1問</div>
+    <div class="q4-text">遷移元素の化合物の特徴として正しいものはどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．ほとんどが無色である</button>
+      <button class="q4-c" data-v="b">b．色のついたものが多い</button>
+      <button class="q4-c" data-v="c">c．決まった酸化数しかとらない</button>
+      <button class="q4-c" data-v="d">d．すべて気体である</button>
+    </div>
+    <div class="q4-exp">📘 遷移元素の化合物には色のついたものが多く，複数の酸化数をとるのも特徴です。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="c">
+    <div class="q4-no">第2問</div>
+    <div class="q4-text">鉄の製錬で還元剤としてはたらく物質はどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．酸素O₂</button>
+      <button class="q4-c" data-v="b">b．水素H₂</button>
+      <button class="q4-c" data-v="c">c．一酸化炭素CO</button>
+      <button class="q4-c" data-v="d">d．塩素Cl₂</button>
+    </div>
+    <div class="q4-exp">📘 Fe₂O₃＋3CO→2Fe＋3CO₂。COが還元剤としてはたらきます。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="d">
+    <div class="q4-no">第3問</div>
+    <div class="q4-text">鉄Feを濃硝酸に入れるとどうなりますか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．激しく溶ける</button>
+      <button class="q4-c" data-v="b">b．水素を発生する</button>
+      <button class="q4-c" data-v="c">c．燃える</button>
+      <button class="q4-c" data-v="d">d．不動態をつくり溶けない</button>
+    </div>
+    <div class="q4-exp">📘 鉄は濃硝酸中で不動態をつくり，溶けずに保護されます。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="a">
+    <div class="q4-no">第4問</div>
+    <div class="q4-text">Fe²⁺（鉄(Ⅱ)イオン）の色はどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．淡緑色</button>
+      <button class="q4-c" data-v="b">b．黄褐色</button>
+      <button class="q4-c" data-v="c">c．無色</button>
+      <button class="q4-c" data-v="d">d．青色</button>
+    </div>
+    <div class="q4-exp">📘 Fe²⁺は淡緑色です。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="b">
+    <div class="q4-no">第5問</div>
+    <div class="q4-text">Fe³⁺（鉄(Ⅲ)イオン）の色はどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．淡緑色</button>
+      <button class="q4-c" data-v="b">b．黄褐色</button>
+      <button class="q4-c" data-v="c">c．青色</button>
+      <button class="q4-c" data-v="d">d．無色</button>
+    </div>
+    <div class="q4-exp">📘 Fe³⁺は黄褐色です。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="c">
+    <div class="q4-no">第6問</div>
+    <div class="q4-text">Fe²⁺に塩基を加えると生じる沈殿の色はどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．赤褐色</button>
+      <button class="q4-c" data-v="b">b．青色</button>
+      <button class="q4-c" data-v="c">c．緑白色</button>
+      <button class="q4-c" data-v="d">d．白色</button>
+    </div>
+    <div class="q4-exp">📘 Fe²⁺＋2OH⁻→Fe(OH)₂↓（緑白色）です。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="a">
+    <div class="q4-no">第7問</div>
+    <div class="q4-text">Fe³⁺に塩基を加えると生じる沈殿の色はどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．赤褐色</button>
+      <button class="q4-c" data-v="b">b．緑白色</button>
+      <button class="q4-c" data-v="c">c．黒色</button>
+      <button class="q4-c" data-v="d">d．無色</button>
+    </div>
+    <div class="q4-exp">📘 Fe³⁺＋3OH⁻→Fe(OH)₃↓（赤褐色）です。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="b">
+    <div class="q4-no">第8問</div>
+    <div class="q4-text">Fe³⁺にチオシアン酸カリウムKSCNを加えると何色に変化しますか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．濃青色</button>
+      <button class="q4-c" data-v="b">b．血赤色</button>
+      <button class="q4-c" data-v="c">c．緑白色</button>
+      <button class="q4-c" data-v="d">d．無色</button>
+    </div>
+    <div class="q4-exp">📘 Fe³⁺はKSCNと反応して血赤色になります。鉄(Ⅲ)イオンの検出でよく使われます。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="c">
+    <div class="q4-no">第9問</div>
+    <div class="q4-text">Fe²⁺にK₃[Fe(CN)₆]を加えると生じる沈殿の色はどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．赤褐色</button>
+      <button class="q4-c" data-v="b">b．血赤色</button>
+      <button class="q4-c" data-v="c">c．濃青色</button>
+      <button class="q4-c" data-v="d">d．黄色</button>
+    </div>
+    <div class="q4-exp">📘 Fe²⁺にヘキサシアニド鉄(Ⅲ)酸カリウムを加えると濃青色沈殿を生じます。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="d">
+    <div class="q4-no">第10問</div>
+    <div class="q4-text">淡緑色のFe²⁺水溶液を空気中に放置すると，どうなりますか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．色は変わらない</button>
+      <button class="q4-c" data-v="b">b．無色になる</button>
+      <button class="q4-c" data-v="c">c．青色になる</button>
+      <button class="q4-c" data-v="d">d．酸化されて黄褐色になる</button>
+    </div>
+    <div class="q4-exp">📘 Fe²⁺は空気中で酸化されやすく，黄褐色のFe³⁺に変化します。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="b">
+    <div class="q4-no">第11問</div>
+    <div class="q4-text">Cu²⁺に塩基を加えると生じる沈殿の色はどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．赤褐色</button>
+      <button class="q4-c" data-v="b">b．青白色</button>
+      <button class="q4-c" data-v="c">c．黒色</button>
+      <button class="q4-c" data-v="d">d．緑白色</button>
+    </div>
+    <div class="q4-exp">📘 Cu²⁺＋2OH⁻→Cu(OH)₂↓（青白色）です。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="c">
+    <div class="q4-no">第12問</div>
+    <div class="q4-text">Cu(OH)₂に過剰のアンモニア水を加えると生じる溶液の色はどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．血赤色</button>
+      <button class="q4-c" data-v="b">b．黄褐色</button>
+      <button class="q4-c" data-v="c">c．深青色</button>
+      <button class="q4-c" data-v="d">d．無色</button>
+    </div>
+    <div class="q4-exp">📘 [Cu(NH₃)₄]²⁺（テトラアンミン銅(Ⅱ)イオン）となり，深青色の溶液になります。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="a">
+    <div class="q4-no">第13問</div>
+    <div class="q4-text">クロム酸イオンCrO₄²⁻（黄色）を酸性にすると生じるイオンの色はどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．橙赤色</button>
+      <button class="q4-c" data-v="b">b．濃青色</button>
+      <button class="q4-c" data-v="c">c．無色</button>
+      <button class="q4-c" data-v="d">d．黒色</button>
+    </div>
+    <div class="q4-exp">📘 2CrO₄²⁻＋2H⁺→Cr₂O₇²⁻＋H₂O。酸性にすると橙赤色の二クロム酸イオンになります。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="d">
+    <div class="q4-no">第14問</div>
+    <div class="q4-text">過マンガン酸イオンMnO₄⁻の色はどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．黄色</button>
+      <button class="q4-c" data-v="b">b．青白色</button>
+      <button class="q4-c" data-v="c">c．橙赤色</button>
+      <button class="q4-c" data-v="d">d．赤紫色</button>
+    </div>
+    <div class="q4-exp">📘 MnO₄⁻は赤紫色です。反応すると淡い赤色のMn²⁺に変化します。</div>
+  </div>
+
+  <div class="check-footer">
+    <div class="score-box" id="score-box" style="display:none;"></div>
+  </div>
+</div>
+
+<!-- ============ ④ フラッシュカード ============ -->
+<div class="tab-content" id="tab-cards">
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">4</span>反応式フラッシュカード</div>
+    <div class="stage">
+      <div class="read-box">カードをタップすると裏の反応式が見られます。自分でめくる「手動」のほか，「3秒後自動」「5秒後自動」を選ぶと，表→裏→次のカードと自動で進みます。</div>
+
+      <div class="card-mode-buttons">
+        <button class="mode-btn active" data-mode="manual">手動</button>
+        <button class="mode-btn" data-mode="3">3秒後自動</button>
+        <button class="mode-btn" data-mode="5">5秒後自動</button>
+      </div>
+
+      <div class="flash-progress"><span id="card-pos">1</span> / <span id="card-total">5</span></div>
+
+      <div class="flashcard-wrap">
+        <div class="flashcard" id="flashcard">
+          <span class="card-face-label" id="card-face-label">表（問題）</span>
+          <div class="card-text-front" id="card-text"></div>
+        </div>
+      </div>
+      <div class="flash-hint" id="flash-hint">カードをタップすると答えがめくれます</div>
+
+      <div class="flash-nav">
+        <button id="card-prev">◀ 前へ</button>
+        <button id="card-flip" class="flip-btn">めくる</button>
+        <button id="card-next">次へ ▶</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<div class="popup-overlay" id="popup-p1">
+  <div class="popup-box">
+    <button class="popup-close" data-close="p1">×</button>
+    <h4>🤔 なぜFe²⁺は酸化されやすいの？</h4>
+    <p>Fe²⁺は，鉄原子Feが電子を2個失ってできたイオンです。実は鉄は，電子をもう1個失って安定なFe³⁺になりやすい性質をもっています。</p>
+    <p>そのため，空気中の酸素O₂のような酸化力のある物質に出会うと，Fe²⁺はさらに電子を1個手放し，Fe³⁺へと変化してしまいます。</p>
+    <p>💡 つまり，Fe²⁺は「あと1個，電子を手放したがっている」不安定な状態だと考えると覚えやすくなります。これが，淡緑色の水溶液が時間とともに黄褐色に変わっていく理由です。</p>
+  </div>
+</div>
+
+<div class="popup-overlay" id="popup-p2">
+  <div class="popup-box">
+    <button class="popup-close" data-close="p2">×</button>
+    <h4>🤔 錯イオンって何？</h4>
+    <p>金属イオン（Cu²⁺など）は，まわりにNH₃やOH⁻のような分子・イオンを「抱え込む」ことができます。この抱え込む力を配位結合といい，できあがったイオンを「錯イオン」といいます。</p>
+    <p>[Cu(NH₃)₄]²⁺の場合，中心のCu²⁺のまわりにNH₃が4つ結合しています。この「4」という数を配位数といいます。</p>
+    <p>💡 錯イオンができると，色が大きく変わることが多いのが特徴です。Cu(OH)₂の青白色沈殿が，NH₃を抱え込んで[Cu(NH₃)₄]²⁺になると深青色に変わるのはこのためです。色の変化は，錯イオンができた「合図」だと考えると理解しやすくなります。</p>
+  </div>
+</div>
+
+<div class="celebrate-msg" id="celebrate-msg">🎉 全問正解です！<br>よくできました！</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- タブ切替 ---------- */
+  var tabBtns = document.querySelectorAll(".tab-btn");
+  var tabContents = document.querySelectorAll(".tab-content");
+  for (var i=0;i<tabBtns.length;i++){
+    tabBtns[i].addEventListener("click", function(){
+      var target = this.getAttribute("data-tab");
+      for (var j=0;j<tabBtns.length;j++){ tabBtns[j].classList.remove("active"); }
+      for (var k=0;k<tabContents.length;k++){ tabContents[k].classList.remove("active"); }
+      this.classList.add("active");
+      document.getElementById("tab-"+target).classList.add("active");
+      window.scrollTo({top:0, behavior:"smooth"});
+      if (target !== "cards") stopCardAuto();
+    });
+  }
+
+  /* ---------- なぜ？ポップアップ ---------- */
+  var whyBtns = document.querySelectorAll(".why-btn");
+  for (var w=0;w<whyBtns.length;w++){
+    whyBtns[w].addEventListener("click", function(){
+      var id = this.getAttribute("data-popup");
+      document.getElementById("popup-"+id).classList.add("show");
+    });
+  }
+  var closeBtns = document.querySelectorAll(".popup-close");
+  for (var cb=0;cb<closeBtns.length;cb++){
+    closeBtns[cb].addEventListener("click", function(){
+      var id = this.getAttribute("data-close");
+      document.getElementById("popup-"+id).classList.remove("show");
+    });
+  }
+  var overlays = document.querySelectorAll(".popup-overlay");
+  for (var ov=0;ov<overlays.length;ov++){
+    overlays[ov].addEventListener("click", function(ev){
+      if (ev.target === this) this.classList.remove("show");
+    });
+  }
+
+  /* ---------- 穴埋めチャレンジ ---------- */
+  var fillItems = document.querySelectorAll(".fill-item");
+  for (var f=0; f<fillItems.length; f++){
+    (function(item){
+      var blanks = item.querySelectorAll(".blank");
+      var chips = item.querySelectorAll(".chip");
+      var feedback = item.querySelector(".fill-feedback");
+      var checkBtn = item.querySelector(".fill-check-btn");
+      var resetBtn = item.querySelector(".fill-reset-btn");
+
+      function nextEmptyBlank(){
+        for (var b=0;b<blanks.length;b++){
+          if (!blanks[b].classList.contains("filled")) return blanks[b];
+        }
+        return null;
+      }
+
+      for (var c=0;c<chips.length;c++){
+        chips[c].addEventListener("click", function(){
+          if (this.classList.contains("used")) return;
+          var target = nextEmptyBlank();
+          if (!target) return;
+          target.textContent = this.textContent;
+          target.classList.add("filled");
+          target.setAttribute("data-filled-val", this.getAttribute("data-val"));
+          this.classList.add("used");
+        });
+      }
+
+      checkBtn.addEventListener("click", function(){
+        var allFilled = true, allCorrect = true;
+        for (var b=0;b<blanks.length;b++){
+          if (!blanks[b].classList.contains("filled")){ allFilled = false; continue; }
+          var ok = blanks[b].getAttribute("data-filled-val") === blanks[b].getAttribute("data-ans");
+          blanks[b].classList.remove("correct","wrong");
+          blanks[b].classList.add(ok?"correct":"wrong");
+          if (!ok) allCorrect = false;
+        }
+        if (!allFilled){
+          feedback.textContent = "まだ空欄があります。チップをすべて置きましょう。";
+          feedback.className = "fill-feedback bad";
+          return;
+        }
+        if (allCorrect){
+          feedback.textContent = "✅ 正解です！この反応式を声に出して読んでみましょう。";
+          feedback.className = "fill-feedback ok";
+          launchConfetti(30);
+        } else {
+          feedback.textContent = "❌ ちがう場所があります。「やり直す」からもう一度挑戦しましょう。";
+          feedback.className = "fill-feedback bad";
+        }
+      });
+
+      resetBtn.addEventListener("click", function(){
+        for (var b=0;b<blanks.length;b++){
+          blanks[b].textContent = "　";
+          blanks[b].classList.remove("filled","correct","wrong");
+          blanks[b].removeAttribute("data-filled-val");
+        }
+        for (var c2=0;c2<chips.length;c2++){ chips[c2].classList.remove("used"); }
+        feedback.textContent = "";
+        feedback.className = "fill-feedback";
+      });
+    })(fillItems[f]);
+  }
+
+  /* ---------- q4（4択）共通処理 ---------- */
+  var finalTotal = document.querySelectorAll(".final-q4").length;
+  var finalAnsweredCount = 0;
+  var finalCorrectCount = 0;
+
+  var q4Blocks = document.querySelectorAll(".q4");
+  for (var q=0;q<q4Blocks.length;q++){
+    (function(block){
+      var correctV = block.getAttribute("data-correct");
+      var btns = block.querySelectorAll(".q4-c");
+      var exp = block.querySelector(".q4-exp");
+      var isFinal = block.classList.contains("final-q4");
+      var answered = false;
+      for (var b=0;b<btns.length;b++){
+        btns[b].addEventListener("click", function(){
+          if (answered) return;
+          answered = true;
+          var v = this.getAttribute("data-v");
+          var isCorrect = (v === correctV);
+          for (var x=0;x<btns.length;x++){
+            btns[x].classList.add("disabled");
+            if (btns[x].getAttribute("data-v") === correctV) btns[x].classList.add("correct");
+          }
+          if (!isCorrect) this.classList.add("wrong");
+          if (exp) exp.classList.add("show");
+          if (isCorrect) launchConfetti(isFinal?0:24);
+          if (isFinal){
+            finalAnsweredCount++;
+            if (isCorrect) finalCorrectCount++;
+            checkFinalDone();
+          }
+        });
+      }
+    })(q4Blocks[q]);
+  }
+
+  /* ---------- minitest（○×）共通処理 ---------- */
+  var mtBlocks = document.querySelectorAll(".minitest");
+  for (var m=0;m<mtBlocks.length;m++){
+    (function(block){
+      var correctV = block.getAttribute("data-correct");
+      var btns = block.querySelectorAll(".mt-c");
+      var exp = block.querySelector(".mt-exp");
+      var answered = false;
+      for (var b=0;b<btns.length;b++){
+        btns[b].addEventListener("click", function(){
+          if (answered) return;
+          answered = true;
+          var v = this.getAttribute("data-v");
+          var isCorrect = (v === correctV);
+          for (var x=0;x<btns.length;x++){
+            btns[x].classList.add("disabled");
+            if (btns[x].getAttribute("data-v") === correctV) btns[x].classList.add("correct");
+          }
+          if (!isCorrect) this.classList.add("wrong");
+          if (exp){
+            exp.textContent = isCorrect ? "📘 そのとおりです！よく理解できています。" : "📘 もう一度，上の説明を読み直してみましょう。";
+            exp.classList.add("show");
+          }
+          if (isCorrect) launchConfetti(24);
+        });
+      }
+    })(mtBlocks[m]);
+  }
+
+  function checkFinalDone(){
+    if (finalAnsweredCount < finalTotal) return;
+    var box = document.getElementById("score-box");
+    box.style.display = "inline-block";
+    box.textContent = "結果：" + finalTotal + "問中 " + finalCorrectCount + "問 正解！";
+    if (finalCorrectCount === finalTotal){
+      launchConfetti(80);
+      var msg = document.getElementById("celebrate-msg");
+      msg.style.display = "block";
+      setTimeout(function(){ msg.style.display = "none"; }, 2200);
+    }
+  }
+
+  /* ---------- コンフェッティ（DOM div方式） ---------- */
+  var CONFETTI_COLORS = ["#f472b6","#facc15","#34d399","#60a5fa","#f87171","#a78bfa","#fb923c","#2dd4bf"];
+
+  function launchConfetti(count){
+    if (!count) return;
+    for (var i=0;i<count;i++){
+      var piece = document.createElement("div");
+      piece.className = "confetti-piece";
+      var size = 6 + Math.random()*6;
+      piece.style.left = (Math.random()*100) + "vw";
+      piece.style.width = size + "px";
+      piece.style.height = (size*1.6) + "px";
+      piece.style.background = CONFETTI_COLORS[Math.floor(Math.random()*CONFETTI_COLORS.length)];
+      piece.style.borderRadius = (Math.random()<0.5 ? "50%" : "2px");
+      var duration = 1.8 + Math.random()*1.4;
+      piece.style.animationDuration = duration + "s";
+      piece.style.animationDelay = (Math.random()*0.3) + "s";
+      document.body.appendChild(piece);
+      (function(el, dur){
+        setTimeout(function(){ if (el.parentNode) el.parentNode.removeChild(el); }, (dur+0.5)*1000);
+      })(piece, duration);
+    }
+  }
+
+  /* ---------- フラッシュカード ---------- */
+  var CARDS = [
+    {front:"① 鉄の製錬（COによる還元）は？", back:"Fe₂O₃ ＋ 3CO → 2Fe ＋ 3CO₂"},
+    {front:"② Fe²⁺の水酸化物沈殿は？", back:"Fe²⁺ ＋ 2OH⁻ → Fe(OH)₂↓（緑白色）"},
+    {front:"③ Fe³⁺の水酸化物沈殿は？", back:"Fe³⁺ ＋ 3OH⁻ → Fe(OH)₃↓（赤褐色）"},
+    {front:"④ Fe²⁺の検出反応（濃青色沈殿）は？", back:"Fe²⁺ ＋ K₃[Fe(CN)₆] → 濃青色沈殿"},
+    {front:"⑤ Fe³⁺の検出反応（KSCN）は？", back:"Fe³⁺ ＋ KSCN → 血赤色に変化"},
+    {front:"⑥ Cu²⁺の水酸化物沈殿は？", back:"Cu²⁺ ＋ 2OH⁻ → Cu(OH)₂↓（青白色）"},
+    {front:"⑦ Cu(OH)₂が過剰アンモニアで溶ける反応は？", back:"Cu(OH)₂ ＋ 4NH₃ → [Cu(NH₃)₄]²⁺ ＋ 2OH⁻（深青色）"},
+    {front:"⑧ クロム酸イオンが酸性で変化する反応は？", back:"2CrO₄²⁻（黄）＋2H⁺→Cr₂O₇²⁻（橙赤）＋H₂O"}
+  ];
+  var cardIndex = 0, cardFlipped = false, cardAutoTimer = null, cardAutoSeconds = 0;
+  var flashcardEl = document.getElementById("flashcard");
+  var cardTextEl = document.getElementById("card-text");
+  var cardLabelEl = document.getElementById("card-face-label");
+  var cardPosEl = document.getElementById("card-pos");
+  var cardTotalEl = document.getElementById("card-total");
+  var flashHintEl = document.getElementById("flash-hint");
+  var modeBtns = document.querySelectorAll(".mode-btn");
+
+  function renderCard(){
+    var c = CARDS[cardIndex];
+    cardPosEl.textContent = (cardIndex+1);
+    if (cardFlipped){
+      flashcardEl.classList.add("flipped");
+      cardLabelEl.textContent = "裏（答え）";
+      cardTextEl.className = "card-text-back";
+      cardTextEl.textContent = c.back;
+      flashHintEl.textContent = "タップ，または「次へ」で次のカードへ";
+    } else {
+      flashcardEl.classList.remove("flipped");
+      cardLabelEl.textContent = "表（問題）";
+      cardTextEl.className = "card-text-front";
+      cardTextEl.textContent = c.front;
+      flashHintEl.textContent = "カードをタップすると答えがめくれます";
+    }
+  }
+
+  function flipCardAnim(cb){
+    flashcardEl.classList.add("anim");
+    setTimeout(function(){
+      cb();
+      flashcardEl.classList.remove("anim");
+    }, 160);
+  }
+
+  function flipCard(){
+    flipCardAnim(function(){ cardFlipped = !cardFlipped; renderCard(); });
+  }
+  function nextCard(){
+    flipCardAnim(function(){
+      cardIndex = (cardIndex+1) % CARDS.length;
+      cardFlipped = false;
+      renderCard();
+    });
+  }
+  function prevCard(){
+    flipCardAnim(function(){
+      cardIndex = (cardIndex-1+CARDS.length) % CARDS.length;
+      cardFlipped = false;
+      renderCard();
+    });
+  }
+
+  function clearCardAutoTimer(){
+    if (cardAutoTimer){ clearInterval(cardAutoTimer); cardAutoTimer = null; }
+  }
+  function setActiveMode(mode){
+    for (var mb=0; mb<modeBtns.length; mb++){
+      modeBtns[mb].classList.toggle("active", modeBtns[mb].getAttribute("data-mode") === mode);
+    }
+  }
+  function startCardAuto(seconds){
+    clearCardAutoTimer();
+    cardAutoSeconds = seconds;
+    cardAutoTimer = setInterval(function(){
+      if (!cardFlipped){
+        flipCardAnim(function(){ cardFlipped = true; renderCard(); });
+      } else {
+        flipCardAnim(function(){
+          cardIndex = (cardIndex+1) % CARDS.length;
+          cardFlipped = false;
+          renderCard();
+        });
+      }
+    }, seconds*1000);
+  }
+  function stopAutoIfManualTap(){
+    if (cardAutoSeconds !== 0){
+      cardAutoSeconds = 0;
+      setActiveMode("manual");
+      clearCardAutoTimer();
+    }
+  }
+  function stopCardAuto(){
+    cardAutoSeconds = 0;
+    clearCardAutoTimer();
+    setActiveMode("manual");
+  }
+
+  if (cardTotalEl) cardTotalEl.textContent = CARDS.length;
+
+  if (flashcardEl){
+    flashcardEl.addEventListener("click", function(){ stopAutoIfManualTap(); flipCard(); });
+  }
+  var cardFlipBtn = document.getElementById("card-flip");
+  if (cardFlipBtn) cardFlipBtn.addEventListener("click", function(){ stopAutoIfManualTap(); flipCard(); });
+  var cardNextBtn = document.getElementById("card-next");
+  if (cardNextBtn) cardNextBtn.addEventListener("click", function(){ stopAutoIfManualTap(); nextCard(); });
+  var cardPrevBtn = document.getElementById("card-prev");
+  if (cardPrevBtn) cardPrevBtn.addEventListener("click", function(){ stopAutoIfManualTap(); prevCard(); });
+
+  for (var mb2=0; mb2<modeBtns.length; mb2++){
+    modeBtns[mb2].addEventListener("click", function(){
+      var mode = this.getAttribute("data-mode");
+      setActiveMode(mode);
+      if (mode === "manual"){
+        cardAutoSeconds = 0;
+        clearCardAutoTimer();
+      } else {
+        startCardAuto(parseInt(mode,10));
+      }
+    });
+  }
+
+  if (flashcardEl) renderCard();
+
+})();
+</script>
+
+</body>
+</html>

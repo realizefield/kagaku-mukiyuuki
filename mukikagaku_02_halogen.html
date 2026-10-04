@@ -1,0 +1,1780 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>無機化学② ハロゲン | GAMBA化学</title>
+<style>
+:root{
+  --bg:#f0f4ff;
+  --card:#fff;
+  --primary:#2563eb;
+  --primary-light:#dbeafe;
+  --primary-dark:#1e40af;
+  --accent:#dc2626;
+  --accent-light:#fee2e2;
+  --success:#16a34a;
+  --success-light:#dcfce7;
+  --warn:#d97706;
+  --warn-light:#fffbeb;
+  --purple:#7c3aed;
+  --purple-light:#ede9fe;
+  --text:#1e293b;
+  --text-sub:#64748b;
+  --border:#bfdbfe;
+  --radius:14px;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  font-family:"BIZ UDPGothic","Meiryo",sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.8;
+  padding-bottom:40px;
+}
+
+/* ---------- topnav / hero ---------- */
+.topnav{
+  background:var(--primary-dark);
+  color:#fff;
+  padding:10px 16px;
+  font-weight:bold;
+  font-size:1rem;
+  letter-spacing:.5px;
+  position:sticky;
+  top:0;
+  z-index:60;
+}
+.hero{
+  background:linear-gradient(135deg,var(--primary-dark),var(--primary));
+  color:#fff;
+  padding:20px 16px 18px;
+  text-align:center;
+}
+.hero h1{margin:0;font-size:1.3rem;}
+.hero p{margin:6px 0 0;font-size:.82rem;opacity:.92;}
+
+.tabnav{
+  display:flex;
+  max-width:780px;
+  margin:0 auto;
+  padding:10px 12px 0;
+  gap:8px;
+  position:sticky;
+  top:40px;
+  background:var(--bg);
+  z-index:55;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+}
+.tab-btn{
+  flex:none;
+  min-width:78px;
+  padding:11px 8px;
+  border:2px solid var(--primary);
+  background:#fff;
+  color:var(--primary-dark);
+  border-radius:12px 12px 0 0;
+  font-size:.85rem;
+  font-weight:bold;
+  cursor:pointer;
+  white-space:nowrap;
+}
+.tab-btn.active{background:var(--primary);color:#fff;}
+.wrap{max-width:780px;margin:0 auto;padding:4px 12px 0;}
+.tab-content{display:none;}
+.tab-content.active{display:block;animation:fade .25s;}
+@keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+/* ---------- unit / stage ---------- */
+.unit{
+  background:var(--card);
+  border-radius:var(--radius);
+  margin:16px 0;
+  box-shadow:0 1px 4px rgba(0,0,0,.08);
+  border:1px solid var(--border);
+  overflow:hidden;
+}
+.unit-title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  background:var(--primary-light);
+  color:var(--primary-dark);
+  font-size:1.05rem;
+  font-weight:bold;
+  padding:14px 16px;
+}
+.unit-num{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:30px;height:30px;
+  border-radius:50%;
+  background:var(--primary);
+  color:#fff;
+  font-size:.95rem;
+  flex:none;
+}
+.stage{padding:4px 16px 18px;}
+.stage h3{font-size:1rem;color:var(--primary-dark);margin:20px 0 8px;border-left:5px solid var(--primary);padding-left:8px;}
+
+.read-box{
+  background:var(--primary-light);
+  border-radius:10px;
+  padding:12px 14px;
+  margin:10px 0;
+  font-size:.95rem;
+}
+
+.key-box{
+  background:var(--warn-light);
+  border:2px solid var(--warn);
+  border-radius:10px;
+  padding:12px 14px;
+  margin:12px 0;
+  font-size:.93rem;
+}
+.key-box .tag{font-weight:bold;color:var(--warn);}
+
+.important-box{
+  background:var(--accent-light);
+  border:2px solid var(--accent);
+  border-radius:10px;
+  padding:12px 14px;
+  margin:12px 0;
+  font-size:.93rem;
+}
+.important-box .tag{font-weight:bold;color:var(--accent);}
+
+/* 暗記法 */
+.mnemonic-box{
+  background:var(--purple-light);
+  border:2px dashed var(--purple);
+  border-radius:10px;
+  padding:12px 14px;
+  margin:12px 0;
+  font-size:.93rem;
+}
+.mnemonic-box .tag{font-weight:bold;color:var(--purple);display:block;margin-bottom:4px;}
+.mnemonic-box .phrase{font-size:1.02rem;font-weight:bold;color:#4c1d95;}
+
+.eq{
+  background:#f1f5f9;
+  border-radius:8px;
+  padding:9px 12px;
+  margin:6px 0;
+  font-size:1rem;
+  font-weight:600;
+  text-align:center;
+  letter-spacing:.3px;
+  overflow-x:auto;
+}
+
+/* ---------- 相関図（フローチェーン） ---------- */
+.flow-diagram{margin:14px 0;}
+.flow-row{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  margin:8px 0;
+  overflow-x:auto;
+  padding:2px 0;
+}
+.flow-box{
+  flex:none;
+  min-width:108px;
+  text-align:center;
+  background:#fff;
+  border:2px solid var(--primary);
+  border-radius:10px;
+  padding:8px 10px;
+  font-size:.82rem;
+  font-weight:bold;
+  color:var(--primary-dark);
+}
+.flow-box.result{background:var(--primary);color:#fff;border-color:var(--primary-dark);}
+.flow-box.byproduct{background:#f1f5f9;border-color:#94a3b8;color:var(--text-sub);font-weight:normal;}
+.flow-arrow{
+  flex:none;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  font-size:1.3rem;
+  color:var(--primary);
+  min-width:46px;
+}
+.flow-arrow .cond{font-size:.68rem;color:var(--text-sub);font-weight:normal;white-space:nowrap;}
+.flow-note{
+  text-align:center;
+  font-size:.78rem;
+  color:var(--text-sub);
+  margin-top:2px;
+}
+
+/* ---------- まとめ表 ---------- */
+.tbl-wrap{overflow-x:auto;margin:12px 0;}
+.summary-tbl{
+  width:100%;
+  border-collapse:collapse;
+  font-size:.86rem;
+  min-width:420px;
+}
+.summary-tbl th{
+  background:var(--primary);
+  color:#fff;
+  padding:8px 6px;
+  font-weight:bold;
+}
+.summary-tbl td{
+  border-bottom:1px solid var(--border);
+  padding:8px 6px;
+  text-align:center;
+}
+.summary-tbl tr:nth-child(even) td{background:#f8faff;}
+
+/* ---------- なぜ？ポップアップ ---------- */
+.why-btn{
+  display:inline-block;
+  margin:10px 0;
+  padding:9px 16px;
+  background:var(--purple-light);
+  border:1px solid var(--purple);
+  border-radius:20px;
+  color:var(--purple);
+  font-size:.85rem;
+  font-weight:bold;
+  cursor:pointer;
+}
+.popup-overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(15,23,42,.55);
+  z-index:200;
+  align-items:center;
+  justify-content:center;
+  padding:16px;
+}
+.popup-overlay.show{display:flex;}
+.popup-box{
+  background:#fff;
+  border-radius:16px;
+  max-width:420px;
+  max-height:80vh;
+  overflow-y:auto;
+  padding:20px;
+  position:relative;
+}
+.popup-box h4{margin:0 0 10px;color:var(--purple);font-size:1rem;}
+.popup-close{
+  position:absolute;
+  top:10px;right:14px;
+  background:none;
+  border:none;
+  font-size:1.3rem;
+  color:var(--text-sub);
+  cursor:pointer;
+}
+
+/* ---------- 穴埋めチャレンジ ---------- */
+.fill-item{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:14px 16px;
+  margin:14px 0;
+}
+.fill-item .q-no{
+  display:inline-block;
+  background:var(--primary);
+  color:#fff;
+  font-size:.75rem;
+  font-weight:bold;
+  border-radius:12px;
+  padding:2px 10px;
+  margin-bottom:8px;
+}
+.fill-sentence{font-size:.98rem;margin:8px 0;}
+.blank{
+  display:inline-block;
+  min-width:64px;
+  border-bottom:2px solid var(--primary);
+  text-align:center;
+  font-weight:bold;
+  color:var(--primary-dark);
+  padding:0 4px;
+  margin:0 2px;
+}
+.blank.filled{background:var(--primary-light);border-radius:4px;}
+.blank.correct{background:var(--success-light);border-bottom-color:var(--success);color:var(--success);}
+.blank.wrong{background:var(--accent-light);border-bottom-color:var(--accent);color:var(--accent);}
+.chip-bank{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
+.chip{
+  background:var(--accent-light);
+  border:1px solid var(--accent);
+  color:var(--primary-dark);
+  border-radius:20px;
+  padding:6px 14px;
+  font-size:.9rem;
+  cursor:pointer;
+}
+.chip:active{transform:scale(.95);}
+.chip.used{opacity:.35;pointer-events:none;}
+.fill-check-btn,.fill-reset-btn{
+  margin-top:10px;margin-right:8px;
+  padding:8px 18px;border:none;border-radius:20px;
+  font-weight:bold;cursor:pointer;font-size:.88rem;
+}
+.fill-check-btn{background:var(--primary);color:#fff;}
+.fill-reset-btn{background:#e2e8f0;color:var(--text);}
+.fill-feedback{margin-top:8px;font-size:.88rem;font-weight:bold;}
+.fill-feedback.ok{color:var(--success);}
+.fill-feedback.bad{color:var(--accent);}
+
+/* ---------- q4（4択） ---------- */
+.q4{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:14px 16px;
+  margin:14px 0;
+}
+.q4.mini{background:#f8faff;}
+.q4-no{
+  display:inline-block;
+  background:var(--accent);
+  color:#fff;
+  font-size:.72rem;
+  font-weight:bold;
+  border-radius:12px;
+  padding:2px 10px;
+  margin-bottom:8px;
+}
+.q4-no.practice{background:var(--purple);}
+.q4-text{font-size:.96rem;font-weight:600;margin:4px 0 10px;}
+.q4-choices{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.q4-c{
+  text-align:left;
+  padding:9px 10px;
+  border:2px solid #cbd5e1;
+  border-radius:10px;
+  background:#fff;
+  font-size:.85rem;
+  cursor:pointer;
+}
+.q4-c.correct{background:var(--success-light);border-color:var(--success);}
+.q4-c.wrong{background:var(--accent-light);border-color:var(--accent);}
+.q4-c.disabled{pointer-events:none;}
+.q4-exp{
+  display:none;
+  margin-top:10px;
+  background:var(--primary-light);
+  border-left:4px solid var(--primary);
+  border-radius:0 8px 8px 0;
+  padding:10px 12px;
+  font-size:.86rem;
+  color:var(--primary-dark);
+}
+.q4-exp.show{display:block;}
+
+/* ---------- minitest（○×） ---------- */
+.minitest{
+  background:#f8faff;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:14px 16px;
+  margin:14px 0;
+}
+.mt-text{font-size:.95rem;font-weight:600;margin:4px 0 10px;}
+.mt-choices{display:flex;gap:10px;}
+.mt-c{
+  flex:1;
+  padding:10px;
+  border:2px solid #cbd5e1;
+  border-radius:10px;
+  background:#fff;
+  font-size:1rem;
+  font-weight:bold;
+  cursor:pointer;
+}
+.mt-c.correct{background:var(--success-light);border-color:var(--success);}
+.mt-c.wrong{background:var(--accent-light);border-color:var(--accent);}
+.mt-c.disabled{pointer-events:none;}
+.mt-exp{
+  display:none;
+  margin-top:10px;
+  background:#fff;
+  border-left:4px solid var(--primary);
+  border-radius:0 8px 8px 0;
+  padding:10px 12px;
+  font-size:.86rem;
+  color:var(--primary-dark);
+}
+.mt-exp.show{display:block;}
+
+/* ---------- 確認テスト footer ---------- */
+.check-footer{text-align:center;margin:24px 0;}
+.score-box{
+  display:inline-block;
+  background:var(--primary);
+  color:#fff;
+  border-radius:16px;
+  padding:14px 28px;
+  font-size:1.1rem;
+  font-weight:bold;
+}
+.celebrate-msg{
+  display:none;
+  position:fixed;
+  top:36%;left:50%;
+  transform:translate(-50%,-50%);
+  background:#fff;
+  border:3px solid var(--primary);
+  border-radius:20px;
+  padding:22px 30px;
+  font-size:1.15rem;
+  font-weight:bold;
+  color:var(--primary-dark);
+  box-shadow:0 8px 30px rgba(0,0,0,.25);
+  z-index:1000;
+  text-align:center;
+}
+
+/* ---------- confetti ---------- */
+.confetti-piece{
+  position:fixed;
+  top:-20px;
+  width:8px;height:14px;
+  z-index:999;
+  pointer-events:none;
+  animation:confettiFall linear forwards;
+}
+@keyframes confettiFall{
+  from{transform:translateY(0) rotate(0deg);opacity:1;}
+  to{transform:translateY(105vh) rotate(720deg);opacity:0;}
+}
+
+/* ---------- フラッシュカード ---------- */
+.card-mode-buttons{display:flex;gap:8px;margin:12px 0;flex-wrap:wrap;}
+.mode-btn{
+  flex:1;
+  min-width:90px;
+  padding:9px 6px;
+  border:2px solid var(--primary);
+  background:#fff;
+  color:var(--primary-dark);
+  border-radius:20px;
+  font-size:.82rem;
+  font-weight:bold;
+  cursor:pointer;
+}
+.mode-btn.active{background:var(--primary);color:#fff;}
+.flash-progress{
+  text-align:center;
+  font-size:.85rem;
+  color:var(--text-sub);
+  font-weight:bold;
+  margin:4px 0 10px;
+}
+.flashcard-wrap{margin:10px 0;}
+.flashcard{
+  position:relative;
+  min-height:180px;
+  background:var(--card);
+  border:3px solid var(--primary);
+  border-radius:16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:22px 18px;
+  cursor:pointer;
+  box-shadow:0 2px 10px rgba(37,99,235,.12);
+  transition:opacity .18s, transform .18s;
+}
+.flashcard.flipped{background:var(--primary-light);border-color:var(--primary-dark);}
+.flashcard.anim{opacity:0;transform:scale(.96);}
+.card-face-label{
+  position:absolute;
+  top:10px;left:14px;
+  font-size:.72rem;
+  font-weight:bold;
+  color:var(--text-sub);
+}
+.card-text-front{font-size:1.08rem;font-weight:bold;color:var(--primary-dark);}
+.card-text-back{font-size:1.1rem;font-weight:bold;color:var(--primary-dark);letter-spacing:.3px;}
+.flash-hint{text-align:center;font-size:.78rem;color:var(--text-sub);margin-top:8px;}
+.flash-nav{display:flex;gap:8px;margin-top:14px;}
+.flash-nav button{
+  flex:1;
+  padding:10px 4px;
+  border:none;
+  border-radius:20px;
+  font-weight:bold;
+  font-size:.86rem;
+  cursor:pointer;
+  background:#e2e8f0;
+  color:var(--text);
+}
+.flash-nav button.flip-btn{background:var(--primary);color:#fff;}
+</style>
+</head>
+<body>
+
+<div class="topnav">⚗️ GAMBA 化学</div>
+<div class="hero">
+  <h1>無機化学② ハロゲン</h1>
+  <p>江原予備校 GAMBA 大学入学共通テスト対応教材</p>
+</div>
+
+<div class="tabnav">
+  <button class="tab-btn active" data-tab="study">① 学習</button>
+  <button class="tab-btn" data-tab="fill">② 穴埋め</button>
+  <button class="tab-btn" data-tab="check">③ 確認テスト</button>
+  <button class="tab-btn" data-tab="cards">④ カード</button>
+</div>
+
+<main class="wrap">
+
+<!-- ============ ① 学習 ============ -->
+<div class="tab-content active" id="tab-study">
+
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">1</span>ハロゲンの性質（17族）</div>
+    <div class="stage">
+
+      <div class="read-box">ハロゲンは，フッ素F・塩素Cl・臭素Br・ヨウ素Iなど，周期表17族の元素です。価電子を7個もち，電子を1個受け取って1価の陰イオンになりやすい性質があります。</div>
+      <div class="eq">F ＋ e⁻ → F⁻</div>
+
+      <div class="key-box"><span class="tag">🔑 ポイント</span> ハロゲンはどれも「電子をあと1個もらえば安定する」という共通点をもっています。だから，他から電子を奪う力（酸化力）が強いのです。</div>
+
+      <div class="minitest" data-correct="x">
+        <div class="mt-text">Q. ハロゲン原子は電子を1個失って陽イオンになりやすい。 ○か×か？</div>
+        <div class="mt-choices">
+          <button class="mt-c" data-v="o">○ 正しい</button>
+          <button class="mt-c" data-v="x">× 誤り</button>
+        </div>
+        <div class="mt-exp"></div>
+      </div>
+
+      <h3>常温での色と状態</h3>
+      <div class="tbl-wrap">
+        <table class="summary-tbl">
+          <tr><th>単体</th><th>色</th><th>常温での状態</th></tr>
+          <tr><td>F₂（フッ素）</td><td>淡黄色</td><td>気体</td></tr>
+          <tr><td>Cl₂（塩素）</td><td>黄緑色</td><td>気体</td></tr>
+          <tr><td>Br₂（臭素）</td><td>赤褐色</td><td>液体</td></tr>
+          <tr><td>I₂（ヨウ素）</td><td>黒紫色</td><td>固体</td></tr>
+        </table>
+      </div>
+
+      <div class="important-box"><span class="tag">⚠️ 注意</span> 非金属の単体で常温・常圧で液体なのは臭素Br₂だけです。（金属では水銀Hgだけが液体でしたね。）</div>
+
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">小テスト①</div>
+        <div class="q4-text">Q. 常温で液体の非金属単体はどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．Cl₂</button>
+          <button class="q4-c" data-v="b">b．Br₂</button>
+          <button class="q4-c" data-v="c">c．I₂</button>
+          <button class="q4-c" data-v="d">d．F₂</button>
+        </div>
+        <div class="q4-exp">📘 非金属の単体で常温・常圧で液体なのはBr₂だけです。F₂とCl₂は気体，I₂は固体です。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">小テスト②</div>
+        <div class="q4-text">Q. フッ素F₂の色は何色ですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．淡黄色</button>
+          <button class="q4-c" data-v="b">b．黄緑色</button>
+          <button class="q4-c" data-v="c">c．赤褐色</button>
+          <button class="q4-c" data-v="d">d．黒紫色</button>
+        </div>
+        <div class="q4-exp">📘 F₂は淡黄色の気体です。色は原子番号が大きくなるにつれて濃くなっていきます。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">小テスト③</div>
+        <div class="q4-text">Q. 塩素Cl₂の色は何色ですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．淡黄色</button>
+          <button class="q4-c" data-v="b">b．黄緑色</button>
+          <button class="q4-c" data-v="c">c．赤褐色</button>
+          <button class="q4-c" data-v="d">d．黒紫色</button>
+        </div>
+        <div class="q4-exp">📘 Cl₂は黄緑色の気体です。プールの消毒などの刺激臭でも知られています。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="c">
+        <div class="q4-no practice">小テスト④</div>
+        <div class="q4-text">Q. ヨウ素I₂は常温でどんな状態ですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．気体</button>
+          <button class="q4-c" data-v="b">b．液体</button>
+          <button class="q4-c" data-v="c">c．固体</button>
+          <button class="q4-c" data-v="d">d．プラズマ</button>
+        </div>
+        <div class="q4-exp">📘 I₂は黒紫色の固体です。加熱すると液体にならずに直接気体になる「昇華」が起こります。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">小テスト⑤</div>
+        <div class="q4-text">Q. ハロゲン原子はどんなイオンになりやすいですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．1価の陽イオン</button>
+          <button class="q4-c" data-v="b">b．1価の陰イオン</button>
+          <button class="q4-c" data-v="c">c．2価の陽イオン</button>
+          <button class="q4-c" data-v="d">d．2価の陰イオン</button>
+        </div>
+        <div class="q4-exp">📘 価電子7個のハロゲンは，電子を1個受け取って1価の陰イオンになりやすい性質があります。</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">2</span>酸化力の順と置換反応</div>
+    <div class="stage">
+
+      <div class="read-box">ハロゲン単体の酸化力は，原子番号が小さいほど強くなります：F₂＞Cl₂＞Br₂＞I₂。酸化力が強い単体は，酸化力が弱いハロゲン化物イオンから電子を奪って，そのハロゲンを単体として追い出すことができます（置換）。</div>
+
+      <div class="key-box"><span class="tag">🔑 ステップで考える</span> 「酸化力が強いほうが，弱いほうを追い出す」というルールだけ覚えれば，どの組み合わせで反応が起こるか自分で判断できます。</div>
+
+      <div class="flow-diagram">
+        <div class="flow-row">
+          <div class="flow-box">Cl₂（強い）<br><span style="font-weight:normal;">＋ KBr</span></div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-box result">Br₂</div>
+          <div class="flow-arrow">＋</div>
+          <div class="flow-box byproduct">KCl</div>
+        </div>
+        <div class="flow-note">Cl₂ ＋ 2KBr → 2KCl ＋ Br₂（Cl₂の方が酸化力が強いのでBr⁻から電子を奪い，Br₂が追い出されます）</div>
+      </div>
+
+      <div class="important-box"><span class="tag">⚠️ よくある間違い</span> 酸化力が弱い単体は，酸化力が強いイオンから電子を奪えません。たとえばI₂はCl⁻から電子を奪えないので，「I₂＋KCl→」という反応は起こりません。</div>
+
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">練習①</div>
+        <div class="q4-text">Q. 次のうち，実際に起こる反応はどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．2KCl＋Br₂→2KBr＋Cl₂</button>
+          <button class="q4-c" data-v="b">b．2KI＋Cl₂→2KCl＋I₂</button>
+          <button class="q4-c" data-v="c">c．2KF＋Cl₂→2KCl＋F₂</button>
+          <button class="q4-c" data-v="d">d．2KBr＋I₂→2KI＋Br₂</button>
+        </div>
+        <div class="q4-exp">📘 Cl₂はI₂より酸化力が強いので，I⁻から電子を奪ってI₂を追い出せます。他の選択肢はすべて「酸化力の弱いほうが強いほうを追い出そう」としているので起こりません。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">練習②</div>
+        <div class="q4-text">Q. 酸化力の強い順に正しく並んでいるのはどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．F₂＞Cl₂＞Br₂＞I₂</button>
+          <button class="q4-c" data-v="b">b．I₂＞Br₂＞Cl₂＞F₂</button>
+          <button class="q4-c" data-v="c">c．Cl₂＞F₂＞Br₂＞I₂</button>
+          <button class="q4-c" data-v="d">d．Br₂＞Cl₂＞I₂＞F₂</button>
+        </div>
+        <div class="q4-exp">📘 原子番号が小さいほど酸化力が強く，F₂が最大，I₂が最小です。</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">3</span>ハロゲン化水素とフッ化水素酸</div>
+    <div class="stage">
+
+      <div class="read-box">ハロゲンは水素と反応して，ハロゲン化水素（HF，HCl，HBr，HI）になります。これらの水溶液はどれも酸性を示しますが，強さには大きな差があります。</div>
+
+      <div class="key-box"><span class="tag">🔑 ポイント</span> 酸の強さの順：HI＞HBr＞HCl＞HF。ふつうは原子番号が大きいほど強い酸になりますが，HFだけは例外的に弱酸です。</div>
+
+      <div class="important-box"><span class="tag">⚠️ 注意</span> HFが弱酸なのは，分子どうしが水素結合で強く引き合い，H⁺を離しにくいためです。</div>
+
+      <button class="why-btn" data-popup="p1">🤔 なぜHFだけ弱酸なの？</button>
+
+      <h3>フッ化水素酸はガラスを溶かす</h3>
+      <div class="read-box">フッ化水素酸HFは弱酸ですが，ガラスの主成分である二酸化ケイ素SiO₂を特別に溶かす性質があります。そのため，フッ化水素酸はガラス容器ではなくポリエチレン容器に保存します。</div>
+      <div class="eq">SiO₂ ＋ 6HF → H₂SiF₆ ＋ 2H₂O</div>
+
+      <div class="flow-diagram">
+        <div class="flow-row">
+          <div class="flow-box">ガラス<br>SiO₂</div>
+          <div class="flow-arrow">→<span class="cond">＋フッ化<br>水素酸HF</span></div>
+          <div class="flow-box result">とける<br>H₂SiF₆</div>
+        </div>
+        <div class="flow-note">相関図：ガラスを溶かしてしまうので，フッ化水素酸はポリエチレン容器に保存します</div>
+      </div>
+
+      <div class="minitest" data-correct="x">
+        <div class="mt-text">Q. フッ化水素HFの水溶液は，ハロゲン化水素の中でもっとも強い酸である。 ○か×か？</div>
+        <div class="mt-choices">
+          <button class="mt-c" data-v="o">○ 正しい</button>
+          <button class="mt-c" data-v="x">× 誤り</button>
+        </div>
+        <div class="mt-exp"></div>
+      </div>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">小テスト①</div>
+        <div class="q4-text">Q. 「SiO₂＋6HF→H₂SiF₆＋（　）」。空欄に入るのはどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．2H₂O</button>
+          <button class="q4-c" data-v="b">b．H₂</button>
+          <button class="q4-c" data-v="c">c．O₂</button>
+          <button class="q4-c" data-v="d">d．6H₂O</button>
+        </div>
+        <div class="q4-exp">📘 SiO₂＋6HF→H₂SiF₆＋2H₂O です。原子の数を数えて確かめてみましょう（左辺の酸素原子2個が，右辺の2H₂Oになります）。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">小テスト②</div>
+        <div class="q4-text">Q. ハロゲン化水素の酸の強さの順として正しいのはどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．HI＞HBr＞HCl＞HF</button>
+          <button class="q4-c" data-v="b">b．HF＞HCl＞HBr＞HI</button>
+          <button class="q4-c" data-v="c">c．HCl＞HF＞HBr＞HI</button>
+          <button class="q4-c" data-v="d">d．HBr＞HI＞HF＞HCl</button>
+        </div>
+        <div class="q4-exp">📘 HFだけが例外的に弱酸で，強さの順はHI＞HBr＞HCl＞HFです。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">小テスト③</div>
+        <div class="q4-text">Q. HFが弱酸である理由は何ですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．水素結合でH⁺を離しにくいから</button>
+          <button class="q4-c" data-v="b">b．分子が大きいから</button>
+          <button class="q4-c" data-v="c">c．電子の数が多いから</button>
+          <button class="q4-c" data-v="d">d．原子番号が大きいから</button>
+        </div>
+        <div class="q4-exp">📘 HF分子どうしが水素結合で強く引き合い，H⁺を離しにくいために弱酸になります。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">小テスト④</div>
+        <div class="q4-text">Q. フッ化水素酸を保存する容器として正しいのはどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．ガラス容器</button>
+          <button class="q4-c" data-v="b">b．ポリエチレン容器</button>
+          <button class="q4-c" data-v="c">c．金属容器</button>
+          <button class="q4-c" data-v="d">d．陶器</button>
+        </div>
+        <div class="q4-exp">📘 フッ化水素酸はガラスを溶かしてしまうので，ポリエチレン容器に保存します。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">小テスト⑤</div>
+        <div class="q4-text">Q. フッ化水素酸が溶かすガラスの主成分は何ですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．SiO₂</button>
+          <button class="q4-c" data-v="b">b．CaCO₃</button>
+          <button class="q4-c" data-v="c">c．NaCl</button>
+          <button class="q4-c" data-v="d">d．Al₂O₃</button>
+        </div>
+        <div class="q4-exp">📘 ガラスの主成分は二酸化ケイ素SiO₂です。SiO₂＋6HF→H₂SiF₆＋2H₂Oの反応で溶けてしまいます。</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">4</span>塩素のつくり方とハロゲン化銀</div>
+    <div class="stage">
+
+      <div class="read-box">塩素は実験室で，酸化マンガン(Ⅳ) MnO₂ に濃塩酸を加えて加熱するとつくれます。</div>
+
+      <div class="key-box"><span class="tag">🔑 ステップで考える</span> 原料はMnO₂（酸化剤）と塩酸HCl。生成物はMnCl₂・Cl₂・H₂Oの3つです。</div>
+      <div class="eq">MnO₂ ＋ 4HCl → MnCl₂ ＋ Cl₂ ＋ 2H₂O</div>
+
+      <h3>塩素をつくる3つの方法</h3>
+      <div class="flow-diagram">
+        <div class="flow-row">
+          <div class="flow-box">MnO₂</div>
+          <div class="flow-arrow">→<span class="cond">＋4HCl<br>（加熱）</span></div>
+          <div class="flow-box result">Cl₂</div>
+          <div class="flow-arrow">＋</div>
+          <div class="flow-box byproduct">MnCl₂</div>
+        </div>
+        <div class="flow-note">MnO₂＋4HCl→MnCl₂＋Cl₂＋2H₂O（実験室的製法）</div>
+
+        <div class="flow-row">
+          <div class="flow-box">さらし粉<br>CaCl(ClO)・H₂O</div>
+          <div class="flow-arrow">→<span class="cond">＋2HCl</span></div>
+          <div class="flow-box result">Cl₂</div>
+          <div class="flow-arrow">＋</div>
+          <div class="flow-box byproduct">CaCl₂</div>
+        </div>
+        <div class="flow-note">CaCl(ClO)・H₂O＋2HCl→CaCl₂＋Cl₂＋2H₂O</div>
+
+        <div class="flow-row">
+          <div class="flow-box">NaCl水溶液</div>
+          <div class="flow-arrow">→<span class="cond">電気分解</span></div>
+          <div class="flow-box result">Cl₂</div>
+          <div class="flow-arrow">＋</div>
+          <div class="flow-box byproduct">NaOH，H₂</div>
+        </div>
+        <div class="flow-note">2NaCl＋2H₂O→2NaOH＋Cl₂＋H₂（工業的製法）</div>
+      </div>
+
+      <div class="tbl-wrap">
+        <table class="summary-tbl">
+          <tr><th>原料</th><th>反応式</th><th>備考</th></tr>
+          <tr><td>MnO₂＋濃塩酸</td><td>MnO₂＋4HCl→MnCl₂＋Cl₂＋2H₂O</td><td>実験室的製法（加熱必要）</td></tr>
+          <tr><td>さらし粉＋塩酸</td><td>CaCl(ClO)・H₂O＋2HCl→CaCl₂＋Cl₂＋2H₂O</td><td>実験室的製法</td></tr>
+          <tr><td>NaCl水溶液</td><td>2NaCl＋2H₂O→2NaOH＋Cl₂＋H₂</td><td>工業的製法（電気分解）</td></tr>
+        </table>
+      </div>
+
+      <h3>ハロゲン化銀の性質</h3>
+      <div class="read-box">ハロゲン化物イオンを含む水溶液に硝酸銀AgNO₃を加えると，ハロゲン化銀の沈殿ができます。</div>
+      <div class="important-box"><span class="tag">⚠️ 注意</span> ハロゲン化銀の中でAgFだけは水に溶けます。AgCl・AgBr・AgIは水に溶けにくく，沈殿します。</div>
+      <div class="read-box">AgCl・AgBr・AgIは光を当てると分解し，黒色の銀Agを遊離します。この性質を<b>感光性</b>といい，写真フィルムに利用されます。</div>
+
+      <div class="q4 mini" data-correct="d">
+        <div class="q4-no practice">練習①</div>
+        <div class="q4-text">Q. ハロゲン化銀のうち，水に溶けるのはどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．AgCl</button>
+          <button class="q4-c" data-v="b">b．AgBr</button>
+          <button class="q4-c" data-v="c">c．AgI</button>
+          <button class="q4-c" data-v="d">d．AgF</button>
+        </div>
+        <div class="q4-exp">📘 ハロゲン化銀の中でAgFだけは例外的に水に溶けます。他の3つ（AgCl，AgBr，AgI）は水に溶けにくく沈殿します。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">練習②</div>
+        <div class="q4-text">Q. ハロゲン化銀が光を受けて黒色の銀を遊離する性質を何といいますか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．感光性</button>
+          <button class="q4-c" data-v="b">b．潮解性</button>
+          <button class="q4-c" data-v="c">c．風解性</button>
+          <button class="q4-c" data-v="d">d．昇華性</button>
+        </div>
+        <div class="q4-exp">📘 光を受けて分解し，黒色の銀を遊離する性質を感光性といい，写真フィルムに利用されます。</div>
+      </div>
+
+      <h3>ヨウ素デンプン反応</h3>
+      <div class="read-box">ヨウ素I₂をデンプンに加えると，青紫色に変化します。これをヨウ素デンプン反応といい，塩素Cl₂や過酸化水素H₂O₂などの検出に使われます。</div>
+
+      <div class="minitest" data-correct="o">
+        <div class="mt-text">Q. ヨウ素デンプン反応では，青紫色に変化する。 ○か×か？</div>
+        <div class="mt-choices">
+          <button class="mt-c" data-v="o">○ 正しい</button>
+          <button class="mt-c" data-v="x">× 誤り</button>
+        </div>
+        <div class="mt-exp"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">5</span>ハロゲン単体と水の反応</div>
+    <div class="stage">
+
+      <div class="read-box">ハロゲンの単体は，水との反応のしかたが元素ごとに大きくちがいます。「フッ素だけは別格」と覚えておくと整理しやすくなります。</div>
+
+      <div class="key-box"><span class="tag">🔑 ポイント</span> F₂は酸化力が強すぎて，水（H₂O）そのものを酸化してしまい，酸素O₂を発生させます。Cl₂はそこまで強くないので，水とは一部だけ反応して平衡状態になります。</div>
+
+      <div class="flow-diagram">
+        <div class="flow-row">
+          <div class="flow-box">F₂<br><span style="font-weight:normal;">＋2H₂O</span></div>
+          <div class="flow-arrow">→<span class="cond">激しく反応</span></div>
+          <div class="flow-box result">4HF</div>
+          <div class="flow-arrow">＋</div>
+          <div class="flow-box byproduct">O₂</div>
+        </div>
+        <div class="flow-note">2F₂ ＋ 2H₂O → 4HF ＋ O₂（水のOを酸化して酸素を発生させるほど酸化力が強い）</div>
+
+        <div class="flow-row">
+          <div class="flow-box">Cl₂<br><span style="font-weight:normal;">＋H₂O</span></div>
+          <div class="flow-arrow">⇌<span class="cond">一部だけ反応</span></div>
+          <div class="flow-box result">HClO</div>
+          <div class="flow-arrow">＋</div>
+          <div class="flow-box byproduct">HCl</div>
+        </div>
+        <div class="flow-note">Cl₂ ＋ H₂O ⇌ HCl ＋ HClO（次亜塩素酸HClOが生成。漂白・殺菌作用のもと）</div>
+      </div>
+
+      <div class="important-box"><span class="tag">⚠️ よくある間違い</span> 「ハロゲンはみんな水と同じように反応する」は誤りです。F₂は水を酸化してO₂を発生させる特別な反応，Cl₂は平衡（⇌）で一部だけ反応，Br₂はCl₂よりさらに少ししか反応しません。酸化力の強さ F₂＞Cl₂ の差がそのまま反応の激しさの差になっています。</div>
+
+      <div class="q4 mini" data-correct="c">
+        <div class="q4-no practice">小テスト①</div>
+        <div class="q4-text">Q. フッ素F₂と水の反応で発生する気体は何ですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．水素H₂</button>
+          <button class="q4-c" data-v="b">b．塩素Cl₂</button>
+          <button class="q4-c" data-v="c">c．酸素O₂</button>
+          <button class="q4-c" data-v="d">d．オゾンO₃</button>
+        </div>
+        <div class="q4-exp">📘 2F₂＋2H₂O→4HF＋O₂ です。F₂の酸化力が非常に強いため，水のH₂Oそのものを酸化して酸素を発生させます。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">小テスト②</div>
+        <div class="q4-text">Q. 塩素水の中で生成し，漂白・殺菌作用のもとになる物質は何ですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．塩酸HCl</button>
+          <button class="q4-c" data-v="b">b．次亜塩素酸HClO</button>
+          <button class="q4-c" data-v="c">c．フッ化水素HF</button>
+          <button class="q4-c" data-v="d">d．水酸化物イオンOH⁻</button>
+        </div>
+        <div class="q4-exp">📘 Cl₂＋H₂O⇌HCl＋HClO。生成する次亜塩素酸HClOが強い酸化作用をもち，漂白・殺菌に使われます。</div>
+      </div>
+
+      <div class="minitest" data-correct="x">
+        <div class="mt-text">Q. 塩素Cl₂は水と完全に反応しきってしまう（⇌ではなく一方通行）。 ○か×か？</div>
+        <div class="mt-choices">
+          <button class="mt-c" data-v="o">○ 正しい</button>
+          <button class="mt-c" data-v="x">× 誤り</button>
+        </div>
+        <div class="mt-exp"></div>
+      </div>
+
+      <h3>半反応式から自分で塩素の製法をつくる</h3>
+      <div class="key-box"><span class="tag">🔑 ステップで考える</span> MnO₂＋HCl→Cl₂ の反応式は丸暗記しなくても，「酸化される側」と「酸化する側」の半反応式を2本立てて足し合わせれば，自分で導くことができます。</div>
+
+      <div class="read-box"><b>ステップ①　酸化される側（Cl⁻→Cl₂）</b><br>塩化物イオンCl⁻が電子を失ってCl₂になります。</div>
+      <div class="eq">2Cl⁻ → Cl₂ ＋ 2e⁻ ……①</div>
+
+      <div class="read-box"><b>ステップ②　酸化する側（MnO₂→Mn²⁺）</b><br>酸化マンガン(Ⅳ)は酸性条件でH⁺を受け取りながら電子を受け取り，Mn²⁺になります。</div>
+      <div class="eq">MnO₂ ＋ 4H⁺ ＋ 2e⁻ → Mn²⁺ ＋ 2H₂O ……②</div>
+
+      <div class="read-box"><b>ステップ③　①＋②で電子を消す</b><br>電子の数（2e⁻）がそろっているので，そのまま足し合わせます。</div>
+      <div class="eq">MnO₂ ＋ 4H⁺ ＋ 2Cl⁻ → Mn²⁺ ＋ Cl₂ ＋ 2H₂O</div>
+
+      <div class="read-box"><b>ステップ④　見た目の分子式にそろえる</b><br>両辺に2Cl⁻を足して，H⁺とCl⁻をまとめてHClの形にします。</div>
+      <div class="eq">MnO₂ ＋ 4HCl → MnCl₂ ＋ Cl₂ ＋ 2H₂O</div>
+
+      <div class="important-box"><span class="tag">⚠️ よくある間違い</span> 半反応式を作るとき，①と②の電子の数をそろえずに足してはいけません。今回はどちらも2e⁻なのでそのまま足せましたが，数がちがうときは両辺を何倍かして電子の数をそろえる必要があります（窒素の単元で詳しく練習します）。</div>
+
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">小テスト③</div>
+        <div class="q4-text">Q. Cl⁻がCl₂になる半反応式はどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．Cl₂＋2e⁻→2Cl⁻</button>
+          <button class="q4-c" data-v="b">b．2Cl⁻→Cl₂＋2e⁻</button>
+          <button class="q4-c" data-v="c">c．Cl⁻→Cl₂＋e⁻</button>
+          <button class="q4-c" data-v="d">d．2Cl⁻＋2e⁻→Cl₂</button>
+        </div>
+        <div class="q4-exp">📘 Cl⁻が酸化されてCl₂になるときは電子を失います（2Cl⁻→Cl₂＋2e⁻）。原子の数（Cl原子2個）と電荷のつり合いを確認しましょう。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">小テスト④</div>
+        <div class="q4-text">Q. さらし粉CaCl(ClO)・H₂Oに塩酸を加える反応も，同じ「Cl⁻→Cl₂」の半反応式と，もう1つの半反応式「ClO⁻＋2H⁺＋2e⁻→Cl⁻＋H₂O」を足してつくれます。このとき酸化剤としてはたらいているのはどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．ClO⁻（次亜塩素酸イオン）</button>
+          <button class="q4-c" data-v="b">b．Cl⁻（塩化物イオン）</button>
+          <button class="q4-c" data-v="c">c．H⁺（水素イオン）</button>
+          <button class="q4-c" data-v="d">d．Ca²⁺（カルシウムイオン）</button>
+        </div>
+        <div class="q4-exp">📘 ClO⁻＋2H⁺＋2e⁻→Cl⁻＋H₂O のように電子を受け取っているClO⁻が酸化剤です。これと2Cl⁻→Cl₂＋2e⁻を足すと，CaCl(ClO)・H₂O＋2HCl→CaCl₂＋Cl₂＋2H₂Oが導けます。</div>
+      </div>
+
+      <button class="why-btn" data-popup="p2">🤔 さらし粉の反応式はどうやって導くの？</button>
+
+    </div>
+  </div>
+
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">6</span>半反応式でヨウ素の検出反応をつくる</div>
+    <div class="stage">
+
+      <div class="read-box">ヨウ化カリウムKIの水溶液は，Cl₂・O₃・H₂O₂のような酸化剤を加えるとヨウ素I₂を遊離します。これが「ヨウ化カリウムデンプン紙」で酸化剤を検出できる理由です。3つとも同じ考え方で反応式をつくれます。</div>
+
+      <div class="key-box"><span class="tag">🔑 ステップで考える</span> どの場合も，ヨウ化物イオンI⁻が酸化される半反応式「2I⁻→I₂＋2e⁻」は共通です。あとは相手（酸化剤）の半反応式を作って足すだけです。</div>
+
+      <div class="eq">共通の半反応式：2I⁻ → I₂ ＋ 2e⁻</div>
+
+      <div class="tbl-wrap">
+        <table class="summary-tbl">
+          <tr><th>酸化剤</th><th>酸化剤の半反応式</th><th>完成する反応式</th></tr>
+          <tr><td>Cl₂</td><td>Cl₂＋2e⁻→2Cl⁻</td><td>2KI＋Cl₂→2KCl＋I₂</td></tr>
+          <tr><td>O₃</td><td>O₃＋2H⁺＋2e⁻→O₂＋H₂O</td><td>2KI＋O₃＋H₂SO₄→K₂SO₄＋I₂＋O₂＋H₂O</td></tr>
+          <tr><td>H₂O₂</td><td>H₂O₂＋2H⁺＋2e⁻→2H₂O</td><td>2KI＋H₂O₂＋H₂SO₄→K₂SO₄＋I₂＋2H₂O</td></tr>
+        </table>
+      </div>
+
+      <div class="read-box"><b>例：O₃の場合をいっしょに確認</b><br>「2I⁻→I₂＋2e⁻」と「O₃＋2H⁺＋2e⁻→O₂＋H₂O」を足すと，電子2e⁻が消えて次の式になります。</div>
+      <div class="eq">2I⁻ ＋ O₃ ＋ 2H⁺ → I₂ ＋ O₂ ＋ H₂O</div>
+      <div class="read-box">ここに，水溶液中にあるK⁺とSO₄²⁻（硫酸由来）を両辺に足して，見た目の分子式にそろえます。</div>
+      <div class="eq">2KI ＋ O₃ ＋ H₂SO₄ → K₂SO₄ ＋ I₂ ＋ O₂ ＋ H₂O</div>
+
+      <div class="important-box"><span class="tag">⚠️ よくある間違い</span> O₃やH₂O₂の半反応式には必ずH⁺が登場します（酸性条件で働く酸化剤だからです）。このH⁺を硫酸H₂SO₄として両辺に加えることを忘れると，分子式の反応式が完成しません。</div>
+
+      <div class="q4 mini" data-correct="c">
+        <div class="q4-no practice">小テスト①</div>
+        <div class="q4-text">Q. KI水溶液にCl₂・O₃・H₂O₂のいずれかを加えたとき，共通して生成する物質は何ですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．Cl₂</button>
+          <button class="q4-c" data-v="b">b．H₂O</button>
+          <button class="q4-c" data-v="c">c．I₂</button>
+          <button class="q4-c" data-v="d">d．KOH</button>
+        </div>
+        <div class="q4-exp">📘 どの酸化剤でも「2I⁻→I₂＋2e⁻」の半反応式でI⁻が酸化され，共通してヨウ素I₂が生成します。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">小テスト②</div>
+        <div class="q4-text">Q. H₂O₂がヨウ化物イオンを酸化するときの半反応式はどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．H₂O₂→O₂＋2H⁺＋2e⁻</button>
+          <button class="q4-c" data-v="b">b．H₂O₂＋2H⁺＋2e⁻→2H₂O</button>
+          <button class="q4-c" data-v="c">c．2H₂O→H₂O₂＋2H⁺＋2e⁻</button>
+          <button class="q4-c" data-v="d">d．H₂O₂→H₂O＋O₂</button>
+        </div>
+        <div class="q4-exp">📘 H₂O₂は酸化剤としてはたらくとき，酸性条件でH⁺とe⁻を受け取ってH₂Oになります：H₂O₂＋2H⁺＋2e⁻→2H₂O。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">小テスト③</div>
+        <div class="q4-text">Q. 2KI＋Cl₂→2KCl＋（　）。空欄に入るのはどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．I₂</button>
+          <button class="q4-c" data-v="b">b．I⁻</button>
+          <button class="q4-c" data-v="c">c．KI₂</button>
+          <button class="q4-c" data-v="d">d．HI</button>
+        </div>
+        <div class="q4-exp">📘 2I⁻→I₂＋2e⁻ とCl₂＋2e⁻→2Cl⁻を足すと，2I⁻＋Cl₂→I₂＋2Cl⁻。両辺に2K⁺を加えて 2KI＋Cl₂→2KCl＋I₂ が完成します。</div>
+      </div>
+
+      <h3>塩素の発生装置と捕集法</h3>
+      <div class="read-box">実験室でMnO₂と濃塩酸からCl₂をつくるとき，発生した気体には塩化水素HClや水蒸気H₂Oも混ざっています。そこで2本の洗気びんに通して不純物を取り除きます。</div>
+
+      <div class="flow-diagram">
+        <div class="flow-row">
+          <div class="flow-box">発生気体<br><span style="font-weight:normal;">Cl₂,HCl,H₂O</span></div>
+          <div class="flow-arrow">→<span class="cond">洗気びんA<br>（水）</span></div>
+          <div class="flow-box">HCl除去</div>
+          <div class="flow-arrow">→<span class="cond">洗気びんB<br>（濃硫酸）</span></div>
+          <div class="flow-box result">乾いたCl₂</div>
+        </div>
+        <div class="flow-note">水でHClを吸収 → 濃硫酸で水蒸気を除去 → 乾燥した純粋なCl₂が得られる</div>
+      </div>
+
+      <div class="key-box"><span class="tag">🔑 ポイント</span> Cl₂は水に少し溶け，空気より重いので，捕集には下方置換を使います（水上置換だと一部が水に溶けて逃げてしまいます）。</div>
+
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">小テスト④</div>
+        <div class="q4-text">Q. 発生したCl₂に混ざっているHClを取り除くために，最初の洗気びんに入れる液体は何ですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．濃硫酸</button>
+          <button class="q4-c" data-v="b">b．水</button>
+          <button class="q4-c" data-v="c">c．エタノール</button>
+          <button class="q4-c" data-v="d">d．食塩水</button>
+        </div>
+        <div class="q4-exp">📘 HClは水によく溶けるので，最初の洗気びんの水に吸収させて取り除きます。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="c">
+        <div class="q4-no practice">小テスト⑤</div>
+        <div class="q4-text">Q. Cl₂の捕集方法として適切なのはどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．水上置換</button>
+          <button class="q4-c" data-v="b">b．上方置換</button>
+          <button class="q4-c" data-v="c">c．下方置換</button>
+          <button class="q4-c" data-v="d">d．常温で液体なので置換は不要</button>
+        </div>
+        <div class="q4-exp">📘 Cl₂は水に少し溶け，空気より重い気体なので下方置換で捕集します。</div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- ============ ② 穴埋めチャレンジ ============ -->
+<div class="tab-content" id="tab-fill">
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">✎</span>穴埋めチャレンジ</div>
+    <div class="stage">
+      <div class="read-box">下のチップをタップして，反応式の空欄をうめましょう。まちがえても大丈夫，「やり直す」でもう一度チャレンジできます。</div>
+    </div>
+  </div>
+
+  <div class="fill-item" data-fill="f1">
+    <div class="q-no">問1</div>
+    <div class="fill-sentence">ハロゲンの陰イオン化：F ＋ e⁻ → <span class="blank" data-blank="0" data-ans="F-">　</span></div>
+    <div class="chip-bank">
+      <span class="chip" data-val="F-">F⁻</span>
+      <span class="chip" data-val="F+">F⁺</span>
+      <span class="chip" data-val="F2">F₂</span>
+      <span class="chip" data-val="Cl-">Cl⁻</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+
+  <div class="fill-item" data-fill="f2">
+    <div class="q-no">問2</div>
+    <div class="fill-sentence">塩素の実験室的製法：MnO₂ ＋ 4HCl → <span class="blank" data-blank="0" data-ans="MnCl2">　</span> ＋ <span class="blank" data-blank="1" data-ans="Cl2">　</span> ＋ 2H₂O</div>
+    <div class="chip-bank">
+      <span class="chip" data-val="MnCl2">MnCl₂</span>
+      <span class="chip" data-val="Cl2">Cl₂</span>
+      <span class="chip" data-val="MnO2">MnO₂</span>
+      <span class="chip" data-val="HCl">HCl</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+
+  <div class="fill-item" data-fill="f3">
+    <div class="q-no">問3</div>
+    <div class="fill-sentence">フッ化水素酸がガラスを溶かす反応：SiO₂ ＋ 6HF → <span class="blank" data-blank="0" data-ans="H2SiF6">　</span> ＋ <span class="blank" data-blank="1" data-ans="2H2O">　</span></div>
+    <div class="chip-bank">
+      <span class="chip" data-val="H2SiF6">H₂SiF₆</span>
+      <span class="chip" data-val="2H2O">2H₂O</span>
+      <span class="chip" data-val="SiF4">SiF₄</span>
+      <span class="chip" data-val="HF">HF</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+
+  <div class="fill-item" data-fill="f4">
+    <div class="q-no">問4</div>
+    <div class="fill-sentence">酸化力の違いによる置換反応：Cl₂ ＋ 2KBr → <span class="blank" data-blank="0" data-ans="2KCl">　</span> ＋ <span class="blank" data-blank="1" data-ans="Br2">　</span></div>
+    <div class="chip-bank">
+      <span class="chip" data-val="2KCl">2KCl</span>
+      <span class="chip" data-val="Br2">Br₂</span>
+      <span class="chip" data-val="2KBr">2KBr</span>
+      <span class="chip" data-val="Cl2">Cl₂</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+
+  <div class="fill-item" data-fill="f5">
+    <div class="q-no">問5</div>
+    <div class="fill-sentence">塩素の工業的製法（電気分解）：2NaCl ＋ 2H₂O → <span class="blank" data-blank="0" data-ans="2NaOH">　</span> ＋ <span class="blank" data-blank="1" data-ans="Cl2">　</span> ＋ H₂</div>
+    <div class="chip-bank">
+      <span class="chip" data-val="2NaOH">2NaOH</span>
+      <span class="chip" data-val="Cl2">Cl₂</span>
+      <span class="chip" data-val="NaCl">NaCl</span>
+      <span class="chip" data-val="H2O">H₂O</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+
+  <div class="fill-item" data-fill="f6">
+    <div class="q-no">問6</div>
+    <div class="fill-sentence">Cl⁻が酸化される半反応式：2Cl⁻ → <span class="blank" data-blank="0" data-ans="Cl2">　</span> ＋ 2<span class="blank" data-blank="1" data-ans="e-">　</span></div>
+    <div class="chip-bank">
+      <span class="chip" data-val="Cl2">Cl₂</span>
+      <span class="chip" data-val="e-">e⁻</span>
+      <span class="chip" data-val="HCl">HCl</span>
+      <span class="chip" data-val="H+">H⁺</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+
+  <div class="fill-item" data-fill="f7">
+    <div class="q-no">問7</div>
+    <div class="fill-sentence">KI水溶液にO₃を加えたときの反応式：2KI ＋ O₃ ＋ H₂SO₄ → K₂SO₄ ＋ <span class="blank" data-blank="0" data-ans="I2">　</span> ＋ <span class="blank" data-blank="1" data-ans="O2">　</span> ＋ H₂O</div>
+    <div class="chip-bank">
+      <span class="chip" data-val="I2">I₂</span>
+      <span class="chip" data-val="O2">O₂</span>
+      <span class="chip" data-val="Cl2">Cl₂</span>
+      <span class="chip" data-val="H2">H₂</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+</div>
+
+<!-- ============ ③ 確認テスト ============ -->
+<div class="tab-content" id="tab-check">
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">✓</span>確認テスト（14問）</div>
+    <div class="stage">
+      <div class="read-box">すべての問題に答えると，結果が表示されます。自分のペースでゆっくり進めましょう。</div>
+    </div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="c">
+    <div class="q4-no">第1問</div>
+    <div class="q4-text">ハロゲン原子がもつ価電子の数は何個ですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．5個</button>
+      <button class="q4-c" data-v="b">b．6個</button>
+      <button class="q4-c" data-v="c">c．7個</button>
+      <button class="q4-c" data-v="d">d．8個</button>
+    </div>
+    <div class="q4-exp">📘 ハロゲンは価電子を7個もち，電子を1個受け取って安定な配置になろうとします。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="b">
+    <div class="q4-no">第2問</div>
+    <div class="q4-text">ハロゲン原子はどんなイオンになりやすいですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．1価の陽イオン</button>
+      <button class="q4-c" data-v="b">b．1価の陰イオン</button>
+      <button class="q4-c" data-v="c">c．2価の陽イオン</button>
+      <button class="q4-c" data-v="d">d．2価の陰イオン</button>
+    </div>
+    <div class="q4-exp">📘 電子を1個受け取って，1価の陰イオンになりやすい性質があります。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="a">
+    <div class="q4-no">第3問</div>
+    <div class="q4-text">ハロゲン単体の酸化力の強さの順として正しいものはどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．F₂＞Cl₂＞Br₂＞I₂</button>
+      <button class="q4-c" data-v="b">b．I₂＞Br₂＞Cl₂＞F₂</button>
+      <button class="q4-c" data-v="c">c．Cl₂＞Br₂＞F₂＞I₂</button>
+      <button class="q4-c" data-v="d">d．Br₂＞F₂＞Cl₂＞I₂</button>
+    </div>
+    <div class="q4-exp">📘 原子番号が小さいほど酸化力が強く，F₂＞Cl₂＞Br₂＞I₂の順になります。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="b">
+    <div class="q4-no">第4問</div>
+    <div class="q4-text">常温・常圧で液体の非金属単体はどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．Cl₂</button>
+      <button class="q4-c" data-v="b">b．Br₂</button>
+      <button class="q4-c" data-v="c">c．I₂</button>
+      <button class="q4-c" data-v="d">d．F₂</button>
+    </div>
+    <div class="q4-exp">📘 非金属の単体で常温・常圧で液体なのはBr₂だけです。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="b">
+    <div class="q4-no">第5問</div>
+    <div class="q4-text">次のうち，実際に起こる反応はどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．2KCl＋Br₂→2KBr＋Cl₂</button>
+      <button class="q4-c" data-v="b">b．2KI＋Cl₂→2KCl＋I₂</button>
+      <button class="q4-c" data-v="c">c．2KF＋Br₂→2KBr＋F₂</button>
+      <button class="q4-c" data-v="d">d．2KBr＋I₂→2KI＋Br₂</button>
+    </div>
+    <div class="q4-exp">📘 Cl₂はI₂より酸化力が強いので，I⁻から電子を奪ってI₂を追い出せます。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="b">
+    <div class="q4-no">第6問</div>
+    <div class="q4-text">ハロゲン化水素の酸の強さの順として正しいものはどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．HF＞HCl＞HBr＞HI</button>
+      <button class="q4-c" data-v="b">b．HI＞HBr＞HCl＞HF</button>
+      <button class="q4-c" data-v="c">c．HCl＞HF＞HBr＞HI</button>
+      <button class="q4-c" data-v="d">d．HBr＞HI＞HF＞HCl</button>
+    </div>
+    <div class="q4-exp">📘 HFだけが例外的に弱酸で，強さの順はHI＞HBr＞HCl＞HFです。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="a">
+    <div class="q4-no">第7問</div>
+    <div class="q4-text">フッ化水素酸がガラスを溶かす反応はどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．SiO₂＋6HF→H₂SiF₆＋2H₂O</button>
+      <button class="q4-c" data-v="b">b．SiO₂＋2HF→SiF₂＋H₂O₂</button>
+      <button class="q4-c" data-v="c">c．SiO₂＋HF→SiF＋H₂O</button>
+      <button class="q4-c" data-v="d">d．SiO₂＋4HF→2SiF₂＋2H₂O</button>
+    </div>
+    <div class="q4-exp">📘 SiO₂＋6HF→H₂SiF₆＋2H₂O です。だからフッ化水素酸はガラス容器ではなくポリエチレン容器に保存します。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="a">
+    <div class="q4-no">第8問</div>
+    <div class="q4-text">実験室で塩素をつくるときの反応はどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．MnO₂＋4HCl→MnCl₂＋Cl₂＋2H₂O</button>
+      <button class="q4-c" data-v="b">b．MnO₂＋2HCl→MnCl₂＋H₂</button>
+      <button class="q4-c" data-v="c">c．2NaCl＋2H₂O→2NaOH＋Cl₂＋H₂</button>
+      <button class="q4-c" data-v="d">d．CaCl(ClO)・H₂O＋HCl→CaCl₂＋Cl₂</button>
+    </div>
+    <div class="q4-exp">📘 MnO₂＋4HCl→MnCl₂＋Cl₂＋2H₂O です。cは工業的製法（電気分解）の式です。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="d">
+    <div class="q4-no">第9問</div>
+    <div class="q4-text">ハロゲン化銀の中で，水に溶けるのはどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．AgCl</button>
+      <button class="q4-c" data-v="b">b．AgBr</button>
+      <button class="q4-c" data-v="c">c．AgI</button>
+      <button class="q4-c" data-v="d">d．AgF</button>
+    </div>
+    <div class="q4-exp">📘 ハロゲン化銀の中でAgFだけは例外的に水に溶けます。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="b">
+    <div class="q4-no">第10問</div>
+    <div class="q4-text">ヨウ素デンプン反応で見られる色は何色ですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．赤色</button>
+      <button class="q4-c" data-v="b">b．青紫色</button>
+      <button class="q4-c" data-v="c">c．黄色</button>
+      <button class="q4-c" data-v="d">d．緑色</button>
+    </div>
+    <div class="q4-exp">📘 ヨウ素とデンプンが反応すると青紫色になります。塩素や過酸化水素などの検出に使われます。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="c">
+    <div class="q4-no">第11問</div>
+    <div class="q4-text">フッ素F₂と水の反応で発生する気体は何ですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．水素H₂</button>
+      <button class="q4-c" data-v="b">b．塩素Cl₂</button>
+      <button class="q4-c" data-v="c">c．酸素O₂</button>
+      <button class="q4-c" data-v="d">d．窒素N₂</button>
+    </div>
+    <div class="q4-exp">📘 2F₂＋2H₂O→4HF＋O₂ です。F₂の酸化力はきわめて強く，水そのものを酸化して酸素を発生させます。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="b">
+    <div class="q4-no">第12問</div>
+    <div class="q4-text">MnO₂＋4HCl→MnCl₂＋Cl₂＋2H₂O を半反応式からつくるとき，「2Cl⁻→Cl₂＋2e⁻」と組み合わせる，もう1つの半反応式はどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．Mn²⁺→MnO₂＋4H⁺＋2e⁻</button>
+      <button class="q4-c" data-v="b">b．MnO₂＋4H⁺＋2e⁻→Mn²⁺＋2H₂O</button>
+      <button class="q4-c" data-v="c">c．MnO₂→Mn²⁺＋O₂</button>
+      <button class="q4-c" data-v="d">d．2H⁺＋2e⁻→H₂</button>
+    </div>
+    <div class="q4-exp">📘 MnO₂は酸化剤としてはたらき，酸性条件でH⁺とe⁻を受け取ってMn²⁺になります：MnO₂＋4H⁺＋2e⁻→Mn²⁺＋2H₂O。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="a">
+    <div class="q4-no">第13問</div>
+    <div class="q4-text">KI水溶液にH₂O₂（酸性条件）を加えると何が起こりますか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．I⁻が酸化されてI₂が遊離する</button>
+      <button class="q4-c" data-v="b">b．I⁻が還元されてI⁻のまま変化しない</button>
+      <button class="q4-c" data-v="c">c．K⁺が還元されてKになる</button>
+      <button class="q4-c" data-v="d">d．反応は起こらない</button>
+    </div>
+    <div class="q4-exp">📘 「2I⁻→I₂＋2e⁻」と「H₂O₂＋2H⁺＋2e⁻→2H₂O」を足すと，2KI＋H₂O₂＋H₂SO₄→K₂SO₄＋I₂＋2H₂O。I⁻が酸化されI₂が遊離します。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="c">
+    <div class="q4-no">第14問</div>
+    <div class="q4-text">実験室でMnO₂と濃塩酸からつくったCl₂の捕集方法として正しいものはどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．水上置換（水に溶けないため）</button>
+      <button class="q4-c" data-v="b">b．上方置換（空気より軽いため）</button>
+      <button class="q4-c" data-v="c">c．下方置換（空気より重く水に少し溶けるため）</button>
+      <button class="q4-c" data-v="d">d．捕集せず大気中に放出する</button>
+    </div>
+    <div class="q4-exp">📘 Cl₂は空気より重く水に少し溶けるので，上方置換・水上置換は不向きで，下方置換で捕集します。</div>
+  </div>
+
+  <div class="check-footer">
+    <div class="score-box" id="score-box" style="display:none;"></div>
+  </div>
+</div>
+
+<!-- ============ ④ フラッシュカード ============ -->
+<div class="tab-content" id="tab-cards">
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">4</span>反応式フラッシュカード</div>
+    <div class="stage">
+      <div class="read-box">カードをタップすると裏の反応式が見られます。自分でめくる「手動」のほか，「3秒後自動」「5秒後自動」を選ぶと，表→裏→次のカードと自動で進みます。</div>
+
+      <div class="card-mode-buttons">
+        <button class="mode-btn active" data-mode="manual">手動</button>
+        <button class="mode-btn" data-mode="3">3秒後自動</button>
+        <button class="mode-btn" data-mode="5">5秒後自動</button>
+      </div>
+
+      <div class="flash-progress"><span id="card-pos">1</span> / <span id="card-total">5</span></div>
+
+      <div class="flashcard-wrap">
+        <div class="flashcard" id="flashcard">
+          <span class="card-face-label" id="card-face-label">表（問題）</span>
+          <div class="card-text-front" id="card-text"></div>
+        </div>
+      </div>
+      <div class="flash-hint" id="flash-hint">カードをタップすると答えがめくれます</div>
+
+      <div class="flash-nav">
+        <button id="card-prev">◀ 前へ</button>
+        <button id="card-flip" class="flip-btn">めくる</button>
+        <button id="card-next">次へ ▶</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<div class="popup-overlay" id="popup-p1">
+  <div class="popup-box">
+    <button class="popup-close" data-close="p1">×</button>
+    <h4>🤔 なぜHFだけ弱酸なの？</h4>
+    <p>HCl・HBr・HIは水に溶けるとほぼ100%電離して，強い酸になります。ところがHF分子どうしは，水素結合という強い力で引き合っています。そのためH⁺を水溶液中に離しにくく，電離しきれずに弱酸になるのです。</p>
+    <p>💡 イメージ：HCl・HBr・HIは「手をすぐ離すグループ」，HFだけは「お互いの手をしっかり握ったままなかなか離さないグループ」です。</p>
+  </div>
+</div>
+
+<div class="popup-overlay" id="popup-p2">
+  <div class="popup-box">
+    <button class="popup-close" data-close="p2">×</button>
+    <h4>🤔 さらし粉の反応式はどうやって導くの？</h4>
+    <p>さらし粉 CaCl(ClO)・H₂O は，塩化物イオンCl⁻と次亜塩素酸イオンClO⁻の両方を含む化合物です。塩酸を加えると，ClO⁻が酸化剤としてはたらき，もとからあるCl⁻を酸化してCl₂にします。</p>
+    <p>①　ClO⁻＋2H⁺＋2e⁻→Cl⁻＋H₂O（ClO⁻が酸化剤としてはたらく半反応式）</p>
+    <p>②　2Cl⁻→Cl₂＋2e⁻（Cl⁻が酸化される半反応式）</p>
+    <p>①＋②　ClO⁻＋2H⁺＋2Cl⁻→Cl⁻＋Cl₂＋H₂O　→　両辺を整理してCa²⁺とCl⁻を加えると，CaCl(ClO)・H₂O＋2HCl→CaCl₂＋Cl₂＋2H₂Oが完成します。</p>
+    <p>💡 ポイント：さらし粉自身がもつClO⁻が酸化剤，加えた塩酸のCl⁻の一部が還元剤としてCl₂に変わる，という2段構えの反応です。</p>
+  </div>
+</div>
+
+<div class="celebrate-msg" id="celebrate-msg">🎉 全問正解です！<br>よくできました！</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- タブ切替 ---------- */
+  var tabBtns = document.querySelectorAll(".tab-btn");
+  var tabContents = document.querySelectorAll(".tab-content");
+  for (var i=0;i<tabBtns.length;i++){
+    tabBtns[i].addEventListener("click", function(){
+      var target = this.getAttribute("data-tab");
+      for (var j=0;j<tabBtns.length;j++){ tabBtns[j].classList.remove("active"); }
+      for (var k=0;k<tabContents.length;k++){ tabContents[k].classList.remove("active"); }
+      this.classList.add("active");
+      document.getElementById("tab-"+target).classList.add("active");
+      window.scrollTo({top:0, behavior:"smooth"});
+      if (target !== "cards") stopCardAuto();
+    });
+  }
+
+  /* ---------- なぜ？ポップアップ ---------- */
+  var whyBtns = document.querySelectorAll(".why-btn");
+  for (var w=0;w<whyBtns.length;w++){
+    whyBtns[w].addEventListener("click", function(){
+      var id = this.getAttribute("data-popup");
+      document.getElementById("popup-"+id).classList.add("show");
+    });
+  }
+  var closeBtns = document.querySelectorAll(".popup-close");
+  for (var cb=0;cb<closeBtns.length;cb++){
+    closeBtns[cb].addEventListener("click", function(){
+      var id = this.getAttribute("data-close");
+      document.getElementById("popup-"+id).classList.remove("show");
+    });
+  }
+  var overlays = document.querySelectorAll(".popup-overlay");
+  for (var ov=0;ov<overlays.length;ov++){
+    overlays[ov].addEventListener("click", function(ev){
+      if (ev.target === this) this.classList.remove("show");
+    });
+  }
+
+  /* ---------- 穴埋めチャレンジ ---------- */
+  var fillItems = document.querySelectorAll(".fill-item");
+  for (var f=0; f<fillItems.length; f++){
+    (function(item){
+      var blanks = item.querySelectorAll(".blank");
+      var chips = item.querySelectorAll(".chip");
+      var feedback = item.querySelector(".fill-feedback");
+      var checkBtn = item.querySelector(".fill-check-btn");
+      var resetBtn = item.querySelector(".fill-reset-btn");
+
+      function nextEmptyBlank(){
+        for (var b=0;b<blanks.length;b++){
+          if (!blanks[b].classList.contains("filled")) return blanks[b];
+        }
+        return null;
+      }
+
+      for (var c=0;c<chips.length;c++){
+        chips[c].addEventListener("click", function(){
+          if (this.classList.contains("used")) return;
+          var target = nextEmptyBlank();
+          if (!target) return;
+          target.textContent = this.textContent;
+          target.classList.add("filled");
+          target.setAttribute("data-filled-val", this.getAttribute("data-val"));
+          this.classList.add("used");
+        });
+      }
+
+      checkBtn.addEventListener("click", function(){
+        var allFilled = true, allCorrect = true;
+        for (var b=0;b<blanks.length;b++){
+          if (!blanks[b].classList.contains("filled")){ allFilled = false; continue; }
+          var ok = blanks[b].getAttribute("data-filled-val") === blanks[b].getAttribute("data-ans");
+          blanks[b].classList.remove("correct","wrong");
+          blanks[b].classList.add(ok?"correct":"wrong");
+          if (!ok) allCorrect = false;
+        }
+        if (!allFilled){
+          feedback.textContent = "まだ空欄があります。チップをすべて置きましょう。";
+          feedback.className = "fill-feedback bad";
+          return;
+        }
+        if (allCorrect){
+          feedback.textContent = "✅ 正解です！この反応式を声に出して読んでみましょう。";
+          feedback.className = "fill-feedback ok";
+          launchConfetti(30);
+        } else {
+          feedback.textContent = "❌ ちがう場所があります。「やり直す」からもう一度挑戦しましょう。";
+          feedback.className = "fill-feedback bad";
+        }
+      });
+
+      resetBtn.addEventListener("click", function(){
+        for (var b=0;b<blanks.length;b++){
+          blanks[b].textContent = "　";
+          blanks[b].classList.remove("filled","correct","wrong");
+          blanks[b].removeAttribute("data-filled-val");
+        }
+        for (var c2=0;c2<chips.length;c2++){ chips[c2].classList.remove("used"); }
+        feedback.textContent = "";
+        feedback.className = "fill-feedback";
+      });
+    })(fillItems[f]);
+  }
+
+  /* ---------- q4（4択）共通処理 ---------- */
+  var finalTotal = document.querySelectorAll(".final-q4").length;
+  var finalAnsweredCount = 0;
+  var finalCorrectCount = 0;
+
+  var q4Blocks = document.querySelectorAll(".q4");
+  for (var q=0;q<q4Blocks.length;q++){
+    (function(block){
+      var correctV = block.getAttribute("data-correct");
+      var btns = block.querySelectorAll(".q4-c");
+      var exp = block.querySelector(".q4-exp");
+      var isFinal = block.classList.contains("final-q4");
+      var answered = false;
+      for (var b=0;b<btns.length;b++){
+        btns[b].addEventListener("click", function(){
+          if (answered) return;
+          answered = true;
+          var v = this.getAttribute("data-v");
+          var isCorrect = (v === correctV);
+          for (var x=0;x<btns.length;x++){
+            btns[x].classList.add("disabled");
+            if (btns[x].getAttribute("data-v") === correctV) btns[x].classList.add("correct");
+          }
+          if (!isCorrect) this.classList.add("wrong");
+          if (exp) exp.classList.add("show");
+          if (isCorrect) launchConfetti(isFinal?0:24);
+          if (isFinal){
+            finalAnsweredCount++;
+            if (isCorrect) finalCorrectCount++;
+            checkFinalDone();
+          }
+        });
+      }
+    })(q4Blocks[q]);
+  }
+
+  /* ---------- minitest（○×）共通処理 ---------- */
+  var mtBlocks = document.querySelectorAll(".minitest");
+  for (var m=0;m<mtBlocks.length;m++){
+    (function(block){
+      var correctV = block.getAttribute("data-correct");
+      var btns = block.querySelectorAll(".mt-c");
+      var exp = block.querySelector(".mt-exp");
+      var answered = false;
+      for (var b=0;b<btns.length;b++){
+        btns[b].addEventListener("click", function(){
+          if (answered) return;
+          answered = true;
+          var v = this.getAttribute("data-v");
+          var isCorrect = (v === correctV);
+          for (var x=0;x<btns.length;x++){
+            btns[x].classList.add("disabled");
+            if (btns[x].getAttribute("data-v") === correctV) btns[x].classList.add("correct");
+          }
+          if (!isCorrect) this.classList.add("wrong");
+          if (exp){
+            exp.textContent = isCorrect ? "📘 そのとおりです！よく理解できています。" : "📘 もう一度，上の説明を読み直してみましょう。";
+            exp.classList.add("show");
+          }
+          if (isCorrect) launchConfetti(24);
+        });
+      }
+    })(mtBlocks[m]);
+  }
+
+  function checkFinalDone(){
+    if (finalAnsweredCount < finalTotal) return;
+    var box = document.getElementById("score-box");
+    box.style.display = "inline-block";
+    box.textContent = "結果：" + finalTotal + "問中 " + finalCorrectCount + "問 正解！";
+    if (finalCorrectCount === finalTotal){
+      launchConfetti(80);
+      var msg = document.getElementById("celebrate-msg");
+      msg.style.display = "block";
+      setTimeout(function(){ msg.style.display = "none"; }, 2200);
+    }
+  }
+
+  /* ---------- コンフェッティ（DOM div方式） ---------- */
+  var CONFETTI_COLORS = ["#f472b6","#facc15","#34d399","#60a5fa","#f87171","#a78bfa","#fb923c","#2dd4bf"];
+
+  function launchConfetti(count){
+    if (!count) return;
+    for (var i=0;i<count;i++){
+      var piece = document.createElement("div");
+      piece.className = "confetti-piece";
+      var size = 6 + Math.random()*6;
+      piece.style.left = (Math.random()*100) + "vw";
+      piece.style.width = size + "px";
+      piece.style.height = (size*1.6) + "px";
+      piece.style.background = CONFETTI_COLORS[Math.floor(Math.random()*CONFETTI_COLORS.length)];
+      piece.style.borderRadius = (Math.random()<0.5 ? "50%" : "2px");
+      var duration = 1.8 + Math.random()*1.4;
+      piece.style.animationDuration = duration + "s";
+      piece.style.animationDelay = (Math.random()*0.3) + "s";
+      document.body.appendChild(piece);
+      (function(el, dur){
+        setTimeout(function(){ if (el.parentNode) el.parentNode.removeChild(el); }, (dur+0.5)*1000);
+      })(piece, duration);
+    }
+  }
+
+  /* ---------- フラッシュカード ---------- */
+  var CARDS = [
+    {front:"① 塩素の実験室的製法（MnO₂＋濃塩酸）の反応式は？", back:"MnO₂ ＋ 4HCl → MnCl₂ ＋ Cl₂ ＋ 2H₂O"},
+    {front:"② さらし粉に塩酸を加える反応式は？", back:"CaCl(ClO)・H₂O ＋ 2HCl → CaCl₂ ＋ Cl₂ ＋ 2H₂O"},
+    {front:"③ 塩素の工業的製法（電気分解）の反応式は？", back:"2NaCl ＋ 2H₂O → 2NaOH ＋ Cl₂ ＋ H₂"},
+    {front:"④ フッ化水素酸がガラスを溶かす反応式は？", back:"SiO₂ ＋ 6HF → H₂SiF₆ ＋ 2H₂O"},
+    {front:"⑤ 酸化力の違いによる置換反応の例は？", back:"Cl₂ ＋ 2KBr → 2KCl ＋ Br₂"},
+    {front:"⑥ フッ素F₂と水の反応式は？", back:"2F₂ ＋ 2H₂O → 4HF ＋ O₂"},
+    {front:"⑦ 塩素水の中の平衡反応式は？", back:"Cl₂ ＋ H₂O ⇌ HCl ＋ HClO"},
+    {front:"⑧ Cl⁻が酸化される半反応式は？", back:"2Cl⁻ → Cl₂ ＋ 2e⁻"},
+    {front:"⑨ MnO₂が酸化剤としてはたらく半反応式は？", back:"MnO₂ ＋ 4H⁺ ＋ 2e⁻ → Mn²⁺ ＋ 2H₂O"},
+    {front:"⑩ KI＋O₃の反応式（半反応式から導く）は？", back:"2KI ＋ O₃ ＋ H₂SO₄ → K₂SO₄ ＋ I₂ ＋ O₂ ＋ H₂O"}
+  ];
+  var cardIndex = 0, cardFlipped = false, cardAutoTimer = null, cardAutoSeconds = 0;
+  var flashcardEl = document.getElementById("flashcard");
+  var cardTextEl = document.getElementById("card-text");
+  var cardLabelEl = document.getElementById("card-face-label");
+  var cardPosEl = document.getElementById("card-pos");
+  var cardTotalEl = document.getElementById("card-total");
+  var flashHintEl = document.getElementById("flash-hint");
+  var modeBtns = document.querySelectorAll(".mode-btn");
+
+  function renderCard(){
+    var c = CARDS[cardIndex];
+    cardPosEl.textContent = (cardIndex+1);
+    if (cardFlipped){
+      flashcardEl.classList.add("flipped");
+      cardLabelEl.textContent = "裏（答え）";
+      cardTextEl.className = "card-text-back";
+      cardTextEl.textContent = c.back;
+      flashHintEl.textContent = "タップ，または「次へ」で次のカードへ";
+    } else {
+      flashcardEl.classList.remove("flipped");
+      cardLabelEl.textContent = "表（問題）";
+      cardTextEl.className = "card-text-front";
+      cardTextEl.textContent = c.front;
+      flashHintEl.textContent = "カードをタップすると答えがめくれます";
+    }
+  }
+
+  function flipCardAnim(cb){
+    flashcardEl.classList.add("anim");
+    setTimeout(function(){
+      cb();
+      flashcardEl.classList.remove("anim");
+    }, 160);
+  }
+
+  function flipCard(){
+    flipCardAnim(function(){ cardFlipped = !cardFlipped; renderCard(); });
+  }
+  function nextCard(){
+    flipCardAnim(function(){
+      cardIndex = (cardIndex+1) % CARDS.length;
+      cardFlipped = false;
+      renderCard();
+    });
+  }
+  function prevCard(){
+    flipCardAnim(function(){
+      cardIndex = (cardIndex-1+CARDS.length) % CARDS.length;
+      cardFlipped = false;
+      renderCard();
+    });
+  }
+
+  function clearCardAutoTimer(){
+    if (cardAutoTimer){ clearInterval(cardAutoTimer); cardAutoTimer = null; }
+  }
+  function setActiveMode(mode){
+    for (var mb=0; mb<modeBtns.length; mb++){
+      modeBtns[mb].classList.toggle("active", modeBtns[mb].getAttribute("data-mode") === mode);
+    }
+  }
+  function startCardAuto(seconds){
+    clearCardAutoTimer();
+    cardAutoSeconds = seconds;
+    cardAutoTimer = setInterval(function(){
+      if (!cardFlipped){
+        flipCardAnim(function(){ cardFlipped = true; renderCard(); });
+      } else {
+        flipCardAnim(function(){
+          cardIndex = (cardIndex+1) % CARDS.length;
+          cardFlipped = false;
+          renderCard();
+        });
+      }
+    }, seconds*1000);
+  }
+  function stopAutoIfManualTap(){
+    if (cardAutoSeconds !== 0){
+      cardAutoSeconds = 0;
+      setActiveMode("manual");
+      clearCardAutoTimer();
+    }
+  }
+  function stopCardAuto(){
+    cardAutoSeconds = 0;
+    clearCardAutoTimer();
+    setActiveMode("manual");
+  }
+
+  if (cardTotalEl) cardTotalEl.textContent = CARDS.length;
+
+  if (flashcardEl){
+    flashcardEl.addEventListener("click", function(){ stopAutoIfManualTap(); flipCard(); });
+  }
+  var cardFlipBtn = document.getElementById("card-flip");
+  if (cardFlipBtn) cardFlipBtn.addEventListener("click", function(){ stopAutoIfManualTap(); flipCard(); });
+  var cardNextBtn = document.getElementById("card-next");
+  if (cardNextBtn) cardNextBtn.addEventListener("click", function(){ stopAutoIfManualTap(); nextCard(); });
+  var cardPrevBtn = document.getElementById("card-prev");
+  if (cardPrevBtn) cardPrevBtn.addEventListener("click", function(){ stopAutoIfManualTap(); prevCard(); });
+
+  for (var mb2=0; mb2<modeBtns.length; mb2++){
+    modeBtns[mb2].addEventListener("click", function(){
+      var mode = this.getAttribute("data-mode");
+      setActiveMode(mode);
+      if (mode === "manual"){
+        cardAutoSeconds = 0;
+        clearCardAutoTimer();
+      } else {
+        startCardAuto(parseInt(mode,10));
+      }
+    });
+  }
+
+  if (flashcardEl) renderCard();
+
+})();
+</script>
+
+</body>
+</html>

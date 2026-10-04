@@ -1,0 +1,1797 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>無機化学⑥ アルカリ金属とその化合物 | GAMBA化学</title>
+<style>
+:root{
+  --bg:#f0f4ff;
+  --card:#fff;
+  --primary:#2563eb;
+  --primary-light:#dbeafe;
+  --primary-dark:#1e40af;
+  --accent:#dc2626;
+  --accent-light:#fee2e2;
+  --success:#16a34a;
+  --success-light:#dcfce7;
+  --warn:#d97706;
+  --warn-light:#fffbeb;
+  --purple:#7c3aed;
+  --purple-light:#ede9fe;
+  --text:#1e293b;
+  --text-sub:#64748b;
+  --border:#bfdbfe;
+  --radius:14px;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  font-family:"BIZ UDPGothic","Meiryo",sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.8;
+  padding-bottom:40px;
+}
+
+/* ---------- topnav / hero ---------- */
+.topnav{
+  background:var(--primary-dark);
+  color:#fff;
+  padding:10px 16px;
+  font-weight:bold;
+  font-size:1rem;
+  letter-spacing:.5px;
+  position:sticky;
+  top:0;
+  z-index:60;
+}
+.hero{
+  background:linear-gradient(135deg,var(--primary-dark),var(--primary));
+  color:#fff;
+  padding:20px 16px 18px;
+  text-align:center;
+}
+.hero h1{margin:0;font-size:1.3rem;}
+.hero p{margin:6px 0 0;font-size:.82rem;opacity:.92;}
+
+.tabnav{
+  display:flex;
+  max-width:780px;
+  margin:0 auto;
+  padding:10px 12px 0;
+  gap:8px;
+  position:sticky;
+  top:40px;
+  background:var(--bg);
+  z-index:55;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+}
+.tab-btn{
+  flex:none;
+  min-width:78px;
+  padding:11px 8px;
+  border:2px solid var(--primary);
+  background:#fff;
+  color:var(--primary-dark);
+  border-radius:12px 12px 0 0;
+  font-size:.85rem;
+  font-weight:bold;
+  cursor:pointer;
+  white-space:nowrap;
+}
+.tab-btn.active{background:var(--primary);color:#fff;}
+.wrap{max-width:780px;margin:0 auto;padding:4px 12px 0;}
+.tab-content{display:none;}
+.tab-content.active{display:block;animation:fade .25s;}
+@keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+/* ---------- unit / stage ---------- */
+.unit{
+  background:var(--card);
+  border-radius:var(--radius);
+  margin:16px 0;
+  box-shadow:0 1px 4px rgba(0,0,0,.08);
+  border:1px solid var(--border);
+  overflow:hidden;
+}
+.unit-title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  background:var(--primary-light);
+  color:var(--primary-dark);
+  font-size:1.05rem;
+  font-weight:bold;
+  padding:14px 16px;
+}
+.unit-num{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:30px;height:30px;
+  border-radius:50%;
+  background:var(--primary);
+  color:#fff;
+  font-size:.95rem;
+  flex:none;
+}
+.stage{padding:4px 16px 18px;}
+.stage h3{font-size:1rem;color:var(--primary-dark);margin:20px 0 8px;border-left:5px solid var(--primary);padding-left:8px;}
+
+.read-box{
+  background:var(--primary-light);
+  border-radius:10px;
+  padding:12px 14px;
+  margin:10px 0;
+  font-size:.95rem;
+}
+
+.key-box{
+  background:var(--warn-light);
+  border:2px solid var(--warn);
+  border-radius:10px;
+  padding:12px 14px;
+  margin:12px 0;
+  font-size:.93rem;
+}
+.key-box .tag{font-weight:bold;color:var(--warn);}
+
+.important-box{
+  background:var(--accent-light);
+  border:2px solid var(--accent);
+  border-radius:10px;
+  padding:12px 14px;
+  margin:12px 0;
+  font-size:.93rem;
+}
+.important-box .tag{font-weight:bold;color:var(--accent);}
+
+/* 暗記法 */
+.mnemonic-box{
+  background:var(--purple-light);
+  border:2px dashed var(--purple);
+  border-radius:10px;
+  padding:12px 14px;
+  margin:12px 0;
+  font-size:.93rem;
+}
+.mnemonic-box .tag{font-weight:bold;color:var(--purple);display:block;margin-bottom:4px;}
+.mnemonic-box .phrase{font-size:1.02rem;font-weight:bold;color:#4c1d95;}
+
+.eq{
+  background:#f1f5f9;
+  border-radius:8px;
+  padding:9px 12px;
+  margin:6px 0;
+  font-size:1rem;
+  font-weight:600;
+  text-align:center;
+  letter-spacing:.3px;
+  overflow-x:auto;
+}
+
+/* ---------- 相関図（フローチェーン） ---------- */
+.flow-diagram{margin:14px 0;}
+.flow-row{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  margin:8px 0;
+  overflow-x:auto;
+  padding:2px 0;
+}
+.flow-box{
+  flex:none;
+  min-width:108px;
+  text-align:center;
+  background:#fff;
+  border:2px solid var(--primary);
+  border-radius:10px;
+  padding:8px 10px;
+  font-size:.82rem;
+  font-weight:bold;
+  color:var(--primary-dark);
+}
+.flow-box.result{background:var(--primary);color:#fff;border-color:var(--primary-dark);}
+.flow-box.byproduct{background:#f1f5f9;border-color:#94a3b8;color:var(--text-sub);font-weight:normal;}
+.flow-arrow{
+  flex:none;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  font-size:1.3rem;
+  color:var(--primary);
+  min-width:46px;
+}
+.flow-arrow .cond{font-size:.68rem;color:var(--text-sub);font-weight:normal;white-space:nowrap;}
+.flow-note{
+  text-align:center;
+  font-size:.78rem;
+  color:var(--text-sub);
+  margin-top:2px;
+}
+
+/* ---------- まとめ表 ---------- */
+.tbl-wrap{overflow-x:auto;margin:12px 0;}
+.summary-tbl{
+  width:100%;
+  border-collapse:collapse;
+  font-size:.86rem;
+  min-width:420px;
+}
+.summary-tbl th{
+  background:var(--primary);
+  color:#fff;
+  padding:8px 6px;
+  font-weight:bold;
+}
+.summary-tbl td{
+  border-bottom:1px solid var(--border);
+  padding:8px 6px;
+  text-align:center;
+}
+.summary-tbl tr:nth-child(even) td{background:#f8faff;}
+
+/* ---------- なぜ？ポップアップ ---------- */
+.why-btn{
+  display:inline-block;
+  margin:10px 0;
+  padding:9px 16px;
+  background:var(--purple-light);
+  border:1px solid var(--purple);
+  border-radius:20px;
+  color:var(--purple);
+  font-size:.85rem;
+  font-weight:bold;
+  cursor:pointer;
+}
+.popup-overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(15,23,42,.55);
+  z-index:200;
+  align-items:center;
+  justify-content:center;
+  padding:16px;
+}
+.popup-overlay.show{display:flex;}
+.popup-box{
+  background:#fff;
+  border-radius:16px;
+  max-width:420px;
+  max-height:80vh;
+  overflow-y:auto;
+  padding:20px;
+  position:relative;
+}
+.popup-box h4{margin:0 0 10px;color:var(--purple);font-size:1rem;}
+.popup-close{
+  position:absolute;
+  top:10px;right:14px;
+  background:none;
+  border:none;
+  font-size:1.3rem;
+  color:var(--text-sub);
+  cursor:pointer;
+}
+
+/* ---------- 穴埋めチャレンジ ---------- */
+.fill-item{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:14px 16px;
+  margin:14px 0;
+}
+.fill-item .q-no{
+  display:inline-block;
+  background:var(--primary);
+  color:#fff;
+  font-size:.75rem;
+  font-weight:bold;
+  border-radius:12px;
+  padding:2px 10px;
+  margin-bottom:8px;
+}
+.fill-sentence{font-size:.98rem;margin:8px 0;}
+.blank{
+  display:inline-block;
+  min-width:64px;
+  border-bottom:2px solid var(--primary);
+  text-align:center;
+  font-weight:bold;
+  color:var(--primary-dark);
+  padding:0 4px;
+  margin:0 2px;
+}
+.blank.filled{background:var(--primary-light);border-radius:4px;}
+.blank.correct{background:var(--success-light);border-bottom-color:var(--success);color:var(--success);}
+.blank.wrong{background:var(--accent-light);border-bottom-color:var(--accent);color:var(--accent);}
+.chip-bank{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
+.chip{
+  background:var(--accent-light);
+  border:1px solid var(--accent);
+  color:var(--primary-dark);
+  border-radius:20px;
+  padding:6px 14px;
+  font-size:.9rem;
+  cursor:pointer;
+}
+.chip:active{transform:scale(.95);}
+.chip.used{opacity:.35;pointer-events:none;}
+.fill-check-btn,.fill-reset-btn{
+  margin-top:10px;margin-right:8px;
+  padding:8px 18px;border:none;border-radius:20px;
+  font-weight:bold;cursor:pointer;font-size:.88rem;
+}
+.fill-check-btn{background:var(--primary);color:#fff;}
+.fill-reset-btn{background:#e2e8f0;color:var(--text);}
+.fill-feedback{margin-top:8px;font-size:.88rem;font-weight:bold;}
+.fill-feedback.ok{color:var(--success);}
+.fill-feedback.bad{color:var(--accent);}
+
+/* ---------- q4（4択） ---------- */
+.q4{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:14px 16px;
+  margin:14px 0;
+}
+.q4.mini{background:#f8faff;}
+.q4-no{
+  display:inline-block;
+  background:var(--accent);
+  color:#fff;
+  font-size:.72rem;
+  font-weight:bold;
+  border-radius:12px;
+  padding:2px 10px;
+  margin-bottom:8px;
+}
+.q4-no.practice{background:var(--purple);}
+.q4-text{font-size:.96rem;font-weight:600;margin:4px 0 10px;}
+.q4-choices{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.q4-c{
+  text-align:left;
+  padding:9px 10px;
+  border:2px solid #cbd5e1;
+  border-radius:10px;
+  background:#fff;
+  font-size:.85rem;
+  cursor:pointer;
+}
+.q4-c.correct{background:var(--success-light);border-color:var(--success);}
+.q4-c.wrong{background:var(--accent-light);border-color:var(--accent);}
+.q4-c.disabled{pointer-events:none;}
+.q4-exp{
+  display:none;
+  margin-top:10px;
+  background:var(--primary-light);
+  border-left:4px solid var(--primary);
+  border-radius:0 8px 8px 0;
+  padding:10px 12px;
+  font-size:.86rem;
+  color:var(--primary-dark);
+}
+.q4-exp.show{display:block;}
+
+/* ---------- minitest（○×） ---------- */
+.minitest{
+  background:#f8faff;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:14px 16px;
+  margin:14px 0;
+}
+.mt-text{font-size:.95rem;font-weight:600;margin:4px 0 10px;}
+.mt-choices{display:flex;gap:10px;}
+.mt-c{
+  flex:1;
+  padding:10px;
+  border:2px solid #cbd5e1;
+  border-radius:10px;
+  background:#fff;
+  font-size:1rem;
+  font-weight:bold;
+  cursor:pointer;
+}
+.mt-c.correct{background:var(--success-light);border-color:var(--success);}
+.mt-c.wrong{background:var(--accent-light);border-color:var(--accent);}
+.mt-c.disabled{pointer-events:none;}
+.mt-exp{
+  display:none;
+  margin-top:10px;
+  background:#fff;
+  border-left:4px solid var(--primary);
+  border-radius:0 8px 8px 0;
+  padding:10px 12px;
+  font-size:.86rem;
+  color:var(--primary-dark);
+}
+.mt-exp.show{display:block;}
+
+/* ---------- 確認テスト footer ---------- */
+.check-footer{text-align:center;margin:24px 0;}
+.score-box{
+  display:inline-block;
+  background:var(--primary);
+  color:#fff;
+  border-radius:16px;
+  padding:14px 28px;
+  font-size:1.1rem;
+  font-weight:bold;
+}
+.celebrate-msg{
+  display:none;
+  position:fixed;
+  top:36%;left:50%;
+  transform:translate(-50%,-50%);
+  background:#fff;
+  border:3px solid var(--primary);
+  border-radius:20px;
+  padding:22px 30px;
+  font-size:1.15rem;
+  font-weight:bold;
+  color:var(--primary-dark);
+  box-shadow:0 8px 30px rgba(0,0,0,.25);
+  z-index:1000;
+  text-align:center;
+}
+
+/* ---------- confetti ---------- */
+.confetti-piece{
+  position:fixed;
+  top:-20px;
+  width:8px;height:14px;
+  z-index:999;
+  pointer-events:none;
+  animation:confettiFall linear forwards;
+}
+@keyframes confettiFall{
+  from{transform:translateY(0) rotate(0deg);opacity:1;}
+  to{transform:translateY(105vh) rotate(720deg);opacity:0;}
+}
+
+/* ---------- フラッシュカード ---------- */
+.card-mode-buttons{display:flex;gap:8px;margin:12px 0;flex-wrap:wrap;}
+.mode-btn{
+  flex:1;
+  min-width:90px;
+  padding:9px 6px;
+  border:2px solid var(--primary);
+  background:#fff;
+  color:var(--primary-dark);
+  border-radius:20px;
+  font-size:.82rem;
+  font-weight:bold;
+  cursor:pointer;
+}
+.mode-btn.active{background:var(--primary);color:#fff;}
+.flash-progress{
+  text-align:center;
+  font-size:.85rem;
+  color:var(--text-sub);
+  font-weight:bold;
+  margin:4px 0 10px;
+}
+.flashcard-wrap{margin:10px 0;}
+.flashcard{
+  position:relative;
+  min-height:180px;
+  background:var(--card);
+  border:3px solid var(--primary);
+  border-radius:16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:22px 18px;
+  cursor:pointer;
+  box-shadow:0 2px 10px rgba(37,99,235,.12);
+  transition:opacity .18s, transform .18s;
+}
+.flashcard.flipped{background:var(--primary-light);border-color:var(--primary-dark);}
+.flashcard.anim{opacity:0;transform:scale(.96);}
+.card-face-label{
+  position:absolute;
+  top:10px;left:14px;
+  font-size:.72rem;
+  font-weight:bold;
+  color:var(--text-sub);
+}
+.card-text-front{font-size:1.08rem;font-weight:bold;color:var(--primary-dark);}
+.card-text-back{font-size:1.1rem;font-weight:bold;color:var(--primary-dark);letter-spacing:.3px;}
+.flash-hint{text-align:center;font-size:.78rem;color:var(--text-sub);margin-top:8px;}
+.flash-nav{display:flex;gap:8px;margin-top:14px;}
+.flash-nav button{
+  flex:1;
+  padding:10px 4px;
+  border:none;
+  border-radius:20px;
+  font-weight:bold;
+  font-size:.86rem;
+  cursor:pointer;
+  background:#e2e8f0;
+  color:var(--text);
+}
+.flash-nav button.flip-btn{background:var(--primary);color:#fff;}
+</style>
+</head>
+<body>
+
+<div class="topnav">⚗️ GAMBA 化学</div>
+<div class="hero">
+  <h1>無機化学⑥ アルカリ金属とその化合物</h1>
+  <p>江原予備校 GAMBA 大学入学共通テスト対応教材</p>
+</div>
+
+<div class="tabnav">
+  <button class="tab-btn active" data-tab="study">① 学習</button>
+  <button class="tab-btn" data-tab="fill">② 穴埋め</button>
+  <button class="tab-btn" data-tab="check">③ 確認テスト</button>
+  <button class="tab-btn" data-tab="cards">④ カード</button>
+</div>
+
+<main class="wrap">
+
+<!-- ============ ① 学習 ============ -->
+<div class="tab-content active" id="tab-study">
+
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">1</span>アルカリ金属の性質</div>
+    <div class="stage">
+
+      <div class="read-box">水素を除く1族の元素を「アルカリ金属」といいます（Li・Na・K・Rb・Cs・Fr）。いずれも価電子を1個もち，電子を1個失って1価の陽イオンになりやすい性質があります。</div>
+
+      <div class="key-box"><span class="tag">🔑 ポイント</span> 原子番号が大きくなるほどイオン化エネルギーが小さくなり，陽イオンになりやすくなります。そのため反応性も強くなります。<br>反応性：Li ＜ Na ＜ K ＜ Rb ＜ Cs ＜ Fr</div>
+
+      <div class="read-box">アルカリ金属は水と激しく反応して水素を発生します。また，空気中の酸素ともすぐに反応してしまいます。</div>
+      <div class="eq">2Na ＋ 2H₂O → 2NaOH ＋ H₂</div>
+      <div class="eq">4Na ＋ O₂ → 2Na₂O</div>
+
+      <div class="important-box"><span class="tag">⚠️ 注意</span> アルカリ金属は水や酸素と反応しやすいので，石油（灯油）の中に保存します。</div>
+
+      <div class="read-box">また，アルカリ金属やその化合物を炎に入れると，それぞれ特有の色がつきます。これを炎色反応といい，元素の検出に利用されます。</div>
+
+      <div class="tbl-wrap">
+        <table class="summary-tbl">
+          <tr><th>元素</th><th>Li</th><th>Na</th><th>K</th></tr>
+          <tr><td>炎色反応</td><td>赤色</td><td>黄色</td><td>赤紫色</td></tr>
+        </table>
+      </div>
+
+      <div class="read-box">アルカリ金属はイオン化傾向がとても大きいため，単体を取り出すには「融解塩電解」を使います。</div>
+      <div class="eq">2NaCl → 2Na ＋ Cl₂（NaClの融解塩電解）</div>
+
+      <div class="minitest" data-correct="x">
+        <div class="mt-text">Q. アルカリ金属は，原子番号が大きくなるほど反応性が弱くなる。 ○か×か？</div>
+        <div class="mt-choices">
+          <button class="mt-c" data-v="o">○ 正しい</button>
+          <button class="mt-c" data-v="x">× 誤り</button>
+        </div>
+        <div class="mt-exp"></div>
+      </div>
+
+      <div class="q4 mini" data-correct="d">
+        <div class="q4-no practice">小テスト①</div>
+        <div class="q4-text">Q. アルカリ金属の中で最も反応性が強いのはどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．Li</button>
+          <button class="q4-c" data-v="b">b．Na</button>
+          <button class="q4-c" data-v="c">c．K</button>
+          <button class="q4-c" data-v="d">d．Cs</button>
+        </div>
+        <div class="q4-exp">📘 反応性はLi＜Na＜K＜Rb＜Cs＜Frの順に強くなります。原子番号が大きいほどイオン化エネルギーが小さいためです。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">小テスト②</div>
+        <div class="q4-text">Q. アルカリ金属の単体を保存する方法として適切なのはどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．水中に保存する</button>
+          <button class="q4-c" data-v="b">b．石油（灯油）中に保存する</button>
+          <button class="q4-c" data-v="c">c．そのまま空気中に置く</button>
+          <button class="q4-c" data-v="d">d．冷凍庫で保存する</button>
+        </div>
+        <div class="q4-exp">📘 アルカリ金属は水や空気中の酸素と反応しやすいため，石油中に保存します。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="c">
+        <div class="q4-no practice">小テスト③</div>
+        <div class="q4-text">Q. ナトリウムの炎色反応の色はどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．赤色</button>
+          <button class="q4-c" data-v="b">b．赤紫色</button>
+          <button class="q4-c" data-v="c">c．黄色</button>
+          <button class="q4-c" data-v="d">d．緑色</button>
+        </div>
+        <div class="q4-exp">📘 Naの炎色反応は黄色です。Liは赤色，Kは赤紫色です。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">小テスト④</div>
+        <div class="q4-text">Q. 「2Na＋2H₂O→2NaOH＋（　）」。空欄に入るのはどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．H₂</button>
+          <button class="q4-c" data-v="b">b．O₂</button>
+          <button class="q4-c" data-v="c">c．Na₂O</button>
+          <button class="q4-c" data-v="d">d．NaH</button>
+        </div>
+        <div class="q4-exp">📘 ナトリウムは水と激しく反応して水素H₂を発生します。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">小テスト⑤</div>
+        <div class="q4-text">Q. アルカリ金属の単体を取り出す方法はどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．液体空気の分留</button>
+          <button class="q4-c" data-v="b">b．融解塩電解</button>
+          <button class="q4-c" data-v="c">c．MnO₂触媒による分解</button>
+          <button class="q4-c" data-v="d">d．石灰水との反応</button>
+        </div>
+        <div class="q4-exp">📘 アルカリ金属はイオン化傾向が大きいため，融解塩電解（2NaCl→2Na＋Cl₂など）で単体を取り出します。</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">2</span>水酸化ナトリウムNaOH</div>
+    <div class="stage">
+
+      <div class="read-box">水酸化ナトリウムNaOHは，せっけん・紙パルプ・合成繊維などに利用される重要な化合物です。</div>
+
+      <div class="key-box"><span class="tag">🔑 ステップで考える</span> NaOHは，塩化ナトリウム水溶液（食塩水）の電気分解でつくられます。①の電気分解で学んだ考え方と同じです。陰極（－極）ではH₂Oが還元されてH₂とOH⁻ができ，陽極（＋極）ではCl⁻が酸化されてCl₂ができます。</div>
+      <div class="eq">2NaCl ＋ 2H₂O → 2NaOH ＋ H₂ ＋ Cl₂</div>
+
+      <div class="read-box">NaOHは白色の固体で，水によく溶け，水溶液は強い塩基性を示します。別名「苛性ソーダ」ともよばれ，皮膚を溶かす性質があるため取り扱いに注意が必要です。</div>
+
+      <div class="important-box"><span class="tag">⚠️ 注意</span> NaOHの固体は，空気中の水分を吸収して自然に溶けてしまいます。この現象を「潮解」といいます。</div>
+
+      <div class="read-box">また，NaOHは酸性酸化物であるCO₂をよく吸収して，炭酸塩に変化します。</div>
+      <div class="eq">2NaOH ＋ CO₂ → Na₂CO₃ ＋ H₂O</div>
+      <div class="key-box"><span class="tag">🔑 ポイント</span> 「塩基＋酸性酸化物→塩＋水」という中和の形になっています。③の酸化物分類で学んだパターンと同じです。</div>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">小テスト①</div>
+        <div class="q4-text">Q. 水酸化ナトリウムの工業的製法はどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．NaCl水溶液の電気分解</button>
+          <button class="q4-c" data-v="b">b．NaClの融解塩電解</button>
+          <button class="q4-c" data-v="c">c．液体空気の分留</button>
+          <button class="q4-c" data-v="d">d．石灰石の強熱</button>
+        </div>
+        <div class="q4-exp">📘 2NaCl＋2H₂O→2NaOH＋H₂＋Cl₂。食塩水を電気分解してつくります。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="c">
+        <div class="q4-no practice">小テスト②</div>
+        <div class="q4-text">Q. NaOHの固体が空気中の水分を吸収して溶ける現象を何といいますか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．風解</button>
+          <button class="q4-c" data-v="b">b．昇華</button>
+          <button class="q4-c" data-v="c">c．潮解</button>
+          <button class="q4-c" data-v="d">d．融解</button>
+        </div>
+        <div class="q4-exp">📘 固体が空気中の水分を吸収して溶ける現象を「潮解」といいます。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="d">
+        <div class="q4-no practice">小テスト③</div>
+        <div class="q4-text">Q. 「2NaOH＋CO₂→（　）＋H₂O」。空欄に入るのはどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．NaHCO₃</button>
+          <button class="q4-c" data-v="b">b．NaCl</button>
+          <button class="q4-c" data-v="c">c．Na₂O</button>
+          <button class="q4-c" data-v="d">d．Na₂CO₃</button>
+        </div>
+        <div class="q4-exp">📘 NaOH（塩基）がCO₂（酸性酸化物）を吸収すると，炭酸ナトリウムNa₂CO₃と水ができます。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">小テスト④</div>
+        <div class="q4-text">Q. 水酸化ナトリウムの別名はどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．重曹</button>
+          <button class="q4-c" data-v="b">b．苛性ソーダ</button>
+          <button class="q4-c" data-v="c">c．生石灰</button>
+          <button class="q4-c" data-v="d">d．ソーダ石灰</button>
+        </div>
+        <div class="q4-exp">📘 NaOHは「苛性ソーダ」ともよばれます。重曹はNaHCO₃の別名です。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">小テスト⑤</div>
+        <div class="q4-text">Q. NaOH水溶液の性質はどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．強い塩基性</button>
+          <button class="q4-c" data-v="b">b．強い酸性</button>
+          <button class="q4-c" data-v="c">c．中性</button>
+          <button class="q4-c" data-v="d">d．弱い酸性</button>
+        </div>
+        <div class="q4-exp">📘 NaOHは白色固体で水によく溶け，水溶液は強い塩基性を示します。</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">3</span>炭酸ナトリウムNa₂CO₃とアンモニアソーダ法</div>
+    <div class="stage">
+
+      <div class="read-box">炭酸ナトリウムNa₂CO₃は，ガラスの製造に欠かせない物質で，工業的には「アンモニアソーダ法（ソルベー法）」という方法で大量につくられています。</div>
+
+      <div class="key-box"><span class="tag">🔑 ステップで考える</span> アンモニアソーダ法は，オストワルト法（硝酸の工業的製法）と同じように，いくつかの反応をつなげていく製法です。相関図で流れをつかみましょう。</div>
+
+      <div class="flow-diagram">
+        <div class="flow-row">
+          <div class="flow-box">飽和食塩水<br>NaCl</div>
+          <div class="flow-arrow">→<span class="cond">NH₃，CO₂<br>を通じる</span></div>
+          <div class="flow-box result">NaHCO₃<br>（沈殿）</div>
+          <div class="flow-arrow">＋</div>
+          <div class="flow-box byproduct">NH₄Cl</div>
+        </div>
+        <div class="flow-note">NaCl ＋ NH₃ ＋ CO₂ ＋ H₂O → NaHCO₃ ＋ NH₄Cl</div>
+
+        <div class="flow-row">
+          <div class="flow-box">炭酸水素<br>ナトリウム<br>NaHCO₃</div>
+          <div class="flow-arrow">→<span class="cond">加熱</span></div>
+          <div class="flow-box result">Na₂CO₃</div>
+          <div class="flow-arrow">＋</div>
+          <div class="flow-box byproduct">H₂O＋CO₂</div>
+        </div>
+        <div class="flow-note">2NaHCO₃ → Na₂CO₃ ＋ H₂O ＋ CO₂</div>
+      </div>
+
+      <div class="read-box">副生したNH₄Clからは，石灰石を使ってNH₃を回収し，再び①の工程で利用します（ハーバー・ボッシュ法を使わずにNH₃を使い回せるのが，この製法の工夫です）。</div>
+      <div class="eq">CaCO₃ → CaO ＋ CO₂</div>
+      <div class="eq">2NH₄Cl ＋ Ca(OH)₂ → CaCl₂ ＋ 2H₂O ＋ 2NH₃</div>
+
+      <button class="why-btn" data-popup="p1">🤔 なぜNH₃を使い回すの？</button>
+
+      <div class="important-box"><span class="tag">⚠️ 注意</span> Na₂CO₃は弱酸（炭酸）と強塩基の塩なので，水溶液は塩基性を示します。酸を加えるとCO₂が発生します。</div>
+      <div class="eq">Na₂CO₃ ＋ 2HCl → 2NaCl ＋ H₂O ＋ CO₂</div>
+
+      <div class="read-box">Na₂CO₃の水溶液を濃縮すると，無色透明の結晶Na₂CO₃・10H₂O（十水和物）ができます。これを空気中に置いておくと，水和水の一部を失って白色粉末のNa₂CO₃・H₂Oになります。この現象を「風解」といいます（NaOHの「潮解」とは逆の現象です）。</div>
+
+      <div class="q4 mini" data-correct="c">
+        <div class="q4-no practice">小テスト①</div>
+        <div class="q4-text">Q. 炭酸ナトリウムの工業的製法を何といいますか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．ハーバー・ボッシュ法</button>
+          <button class="q4-c" data-v="b">b．オストワルト法</button>
+          <button class="q4-c" data-v="c">c．アンモニアソーダ法（ソルベー法）</button>
+          <button class="q4-c" data-v="d">d．接触法</button>
+        </div>
+        <div class="q4-exp">📘 飽和食塩水にNH₃とCO₂を通してNaHCO₃をつくり，加熱してNa₂CO₃を得る製法です。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">小テスト②</div>
+        <div class="q4-text">Q. 「NaCl＋NH₃＋CO₂＋H₂O→（　）＋NH₄Cl」。空欄に入るのはどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．Na₂CO₃</button>
+          <button class="q4-c" data-v="b">b．NaHCO₃</button>
+          <button class="q4-c" data-v="c">c．NaOH</button>
+          <button class="q4-c" data-v="d">d．NaCl</button>
+        </div>
+        <div class="q4-exp">📘 飽和食塩水にNH₃とCO₂を通すと，溶解度の小さいNaHCO₃が沈殿します。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="d">
+        <div class="q4-no practice">小テスト③</div>
+        <div class="q4-text">Q. Na₂CO₃に希塩酸を加えると発生する気体はどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．H₂</button>
+          <button class="q4-c" data-v="b">b．Cl₂</button>
+          <button class="q4-c" data-v="c">c．NH₃</button>
+          <button class="q4-c" data-v="d">d．CO₂</button>
+        </div>
+        <div class="q4-exp">📘 Na₂CO₃＋2HCl→2NaCl＋H₂O＋CO₂。弱酸の塩に強酸を加えるとCO₂が発生します。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">小テスト④</div>
+        <div class="q4-text">Q. Na₂CO₃・10H₂Oが水和水を失って粉末になる現象を何といいますか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．風解</button>
+          <button class="q4-c" data-v="b">b．潮解</button>
+          <button class="q4-c" data-v="c">c．昇華</button>
+          <button class="q4-c" data-v="d">d．融解</button>
+        </div>
+        <div class="q4-exp">📘 結晶が水和水を失って粉末になる現象を「風解」といいます。NaOHの「潮解」とは逆の変化です。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">小テスト⑤</div>
+        <div class="q4-text">Q. 炭酸ナトリウムが主に利用される工業製品はどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．せっけん</button>
+          <button class="q4-c" data-v="b">b．ガラス</button>
+          <button class="q4-c" data-v="c">c．合成繊維</button>
+          <button class="q4-c" data-v="d">d．肥料</button>
+        </div>
+        <div class="q4-exp">📘 Na₂CO₃はガラスの製造で特に重要な原料です。</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">4</span>炭酸水素ナトリウムNaHCO₃（重曹）</div>
+    <div class="stage">
+
+      <div class="read-box">炭酸水素ナトリウムNaHCO₃は「重曹」ともよばれ，ベーキングパウダー・胃腸薬・発泡入浴剤などに使われる身近な物質です。アンモニアソーダ法の最初の工程（前のページ①）でできる物質でもあります。</div>
+
+      <div class="tbl-wrap">
+        <table class="summary-tbl">
+          <tr><th></th><th>Na₂CO₃</th><th>NaHCO₃</th></tr>
+          <tr><td>水への溶解度</td><td>大きい</td><td>小さい</td></tr>
+          <tr><td>水溶液の塩基性</td><td>強い</td><td>弱い</td></tr>
+          <tr><td>加熱</td><td>変化しない</td><td>分解してCO₂発生</td></tr>
+          <tr><td>炎色反応</td><td>黄色</td><td>黄色</td></tr>
+        </table>
+      </div>
+
+      <div class="read-box">NaHCO₃を加熱したり酸を加えたりすると，CO₂が発生します。</div>
+      <div class="eq">2NaHCO₃ → Na₂CO₃ ＋ H₂O ＋ CO₂</div>
+      <div class="eq">NaHCO₃ ＋ HCl → NaCl ＋ H₂O ＋ CO₂</div>
+
+      <div class="key-box"><span class="tag">🔑 ポイント</span> NaHCO₃もNa₂CO₃も，酸を加えるとCO₂が発生する点は共通しています。「弱酸の塩に強酸を加えると弱酸が遊離する」という同じパターンです。</div>
+
+      <div class="minitest" data-correct="o">
+        <div class="mt-text">Q. 炭酸水素ナトリウムは，炭酸ナトリウムより水に溶けにくい。 ○か×か？</div>
+        <div class="mt-choices">
+          <button class="mt-c" data-v="o">○ 正しい</button>
+          <button class="mt-c" data-v="x">× 誤り</button>
+        </div>
+        <div class="mt-exp"></div>
+      </div>
+
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">小テスト①</div>
+        <div class="q4-text">Q. 炭酸水素ナトリウムの別名はどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．苛性ソーダ</button>
+          <button class="q4-c" data-v="b">b．重曹</button>
+          <button class="q4-c" data-v="c">c．ソーダ石灰</button>
+          <button class="q4-c" data-v="d">d．水ガラス</button>
+        </div>
+        <div class="q4-exp">📘 NaHCO₃は「重曹（重炭酸ソーダ）」とよばれ，身近な製品に使われています。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="c">
+        <div class="q4-no practice">小テスト②</div>
+        <div class="q4-text">Q. 「2NaHCO₃→Na₂CO₃＋H₂O＋（　）」。空欄に入るのはどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．O₂</button>
+          <button class="q4-c" data-v="b">b．H₂</button>
+          <button class="q4-c" data-v="c">c．CO₂</button>
+          <button class="q4-c" data-v="d">d．NaCl</button>
+        </div>
+        <div class="q4-exp">📘 NaHCO₃を加熱すると分解してCO₂が発生します。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">小テスト③</div>
+        <div class="q4-text">Q. Na₂CO₃とNaHCO₃で，水溶液の塩基性が強いのはどちらですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．Na₂CO₃</button>
+          <button class="q4-c" data-v="b">b．NaHCO₃</button>
+          <button class="q4-c" data-v="c">c．どちらも同じ</button>
+          <button class="q4-c" data-v="d">d．どちらも酸性</button>
+        </div>
+        <div class="q4-exp">📘 Na₂CO₃は強い塩基性，NaHCO₃は弱い塩基性を示します。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="d">
+        <div class="q4-no practice">小テスト④</div>
+        <div class="q4-text">Q. NaHCO₃に塩酸を加えると発生する気体はどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．H₂</button>
+          <button class="q4-c" data-v="b">b．Cl₂</button>
+          <button class="q4-c" data-v="c">c．NH₃</button>
+          <button class="q4-c" data-v="d">d．CO₂</button>
+        </div>
+        <div class="q4-exp">📘 NaHCO₃＋HCl→NaCl＋H₂O＋CO₂。酸を加えるとCO₂が発生します。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">小テスト⑤</div>
+        <div class="q4-text">Q. 加熱しても変化しないのはどちらですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．NaHCO₃</button>
+          <button class="q4-c" data-v="b">b．Na₂CO₃</button>
+          <button class="q4-c" data-v="c">c．どちらも分解する</button>
+          <button class="q4-c" data-v="d">d．どちらも燃える</button>
+        </div>
+        <div class="q4-exp">📘 NaHCO₃は加熱すると分解しますが，Na₂CO₃は加熱しても変化しません。</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">5</span>アルカリ土類金属元素（2族）とカルシウムの化合物</div>
+    <div class="stage">
+
+      <div class="read-box">周期表の2族元素のうち，Ca・Sr・Ba・Raを「アルカリ土類金属」といいます。同じ2族でもBe・Mgは少し性質が異なり，アルカリ土類金属には分類しません。</div>
+
+      <div class="key-box"><span class="tag">🔑 ポイント</span> 2族元素は価電子を2個もち，2価の陽イオンになりやすい性質があります。アルカリ金属（1族）と同じく，単体はイオン化傾向が大きいため，融解塩電解でつくります。</div>
+
+      <div class="read-box">アルカリ土類金属の単体は，1族のアルカリ金属と比べて密度が大きく，融点が高いという違いがあります。ただし，常温の水と反応して水素を発生する点は共通しています。</div>
+      <div class="eq">Ca ＋ 2H₂O → Ca(OH)₂ ＋ H₂</div>
+
+      <div class="read-box">アルカリ金属と同じく，アルカリ土類金属も炎色反応を示します。1族と合わせて覚えておきましょう。</div>
+
+      <div class="tbl-wrap">
+        <table class="summary-tbl">
+          <tr><th>元素</th><th>Li</th><th>Na</th><th>K</th><th>Ca</th><th>Sr</th><th>Ba</th></tr>
+          <tr><td>炎色反応</td><td>赤</td><td>黄</td><td>赤紫</td><td>橙赤</td><td>紅</td><td>黄緑</td></tr>
+        </table>
+      </div>
+
+      <h3>カルシウムの化合物をつくる連鎖</h3>
+      <div class="read-box">カルシウムの化合物は，石灰石CaCO₃を出発点として，次々とつながっています。③の単元で学んだ「石灰水によるCO₂の検出」も，実はこの連鎖の一部です。</div>
+
+      <div class="flow-diagram">
+        <div class="flow-row">
+          <div class="flow-box">CaCO₃<br>（石灰石）</div>
+          <div class="flow-arrow">→<span class="cond">強熱</span></div>
+          <div class="flow-box result">CaO<br>（生石灰）</div>
+        </div>
+        <div class="flow-row">
+          <div class="flow-box result">CaO</div>
+          <div class="flow-arrow">＋H₂O→</div>
+          <div class="flow-box result">Ca(OH)₂<br>（消石灰）</div>
+        </div>
+      </div>
+      <div class="eq">CaCO₃ → CaO ＋ CO₂（生石灰の製法：吸湿性があり乾燥剤に利用）</div>
+      <div class="eq">CaO ＋ H₂O → Ca(OH)₂（発熱反応）</div>
+
+      <div class="important-box"><span class="tag">⚠️ 注意</span> Ca(OH)₂の飽和水溶液が「石灰水」です。石灰水にCO₂を少量通すと白色沈殿CaCO₃が生じて白く濁りますが，さらにCO₂を通し続けると，水に溶けるCa(HCO₃)₂（炭酸水素カルシウム）に変わって透明にもどります。この溶液を加熱すると，再びCaCO₃が沈殿します。</div>
+
+      <div class="eq">① Ca(OH)₂ ＋ CO₂ → CaCO₃↓ ＋ H₂O（白く濁る）</div>
+      <div class="eq">② CaCO₃ ＋ CO₂ ＋ H₂O → Ca(HCO₃)₂（透明にもどる）</div>
+      <div class="eq">③ Ca(HCO₃)₂ → CaCO₃↓ ＋ H₂O ＋ CO₂（加熱すると再び沈殿）</div>
+
+      <div class="key-box"><span class="tag">🔑 ポイント</span> 鍾乳洞も，この①→②→③と同じしくみでできています。石灰石が雨水中のCO₂でCa(HCO₃)₂となって溶け出し，洞窟内で再びCaCO₃として固まるのです。</div>
+
+      <div class="minitest" data-correct="x">
+        <div class="mt-text">Q. 白く濁った石灰水に，さらにCO₂を通し続けると，より白く濁る。 ○か×か？</div>
+        <div class="mt-choices">
+          <button class="mt-c" data-v="o">○ 正しい</button>
+          <button class="mt-c" data-v="x">× 誤り</button>
+        </div>
+        <div class="mt-exp"></div>
+      </div>
+
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">小テスト①</div>
+        <div class="q4-text">Q. カルシウムCaと水の反応で発生する気体はどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．O₂</button>
+          <button class="q4-c" data-v="b">b．H₂</button>
+          <button class="q4-c" data-v="c">c．CO₂</button>
+          <button class="q4-c" data-v="d">d．Cl₂</button>
+        </div>
+        <div class="q4-exp">📘 Ca＋2H₂O→Ca(OH)₂＋H₂。アルカリ土類金属も水と反応して水素を発生します。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="c">
+        <div class="q4-no practice">小テスト②</div>
+        <div class="q4-text">Q. カルシウムの炎色反応の色はどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．黄色</button>
+          <button class="q4-c" data-v="b">b．黄緑色</button>
+          <button class="q4-c" data-v="c">c．橙赤色</button>
+          <button class="q4-c" data-v="d">d．赤紫色</button>
+        </div>
+        <div class="q4-exp">📘 Caは橙赤色です。Srは紅（深赤）色，Baは黄緑色と区別して覚えましょう。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="d">
+        <div class="q4-no practice">小テスト③</div>
+        <div class="q4-text">Q. 生石灰CaOのもとになる物質はどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．Ca(OH)₂</button>
+          <button class="q4-c" data-v="b">b．CaCl₂</button>
+          <button class="q4-c" data-v="c">c．Ca(HCO₃)₂</button>
+          <button class="q4-c" data-v="d">d．CaCO₃</button>
+        </div>
+        <div class="q4-exp">📘 CaCO₃（石灰石）を強熱するとCaO（生石灰）とCO₂に分解します。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">小テスト④</div>
+        <div class="q4-text">Q. 石灰水にCO₂を少量通すと白く濁るのはなぜですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．水に溶けないCaCO₃の沈殿が生じるから</button>
+          <button class="q4-c" data-v="b">b．Ca(OH)₂が分解するから</button>
+          <button class="q4-c" data-v="c">c．気体が発生するから</button>
+          <button class="q4-c" data-v="d">d．色が変化するから</button>
+        </div>
+        <div class="q4-exp">📘 Ca(OH)₂＋CO₂→CaCO₃↓＋H₂O。水に溶けにくい白色のCaCO₃が沈殿します。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">小テスト⑤</div>
+        <div class="q4-text">Q. 白く濁った石灰水に，さらにCO₂を通し続けると起こることはどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．さらに濁る</button>
+          <button class="q4-c" data-v="b">b．Ca(HCO₃)₂となって透明になる</button>
+          <button class="q4-c" data-v="c">c．黒く変色する</button>
+          <button class="q4-c" data-v="d">d．固体になる</button>
+        </div>
+        <div class="q4-exp">📘 CaCO₃＋CO₂＋H₂O→Ca(HCO₃)₂。水に溶けるので透明にもどります。</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">6</span>硫酸カルシウム・硫酸バリウムとマグネシウム</div>
+    <div class="stage">
+
+      <div class="read-box">カルシウムの化合物には，もうひとつ重要なものがあります。硫酸カルシウムCaSO₄です。天然には二水和物のセッコウ（CaSO₄・2H₂O）として存在します。</div>
+
+      <div class="flow-diagram">
+        <div class="flow-row">
+          <div class="flow-box">CaSO₄・2H₂O<br>（セッコウ）</div>
+          <div class="flow-arrow">→<span class="cond">約120℃<br>で加熱</span></div>
+          <div class="flow-box result">CaSO₄・H₂O<br>（焼きセッコウ）</div>
+        </div>
+      </div>
+      <div class="eq">CaSO₄・2H₂O → CaSO₄・H₂O ＋ H₂O</div>
+
+      <div class="key-box"><span class="tag">🔑 ポイント</span> 焼きセッコウは水を加えて練ると，再び水を吸収して発熱しながら固まり，セッコウにもどります。この性質を利用して，ギプスなどに使われています。</div>
+
+      <h3>硫酸バリウムBaSO₄：白色沈殿の代表格</h3>
+      <div class="read-box">バリウムイオンBa²⁺と硫酸イオンSO₄²⁻が出会うと，水に溶けない白色の沈殿，硫酸バリウムBaSO₄ができます。</div>
+      <div class="eq">Ba²⁺ ＋ SO₄²⁻ → BaSO₄↓</div>
+
+      <div class="important-box"><span class="tag">⚠️ 注意</span> BaSO₄は水にも酸にも溶けにくい，非常に安定した白色沈殿です。この性質を利用して，レントゲン検査（X線の造影剤）としてバリウムを飲む検査に使われています。沈殿反応の代表例として，07b単元の陽イオン沈殿分離でも登場します。</div>
+
+      <h3>マグネシウムMg：2族だがアルカリ土類金属ではない</h3>
+      <div class="read-box">マグネシウムは2族元素ですが，Ca・Sr・Baとは性質が異なるため，アルカリ土類金属には含めません。身近な合金や材料として重要です。</div>
+
+      <div class="tbl-wrap">
+        <table class="summary-tbl">
+          <tr><th>物質</th><th>用途</th></tr>
+          <tr><td>MgCl₂</td><td>豆腐の凝固剤（にがり）</td></tr>
+          <tr><td>MgO</td><td>耐熱性が高く，耐火レンガに利用</td></tr>
+          <tr><td>ジュラルミン<br>（Al・Cu・Mgの合金）</td><td>軽くて強度が高く，飛行機の機体に利用</td></tr>
+        </table>
+      </div>
+
+      <div class="minitest" data-correct="o">
+        <div class="mt-text">Q. 硫酸バリウムBaSO₄は水に溶けにくい白色の沈殿である。 ○か×か？</div>
+        <div class="mt-choices">
+          <button class="mt-c" data-v="o">○ 正しい</button>
+          <button class="mt-c" data-v="x">× 誤り</button>
+        </div>
+        <div class="mt-exp"></div>
+      </div>
+
+      <div class="q4 mini" data-correct="c">
+        <div class="q4-no practice">小テスト①</div>
+        <div class="q4-text">Q. セッコウ（CaSO₄・2H₂O）を加熱してできる焼きセッコウは何に利用されますか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．乾燥剤</button>
+          <button class="q4-c" data-v="b">b．X線造影剤</button>
+          <button class="q4-c" data-v="c">c．ギプス</button>
+          <button class="q4-c" data-v="d">d．豆腐の凝固剤</button>
+        </div>
+        <div class="q4-exp">📘 焼きセッコウは水を加えると再び固まる性質を利用し，ギプスなどに使われます。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">小テスト②</div>
+        <div class="q4-text">Q. Ba²⁺とSO₄²⁻が反応してできる沈殿はどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．BaCO₃</button>
+          <button class="q4-c" data-v="b">b．BaSO₄</button>
+          <button class="q4-c" data-v="c">c．BaCl₂</button>
+          <button class="q4-c" data-v="d">d．Ba(OH)₂</button>
+        </div>
+        <div class="q4-exp">📘 Ba²⁺＋SO₄²⁻→BaSO₄↓。白色で水に溶けにくい沈殿です。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="d">
+        <div class="q4-no practice">小テスト③</div>
+        <div class="q4-text">Q. マグネシウムに関する記述として正しいものはどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．アルカリ土類金属に分類される</button>
+          <button class="q4-c" data-v="b">b．MgOは水に非常によく溶ける</button>
+          <button class="q4-c" data-v="c">c．1族元素である</button>
+          <button class="q4-c" data-v="d">d．Al・Cuとの合金ジュラルミンは飛行機に利用される</button>
+        </div>
+        <div class="q4-exp">📘 Mgは2族ですがアルカリ土類金属には含みません。ジュラルミン（Al・Cu・Mg）は軽くて強いのが特徴です。</div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- ============ ② 穴埋めチャレンジ ============ -->
+<div class="tab-content" id="tab-fill">
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">✎</span>穴埋めチャレンジ</div>
+    <div class="stage">
+      <div class="read-box">下のチップをタップして，反応式の空欄をうめましょう。まちがえても大丈夫，「やり直す」でもう一度チャレンジできます。</div>
+    </div>
+  </div>
+
+  <div class="fill-item" data-fill="f1">
+    <div class="q-no">問1</div>
+    <div class="fill-sentence">ナトリウムと水の反応：2Na ＋ 2H₂O → 2NaOH ＋ <span class="blank" data-blank="0" data-ans="H2">　</span></div>
+    <div class="chip-bank">
+      <span class="chip" data-val="H2">H₂</span>
+      <span class="chip" data-val="O2">O₂</span>
+      <span class="chip" data-val="2H2">2H₂</span>
+      <span class="chip" data-val="Na2O">Na₂O</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+
+  <div class="fill-item" data-fill="f2">
+    <div class="q-no">問2</div>
+    <div class="fill-sentence">NaOHによるCO₂の吸収：2NaOH ＋ CO₂ → <span class="blank" data-blank="0" data-ans="Na2CO3">　</span> ＋ H₂O</div>
+    <div class="chip-bank">
+      <span class="chip" data-val="Na2CO3">Na₂CO₃</span>
+      <span class="chip" data-val="NaHCO3">NaHCO₃</span>
+      <span class="chip" data-val="NaCl">NaCl</span>
+      <span class="chip" data-val="Na2O">Na₂O</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+
+  <div class="fill-item" data-fill="f3">
+    <div class="q-no">問3</div>
+    <div class="fill-sentence">アンモニアソーダ法①：NaCl ＋ NH₃ ＋ CO₂ ＋ H₂O → <span class="blank" data-blank="0" data-ans="NaHCO3">　</span> ＋ NH₄Cl</div>
+    <div class="chip-bank">
+      <span class="chip" data-val="NaHCO3">NaHCO₃</span>
+      <span class="chip" data-val="Na2CO3">Na₂CO₃</span>
+      <span class="chip" data-val="NaOH">NaOH</span>
+      <span class="chip" data-val="NaCl">NaCl</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+
+  <div class="fill-item" data-fill="f4">
+    <div class="q-no">問4</div>
+    <div class="fill-sentence">アンモニアソーダ法②：2NaHCO₃ → Na₂CO₃ ＋ H₂O ＋ <span class="blank" data-blank="0" data-ans="CO2">　</span></div>
+    <div class="chip-bank">
+      <span class="chip" data-val="CO2">CO₂</span>
+      <span class="chip" data-val="CO">CO</span>
+      <span class="chip" data-val="O2">O₂</span>
+      <span class="chip" data-val="H2">H₂</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+
+  <div class="fill-item" data-fill="f5">
+    <div class="q-no">問5</div>
+    <div class="fill-sentence">炭酸ナトリウムに酸を加える：Na₂CO₃ ＋ 2HCl → 2NaCl ＋ H₂O ＋ <span class="blank" data-blank="0" data-ans="CO2">　</span></div>
+    <div class="chip-bank">
+      <span class="chip" data-val="CO2">CO₂</span>
+      <span class="chip" data-val="Cl2">Cl₂</span>
+      <span class="chip" data-val="H2">H₂</span>
+      <span class="chip" data-val="NaHCO3">NaHCO₃</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+
+  <div class="fill-item" data-fill="f6">
+    <div class="q-no">問6</div>
+    <div class="fill-sentence">生石灰の製法：CaCO₃ → <span class="blank" data-blank="0" data-ans="CaO">　</span> ＋ CO₂</div>
+    <div class="chip-bank">
+      <span class="chip" data-val="CaO">CaO</span>
+      <span class="chip" data-val="CaOH2">Ca(OH)₂</span>
+      <span class="chip" data-val="CaCl2">CaCl₂</span>
+      <span class="chip" data-val="CaSO4">CaSO₄</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+
+  <div class="fill-item" data-fill="f7">
+    <div class="q-no">問7</div>
+    <div class="fill-sentence">硫酸バリウムの沈殿生成：Ba²⁺ ＋ SO₄²⁻ → <span class="blank" data-blank="0" data-ans="BaSO4">　</span></div>
+    <div class="chip-bank">
+      <span class="chip" data-val="BaSO4">BaSO₄</span>
+      <span class="chip" data-val="BaCO3">BaCO₃</span>
+      <span class="chip" data-val="BaCl2">BaCl₂</span>
+      <span class="chip" data-val="BaOH2">Ba(OH)₂</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+</div>
+
+<!-- ============ ③ 確認テスト ============ -->
+<div class="tab-content" id="tab-check">
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">✓</span>確認テスト（14問）</div>
+    <div class="stage">
+      <div class="read-box">すべての問題に答えると，結果が表示されます。自分のペースでゆっくり進めましょう。</div>
+    </div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="d">
+    <div class="q4-no">第1問</div>
+    <div class="q4-text">アルカリ金属の中で最も反応性が強いのはどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．Li</button>
+      <button class="q4-c" data-v="b">b．Na</button>
+      <button class="q4-c" data-v="c">c．K</button>
+      <button class="q4-c" data-v="d">d．Cs</button>
+    </div>
+    <div class="q4-exp">📘 反応性はLi＜Na＜K＜Rb＜Cs＜Frの順に強くなります。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="b">
+    <div class="q4-no">第2問</div>
+    <div class="q4-text">アルカリ金属の単体を保存する方法はどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．水中に保存する</button>
+      <button class="q4-c" data-v="b">b．石油（灯油）中に保存する</button>
+      <button class="q4-c" data-v="c">c．空気中にそのまま置く</button>
+      <button class="q4-c" data-v="d">d．冷凍庫で保存する</button>
+    </div>
+    <div class="q4-exp">📘 アルカリ金属は水や酸素と反応しやすいため，石油中に保存します。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="c">
+    <div class="q4-no">第3問</div>
+    <div class="q4-text">ナトリウムの炎色反応の色はどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．赤色</button>
+      <button class="q4-c" data-v="b">b．赤紫色</button>
+      <button class="q4-c" data-v="c">c．黄色</button>
+      <button class="q4-c" data-v="d">d．緑色</button>
+    </div>
+    <div class="q4-exp">📘 Naの炎色反応は黄色です。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="a">
+    <div class="q4-no">第4問</div>
+    <div class="q4-text">水酸化ナトリウムの工業的製法はどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．NaCl水溶液の電気分解</button>
+      <button class="q4-c" data-v="b">b．石灰石の強熱</button>
+      <button class="q4-c" data-v="c">c．液体空気の分留</button>
+      <button class="q4-c" data-v="d">d．MnO₂触媒による分解</button>
+    </div>
+    <div class="q4-exp">📘 2NaCl＋2H₂O→2NaOH＋H₂＋Cl₂。食塩水の電気分解でつくります。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="c">
+    <div class="q4-no">第5問</div>
+    <div class="q4-text">NaOHの固体が水分を吸収して溶ける現象を何といいますか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．風解</button>
+      <button class="q4-c" data-v="b">b．昇華</button>
+      <button class="q4-c" data-v="c">c．潮解</button>
+      <button class="q4-c" data-v="d">d．融解</button>
+    </div>
+    <div class="q4-exp">📘 固体が空気中の水分を吸収して溶ける現象を「潮解」といいます。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="c">
+    <div class="q4-no">第6問</div>
+    <div class="q4-text">炭酸ナトリウムの工業的製法を何といいますか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．ハーバー・ボッシュ法</button>
+      <button class="q4-c" data-v="b">b．オストワルト法</button>
+      <button class="q4-c" data-v="c">c．アンモニアソーダ法（ソルベー法）</button>
+      <button class="q4-c" data-v="d">d．融解塩電解</button>
+    </div>
+    <div class="q4-exp">📘 飽和食塩水にNH₃とCO₂を通し，NaHCO₃を経てNa₂CO₃をつくる製法です。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="b">
+    <div class="q4-no">第7問</div>
+    <div class="q4-text">「NaCl＋NH₃＋CO₂＋H₂O→（　）＋NH₄Cl」。空欄に入るのはどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．Na₂CO₃</button>
+      <button class="q4-c" data-v="b">b．NaHCO₃</button>
+      <button class="q4-c" data-v="c">c．NaOH</button>
+      <button class="q4-c" data-v="d">d．NaCl</button>
+    </div>
+    <div class="q4-exp">📘 飽和食塩水にNH₃とCO₂を通すと，溶解度の小さいNaHCO₃が沈殿します。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="b">
+    <div class="q4-no">第8問</div>
+    <div class="q4-text">炭酸水素ナトリウムの別名はどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．苛性ソーダ</button>
+      <button class="q4-c" data-v="b">b．重曹</button>
+      <button class="q4-c" data-v="c">c．ソーダ石灰</button>
+      <button class="q4-c" data-v="d">d．水ガラス</button>
+    </div>
+    <div class="q4-exp">📘 NaHCO₃は「重曹」とよばれ，身近な製品に使われています。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="d">
+    <div class="q4-no">第9問</div>
+    <div class="q4-text">「2NaHCO₃→Na₂CO₃＋H₂O＋（　）」。空欄に入るのはどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．O₂</button>
+      <button class="q4-c" data-v="b">b．H₂</button>
+      <button class="q4-c" data-v="c">c．NaCl</button>
+      <button class="q4-c" data-v="d">d．CO₂</button>
+    </div>
+    <div class="q4-exp">📘 NaHCO₃を加熱すると分解してCO₂が発生します。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="a">
+    <div class="q4-no">第10問</div>
+    <div class="q4-text">Na₂CO₃とNaHCO₃で，水に対する溶解度が大きいのはどちらですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．Na₂CO₃</button>
+      <button class="q4-c" data-v="b">b．NaHCO₃</button>
+      <button class="q4-c" data-v="c">c．どちらも同じ</button>
+      <button class="q4-c" data-v="d">d．どちらも溶けない</button>
+    </div>
+    <div class="q4-exp">📘 Na₂CO₃の方が水への溶解度が大きく，NaHCO₃は比較的溶けにくい物質です。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="b">
+    <div class="q4-no">第11問</div>
+    <div class="q4-text">Ca・Sr・Ba・Raの総称を何といいますか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．アルカリ金属</button>
+      <button class="q4-c" data-v="b">b．アルカリ土類金属</button>
+      <button class="q4-c" data-v="c">c．希ガス</button>
+      <button class="q4-c" data-v="d">d．ハロゲン</button>
+    </div>
+    <div class="q4-exp">📘 2族元素のうちCa・Sr・Ba・Raをアルカリ土類金属といいます。Be・Mgは含みません。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="c">
+    <div class="q4-no">第12問</div>
+    <div class="q4-text">石灰水にCO₂を少量通したあと，さらにCO₂を通し続けると起こる変化はどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．さらに白く濁る</button>
+      <button class="q4-c" data-v="b">b．気体が発生する</button>
+      <button class="q4-c" data-v="c">c．Ca(HCO₃)₂となって透明にもどる</button>
+      <button class="q4-c" data-v="d">d．黒く変色する</button>
+    </div>
+    <div class="q4-exp">📘 CaCO₃＋CO₂＋H₂O→Ca(HCO₃)₂。水に溶けるCa(HCO₃)₂となるため透明にもどります。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="d">
+    <div class="q4-no">第13問</div>
+    <div class="q4-text">硫酸バリウムBaSO₄が利用されている例として正しいものはどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．豆腐の凝固剤</button>
+      <button class="q4-c" data-v="b">b．乾燥剤</button>
+      <button class="q4-c" data-v="c">c．ガラスの原料</button>
+      <button class="q4-c" data-v="d">d．X線の造影剤</button>
+    </div>
+    <div class="q4-exp">📘 BaSO₄は水にも酸にも溶けにくい安定した白色沈殿で，レントゲン検査の造影剤に利用されます。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="a">
+    <div class="q4-no">第14問</div>
+    <div class="q4-text">マグネシウムMgに関する記述として正しいものはどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．MgCl₂は豆腐の凝固剤（にがり）に使われる</button>
+      <button class="q4-c" data-v="b">b．アルカリ土類金属に分類される</button>
+      <button class="q4-c" data-v="c">c．炎色反応は黄緑色である</button>
+      <button class="q4-c" data-v="d">d．単体を水に入れても反応しない</button>
+    </div>
+    <div class="q4-exp">📘 Mgは2族ですがアルカリ土類金属には含みません。MgCl₂は「にがり」として豆腐づくりに使われます。</div>
+  </div>
+
+  <div class="check-footer">
+    <div class="score-box" id="score-box" style="display:none;"></div>
+  </div>
+</div>
+
+<!-- ============ ④ フラッシュカード ============ -->
+<div class="tab-content" id="tab-cards">
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">4</span>反応式フラッシュカード</div>
+    <div class="stage">
+      <div class="read-box">カードをタップすると裏の反応式が見られます。自分でめくる「手動」のほか，「3秒後自動」「5秒後自動」を選ぶと，表→裏→次のカードと自動で進みます。</div>
+
+      <div class="card-mode-buttons">
+        <button class="mode-btn active" data-mode="manual">手動</button>
+        <button class="mode-btn" data-mode="3">3秒後自動</button>
+        <button class="mode-btn" data-mode="5">5秒後自動</button>
+      </div>
+
+      <div class="flash-progress"><span id="card-pos">1</span> / <span id="card-total">5</span></div>
+
+      <div class="flashcard-wrap">
+        <div class="flashcard" id="flashcard">
+          <span class="card-face-label" id="card-face-label">表（問題）</span>
+          <div class="card-text-front" id="card-text"></div>
+        </div>
+      </div>
+      <div class="flash-hint" id="flash-hint">カードをタップすると答えがめくれます</div>
+
+      <div class="flash-nav">
+        <button id="card-prev">◀ 前へ</button>
+        <button id="card-flip" class="flip-btn">めくる</button>
+        <button id="card-next">次へ ▶</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<div class="popup-overlay" id="popup-p1">
+  <div class="popup-box">
+    <button class="popup-close" data-close="p1">×</button>
+    <h4>🤔 なぜNH₃を使い回すの？</h4>
+    <p>アンモニアソーダ法では，NH₃はNaHCO₃をつくるための「道具」として使われるだけで，反応の前後で姿を変えて（NH₄Clになって）出てきます。</p>
+    <p>もしNH₃を毎回新しく用意するとコストが非常にかかってしまいます。そこで，副生したNH₄Clに石灰（CaO・Ca(OH)₂）を反応させてNH₃を取り戻し，また最初の工程に戻して使うのです。</p>
+    <p>💡 つまり，原料であるNaClとCaCO₃（石灰石）だけを安定して使い続けられるように工夫された，効率のよい製法なのです。</p>
+  </div>
+</div>
+
+<div class="celebrate-msg" id="celebrate-msg">🎉 全問正解です！<br>よくできました！</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- タブ切替 ---------- */
+  var tabBtns = document.querySelectorAll(".tab-btn");
+  var tabContents = document.querySelectorAll(".tab-content");
+  for (var i=0;i<tabBtns.length;i++){
+    tabBtns[i].addEventListener("click", function(){
+      var target = this.getAttribute("data-tab");
+      for (var j=0;j<tabBtns.length;j++){ tabBtns[j].classList.remove("active"); }
+      for (var k=0;k<tabContents.length;k++){ tabContents[k].classList.remove("active"); }
+      this.classList.add("active");
+      document.getElementById("tab-"+target).classList.add("active");
+      window.scrollTo({top:0, behavior:"smooth"});
+      if (target !== "cards") stopCardAuto();
+    });
+  }
+
+  /* ---------- なぜ？ポップアップ ---------- */
+  var whyBtns = document.querySelectorAll(".why-btn");
+  for (var w=0;w<whyBtns.length;w++){
+    whyBtns[w].addEventListener("click", function(){
+      var id = this.getAttribute("data-popup");
+      document.getElementById("popup-"+id).classList.add("show");
+    });
+  }
+  var closeBtns = document.querySelectorAll(".popup-close");
+  for (var cb=0;cb<closeBtns.length;cb++){
+    closeBtns[cb].addEventListener("click", function(){
+      var id = this.getAttribute("data-close");
+      document.getElementById("popup-"+id).classList.remove("show");
+    });
+  }
+  var overlays = document.querySelectorAll(".popup-overlay");
+  for (var ov=0;ov<overlays.length;ov++){
+    overlays[ov].addEventListener("click", function(ev){
+      if (ev.target === this) this.classList.remove("show");
+    });
+  }
+
+  /* ---------- 穴埋めチャレンジ ---------- */
+  var fillItems = document.querySelectorAll(".fill-item");
+  for (var f=0; f<fillItems.length; f++){
+    (function(item){
+      var blanks = item.querySelectorAll(".blank");
+      var chips = item.querySelectorAll(".chip");
+      var feedback = item.querySelector(".fill-feedback");
+      var checkBtn = item.querySelector(".fill-check-btn");
+      var resetBtn = item.querySelector(".fill-reset-btn");
+
+      function nextEmptyBlank(){
+        for (var b=0;b<blanks.length;b++){
+          if (!blanks[b].classList.contains("filled")) return blanks[b];
+        }
+        return null;
+      }
+
+      for (var c=0;c<chips.length;c++){
+        chips[c].addEventListener("click", function(){
+          if (this.classList.contains("used")) return;
+          var target = nextEmptyBlank();
+          if (!target) return;
+          target.textContent = this.textContent;
+          target.classList.add("filled");
+          target.setAttribute("data-filled-val", this.getAttribute("data-val"));
+          this.classList.add("used");
+        });
+      }
+
+      checkBtn.addEventListener("click", function(){
+        var allFilled = true, allCorrect = true;
+        for (var b=0;b<blanks.length;b++){
+          if (!blanks[b].classList.contains("filled")){ allFilled = false; continue; }
+          var ok = blanks[b].getAttribute("data-filled-val") === blanks[b].getAttribute("data-ans");
+          blanks[b].classList.remove("correct","wrong");
+          blanks[b].classList.add(ok?"correct":"wrong");
+          if (!ok) allCorrect = false;
+        }
+        if (!allFilled){
+          feedback.textContent = "まだ空欄があります。チップをすべて置きましょう。";
+          feedback.className = "fill-feedback bad";
+          return;
+        }
+        if (allCorrect){
+          feedback.textContent = "✅ 正解です！この反応式を声に出して読んでみましょう。";
+          feedback.className = "fill-feedback ok";
+          launchConfetti(30);
+        } else {
+          feedback.textContent = "❌ ちがう場所があります。「やり直す」からもう一度挑戦しましょう。";
+          feedback.className = "fill-feedback bad";
+        }
+      });
+
+      resetBtn.addEventListener("click", function(){
+        for (var b=0;b<blanks.length;b++){
+          blanks[b].textContent = "　";
+          blanks[b].classList.remove("filled","correct","wrong");
+          blanks[b].removeAttribute("data-filled-val");
+        }
+        for (var c2=0;c2<chips.length;c2++){ chips[c2].classList.remove("used"); }
+        feedback.textContent = "";
+        feedback.className = "fill-feedback";
+      });
+    })(fillItems[f]);
+  }
+
+  /* ---------- q4（4択）共通処理 ---------- */
+  var finalTotal = document.querySelectorAll(".final-q4").length;
+  var finalAnsweredCount = 0;
+  var finalCorrectCount = 0;
+
+  var q4Blocks = document.querySelectorAll(".q4");
+  for (var q=0;q<q4Blocks.length;q++){
+    (function(block){
+      var correctV = block.getAttribute("data-correct");
+      var btns = block.querySelectorAll(".q4-c");
+      var exp = block.querySelector(".q4-exp");
+      var isFinal = block.classList.contains("final-q4");
+      var answered = false;
+      for (var b=0;b<btns.length;b++){
+        btns[b].addEventListener("click", function(){
+          if (answered) return;
+          answered = true;
+          var v = this.getAttribute("data-v");
+          var isCorrect = (v === correctV);
+          for (var x=0;x<btns.length;x++){
+            btns[x].classList.add("disabled");
+            if (btns[x].getAttribute("data-v") === correctV) btns[x].classList.add("correct");
+          }
+          if (!isCorrect) this.classList.add("wrong");
+          if (exp) exp.classList.add("show");
+          if (isCorrect) launchConfetti(isFinal?0:24);
+          if (isFinal){
+            finalAnsweredCount++;
+            if (isCorrect) finalCorrectCount++;
+            checkFinalDone();
+          }
+        });
+      }
+    })(q4Blocks[q]);
+  }
+
+  /* ---------- minitest（○×）共通処理 ---------- */
+  var mtBlocks = document.querySelectorAll(".minitest");
+  for (var m=0;m<mtBlocks.length;m++){
+    (function(block){
+      var correctV = block.getAttribute("data-correct");
+      var btns = block.querySelectorAll(".mt-c");
+      var exp = block.querySelector(".mt-exp");
+      var answered = false;
+      for (var b=0;b<btns.length;b++){
+        btns[b].addEventListener("click", function(){
+          if (answered) return;
+          answered = true;
+          var v = this.getAttribute("data-v");
+          var isCorrect = (v === correctV);
+          for (var x=0;x<btns.length;x++){
+            btns[x].classList.add("disabled");
+            if (btns[x].getAttribute("data-v") === correctV) btns[x].classList.add("correct");
+          }
+          if (!isCorrect) this.classList.add("wrong");
+          if (exp){
+            exp.textContent = isCorrect ? "📘 そのとおりです！よく理解できています。" : "📘 もう一度，上の説明を読み直してみましょう。";
+            exp.classList.add("show");
+          }
+          if (isCorrect) launchConfetti(24);
+        });
+      }
+    })(mtBlocks[m]);
+  }
+
+  function checkFinalDone(){
+    if (finalAnsweredCount < finalTotal) return;
+    var box = document.getElementById("score-box");
+    box.style.display = "inline-block";
+    box.textContent = "結果：" + finalTotal + "問中 " + finalCorrectCount + "問 正解！";
+    if (finalCorrectCount === finalTotal){
+      launchConfetti(80);
+      var msg = document.getElementById("celebrate-msg");
+      msg.style.display = "block";
+      setTimeout(function(){ msg.style.display = "none"; }, 2200);
+    }
+  }
+
+  /* ---------- コンフェッティ（DOM div方式） ---------- */
+  var CONFETTI_COLORS = ["#f472b6","#facc15","#34d399","#60a5fa","#f87171","#a78bfa","#fb923c","#2dd4bf"];
+
+  function launchConfetti(count){
+    if (!count) return;
+    for (var i=0;i<count;i++){
+      var piece = document.createElement("div");
+      piece.className = "confetti-piece";
+      var size = 6 + Math.random()*6;
+      piece.style.left = (Math.random()*100) + "vw";
+      piece.style.width = size + "px";
+      piece.style.height = (size*1.6) + "px";
+      piece.style.background = CONFETTI_COLORS[Math.floor(Math.random()*CONFETTI_COLORS.length)];
+      piece.style.borderRadius = (Math.random()<0.5 ? "50%" : "2px");
+      var duration = 1.8 + Math.random()*1.4;
+      piece.style.animationDuration = duration + "s";
+      piece.style.animationDelay = (Math.random()*0.3) + "s";
+      document.body.appendChild(piece);
+      (function(el, dur){
+        setTimeout(function(){ if (el.parentNode) el.parentNode.removeChild(el); }, (dur+0.5)*1000);
+      })(piece, duration);
+    }
+  }
+
+  /* ---------- フラッシュカード ---------- */
+  var CARDS = [
+    {front:"① ナトリウムと水の反応は？", back:"2Na ＋ 2H₂O → 2NaOH ＋ H₂"},
+    {front:"② NaClの融解塩電解（単体の製法）は？", back:"2NaCl → 2Na ＋ Cl₂"},
+    {front:"③ NaOHによるCO₂の吸収反応は？", back:"2NaOH ＋ CO₂ → Na₂CO₃ ＋ H₂O"},
+    {front:"④ アンモニアソーダ法の第一段階は？", back:"NaCl ＋ NH₃ ＋ CO₂ ＋ H₂O → NaHCO₃ ＋ NH₄Cl"},
+    {front:"⑤ NaHCO₃の加熱分解は？", back:"2NaHCO₃ → Na₂CO₃ ＋ H₂O ＋ CO₂"},
+    {front:"⑥ 生石灰CaOの製法は？", back:"CaCO₃ → CaO ＋ CO₂"},
+    {front:"⑦ 石灰水によるCO₂の検出は？", back:"Ca(OH)₂ ＋ CO₂ → CaCO₃↓ ＋ H₂O"},
+    {front:"⑧ 硫酸バリウムの沈殿生成は？", back:"Ba²⁺ ＋ SO₄²⁻ → BaSO₄↓"}
+  ];
+  var cardIndex = 0, cardFlipped = false, cardAutoTimer = null, cardAutoSeconds = 0;
+  var flashcardEl = document.getElementById("flashcard");
+  var cardTextEl = document.getElementById("card-text");
+  var cardLabelEl = document.getElementById("card-face-label");
+  var cardPosEl = document.getElementById("card-pos");
+  var cardTotalEl = document.getElementById("card-total");
+  var flashHintEl = document.getElementById("flash-hint");
+  var modeBtns = document.querySelectorAll(".mode-btn");
+
+  function renderCard(){
+    var c = CARDS[cardIndex];
+    cardPosEl.textContent = (cardIndex+1);
+    if (cardFlipped){
+      flashcardEl.classList.add("flipped");
+      cardLabelEl.textContent = "裏（答え）";
+      cardTextEl.className = "card-text-back";
+      cardTextEl.textContent = c.back;
+      flashHintEl.textContent = "タップ，または「次へ」で次のカードへ";
+    } else {
+      flashcardEl.classList.remove("flipped");
+      cardLabelEl.textContent = "表（問題）";
+      cardTextEl.className = "card-text-front";
+      cardTextEl.textContent = c.front;
+      flashHintEl.textContent = "カードをタップすると答えがめくれます";
+    }
+  }
+
+  function flipCardAnim(cb){
+    flashcardEl.classList.add("anim");
+    setTimeout(function(){
+      cb();
+      flashcardEl.classList.remove("anim");
+    }, 160);
+  }
+
+  function flipCard(){
+    flipCardAnim(function(){ cardFlipped = !cardFlipped; renderCard(); });
+  }
+  function nextCard(){
+    flipCardAnim(function(){
+      cardIndex = (cardIndex+1) % CARDS.length;
+      cardFlipped = false;
+      renderCard();
+    });
+  }
+  function prevCard(){
+    flipCardAnim(function(){
+      cardIndex = (cardIndex-1+CARDS.length) % CARDS.length;
+      cardFlipped = false;
+      renderCard();
+    });
+  }
+
+  function clearCardAutoTimer(){
+    if (cardAutoTimer){ clearInterval(cardAutoTimer); cardAutoTimer = null; }
+  }
+  function setActiveMode(mode){
+    for (var mb=0; mb<modeBtns.length; mb++){
+      modeBtns[mb].classList.toggle("active", modeBtns[mb].getAttribute("data-mode") === mode);
+    }
+  }
+  function startCardAuto(seconds){
+    clearCardAutoTimer();
+    cardAutoSeconds = seconds;
+    cardAutoTimer = setInterval(function(){
+      if (!cardFlipped){
+        flipCardAnim(function(){ cardFlipped = true; renderCard(); });
+      } else {
+        flipCardAnim(function(){
+          cardIndex = (cardIndex+1) % CARDS.length;
+          cardFlipped = false;
+          renderCard();
+        });
+      }
+    }, seconds*1000);
+  }
+  function stopAutoIfManualTap(){
+    if (cardAutoSeconds !== 0){
+      cardAutoSeconds = 0;
+      setActiveMode("manual");
+      clearCardAutoTimer();
+    }
+  }
+  function stopCardAuto(){
+    cardAutoSeconds = 0;
+    clearCardAutoTimer();
+    setActiveMode("manual");
+  }
+
+  if (cardTotalEl) cardTotalEl.textContent = CARDS.length;
+
+  if (flashcardEl){
+    flashcardEl.addEventListener("click", function(){ stopAutoIfManualTap(); flipCard(); });
+  }
+  var cardFlipBtn = document.getElementById("card-flip");
+  if (cardFlipBtn) cardFlipBtn.addEventListener("click", function(){ stopAutoIfManualTap(); flipCard(); });
+  var cardNextBtn = document.getElementById("card-next");
+  if (cardNextBtn) cardNextBtn.addEventListener("click", function(){ stopAutoIfManualTap(); nextCard(); });
+  var cardPrevBtn = document.getElementById("card-prev");
+  if (cardPrevBtn) cardPrevBtn.addEventListener("click", function(){ stopAutoIfManualTap(); prevCard(); });
+
+  for (var mb2=0; mb2<modeBtns.length; mb2++){
+    modeBtns[mb2].addEventListener("click", function(){
+      var mode = this.getAttribute("data-mode");
+      setActiveMode(mode);
+      if (mode === "manual"){
+        cardAutoSeconds = 0;
+        clearCardAutoTimer();
+      } else {
+        startCardAuto(parseInt(mode,10));
+      }
+    });
+  }
+
+  if (flashcardEl) renderCard();
+
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1618 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>無機化学⑤ 炭素・ケイ素 | GAMBA化学</title>
+<style>
+:root{
+  --bg:#f0f4ff;
+  --card:#fff;
+  --primary:#2563eb;
+  --primary-light:#dbeafe;
+  --primary-dark:#1e40af;
+  --accent:#dc2626;
+  --accent-light:#fee2e2;
+  --success:#16a34a;
+  --success-light:#dcfce7;
+  --warn:#d97706;
+  --warn-light:#fffbeb;
+  --purple:#7c3aed;
+  --purple-light:#ede9fe;
+  --text:#1e293b;
+  --text-sub:#64748b;
+  --border:#bfdbfe;
+  --radius:14px;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  font-family:"BIZ UDPGothic","Meiryo",sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.8;
+  padding-bottom:40px;
+}
+
+/* ---------- topnav / hero ---------- */
+.topnav{
+  background:var(--primary-dark);
+  color:#fff;
+  padding:10px 16px;
+  font-weight:bold;
+  font-size:1rem;
+  letter-spacing:.5px;
+  position:sticky;
+  top:0;
+  z-index:60;
+}
+.hero{
+  background:linear-gradient(135deg,var(--primary-dark),var(--primary));
+  color:#fff;
+  padding:20px 16px 18px;
+  text-align:center;
+}
+.hero h1{margin:0;font-size:1.3rem;}
+.hero p{margin:6px 0 0;font-size:.82rem;opacity:.92;}
+
+.tabnav{
+  display:flex;
+  max-width:780px;
+  margin:0 auto;
+  padding:10px 12px 0;
+  gap:8px;
+  position:sticky;
+  top:40px;
+  background:var(--bg);
+  z-index:55;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+}
+.tab-btn{
+  flex:none;
+  min-width:78px;
+  padding:11px 8px;
+  border:2px solid var(--primary);
+  background:#fff;
+  color:var(--primary-dark);
+  border-radius:12px 12px 0 0;
+  font-size:.85rem;
+  font-weight:bold;
+  cursor:pointer;
+  white-space:nowrap;
+}
+.tab-btn.active{background:var(--primary);color:#fff;}
+.wrap{max-width:780px;margin:0 auto;padding:4px 12px 0;}
+.tab-content{display:none;}
+.tab-content.active{display:block;animation:fade .25s;}
+@keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+/* ---------- unit / stage ---------- */
+.unit{
+  background:var(--card);
+  border-radius:var(--radius);
+  margin:16px 0;
+  box-shadow:0 1px 4px rgba(0,0,0,.08);
+  border:1px solid var(--border);
+  overflow:hidden;
+}
+.unit-title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  background:var(--primary-light);
+  color:var(--primary-dark);
+  font-size:1.05rem;
+  font-weight:bold;
+  padding:14px 16px;
+}
+.unit-num{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:30px;height:30px;
+  border-radius:50%;
+  background:var(--primary);
+  color:#fff;
+  font-size:.95rem;
+  flex:none;
+}
+.stage{padding:4px 16px 18px;}
+.stage h3{font-size:1rem;color:var(--primary-dark);margin:20px 0 8px;border-left:5px solid var(--primary);padding-left:8px;}
+
+.read-box{
+  background:var(--primary-light);
+  border-radius:10px;
+  padding:12px 14px;
+  margin:10px 0;
+  font-size:.95rem;
+}
+
+.key-box{
+  background:var(--warn-light);
+  border:2px solid var(--warn);
+  border-radius:10px;
+  padding:12px 14px;
+  margin:12px 0;
+  font-size:.93rem;
+}
+.key-box .tag{font-weight:bold;color:var(--warn);}
+
+.important-box{
+  background:var(--accent-light);
+  border:2px solid var(--accent);
+  border-radius:10px;
+  padding:12px 14px;
+  margin:12px 0;
+  font-size:.93rem;
+}
+.important-box .tag{font-weight:bold;color:var(--accent);}
+
+/* 暗記法 */
+.mnemonic-box{
+  background:var(--purple-light);
+  border:2px dashed var(--purple);
+  border-radius:10px;
+  padding:12px 14px;
+  margin:12px 0;
+  font-size:.93rem;
+}
+.mnemonic-box .tag{font-weight:bold;color:var(--purple);display:block;margin-bottom:4px;}
+.mnemonic-box .phrase{font-size:1.02rem;font-weight:bold;color:#4c1d95;}
+
+.eq{
+  background:#f1f5f9;
+  border-radius:8px;
+  padding:9px 12px;
+  margin:6px 0;
+  font-size:1rem;
+  font-weight:600;
+  text-align:center;
+  letter-spacing:.3px;
+  overflow-x:auto;
+}
+
+/* ---------- 相関図（フローチェーン） ---------- */
+.flow-diagram{margin:14px 0;}
+.flow-row{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  margin:8px 0;
+  overflow-x:auto;
+  padding:2px 0;
+}
+.flow-box{
+  flex:none;
+  min-width:108px;
+  text-align:center;
+  background:#fff;
+  border:2px solid var(--primary);
+  border-radius:10px;
+  padding:8px 10px;
+  font-size:.82rem;
+  font-weight:bold;
+  color:var(--primary-dark);
+}
+.flow-box.result{background:var(--primary);color:#fff;border-color:var(--primary-dark);}
+.flow-box.byproduct{background:#f1f5f9;border-color:#94a3b8;color:var(--text-sub);font-weight:normal;}
+.flow-arrow{
+  flex:none;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  font-size:1.3rem;
+  color:var(--primary);
+  min-width:46px;
+}
+.flow-arrow .cond{font-size:.68rem;color:var(--text-sub);font-weight:normal;white-space:nowrap;}
+.flow-note{
+  text-align:center;
+  font-size:.78rem;
+  color:var(--text-sub);
+  margin-top:2px;
+}
+
+/* ---------- まとめ表 ---------- */
+.tbl-wrap{overflow-x:auto;margin:12px 0;}
+.summary-tbl{
+  width:100%;
+  border-collapse:collapse;
+  font-size:.86rem;
+  min-width:420px;
+}
+.summary-tbl th{
+  background:var(--primary);
+  color:#fff;
+  padding:8px 6px;
+  font-weight:bold;
+}
+.summary-tbl td{
+  border-bottom:1px solid var(--border);
+  padding:8px 6px;
+  text-align:center;
+}
+.summary-tbl tr:nth-child(even) td{background:#f8faff;}
+
+/* ---------- なぜ？ポップアップ ---------- */
+.why-btn{
+  display:inline-block;
+  margin:10px 0;
+  padding:9px 16px;
+  background:var(--purple-light);
+  border:1px solid var(--purple);
+  border-radius:20px;
+  color:var(--purple);
+  font-size:.85rem;
+  font-weight:bold;
+  cursor:pointer;
+}
+.popup-overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(15,23,42,.55);
+  z-index:200;
+  align-items:center;
+  justify-content:center;
+  padding:16px;
+}
+.popup-overlay.show{display:flex;}
+.popup-box{
+  background:#fff;
+  border-radius:16px;
+  max-width:420px;
+  max-height:80vh;
+  overflow-y:auto;
+  padding:20px;
+  position:relative;
+}
+.popup-box h4{margin:0 0 10px;color:var(--purple);font-size:1rem;}
+.popup-close{
+  position:absolute;
+  top:10px;right:14px;
+  background:none;
+  border:none;
+  font-size:1.3rem;
+  color:var(--text-sub);
+  cursor:pointer;
+}
+
+/* ---------- 穴埋めチャレンジ ---------- */
+.fill-item{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:14px 16px;
+  margin:14px 0;
+}
+.fill-item .q-no{
+  display:inline-block;
+  background:var(--primary);
+  color:#fff;
+  font-size:.75rem;
+  font-weight:bold;
+  border-radius:12px;
+  padding:2px 10px;
+  margin-bottom:8px;
+}
+.fill-sentence{font-size:.98rem;margin:8px 0;}
+.blank{
+  display:inline-block;
+  min-width:64px;
+  border-bottom:2px solid var(--primary);
+  text-align:center;
+  font-weight:bold;
+  color:var(--primary-dark);
+  padding:0 4px;
+  margin:0 2px;
+}
+.blank.filled{background:var(--primary-light);border-radius:4px;}
+.blank.correct{background:var(--success-light);border-bottom-color:var(--success);color:var(--success);}
+.blank.wrong{background:var(--accent-light);border-bottom-color:var(--accent);color:var(--accent);}
+.chip-bank{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
+.chip{
+  background:var(--accent-light);
+  border:1px solid var(--accent);
+  color:var(--primary-dark);
+  border-radius:20px;
+  padding:6px 14px;
+  font-size:.9rem;
+  cursor:pointer;
+}
+.chip:active{transform:scale(.95);}
+.chip.used{opacity:.35;pointer-events:none;}
+.fill-check-btn,.fill-reset-btn{
+  margin-top:10px;margin-right:8px;
+  padding:8px 18px;border:none;border-radius:20px;
+  font-weight:bold;cursor:pointer;font-size:.88rem;
+}
+.fill-check-btn{background:var(--primary);color:#fff;}
+.fill-reset-btn{background:#e2e8f0;color:var(--text);}
+.fill-feedback{margin-top:8px;font-size:.88rem;font-weight:bold;}
+.fill-feedback.ok{color:var(--success);}
+.fill-feedback.bad{color:var(--accent);}
+
+/* ---------- q4（4択） ---------- */
+.q4{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:14px 16px;
+  margin:14px 0;
+}
+.q4.mini{background:#f8faff;}
+.q4-no{
+  display:inline-block;
+  background:var(--accent);
+  color:#fff;
+  font-size:.72rem;
+  font-weight:bold;
+  border-radius:12px;
+  padding:2px 10px;
+  margin-bottom:8px;
+}
+.q4-no.practice{background:var(--purple);}
+.q4-text{font-size:.96rem;font-weight:600;margin:4px 0 10px;}
+.q4-choices{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.q4-c{
+  text-align:left;
+  padding:9px 10px;
+  border:2px solid #cbd5e1;
+  border-radius:10px;
+  background:#fff;
+  font-size:.85rem;
+  cursor:pointer;
+}
+.q4-c.correct{background:var(--success-light);border-color:var(--success);}
+.q4-c.wrong{background:var(--accent-light);border-color:var(--accent);}
+.q4-c.disabled{pointer-events:none;}
+.q4-exp{
+  display:none;
+  margin-top:10px;
+  background:var(--primary-light);
+  border-left:4px solid var(--primary);
+  border-radius:0 8px 8px 0;
+  padding:10px 12px;
+  font-size:.86rem;
+  color:var(--primary-dark);
+}
+.q4-exp.show{display:block;}
+
+/* ---------- minitest（○×） ---------- */
+.minitest{
+  background:#f8faff;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:14px 16px;
+  margin:14px 0;
+}
+.mt-text{font-size:.95rem;font-weight:600;margin:4px 0 10px;}
+.mt-choices{display:flex;gap:10px;}
+.mt-c{
+  flex:1;
+  padding:10px;
+  border:2px solid #cbd5e1;
+  border-radius:10px;
+  background:#fff;
+  font-size:1rem;
+  font-weight:bold;
+  cursor:pointer;
+}
+.mt-c.correct{background:var(--success-light);border-color:var(--success);}
+.mt-c.wrong{background:var(--accent-light);border-color:var(--accent);}
+.mt-c.disabled{pointer-events:none;}
+.mt-exp{
+  display:none;
+  margin-top:10px;
+  background:#fff;
+  border-left:4px solid var(--primary);
+  border-radius:0 8px 8px 0;
+  padding:10px 12px;
+  font-size:.86rem;
+  color:var(--primary-dark);
+}
+.mt-exp.show{display:block;}
+
+/* ---------- 確認テスト footer ---------- */
+.check-footer{text-align:center;margin:24px 0;}
+.score-box{
+  display:inline-block;
+  background:var(--primary);
+  color:#fff;
+  border-radius:16px;
+  padding:14px 28px;
+  font-size:1.1rem;
+  font-weight:bold;
+}
+.celebrate-msg{
+  display:none;
+  position:fixed;
+  top:36%;left:50%;
+  transform:translate(-50%,-50%);
+  background:#fff;
+  border:3px solid var(--primary);
+  border-radius:20px;
+  padding:22px 30px;
+  font-size:1.15rem;
+  font-weight:bold;
+  color:var(--primary-dark);
+  box-shadow:0 8px 30px rgba(0,0,0,.25);
+  z-index:1000;
+  text-align:center;
+}
+
+/* ---------- confetti ---------- */
+.confetti-piece{
+  position:fixed;
+  top:-20px;
+  width:8px;height:14px;
+  z-index:999;
+  pointer-events:none;
+  animation:confettiFall linear forwards;
+}
+@keyframes confettiFall{
+  from{transform:translateY(0) rotate(0deg);opacity:1;}
+  to{transform:translateY(105vh) rotate(720deg);opacity:0;}
+}
+
+/* ---------- フラッシュカード ---------- */
+.card-mode-buttons{display:flex;gap:8px;margin:12px 0;flex-wrap:wrap;}
+.mode-btn{
+  flex:1;
+  min-width:90px;
+  padding:9px 6px;
+  border:2px solid var(--primary);
+  background:#fff;
+  color:var(--primary-dark);
+  border-radius:20px;
+  font-size:.82rem;
+  font-weight:bold;
+  cursor:pointer;
+}
+.mode-btn.active{background:var(--primary);color:#fff;}
+.flash-progress{
+  text-align:center;
+  font-size:.85rem;
+  color:var(--text-sub);
+  font-weight:bold;
+  margin:4px 0 10px;
+}
+.flashcard-wrap{margin:10px 0;}
+.flashcard{
+  position:relative;
+  min-height:180px;
+  background:var(--card);
+  border:3px solid var(--primary);
+  border-radius:16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:22px 18px;
+  cursor:pointer;
+  box-shadow:0 2px 10px rgba(37,99,235,.12);
+  transition:opacity .18s, transform .18s;
+}
+.flashcard.flipped{background:var(--primary-light);border-color:var(--primary-dark);}
+.flashcard.anim{opacity:0;transform:scale(.96);}
+.card-face-label{
+  position:absolute;
+  top:10px;left:14px;
+  font-size:.72rem;
+  font-weight:bold;
+  color:var(--text-sub);
+}
+.card-text-front{font-size:1.08rem;font-weight:bold;color:var(--primary-dark);}
+.card-text-back{font-size:1.1rem;font-weight:bold;color:var(--primary-dark);letter-spacing:.3px;}
+.flash-hint{text-align:center;font-size:.78rem;color:var(--text-sub);margin-top:8px;}
+.flash-nav{display:flex;gap:8px;margin-top:14px;}
+.flash-nav button{
+  flex:1;
+  padding:10px 4px;
+  border:none;
+  border-radius:20px;
+  font-weight:bold;
+  font-size:.86rem;
+  cursor:pointer;
+  background:#e2e8f0;
+  color:var(--text);
+}
+.flash-nav button.flip-btn{background:var(--primary);color:#fff;}
+</style>
+</head>
+<body>
+
+<div class="topnav">⚗️ GAMBA 化学</div>
+<div class="hero">
+  <h1>無機化学⑤ 炭素・ケイ素</h1>
+  <p>江原予備校 GAMBA 大学入学共通テスト対応教材</p>
+</div>
+
+<div class="tabnav">
+  <button class="tab-btn active" data-tab="study">① 学習</button>
+  <button class="tab-btn" data-tab="fill">② 穴埋め</button>
+  <button class="tab-btn" data-tab="check">③ 確認テスト</button>
+  <button class="tab-btn" data-tab="cards">④ カード</button>
+</div>
+
+<main class="wrap">
+
+<!-- ============ ① 学習 ============ -->
+<div class="tab-content active" id="tab-study">
+
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">1</span>炭素の同素体</div>
+    <div class="stage">
+
+      <div class="read-box">炭素の単体には，性質の異なるいくつかの「同素体」があります。代表的なものがダイヤモンドと黒鉛です。</div>
+
+      <div class="tbl-wrap">
+        <table class="summary-tbl">
+          <tr><th></th><th>ダイヤモンド</th><th>黒鉛（グラファイト）</th></tr>
+          <tr><td>色・形</td><td>無色透明</td><td>黒色・光沢あり</td></tr>
+          <tr><td>構造</td><td>正四面体の立体網目</td><td>正六角形の平面網目（層状）</td></tr>
+          <tr><td>硬さ</td><td>非常に硬い</td><td>軟らかい</td></tr>
+          <tr><td>電気伝導性</td><td>示さない</td><td>示す</td></tr>
+          <tr><td>利用</td><td>宝飾・研磨剤</td><td>鉛筆・電極</td></tr>
+        </table>
+      </div>
+
+      <div class="key-box"><span class="tag">🔑 ポイント</span> 同じ炭素原子からできているのに，結びつき方が違うだけで，硬さも電気の通しやすさもまったく逆になります。</div>
+
+      <div class="read-box">このほかにも炭素の同素体があります。はっきりした結晶の形を示さない「無定形炭素」（すす・木炭・活性炭など）や，C₆₀などの球状分子「フラーレン」，黒鉛を筒状にした「カーボンナノチューブ」，黒鉛を1層だけはがした「グラフェン」などです。</div>
+
+      <div class="minitest" data-correct="x">
+        <div class="mt-text">Q. ダイヤモンドは電気をよく通す。 ○か×か？</div>
+        <div class="mt-choices">
+          <button class="mt-c" data-v="o">○ 正しい</button>
+          <button class="mt-c" data-v="x">× 誤り</button>
+        </div>
+        <div class="mt-exp"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">2</span>一酸化炭素COと二酸化炭素CO₂</div>
+    <div class="stage">
+
+      <div class="read-box">炭素の酸化物には，一酸化炭素COと二酸化炭素CO₂があります。どちらも無色・無臭ですが，性質は大きくちがいます。</div>
+
+      <div class="tbl-wrap">
+        <table class="summary-tbl">
+          <tr><th></th><th>CO</th><th>CO₂</th></tr>
+          <tr><td>毒性</td><td>有毒（ヘモグロビンと結合）</td><td>無害（高濃度は危険）</td></tr>
+          <tr><td>水への溶解</td><td>溶けにくい</td><td>少し溶けて弱酸性</td></tr>
+          <tr><td>性質</td><td>強い還元剤</td><td>酸性酸化物</td></tr>
+          <tr><td>捕集法</td><td>水上置換</td><td>下方置換</td></tr>
+        </table>
+      </div>
+
+      <div class="key-box"><span class="tag">🔑 ポイント</span> COは酸素が足りない状態（還元剤）で，鉄の製錬に利用されます。</div>
+      <div class="eq">Fe₂O₃ ＋ 3CO → 2Fe ＋ 3CO₂</div>
+
+      <div class="key-box"><span class="tag">🔑 ステップで考える</span> CO₂のつくり方も，これまでと同じパターンです。工業的には固体を強く熱し，実験室では酸を加えます。</div>
+
+      <div class="flow-diagram">
+        <div class="flow-row">
+          <div class="flow-box">石灰石<br>CaCO₃</div>
+          <div class="flow-arrow">→<span class="cond">強熱</span></div>
+          <div class="flow-box result">CO₂</div>
+          <div class="flow-arrow">＋</div>
+          <div class="flow-box byproduct">CaO</div>
+        </div>
+        <div class="flow-note">CaCO₃ → CaO ＋ CO₂（工業的製法）</div>
+
+        <div class="flow-row">
+          <div class="flow-box">石灰石<br>CaCO₃</div>
+          <div class="flow-arrow">→<span class="cond">塩酸<br>HCl</span></div>
+          <div class="flow-box result">CO₂</div>
+          <div class="flow-arrow">＋</div>
+          <div class="flow-box byproduct">CaCl₂＋H₂O</div>
+        </div>
+        <div class="flow-note">CaCO₃ ＋ 2HCl → CaCl₂ ＋ H₂O ＋ CO₂（実験室的製法）</div>
+      </div>
+
+      <div class="important-box"><span class="tag">⚠️ 注意</span> CO₂は水に少し溶けて弱酸性を示します。固体はドライアイスとよばれ，液体にならず直接気体になる「昇華」性があります。</div>
+      <div class="eq">CO₂ ＋ H₂O → H⁺ ＋ HCO₃⁻</div>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">小テスト①</div>
+        <div class="q4-text">Q. 「Fe₂O₃＋3CO→2Fe＋（　）」。空欄に入るのはどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．3CO₂</button>
+          <button class="q4-c" data-v="b">b．CO₂</button>
+          <button class="q4-c" data-v="c">c．3O₂</button>
+          <button class="q4-c" data-v="d">d．Fe₃O₄</button>
+        </div>
+        <div class="q4-exp">📘 COが還元剤としてFe₂O₃から酸素を奪い，自身はCO₂になります。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">小テスト②</div>
+        <div class="q4-text">Q. CO₂の工業的製法で利用するのはどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．石灰石に塩酸を加える</button>
+          <button class="q4-c" data-v="b">b．石灰石を強く熱する</button>
+          <button class="q4-c" data-v="c">c．MnO₂触媒を使う</button>
+          <button class="q4-c" data-v="d">d．電気分解</button>
+        </div>
+        <div class="q4-exp">📘 CaCO₃→CaO＋CO₂。石灰石を強く熱して分解します。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="d">
+        <div class="q4-no practice">小テスト③</div>
+        <div class="q4-text">Q. 「CaCO₃＋2HCl→CaCl₂＋H₂O＋（　）」。空欄に入るのはどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．CO</button>
+          <button class="q4-c" data-v="b">b．Cl₂</button>
+          <button class="q4-c" data-v="c">c．H₂</button>
+          <button class="q4-c" data-v="d">d．CO₂</button>
+        </div>
+        <div class="q4-exp">📘 石灰石（炭酸カルシウム）に塩酸を加えると，CO₂が発生します。実験室的製法の代表例です。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">小テスト④</div>
+        <div class="q4-text">Q. 一酸化炭素COの性質として正しいものはどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．無色・無臭で有毒，還元剤としてはたらく</button>
+          <button class="q4-c" data-v="b">b．黄緑色で刺激臭があり，酸化剤としてはたらく</button>
+          <button class="q4-c" data-v="c">c．水によく溶け，強酸性を示す</button>
+          <button class="q4-c" data-v="d">d．固体はドライアイスとよばれる</button>
+        </div>
+        <div class="q4-exp">📘 COは無色・無臭で有毒，水に溶けにくく，強い還元剤としてはたらきます。ドライアイスはCO₂の固体です。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="c">
+        <div class="q4-no practice">小テスト⑤</div>
+        <div class="q4-text">Q. CO₂の固体を何といいますか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．無定形炭素</button>
+          <button class="q4-c" data-v="b">b．シリカゲル</button>
+          <button class="q4-c" data-v="c">c．ドライアイス</button>
+          <button class="q4-c" data-v="d">d．水ガラス</button>
+        </div>
+        <div class="q4-exp">📘 CO₂の固体はドライアイスとよばれ，昇華性（固体→気体に直接変化）があります。</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">3</span>二酸化炭素の検出（石灰水）</div>
+    <div class="stage">
+
+      <div class="read-box">二酸化炭素の検出には，石灰水（水酸化カルシウム水溶液）を使います。CO₂を吹き込んでいくと，色が変化していきます。</div>
+
+      <div class="key-box"><span class="tag">🔑 ステップで考える</span> 石灰水の変化は3段階です。相関図で流れをつかみましょう。</div>
+
+      <div class="flow-diagram">
+        <div class="flow-row">
+          <div class="flow-box">石灰水<br>Ca(OH)₂</div>
+          <div class="flow-arrow">→<span class="cond">＋CO₂</span></div>
+          <div class="flow-box result">白色沈殿<br>CaCO₃</div>
+        </div>
+        <div class="flow-note">① Ca(OH)₂ ＋ CO₂ → CaCO₃ ＋ H₂O</div>
+
+        <div class="flow-row">
+          <div class="flow-box">白色沈殿<br>CaCO₃</div>
+          <div class="flow-arrow">→<span class="cond">さらに＋CO₂</span></div>
+          <div class="flow-box result">無色・透明に<br>Ca(HCO₃)₂</div>
+        </div>
+        <div class="flow-note">② CaCO₃ ＋ H₂O ＋ CO₂ → Ca(HCO₃)₂（水に溶ける）</div>
+
+        <div class="flow-row">
+          <div class="flow-box">透明な液<br>Ca(HCO₃)₂</div>
+          <div class="flow-arrow">→<span class="cond">加熱</span></div>
+          <div class="flow-box result">再び白色沈殿<br>CaCO₃</div>
+        </div>
+        <div class="flow-note">③ 加熱でCO₂がぬけ，②の反応が逆向きに進んでCaCO₃が再び沈殿</div>
+      </div>
+
+      <button class="why-btn" data-popup="p1">🤔 なぜ加熱すると再び白く濁るの？</button>
+
+      <div class="important-box"><span class="tag">⚠️ 注意</span> ①の白濁と③の白濁は，見た目は同じでも起きていることが違います。①は新しくCaCO₃ができる反応，③はいったん溶けたCaCO₃が再び出てくる反応です。</div>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">小テスト①</div>
+        <div class="q4-text">Q. 石灰水に少量のCO₂を吹き込むと起こる変化はどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．白く濁る</button>
+          <button class="q4-c" data-v="b">b．青く変わる</button>
+          <button class="q4-c" data-v="c">c．赤く変わる</button>
+          <button class="q4-c" data-v="d">d．変化しない</button>
+        </div>
+        <div class="q4-exp">📘 Ca(OH)₂＋CO₂→CaCO₃＋H₂O。白色沈殿のCaCO₃ができて白く濁ります。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">小テスト②</div>
+        <div class="q4-text">Q. 白く濁った石灰水にさらにCO₂を吹き込み続けるとどうなりますか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．さらに白く濁る</button>
+          <button class="q4-c" data-v="b">b．透明になる</button>
+          <button class="q4-c" data-v="c">c．黒くなる</button>
+          <button class="q4-c" data-v="d">d．気体が消える</button>
+        </div>
+        <div class="q4-exp">📘 CaCO₃＋H₂O＋CO₂→Ca(HCO₃)₂ となり，水に溶けて透明になります。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="d">
+        <div class="q4-no practice">小テスト③</div>
+        <div class="q4-text">Q. 透明になった液（Ca(HCO₃)₂水溶液）を加熱するとどうなりますか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．気体が発生しない</button>
+          <button class="q4-c" data-v="b">b．青色になる</button>
+          <button class="q4-c" data-v="c">c．そのまま透明</button>
+          <button class="q4-c" data-v="d">d．再び白く濁る</button>
+        </div>
+        <div class="q4-exp">📘 加熱によりCO₂がぬけると，反応が逆向きに進み，CaCO₃が再び沈殿します。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="c">
+        <div class="q4-no practice">小テスト④</div>
+        <div class="q4-text">Q. ①の反応でできる白色沈殿は何ですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．Ca(HCO₃)₂</button>
+          <button class="q4-c" data-v="b">b．CaCl₂</button>
+          <button class="q4-c" data-v="c">c．CaCO₃</button>
+          <button class="q4-c" data-v="d">d．CaO</button>
+        </div>
+        <div class="q4-exp">📘 Ca(OH)₂＋CO₂→CaCO₃＋H₂O。炭酸カルシウムCaCO₃が白色沈殿として生じます。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">小テスト⑤</div>
+        <div class="q4-text">Q. 石灰水を使ったこの一連の実験は，何を検出するためのものですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．二酸化炭素CO₂</button>
+          <button class="q4-c" data-v="b">b．一酸化炭素CO</button>
+          <button class="q4-c" data-v="c">c．アンモニアNH₃</button>
+          <button class="q4-c" data-v="d">d．塩素Cl₂</button>
+        </div>
+        <div class="q4-exp">📘 石灰水の白濁反応は，二酸化炭素CO₂を検出する代表的な方法です。</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">4</span>ケイ素Siと二酸化ケイ素SiO₂</div>
+    <div class="stage">
+
+      <div class="read-box">ケイ素Siは天然には単体として存在しません。ダイヤモンドと同じ正四面体型の共有結合の結晶で，融点が高く硬い物質です。純粋なケイ素はわずかに電気を通す「半導体」として，コンピュータなどに利用されています。</div>
+      <div class="eq">SiO₂ ＋ 2C → Si ＋ 2CO（工業的製法）</div>
+
+      <div class="read-box">二酸化ケイ素SiO₂は，天然には石英・水晶として存在します。SiO₂を基本単位として三次元的に共有結合した結晶で，純度の高いものは光ファイバーに利用されます。</div>
+
+      <div class="key-box"><span class="tag">🔑 ポイント</span> SiO₂は非金属元素の酸化物なので，③の酸化物分類と同じパターンで「酸性酸化物」です。塩基と反応します。</div>
+      <div class="eq">SiO₂ ＋ 2NaOH → Na₂SiO₃ ＋ H₂O</div>
+      <div class="eq">SiO₂ ＋ Na₂CO₃ → Na₂SiO₃ ＋ CO₂</div>
+
+      <div class="important-box"><span class="tag">⚠️ 注意</span> SiO₂はほとんどの酸と反応しませんが，フッ化水素酸HFだけは別です。ガラスの主成分であるSiO₂を溶かすため，ガラスの表面加工に使われます。</div>
+      <div class="eq">SiO₂ ＋ 6HF → H₂SiF₆ ＋ 2H₂O</div>
+
+      <div class="key-box"><span class="tag">🔑 ステップで考える</span> ケイ酸ナトリウムからシリカゲルができる流れも，相関図で確認しましょう。</div>
+
+      <div class="flow-diagram">
+        <div class="flow-row">
+          <div class="flow-box">ケイ酸ナトリウム<br>Na₂SiO₃</div>
+          <div class="flow-arrow">→<span class="cond">水＋加熱</span></div>
+          <div class="flow-box result">水ガラス<br>（粘性の高い液体）</div>
+        </div>
+        <div class="flow-row">
+          <div class="flow-box">水ガラス</div>
+          <div class="flow-arrow">→<span class="cond">塩酸HCl</span></div>
+          <div class="flow-box result">ケイ酸<br>H₂SiO₃</div>
+        </div>
+        <div class="flow-note">Na₂SiO₃ ＋ 2HCl → 2NaCl ＋ H₂SiO₃</div>
+        <div class="flow-row">
+          <div class="flow-box">ケイ酸<br>H₂SiO₃</div>
+          <div class="flow-arrow">→<span class="cond">脱水</span></div>
+          <div class="flow-box result">シリカゲル<br>（乾燥剤）</div>
+        </div>
+      </div>
+
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">小テスト①</div>
+        <div class="q4-text">Q. ケイ素Siの性質として正しいものはどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．天然に単体として存在する</button>
+          <button class="q4-c" data-v="b">b．半導体として利用される</button>
+          <button class="q4-c" data-v="c">c．水によく溶ける気体</button>
+          <button class="q4-c" data-v="d">d．融点がとても低い</button>
+        </div>
+        <div class="q4-exp">📘 ケイ素は天然に単体では存在せず，わずかに電気を通す半導体として利用されます。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="d">
+        <div class="q4-no practice">小テスト②</div>
+        <div class="q4-text">Q. 「SiO₂＋2NaOH→（　）＋H₂O」。空欄に入るのはどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．Na₂O</button>
+          <button class="q4-c" data-v="b">b．NaSiO₃</button>
+          <button class="q4-c" data-v="c">c．Si(OH)₄</button>
+          <button class="q4-c" data-v="d">d．Na₂SiO₃</button>
+        </div>
+        <div class="q4-exp">📘 SiO₂は酸性酸化物なので，塩基NaOHと反応してケイ酸ナトリウムNa₂SiO₃になります。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="c">
+        <div class="q4-no practice">小テスト③</div>
+        <div class="q4-text">Q. SiO₂を唯一溶かす酸はどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．塩酸HCl</button>
+          <button class="q4-c" data-v="b">b．硫酸H₂SO₄</button>
+          <button class="q4-c" data-v="c">c．フッ化水素酸HF</button>
+          <button class="q4-c" data-v="d">d．硝酸HNO₃</button>
+        </div>
+        <div class="q4-exp">📘 SiO₂はほとんどの酸に反応しませんが，HFだけはガラス（SiO₂）を溶かします。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">小テスト④</div>
+        <div class="q4-text">Q. ケイ酸H₂SiO₃を脱水してつくられる乾燥剤は何ですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．シリカゲル</button>
+          <button class="q4-c" data-v="b">b．ソーダ石灰</button>
+          <button class="q4-c" data-v="c">c．塩化カルシウム</button>
+          <button class="q4-c" data-v="d">d．濃硫酸</button>
+        </div>
+        <div class="q4-exp">📘 ケイ酸H₂SiO₃を脱水するとシリカゲルができます。表面に水を吸着しやすい構造をもつ乾燥剤です。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">小テスト⑤</div>
+        <div class="q4-text">Q. 粘性の高いケイ酸ナトリウム水溶液を何とよびますか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．シリカゲル</button>
+          <button class="q4-c" data-v="b">b．水ガラス</button>
+          <button class="q4-c" data-v="c">c．ドライアイス</button>
+          <button class="q4-c" data-v="d">d．王水</button>
+        </div>
+        <div class="q4-exp">📘 ケイ酸ナトリウムに水を加えて加熱すると，粘性の高い水ガラスができます。</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">5</span>COの実験室的製法／ケイ素の工業的製法のもう1つの道</div>
+    <div class="stage">
+
+      <div class="read-box">一酸化炭素COは，実験室ではギ酸HCOOH（1価の弱酸）に濃硫酸を加えてつくります。これは，③酸素の単元で学んだ濃硫酸の「脱水作用」を利用した反応です。</div>
+      <div class="eq">HCOOH → H₂O ＋ CO（濃硫酸が脱水剤としてはたらく）</div>
+
+      <div class="key-box"><span class="tag">🔑 ポイント</span> 濃硫酸がギ酸からH原子とO原子をH₂Oの形で奪うと，残った部分がCOになります。ショ糖が黒く炭化する反応（C₁₂H₂₂O₁₁→12C＋11H₂O）と同じ「脱水作用」の仲間です。</div>
+
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">小テスト①</div>
+        <div class="q4-text">Q. 実験室でCOをつくるとき，ギ酸に加える試薬は何ですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．希塩酸</button>
+          <button class="q4-c" data-v="b">b．濃硫酸</button>
+          <button class="q4-c" data-v="c">c．水酸化ナトリウム</button>
+          <button class="q4-c" data-v="d">d．酸化マンガン(Ⅳ)</button>
+        </div>
+        <div class="q4-exp">📘 HCOOH→H₂O＋CO。濃硫酸の脱水作用を利用してCOをつくります。</div>
+      </div>
+
+      <h3>ケイ素の工業的製法：コークスの量で生成物が変わる</h3>
+      <div class="read-box">SiO₂とコークスC（炭素）を反応させるとき，コークスの量によって生成物が変わります。</div>
+
+      <div class="tbl-wrap">
+        <table class="summary-tbl">
+          <tr><th>コークス量</th><th>反応式</th><th>生成物</th></tr>
+          <tr><td>少ない</td><td>SiO₂＋2C→Si＋2CO</td><td>ケイ素Si（目的の単体）</td></tr>
+          <tr><td>多い</td><td>SiO₂＋3C→SiC＋2CO</td><td>炭化ケイ素SiC（カーボランダム，非常に硬い研磨剤）</td></tr>
+        </table>
+      </div>
+
+      <div class="important-box"><span class="tag">⚠️ 注意</span> 同じ原料（SiO₂とC）でも，コークスの量という「条件」によって生成物が変わる例です。ケイ素Siがほしいときはコークス控えめ，炭化ケイ素SiCがほしいときはコークス多めと覚えておきましょう。</div>
+
+      <div class="q4 mini" data-correct="d">
+        <div class="q4-no practice">小テスト②</div>
+        <div class="q4-text">Q. SiO₂とコークスCの反応で，コークスの量が多いときに生成するものは何ですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．ケイ素Si</button>
+          <button class="q4-c" data-v="b">b．二酸化炭素CO₂</button>
+          <button class="q4-c" data-v="c">c．水ガラス</button>
+          <button class="q4-c" data-v="d">d．炭化ケイ素SiC</button>
+        </div>
+        <div class="q4-exp">📘 コークスが多いとSiO₂＋3C→SiC＋2COとなり，非常に硬い炭化ケイ素（カーボランダム）が生成します。</div>
+      </div>
+
+      <div class="minitest" data-correct="x">
+        <div class="mt-text">Q. SiO₂とコークスCの反応では，コークスの量に関係なく常にケイ素Siだけが生成する。 ○か×か？</div>
+        <div class="mt-choices">
+          <button class="mt-c" data-v="o">○ 正しい</button>
+          <button class="mt-c" data-v="x">× 誤り</button>
+        </div>
+        <div class="mt-exp"></div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- ============ ② 穴埋めチャレンジ ============ -->
+<div class="tab-content" id="tab-fill">
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">✎</span>穴埋めチャレンジ</div>
+    <div class="stage">
+      <div class="read-box">下のチップをタップして，反応式の空欄をうめましょう。まちがえても大丈夫，「やり直す」でもう一度チャレンジできます。</div>
+    </div>
+  </div>
+
+  <div class="fill-item" data-fill="f1">
+    <div class="q-no">問1</div>
+    <div class="fill-sentence">CO₂の工業的製法：CaCO₃ → CaO ＋ <span class="blank" data-blank="0" data-ans="CO2">　</span></div>
+    <div class="chip-bank">
+      <span class="chip" data-val="CO2">CO₂</span>
+      <span class="chip" data-val="CO">CO</span>
+      <span class="chip" data-val="2CO2">2CO₂</span>
+      <span class="chip" data-val="O2">O₂</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+
+  <div class="fill-item" data-fill="f2">
+    <div class="q-no">問2</div>
+    <div class="fill-sentence">CO₂の実験室的製法：CaCO₃ ＋ 2HCl → CaCl₂ ＋ H₂O ＋ <span class="blank" data-blank="0" data-ans="CO2">　</span></div>
+    <div class="chip-bank">
+      <span class="chip" data-val="CO2">CO₂</span>
+      <span class="chip" data-val="CO">CO</span>
+      <span class="chip" data-val="Cl2">Cl₂</span>
+      <span class="chip" data-val="H2">H₂</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+
+  <div class="fill-item" data-fill="f3">
+    <div class="q-no">問3</div>
+    <div class="fill-sentence">鉄の製錬（COの還元作用）：Fe₂O₃ ＋ 3CO → 2Fe ＋ <span class="blank" data-blank="0" data-ans="3CO2">　</span></div>
+    <div class="chip-bank">
+      <span class="chip" data-val="3CO2">3CO₂</span>
+      <span class="chip" data-val="CO2">CO₂</span>
+      <span class="chip" data-val="3O2">3O₂</span>
+      <span class="chip" data-val="Fe3O4">Fe₃O₄</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+
+  <div class="fill-item" data-fill="f4">
+    <div class="q-no">問4</div>
+    <div class="fill-sentence">石灰水によるCO₂の検出：Ca(OH)₂ ＋ CO₂ → <span class="blank" data-blank="0" data-ans="CaCO3">　</span> ＋ H₂O</div>
+    <div class="chip-bank">
+      <span class="chip" data-val="CaCO3">CaCO₃</span>
+      <span class="chip" data-val="CaO">CaO</span>
+      <span class="chip" data-val="CaCl2">CaCl₂</span>
+      <span class="chip" data-val="CaHCO3">Ca(HCO₃)₂</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+
+  <div class="fill-item" data-fill="f5">
+    <div class="q-no">問5</div>
+    <div class="fill-sentence">ガラスを溶かすHF：SiO₂ ＋ 2NaOH → <span class="blank" data-blank="0" data-ans="Na2SiO3">　</span> ＋ H₂O</div>
+    <div class="chip-bank">
+      <span class="chip" data-val="Na2SiO3">Na₂SiO₃</span>
+      <span class="chip" data-val="NaSiO3">NaSiO₃</span>
+      <span class="chip" data-val="Na2SiO4">Na₂SiO₄</span>
+      <span class="chip" data-val="NaOH">NaOH</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+
+  <div class="fill-item" data-fill="f6">
+    <div class="q-no">問6</div>
+    <div class="fill-sentence">COの実験室的製法（濃硫酸の脱水作用）：HCOOH → H₂O ＋ <span class="blank" data-blank="0" data-ans="CO">　</span></div>
+    <div class="chip-bank">
+      <span class="chip" data-val="CO">CO</span>
+      <span class="chip" data-val="CO2">CO₂</span>
+      <span class="chip" data-val="H2">H₂</span>
+      <span class="chip" data-val="C">C</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+
+  <div class="fill-item" data-fill="f7">
+    <div class="q-no">問7</div>
+    <div class="fill-sentence">コークスが多いときのケイ素の工業的製法：SiO₂ ＋ 3C → <span class="blank" data-blank="0" data-ans="SiC">　</span> ＋ 2CO</div>
+    <div class="chip-bank">
+      <span class="chip" data-val="SiC">SiC</span>
+      <span class="chip" data-val="Si">Si</span>
+      <span class="chip" data-val="SiO">SiO</span>
+      <span class="chip" data-val="Si2C">Si₂C</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+</div>
+
+<!-- ============ ③ 確認テスト ============ -->
+<div class="tab-content" id="tab-check">
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">✓</span>確認テスト（14問）</div>
+    <div class="stage">
+      <div class="read-box">すべての問題に答えると，結果が表示されます。自分のペースでゆっくり進めましょう。</div>
+    </div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="b">
+    <div class="q4-no">第1問</div>
+    <div class="q4-text">ダイヤモンドと黒鉛の関係を何といいますか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．異性体</button>
+      <button class="q4-c" data-v="b">b．同素体</button>
+      <button class="q4-c" data-v="c">c．同位体</button>
+      <button class="q4-c" data-v="d">d．化合物</button>
+    </div>
+    <div class="q4-exp">📘 同じ炭素原子からできているのに性質が異なる単体どうしを同素体といいます。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="c">
+    <div class="q4-no">第2問</div>
+    <div class="q4-text">電気をよく通す炭素の同素体はどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．ダイヤモンド</button>
+      <button class="q4-c" data-v="b">b．ドライアイス</button>
+      <button class="q4-c" data-v="c">c．黒鉛</button>
+      <button class="q4-c" data-v="d">d．シリカゲル</button>
+    </div>
+    <div class="q4-exp">📘 黒鉛は平面網目構造で電気伝導性を示し，鉛筆や電極に使われます。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="a">
+    <div class="q4-no">第3問</div>
+    <div class="q4-text">一酸化炭素COの性質として正しいものはどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．有毒で強い還元剤としてはたらく</button>
+      <button class="q4-c" data-v="b">b．水によく溶けて強酸性を示す</button>
+      <button class="q4-c" data-v="c">c．黄緑色で刺激臭がある</button>
+      <button class="q4-c" data-v="d">d．固体はドライアイスとよばれる</button>
+    </div>
+    <div class="q4-exp">📘 COは有毒で，鉄の製錬（Fe₂O₃＋3CO→2Fe＋3CO₂）に利用される還元剤です。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="d">
+    <div class="q4-no">第4問</div>
+    <div class="q4-text">CO₂の工業的製法はどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．石灰石に塩酸を加える</button>
+      <button class="q4-c" data-v="b">b．MnO₂触媒を使う</button>
+      <button class="q4-c" data-v="c">c．電気分解</button>
+      <button class="q4-c" data-v="d">d．石灰石を強く熱する</button>
+    </div>
+    <div class="q4-exp">📘 CaCO₃→CaO＋CO₂。石灰石を強く熱して分解します。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="c">
+    <div class="q4-no">第5問</div>
+    <div class="q4-text">二酸化炭素CO₂の固体を何といいますか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．シリカゲル</button>
+      <button class="q4-c" data-v="b">b．水ガラス</button>
+      <button class="q4-c" data-v="c">c．ドライアイス</button>
+      <button class="q4-c" data-v="d">d．無定形炭素</button>
+    </div>
+    <div class="q4-exp">📘 CO₂の固体はドライアイスとよばれ，昇華性があります。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="a">
+    <div class="q4-no">第6問</div>
+    <div class="q4-text">石灰水にCO₂を少量吹き込むと起こる変化はどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．白く濁る（CaCO₃の沈殿）</button>
+      <button class="q4-c" data-v="b">b．青く変わる</button>
+      <button class="q4-c" data-v="c">c．気体が発生する</button>
+      <button class="q4-c" data-v="d">d．変化しない</button>
+    </div>
+    <div class="q4-exp">📘 Ca(OH)₂＋CO₂→CaCO₃＋H₂O。白色沈殿CaCO₃で白く濁ります。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="b">
+    <div class="q4-no">第7問</div>
+    <div class="q4-text">白く濁った石灰水にさらにCO₂を吹き込み続けるとどうなりますか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．さらに白く濁る</button>
+      <button class="q4-c" data-v="b">b．透明になる</button>
+      <button class="q4-c" data-v="c">c．黒くなる</button>
+      <button class="q4-c" data-v="d">d．固体になる</button>
+    </div>
+    <div class="q4-exp">📘 CaCO₃＋H₂O＋CO₂→Ca(HCO₃)₂ となり，水に溶けて透明になります。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="a">
+    <div class="q4-no">第8問</div>
+    <div class="q4-text">ケイ素Siの性質として正しいものはどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．半導体として利用される</button>
+      <button class="q4-c" data-v="b">b．天然に単体として存在する</button>
+      <button class="q4-c" data-v="c">c．水に非常に溶けやすい</button>
+      <button class="q4-c" data-v="d">d．融点がとても低い</button>
+    </div>
+    <div class="q4-exp">📘 ケイ素は天然には単体で存在せず，純粋なものは半導体として利用されます。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="d">
+    <div class="q4-no">第9問</div>
+    <div class="q4-text">二酸化ケイ素SiO₂を唯一溶かす酸はどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．塩酸HCl</button>
+      <button class="q4-c" data-v="b">b．硫酸H₂SO₄</button>
+      <button class="q4-c" data-v="c">c．硝酸HNO₃</button>
+      <button class="q4-c" data-v="d">d．フッ化水素酸HF</button>
+    </div>
+    <div class="q4-exp">📘 SiO₂＋6HF→H₂SiF₆＋2H₂O。ガラスの加工に利用される性質です。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="c">
+    <div class="q4-no">第10問</div>
+    <div class="q4-text">ケイ酸H₂SiO₃を脱水してつくられる乾燥剤は何ですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．ソーダ石灰</button>
+      <button class="q4-c" data-v="b">b．塩化カルシウム</button>
+      <button class="q4-c" data-v="c">c．シリカゲル</button>
+      <button class="q4-c" data-v="d">d．十酸化四リン</button>
+    </div>
+    <div class="q4-exp">📘 ケイ酸を脱水するとシリカゲルができます。表面の-OH基で水を吸着する乾燥剤です。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="b">
+    <div class="q4-no">第11問</div>
+    <div class="q4-text">ギ酸HCOOHに濃硫酸を加えてCOをつくるとき，濃硫酸のはたらきは何ですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．酸化剤</button>
+      <button class="q4-c" data-v="b">b．脱水剤</button>
+      <button class="q4-c" data-v="c">c．還元剤</button>
+      <button class="q4-c" data-v="d">d．触媒</button>
+    </div>
+    <div class="q4-exp">📘 HCOOH→H₂O＋CO。濃硫酸がH₂Oを奪う脱水作用で，ショ糖の黒変と同じしくみです。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="c">
+    <div class="q4-no">第12問</div>
+    <div class="q4-text">SiO₂をコークス（C）で還元してケイ素Siの工業的製法を行うとき，コークスの量を増やすと生成物はどう変わりますか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．SiO₂のまま変化しない</button>
+      <button class="q4-c" data-v="b">b．Siの生成量が増えるだけ</button>
+      <button class="q4-c" data-v="c">c．炭化ケイ素SiCが生成する</button>
+      <button class="q4-c" data-v="d">d．COが発生しなくなる</button>
+    </div>
+    <div class="q4-exp">📘 SiO₂＋3C→SiC＋2CO。コークスが多いと炭化ケイ素（カーボランダム）ができます。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="a">
+    <div class="q4-no">第13問</div>
+    <div class="q4-text">炭化ケイ素SiC（カーボランダム）の主な用途はどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．研磨剤（非常に硬い）</button>
+      <button class="q4-c" data-v="b">b．乾燥剤</button>
+      <button class="q4-c" data-v="c">c．半導体材料</button>
+      <button class="q4-c" data-v="d">d．ガラスの原料</button>
+    </div>
+    <div class="q4-exp">📘 SiCはダイヤモンドに次ぐ硬さをもち，研磨剤（やすり・砥石）として利用されます。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="d">
+    <div class="q4-no">第14問</div>
+    <div class="q4-text">COの実験室的製法に関する記述として正しいものはどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．ギ酸に水酸化ナトリウムを加える</button>
+      <button class="q4-c" data-v="b">b．石灰石に塩酸を加える</button>
+      <button class="q4-c" data-v="c">c．炭素を完全燃焼させる</button>
+      <button class="q4-c" data-v="d">d．ギ酸に濃硫酸を加えて脱水する</button>
+    </div>
+    <div class="q4-exp">📘 HCOOH→H₂O＋CO。濃硫酸の脱水作用でギ酸からCOがつくられます。</div>
+  </div>
+
+  <div class="check-footer">
+    <div class="score-box" id="score-box" style="display:none;"></div>
+  </div>
+</div>
+
+<!-- ============ ④ フラッシュカード ============ -->
+<div class="tab-content" id="tab-cards">
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">4</span>反応式フラッシュカード</div>
+    <div class="stage">
+      <div class="read-box">カードをタップすると裏の反応式が見られます。自分でめくる「手動」のほか，「3秒後自動」「5秒後自動」を選ぶと，表→裏→次のカードと自動で進みます。</div>
+
+      <div class="card-mode-buttons">
+        <button class="mode-btn active" data-mode="manual">手動</button>
+        <button class="mode-btn" data-mode="3">3秒後自動</button>
+        <button class="mode-btn" data-mode="5">5秒後自動</button>
+      </div>
+
+      <div class="flash-progress"><span id="card-pos">1</span> / <span id="card-total">5</span></div>
+
+      <div class="flashcard-wrap">
+        <div class="flashcard" id="flashcard">
+          <span class="card-face-label" id="card-face-label">表（問題）</span>
+          <div class="card-text-front" id="card-text"></div>
+        </div>
+      </div>
+      <div class="flash-hint" id="flash-hint">カードをタップすると答えがめくれます</div>
+
+      <div class="flash-nav">
+        <button id="card-prev">◀ 前へ</button>
+        <button id="card-flip" class="flip-btn">めくる</button>
+        <button id="card-next">次へ ▶</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<div class="popup-overlay" id="popup-p1">
+  <div class="popup-box">
+    <button class="popup-close" data-close="p1">×</button>
+    <h4>🤔 なぜ加熱すると再び白く濁るの？</h4>
+    <p>②の反応「CaCO₃＋H₂O＋CO₂ ⇄ Ca(HCO₃)₂」は，両方向に進むことができる反応です（可逆反応）。</p>
+    <p>水溶液を加熱すると，溶けていたCO₂が気体になって逃げていきます。すると右辺のCO₂が減るので，反応は「CO₂を補おう」として左向き（Ca(HCO₃)₂→CaCO₃＋H₂O＋CO₂）に進みます。</p>
+    <p>💡 つまり，CaCO₃（水に溶けにくい）が再び姿を現すため，白く濁って見えるのです。</p>
+  </div>
+</div>
+
+<div class="celebrate-msg" id="celebrate-msg">🎉 全問正解です！<br>よくできました！</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- タブ切替 ---------- */
+  var tabBtns = document.querySelectorAll(".tab-btn");
+  var tabContents = document.querySelectorAll(".tab-content");
+  for (var i=0;i<tabBtns.length;i++){
+    tabBtns[i].addEventListener("click", function(){
+      var target = this.getAttribute("data-tab");
+      for (var j=0;j<tabBtns.length;j++){ tabBtns[j].classList.remove("active"); }
+      for (var k=0;k<tabContents.length;k++){ tabContents[k].classList.remove("active"); }
+      this.classList.add("active");
+      document.getElementById("tab-"+target).classList.add("active");
+      window.scrollTo({top:0, behavior:"smooth"});
+      if (target !== "cards") stopCardAuto();
+    });
+  }
+
+  /* ---------- なぜ？ポップアップ ---------- */
+  var whyBtns = document.querySelectorAll(".why-btn");
+  for (var w=0;w<whyBtns.length;w++){
+    whyBtns[w].addEventListener("click", function(){
+      var id = this.getAttribute("data-popup");
+      document.getElementById("popup-"+id).classList.add("show");
+    });
+  }
+  var closeBtns = document.querySelectorAll(".popup-close");
+  for (var cb=0;cb<closeBtns.length;cb++){
+    closeBtns[cb].addEventListener("click", function(){
+      var id = this.getAttribute("data-close");
+      document.getElementById("popup-"+id).classList.remove("show");
+    });
+  }
+  var overlays = document.querySelectorAll(".popup-overlay");
+  for (var ov=0;ov<overlays.length;ov++){
+    overlays[ov].addEventListener("click", function(ev){
+      if (ev.target === this) this.classList.remove("show");
+    });
+  }
+
+  /* ---------- 穴埋めチャレンジ ---------- */
+  var fillItems = document.querySelectorAll(".fill-item");
+  for (var f=0; f<fillItems.length; f++){
+    (function(item){
+      var blanks = item.querySelectorAll(".blank");
+      var chips = item.querySelectorAll(".chip");
+      var feedback = item.querySelector(".fill-feedback");
+      var checkBtn = item.querySelector(".fill-check-btn");
+      var resetBtn = item.querySelector(".fill-reset-btn");
+
+      function nextEmptyBlank(){
+        for (var b=0;b<blanks.length;b++){
+          if (!blanks[b].classList.contains("filled")) return blanks[b];
+        }
+        return null;
+      }
+
+      for (var c=0;c<chips.length;c++){
+        chips[c].addEventListener("click", function(){
+          if (this.classList.contains("used")) return;
+          var target = nextEmptyBlank();
+          if (!target) return;
+          target.textContent = this.textContent;
+          target.classList.add("filled");
+          target.setAttribute("data-filled-val", this.getAttribute("data-val"));
+          this.classList.add("used");
+        });
+      }
+
+      checkBtn.addEventListener("click", function(){
+        var allFilled = true, allCorrect = true;
+        for (var b=0;b<blanks.length;b++){
+          if (!blanks[b].classList.contains("filled")){ allFilled = false; continue; }
+          var ok = blanks[b].getAttribute("data-filled-val") === blanks[b].getAttribute("data-ans");
+          blanks[b].classList.remove("correct","wrong");
+          blanks[b].classList.add(ok?"correct":"wrong");
+          if (!ok) allCorrect = false;
+        }
+        if (!allFilled){
+          feedback.textContent = "まだ空欄があります。チップをすべて置きましょう。";
+          feedback.className = "fill-feedback bad";
+          return;
+        }
+        if (allCorrect){
+          feedback.textContent = "✅ 正解です！この反応式を声に出して読んでみましょう。";
+          feedback.className = "fill-feedback ok";
+          launchConfetti(30);
+        } else {
+          feedback.textContent = "❌ ちがう場所があります。「やり直す」からもう一度挑戦しましょう。";
+          feedback.className = "fill-feedback bad";
+        }
+      });
+
+      resetBtn.addEventListener("click", function(){
+        for (var b=0;b<blanks.length;b++){
+          blanks[b].textContent = "　";
+          blanks[b].classList.remove("filled","correct","wrong");
+          blanks[b].removeAttribute("data-filled-val");
+        }
+        for (var c2=0;c2<chips.length;c2++){ chips[c2].classList.remove("used"); }
+        feedback.textContent = "";
+        feedback.className = "fill-feedback";
+      });
+    })(fillItems[f]);
+  }
+
+  /* ---------- q4（4択）共通処理 ---------- */
+  var finalTotal = document.querySelectorAll(".final-q4").length;
+  var finalAnsweredCount = 0;
+  var finalCorrectCount = 0;
+
+  var q4Blocks = document.querySelectorAll(".q4");
+  for (var q=0;q<q4Blocks.length;q++){
+    (function(block){
+      var correctV = block.getAttribute("data-correct");
+      var btns = block.querySelectorAll(".q4-c");
+      var exp = block.querySelector(".q4-exp");
+      var isFinal = block.classList.contains("final-q4");
+      var answered = false;
+      for (var b=0;b<btns.length;b++){
+        btns[b].addEventListener("click", function(){
+          if (answered) return;
+          answered = true;
+          var v = this.getAttribute("data-v");
+          var isCorrect = (v === correctV);
+          for (var x=0;x<btns.length;x++){
+            btns[x].classList.add("disabled");
+            if (btns[x].getAttribute("data-v") === correctV) btns[x].classList.add("correct");
+          }
+          if (!isCorrect) this.classList.add("wrong");
+          if (exp) exp.classList.add("show");
+          if (isCorrect) launchConfetti(isFinal?0:24);
+          if (isFinal){
+            finalAnsweredCount++;
+            if (isCorrect) finalCorrectCount++;
+            checkFinalDone();
+          }
+        });
+      }
+    })(q4Blocks[q]);
+  }
+
+  /* ---------- minitest（○×）共通処理 ---------- */
+  var mtBlocks = document.querySelectorAll(".minitest");
+  for (var m=0;m<mtBlocks.length;m++){
+    (function(block){
+      var correctV = block.getAttribute("data-correct");
+      var btns = block.querySelectorAll(".mt-c");
+      var exp = block.querySelector(".mt-exp");
+      var answered = false;
+      for (var b=0;b<btns.length;b++){
+        btns[b].addEventListener("click", function(){
+          if (answered) return;
+          answered = true;
+          var v = this.getAttribute("data-v");
+          var isCorrect = (v === correctV);
+          for (var x=0;x<btns.length;x++){
+            btns[x].classList.add("disabled");
+            if (btns[x].getAttribute("data-v") === correctV) btns[x].classList.add("correct");
+          }
+          if (!isCorrect) this.classList.add("wrong");
+          if (exp){
+            exp.textContent = isCorrect ? "📘 そのとおりです！よく理解できています。" : "📘 もう一度，上の説明を読み直してみましょう。";
+            exp.classList.add("show");
+          }
+          if (isCorrect) launchConfetti(24);
+        });
+      }
+    })(mtBlocks[m]);
+  }
+
+  function checkFinalDone(){
+    if (finalAnsweredCount < finalTotal) return;
+    var box = document.getElementById("score-box");
+    box.style.display = "inline-block";
+    box.textContent = "結果：" + finalTotal + "問中 " + finalCorrectCount + "問 正解！";
+    if (finalCorrectCount === finalTotal){
+      launchConfetti(80);
+      var msg = document.getElementById("celebrate-msg");
+      msg.style.display = "block";
+      setTimeout(function(){ msg.style.display = "none"; }, 2200);
+    }
+  }
+
+  /* ---------- コンフェッティ（DOM div方式） ---------- */
+  var CONFETTI_COLORS = ["#f472b6","#facc15","#34d399","#60a5fa","#f87171","#a78bfa","#fb923c","#2dd4bf"];
+
+  function launchConfetti(count){
+    if (!count) return;
+    for (var i=0;i<count;i++){
+      var piece = document.createElement("div");
+      piece.className = "confetti-piece";
+      var size = 6 + Math.random()*6;
+      piece.style.left = (Math.random()*100) + "vw";
+      piece.style.width = size + "px";
+      piece.style.height = (size*1.6) + "px";
+      piece.style.background = CONFETTI_COLORS[Math.floor(Math.random()*CONFETTI_COLORS.length)];
+      piece.style.borderRadius = (Math.random()<0.5 ? "50%" : "2px");
+      var duration = 1.8 + Math.random()*1.4;
+      piece.style.animationDuration = duration + "s";
+      piece.style.animationDelay = (Math.random()*0.3) + "s";
+      document.body.appendChild(piece);
+      (function(el, dur){
+        setTimeout(function(){ if (el.parentNode) el.parentNode.removeChild(el); }, (dur+0.5)*1000);
+      })(piece, duration);
+    }
+  }
+
+  /* ---------- フラッシュカード ---------- */
+  var CARDS = [
+    {front:"① CO₂の工業的製法（石灰石を強熱）は？", back:"CaCO₃ → CaO ＋ CO₂"},
+    {front:"② CO₂の実験室的製法（石灰石＋塩酸）は？", back:"CaCO₃ ＋ 2HCl → CaCl₂ ＋ H₂O ＋ CO₂"},
+    {front:"③ COによる鉄の製錬（還元反応）は？", back:"Fe₂O₃ ＋ 3CO → 2Fe ＋ 3CO₂"},
+    {front:"④ 石灰水によるCO₂の検出反応は？", back:"Ca(OH)₂ ＋ CO₂ → CaCO₃ ＋ H₂O"},
+    {front:"⑤ ガラスを溶かすHFの反応は？", back:"SiO₂ ＋ 6HF → H₂SiF₆ ＋ 2H₂O"},
+    {front:"⑥ COの実験室的製法（濃硫酸の脱水作用）は？", back:"HCOOH → H₂O ＋ CO"},
+    {front:"⑦ コークスが少ないときのケイ素の工業的製法は？", back:"SiO₂ ＋ 2C → Si ＋ 2CO"},
+    {front:"⑧ コークスが多いときに生成する物質は？", back:"炭化ケイ素SiC（カーボランダム）：SiO₂＋3C→SiC＋2CO"}
+  ];
+  var cardIndex = 0, cardFlipped = false, cardAutoTimer = null, cardAutoSeconds = 0;
+  var flashcardEl = document.getElementById("flashcard");
+  var cardTextEl = document.getElementById("card-text");
+  var cardLabelEl = document.getElementById("card-face-label");
+  var cardPosEl = document.getElementById("card-pos");
+  var cardTotalEl = document.getElementById("card-total");
+  var flashHintEl = document.getElementById("flash-hint");
+  var modeBtns = document.querySelectorAll(".mode-btn");
+
+  function renderCard(){
+    var c = CARDS[cardIndex];
+    cardPosEl.textContent = (cardIndex+1);
+    if (cardFlipped){
+      flashcardEl.classList.add("flipped");
+      cardLabelEl.textContent = "裏（答え）";
+      cardTextEl.className = "card-text-back";
+      cardTextEl.textContent = c.back;
+      flashHintEl.textContent = "タップ，または「次へ」で次のカードへ";
+    } else {
+      flashcardEl.classList.remove("flipped");
+      cardLabelEl.textContent = "表（問題）";
+      cardTextEl.className = "card-text-front";
+      cardTextEl.textContent = c.front;
+      flashHintEl.textContent = "カードをタップすると答えがめくれます";
+    }
+  }
+
+  function flipCardAnim(cb){
+    flashcardEl.classList.add("anim");
+    setTimeout(function(){
+      cb();
+      flashcardEl.classList.remove("anim");
+    }, 160);
+  }
+
+  function flipCard(){
+    flipCardAnim(function(){ cardFlipped = !cardFlipped; renderCard(); });
+  }
+  function nextCard(){
+    flipCardAnim(function(){
+      cardIndex = (cardIndex+1) % CARDS.length;
+      cardFlipped = false;
+      renderCard();
+    });
+  }
+  function prevCard(){
+    flipCardAnim(function(){
+      cardIndex = (cardIndex-1+CARDS.length) % CARDS.length;
+      cardFlipped = false;
+      renderCard();
+    });
+  }
+
+  function clearCardAutoTimer(){
+    if (cardAutoTimer){ clearInterval(cardAutoTimer); cardAutoTimer = null; }
+  }
+  function setActiveMode(mode){
+    for (var mb=0; mb<modeBtns.length; mb++){
+      modeBtns[mb].classList.toggle("active", modeBtns[mb].getAttribute("data-mode") === mode);
+    }
+  }
+  function startCardAuto(seconds){
+    clearCardAutoTimer();
+    cardAutoSeconds = seconds;
+    cardAutoTimer = setInterval(function(){
+      if (!cardFlipped){
+        flipCardAnim(function(){ cardFlipped = true; renderCard(); });
+      } else {
+        flipCardAnim(function(){
+          cardIndex = (cardIndex+1) % CARDS.length;
+          cardFlipped = false;
+          renderCard();
+        });
+      }
+    }, seconds*1000);
+  }
+  function stopAutoIfManualTap(){
+    if (cardAutoSeconds !== 0){
+      cardAutoSeconds = 0;
+      setActiveMode("manual");
+      clearCardAutoTimer();
+    }
+  }
+  function stopCardAuto(){
+    cardAutoSeconds = 0;
+    clearCardAutoTimer();
+    setActiveMode("manual");
+  }
+
+  if (cardTotalEl) cardTotalEl.textContent = CARDS.length;
+
+  if (flashcardEl){
+    flashcardEl.addEventListener("click", function(){ stopAutoIfManualTap(); flipCard(); });
+  }
+  var cardFlipBtn = document.getElementById("card-flip");
+  if (cardFlipBtn) cardFlipBtn.addEventListener("click", function(){ stopAutoIfManualTap(); flipCard(); });
+  var cardNextBtn = document.getElementById("card-next");
+  if (cardNextBtn) cardNextBtn.addEventListener("click", function(){ stopAutoIfManualTap(); nextCard(); });
+  var cardPrevBtn = document.getElementById("card-prev");
+  if (cardPrevBtn) cardPrevBtn.addEventListener("click", function(){ stopAutoIfManualTap(); prevCard(); });
+
+  for (var mb2=0; mb2<modeBtns.length; mb2++){
+    modeBtns[mb2].addEventListener("click", function(){
+      var mode = this.getAttribute("data-mode");
+      setActiveMode(mode);
+      if (mode === "manual"){
+        cardAutoSeconds = 0;
+        clearCardAutoTimer();
+      } else {
+        startCardAuto(parseInt(mode,10));
+      }
+    });
+  }
+
+  if (flashcardEl) renderCard();
+
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1789 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>無機化学③ 酸素・オゾン | GAMBA化学</title>
+<style>
+:root{
+  --bg:#f0f4ff;
+  --card:#fff;
+  --primary:#2563eb;
+  --primary-light:#dbeafe;
+  --primary-dark:#1e40af;
+  --accent:#dc2626;
+  --accent-light:#fee2e2;
+  --success:#16a34a;
+  --success-light:#dcfce7;
+  --warn:#d97706;
+  --warn-light:#fffbeb;
+  --purple:#7c3aed;
+  --purple-light:#ede9fe;
+  --text:#1e293b;
+  --text-sub:#64748b;
+  --border:#bfdbfe;
+  --radius:14px;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  font-family:"BIZ UDPGothic","Meiryo",sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.8;
+  padding-bottom:40px;
+}
+
+/* ---------- topnav / hero ---------- */
+.topnav{
+  background:var(--primary-dark);
+  color:#fff;
+  padding:10px 16px;
+  font-weight:bold;
+  font-size:1rem;
+  letter-spacing:.5px;
+  position:sticky;
+  top:0;
+  z-index:60;
+}
+.hero{
+  background:linear-gradient(135deg,var(--primary-dark),var(--primary));
+  color:#fff;
+  padding:20px 16px 18px;
+  text-align:center;
+}
+.hero h1{margin:0;font-size:1.3rem;}
+.hero p{margin:6px 0 0;font-size:.82rem;opacity:.92;}
+
+.tabnav{
+  display:flex;
+  max-width:780px;
+  margin:0 auto;
+  padding:10px 12px 0;
+  gap:8px;
+  position:sticky;
+  top:40px;
+  background:var(--bg);
+  z-index:55;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+}
+.tab-btn{
+  flex:none;
+  min-width:78px;
+  padding:11px 8px;
+  border:2px solid var(--primary);
+  background:#fff;
+  color:var(--primary-dark);
+  border-radius:12px 12px 0 0;
+  font-size:.85rem;
+  font-weight:bold;
+  cursor:pointer;
+  white-space:nowrap;
+}
+.tab-btn.active{background:var(--primary);color:#fff;}
+.wrap{max-width:780px;margin:0 auto;padding:4px 12px 0;}
+.tab-content{display:none;}
+.tab-content.active{display:block;animation:fade .25s;}
+@keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+/* ---------- unit / stage ---------- */
+.unit{
+  background:var(--card);
+  border-radius:var(--radius);
+  margin:16px 0;
+  box-shadow:0 1px 4px rgba(0,0,0,.08);
+  border:1px solid var(--border);
+  overflow:hidden;
+}
+.unit-title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  background:var(--primary-light);
+  color:var(--primary-dark);
+  font-size:1.05rem;
+  font-weight:bold;
+  padding:14px 16px;
+}
+.unit-num{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:30px;height:30px;
+  border-radius:50%;
+  background:var(--primary);
+  color:#fff;
+  font-size:.95rem;
+  flex:none;
+}
+.stage{padding:4px 16px 18px;}
+.stage h3{font-size:1rem;color:var(--primary-dark);margin:20px 0 8px;border-left:5px solid var(--primary);padding-left:8px;}
+
+.read-box{
+  background:var(--primary-light);
+  border-radius:10px;
+  padding:12px 14px;
+  margin:10px 0;
+  font-size:.95rem;
+}
+
+.key-box{
+  background:var(--warn-light);
+  border:2px solid var(--warn);
+  border-radius:10px;
+  padding:12px 14px;
+  margin:12px 0;
+  font-size:.93rem;
+}
+.key-box .tag{font-weight:bold;color:var(--warn);}
+
+.important-box{
+  background:var(--accent-light);
+  border:2px solid var(--accent);
+  border-radius:10px;
+  padding:12px 14px;
+  margin:12px 0;
+  font-size:.93rem;
+}
+.important-box .tag{font-weight:bold;color:var(--accent);}
+
+/* 暗記法 */
+.mnemonic-box{
+  background:var(--purple-light);
+  border:2px dashed var(--purple);
+  border-radius:10px;
+  padding:12px 14px;
+  margin:12px 0;
+  font-size:.93rem;
+}
+.mnemonic-box .tag{font-weight:bold;color:var(--purple);display:block;margin-bottom:4px;}
+.mnemonic-box .phrase{font-size:1.02rem;font-weight:bold;color:#4c1d95;}
+
+.eq{
+  background:#f1f5f9;
+  border-radius:8px;
+  padding:9px 12px;
+  margin:6px 0;
+  font-size:1rem;
+  font-weight:600;
+  text-align:center;
+  letter-spacing:.3px;
+  overflow-x:auto;
+}
+
+/* ---------- 相関図（フローチェーン） ---------- */
+.flow-diagram{margin:14px 0;}
+.flow-row{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  margin:8px 0;
+  overflow-x:auto;
+  padding:2px 0;
+}
+.flow-box{
+  flex:none;
+  min-width:108px;
+  text-align:center;
+  background:#fff;
+  border:2px solid var(--primary);
+  border-radius:10px;
+  padding:8px 10px;
+  font-size:.82rem;
+  font-weight:bold;
+  color:var(--primary-dark);
+}
+.flow-box.result{background:var(--primary);color:#fff;border-color:var(--primary-dark);}
+.flow-box.byproduct{background:#f1f5f9;border-color:#94a3b8;color:var(--text-sub);font-weight:normal;}
+.flow-arrow{
+  flex:none;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  font-size:1.3rem;
+  color:var(--primary);
+  min-width:46px;
+}
+.flow-arrow .cond{font-size:.68rem;color:var(--text-sub);font-weight:normal;white-space:nowrap;}
+.flow-note{
+  text-align:center;
+  font-size:.78rem;
+  color:var(--text-sub);
+  margin-top:2px;
+}
+
+/* ---------- まとめ表 ---------- */
+.tbl-wrap{overflow-x:auto;margin:12px 0;}
+.summary-tbl{
+  width:100%;
+  border-collapse:collapse;
+  font-size:.86rem;
+  min-width:420px;
+}
+.summary-tbl th{
+  background:var(--primary);
+  color:#fff;
+  padding:8px 6px;
+  font-weight:bold;
+}
+.summary-tbl td{
+  border-bottom:1px solid var(--border);
+  padding:8px 6px;
+  text-align:center;
+}
+.summary-tbl tr:nth-child(even) td{background:#f8faff;}
+
+/* ---------- なぜ？ポップアップ ---------- */
+.why-btn{
+  display:inline-block;
+  margin:10px 0;
+  padding:9px 16px;
+  background:var(--purple-light);
+  border:1px solid var(--purple);
+  border-radius:20px;
+  color:var(--purple);
+  font-size:.85rem;
+  font-weight:bold;
+  cursor:pointer;
+}
+.popup-overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(15,23,42,.55);
+  z-index:200;
+  align-items:center;
+  justify-content:center;
+  padding:16px;
+}
+.popup-overlay.show{display:flex;}
+.popup-box{
+  background:#fff;
+  border-radius:16px;
+  max-width:420px;
+  max-height:80vh;
+  overflow-y:auto;
+  padding:20px;
+  position:relative;
+}
+.popup-box h4{margin:0 0 10px;color:var(--purple);font-size:1rem;}
+.popup-close{
+  position:absolute;
+  top:10px;right:14px;
+  background:none;
+  border:none;
+  font-size:1.3rem;
+  color:var(--text-sub);
+  cursor:pointer;
+}
+
+/* ---------- 穴埋めチャレンジ ---------- */
+.fill-item{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:14px 16px;
+  margin:14px 0;
+}
+.fill-item .q-no{
+  display:inline-block;
+  background:var(--primary);
+  color:#fff;
+  font-size:.75rem;
+  font-weight:bold;
+  border-radius:12px;
+  padding:2px 10px;
+  margin-bottom:8px;
+}
+.fill-sentence{font-size:.98rem;margin:8px 0;}
+.blank{
+  display:inline-block;
+  min-width:64px;
+  border-bottom:2px solid var(--primary);
+  text-align:center;
+  font-weight:bold;
+  color:var(--primary-dark);
+  padding:0 4px;
+  margin:0 2px;
+}
+.blank.filled{background:var(--primary-light);border-radius:4px;}
+.blank.correct{background:var(--success-light);border-bottom-color:var(--success);color:var(--success);}
+.blank.wrong{background:var(--accent-light);border-bottom-color:var(--accent);color:var(--accent);}
+.chip-bank{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
+.chip{
+  background:var(--accent-light);
+  border:1px solid var(--accent);
+  color:var(--primary-dark);
+  border-radius:20px;
+  padding:6px 14px;
+  font-size:.9rem;
+  cursor:pointer;
+}
+.chip:active{transform:scale(.95);}
+.chip.used{opacity:.35;pointer-events:none;}
+.fill-check-btn,.fill-reset-btn{
+  margin-top:10px;margin-right:8px;
+  padding:8px 18px;border:none;border-radius:20px;
+  font-weight:bold;cursor:pointer;font-size:.88rem;
+}
+.fill-check-btn{background:var(--primary);color:#fff;}
+.fill-reset-btn{background:#e2e8f0;color:var(--text);}
+.fill-feedback{margin-top:8px;font-size:.88rem;font-weight:bold;}
+.fill-feedback.ok{color:var(--success);}
+.fill-feedback.bad{color:var(--accent);}
+
+/* ---------- q4（4択） ---------- */
+.q4{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:14px 16px;
+  margin:14px 0;
+}
+.q4.mini{background:#f8faff;}
+.q4-no{
+  display:inline-block;
+  background:var(--accent);
+  color:#fff;
+  font-size:.72rem;
+  font-weight:bold;
+  border-radius:12px;
+  padding:2px 10px;
+  margin-bottom:8px;
+}
+.q4-no.practice{background:var(--purple);}
+.q4-text{font-size:.96rem;font-weight:600;margin:4px 0 10px;}
+.q4-choices{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.q4-c{
+  text-align:left;
+  padding:9px 10px;
+  border:2px solid #cbd5e1;
+  border-radius:10px;
+  background:#fff;
+  font-size:.85rem;
+  cursor:pointer;
+}
+.q4-c.correct{background:var(--success-light);border-color:var(--success);}
+.q4-c.wrong{background:var(--accent-light);border-color:var(--accent);}
+.q4-c.disabled{pointer-events:none;}
+.q4-exp{
+  display:none;
+  margin-top:10px;
+  background:var(--primary-light);
+  border-left:4px solid var(--primary);
+  border-radius:0 8px 8px 0;
+  padding:10px 12px;
+  font-size:.86rem;
+  color:var(--primary-dark);
+}
+.q4-exp.show{display:block;}
+
+/* ---------- minitest（○×） ---------- */
+.minitest{
+  background:#f8faff;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:14px 16px;
+  margin:14px 0;
+}
+.mt-text{font-size:.95rem;font-weight:600;margin:4px 0 10px;}
+.mt-choices{display:flex;gap:10px;}
+.mt-c{
+  flex:1;
+  padding:10px;
+  border:2px solid #cbd5e1;
+  border-radius:10px;
+  background:#fff;
+  font-size:1rem;
+  font-weight:bold;
+  cursor:pointer;
+}
+.mt-c.correct{background:var(--success-light);border-color:var(--success);}
+.mt-c.wrong{background:var(--accent-light);border-color:var(--accent);}
+.mt-c.disabled{pointer-events:none;}
+.mt-exp{
+  display:none;
+  margin-top:10px;
+  background:#fff;
+  border-left:4px solid var(--primary);
+  border-radius:0 8px 8px 0;
+  padding:10px 12px;
+  font-size:.86rem;
+  color:var(--primary-dark);
+}
+.mt-exp.show{display:block;}
+
+/* ---------- 確認テスト footer ---------- */
+.check-footer{text-align:center;margin:24px 0;}
+.score-box{
+  display:inline-block;
+  background:var(--primary);
+  color:#fff;
+  border-radius:16px;
+  padding:14px 28px;
+  font-size:1.1rem;
+  font-weight:bold;
+}
+.celebrate-msg{
+  display:none;
+  position:fixed;
+  top:36%;left:50%;
+  transform:translate(-50%,-50%);
+  background:#fff;
+  border:3px solid var(--primary);
+  border-radius:20px;
+  padding:22px 30px;
+  font-size:1.15rem;
+  font-weight:bold;
+  color:var(--primary-dark);
+  box-shadow:0 8px 30px rgba(0,0,0,.25);
+  z-index:1000;
+  text-align:center;
+}
+
+/* ---------- confetti ---------- */
+.confetti-piece{
+  position:fixed;
+  top:-20px;
+  width:8px;height:14px;
+  z-index:999;
+  pointer-events:none;
+  animation:confettiFall linear forwards;
+}
+@keyframes confettiFall{
+  from{transform:translateY(0) rotate(0deg);opacity:1;}
+  to{transform:translateY(105vh) rotate(720deg);opacity:0;}
+}
+
+/* ---------- フラッシュカード ---------- */
+.card-mode-buttons{display:flex;gap:8px;margin:12px 0;flex-wrap:wrap;}
+.mode-btn{
+  flex:1;
+  min-width:90px;
+  padding:9px 6px;
+  border:2px solid var(--primary);
+  background:#fff;
+  color:var(--primary-dark);
+  border-radius:20px;
+  font-size:.82rem;
+  font-weight:bold;
+  cursor:pointer;
+}
+.mode-btn.active{background:var(--primary);color:#fff;}
+.flash-progress{
+  text-align:center;
+  font-size:.85rem;
+  color:var(--text-sub);
+  font-weight:bold;
+  margin:4px 0 10px;
+}
+.flashcard-wrap{margin:10px 0;}
+.flashcard{
+  position:relative;
+  min-height:180px;
+  background:var(--card);
+  border:3px solid var(--primary);
+  border-radius:16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:22px 18px;
+  cursor:pointer;
+  box-shadow:0 2px 10px rgba(37,99,235,.12);
+  transition:opacity .18s, transform .18s;
+}
+.flashcard.flipped{background:var(--primary-light);border-color:var(--primary-dark);}
+.flashcard.anim{opacity:0;transform:scale(.96);}
+.card-face-label{
+  position:absolute;
+  top:10px;left:14px;
+  font-size:.72rem;
+  font-weight:bold;
+  color:var(--text-sub);
+}
+.card-text-front{font-size:1.08rem;font-weight:bold;color:var(--primary-dark);}
+.card-text-back{font-size:1.1rem;font-weight:bold;color:var(--primary-dark);letter-spacing:.3px;}
+.flash-hint{text-align:center;font-size:.78rem;color:var(--text-sub);margin-top:8px;}
+.flash-nav{display:flex;gap:8px;margin-top:14px;}
+.flash-nav button{
+  flex:1;
+  padding:10px 4px;
+  border:none;
+  border-radius:20px;
+  font-weight:bold;
+  font-size:.86rem;
+  cursor:pointer;
+  background:#e2e8f0;
+  color:var(--text);
+}
+.flash-nav button.flip-btn{background:var(--primary);color:#fff;}
+</style>
+</head>
+<body>
+
+<div class="topnav">⚗️ GAMBA 化学</div>
+<div class="hero">
+  <h1>無機化学③ 酸素・オゾン</h1>
+  <p>江原予備校 GAMBA 大学入学共通テスト対応教材</p>
+</div>
+
+<div class="tabnav">
+  <button class="tab-btn active" data-tab="study">① 学習</button>
+  <button class="tab-btn" data-tab="fill">② 穴埋め</button>
+  <button class="tab-btn" data-tab="check">③ 確認テスト</button>
+  <button class="tab-btn" data-tab="cards">④ カード</button>
+</div>
+
+<main class="wrap">
+
+<!-- ============ ① 学習 ============ -->
+<div class="tab-content active" id="tab-study">
+
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">1</span>酸素O₂とオゾンO₃（同素体）</div>
+    <div class="stage">
+
+      <div class="read-box">酸素O₂とオゾンO₃は，同じ酸素原子からできているのに性質が異なる「同素体」です。同素体とは，同じ元素からできているのに，原子の結びつき方が違うために性質が異なる単体どうしのことをいいます。</div>
+      <div class="eq">3O₂ → 2O₃</div>
+
+      <div class="key-box"><span class="tag">🔑 ポイント</span> 酸素は空気中に体積比で約21%含まれ，無色・無臭で水に溶けにくい気体です。</div>
+
+      <div class="minitest" data-correct="o">
+        <div class="mt-text">Q. 酸素とオゾンは，同じ元素からできた同素体である。 ○か×か？</div>
+        <div class="mt-choices">
+          <button class="mt-c" data-v="o">○ 正しい</button>
+          <button class="mt-c" data-v="x">× 誤り</button>
+        </div>
+        <div class="mt-exp"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">2</span>酸素のつくり方</div>
+    <div class="stage">
+
+      <div class="read-box">酸素は実験室で2つの方法でつくれます。</div>
+      <div class="key-box"><span class="tag">🔑 ステップで考える</span> どちらの方法も，酸化マンガン(Ⅳ) MnO₂を触媒として使うという共通点があります。</div>
+
+      <div class="flow-diagram">
+        <div class="flow-row">
+          <div class="flow-box">過酸化水素水<br>H₂O₂</div>
+          <div class="flow-arrow">→<span class="cond">MnO₂<br>触媒</span></div>
+          <div class="flow-box result">O₂</div>
+          <div class="flow-arrow">＋</div>
+          <div class="flow-box byproduct">H₂O</div>
+        </div>
+        <div class="flow-note">2H₂O₂ → 2H₂O ＋ O₂</div>
+
+        <div class="flow-row">
+          <div class="flow-box">塩素酸カリウム<br>KClO₃</div>
+          <div class="flow-arrow">→<span class="cond">MnO₂<br>触媒・加熱</span></div>
+          <div class="flow-box result">O₂</div>
+          <div class="flow-arrow">＋</div>
+          <div class="flow-box byproduct">KCl</div>
+        </div>
+        <div class="flow-note">2KClO₃ → 2KCl ＋ 3O₂</div>
+      </div>
+
+      <div class="read-box">工業的には，液体空気を分留（蒸留をくり返して分ける）してつくります。窒素（沸点－193℃）と酸素（沸点－183℃）の沸点の差を利用します。</div>
+
+      <div class="important-box"><span class="tag">⚠️ 注意</span> MnO₂はどちらの反応でも「触媒」としてはたらくだけで，自分自身は変化しません。</div>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">小テスト①</div>
+        <div class="q4-text">Q. 過酸化水素水にMnO₂を加えると発生する気体は何ですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．O₂</button>
+          <button class="q4-c" data-v="b">b．H₂</button>
+          <button class="q4-c" data-v="c">c．CO₂</button>
+          <button class="q4-c" data-v="d">d．Cl₂</button>
+        </div>
+        <div class="q4-exp">📘 2H₂O₂→2H₂O＋O₂ です。MnO₂は触媒としてこの分解を速めます。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">小テスト②</div>
+        <div class="q4-text">Q. 塩素酸カリウムにMnO₂を加えて加熱すると発生する気体は何ですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．O₂</button>
+          <button class="q4-c" data-v="b">b．Cl₂</button>
+          <button class="q4-c" data-v="c">c．H₂</button>
+          <button class="q4-c" data-v="d">d．N₂</button>
+        </div>
+        <div class="q4-exp">📘 2KClO₃→2KCl＋3O₂ です。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">小テスト③</div>
+        <div class="q4-text">Q. 「2H₂O₂ → 2H₂O ＋（　）」。空欄に入るのはどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．H₂</button>
+          <button class="q4-c" data-v="b">b．O₂</button>
+          <button class="q4-c" data-v="c">c．2O₂</button>
+          <button class="q4-c" data-v="d">d．O₃</button>
+        </div>
+        <div class="q4-exp">📘 左辺のOは4個，右辺の2H₂OにOが2個使われているので，残りはO₂（O原子2個）です。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="c">
+        <div class="q4-no practice">小テスト④</div>
+        <div class="q4-text">Q. 酸素の工業的製法で利用するのは何ですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．電気分解</button>
+          <button class="q4-c" data-v="b">b．MnO₂触媒</button>
+          <button class="q4-c" data-v="c">c．液体空気の分留（沸点の差）</button>
+          <button class="q4-c" data-v="d">d．無声放電</button>
+        </div>
+        <div class="q4-exp">📘 窒素（沸点－193℃）と酸素（沸点－183℃）の沸点の差を利用して分離します。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="d">
+        <div class="q4-no practice">小テスト⑤</div>
+        <div class="q4-text">Q. 酸素の性質として正しいものはどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．淡黄色で特異臭がある</button>
+          <button class="q4-c" data-v="b">b．水によく溶ける</button>
+          <button class="q4-c" data-v="c">c．空気より非常に軽い</button>
+          <button class="q4-c" data-v="d">d．無色・無臭で水に溶けにくい</button>
+        </div>
+        <div class="q4-exp">📘 酸素O₂は無色・無臭で，水にほとんど溶けません。淡黄色で特異臭があるのはオゾンO₃の方です。</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">3</span>オゾンの検出と酸化力</div>
+    <div class="stage">
+
+      <div class="read-box">オゾンO₃は淡青色で特異臭（生ぐさいにおい）をもつ気体です。酸素中で無声放電するか，紫外線を当てると生成します。酸化力がとても強く，漂白作用・殺菌作用があります。</div>
+
+      <div class="key-box"><span class="tag">🔑 ポイント</span> オゾンの検出には，水にぬらしたヨウ化カリウムデンプン紙を使います。オゾンに触れると青色に変化します。</div>
+      <div class="eq">2KI ＋ O₃ ＋ H₂O → I₂ ＋ 2KOH ＋ O₂</div>
+
+      <div class="flow-diagram">
+        <div class="flow-row">
+          <div class="flow-box">ヨウ化カリウム<br>デンプン紙（無色）</div>
+          <div class="flow-arrow">→<span class="cond">＋O₃</span></div>
+          <div class="flow-box result">青色に変化</div>
+        </div>
+        <div class="flow-note">相関図：オゾンがヨウ化物イオンI⁻を酸化してI₂に変え，I₂がデンプンと反応して青色になります</div>
+      </div>
+
+      <button class="why-btn" data-popup="p1">🤔 なぜデンプン紙が青くなるの？</button>
+
+      <div class="important-box"><span class="tag">⚠️ 注意</span> オゾンの酸化力はとても強く，空気中では酸化されにくい銀Agさえも酸化できます。</div>
+      <div class="eq">2Ag ＋ O₃ → Ag₂O ＋ O₂</div>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">練習①</div>
+        <div class="q4-text">Q. 「2KI＋O₃＋H₂O→（　）＋2KOH＋O₂」。空欄に入るのはどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．I₂</button>
+          <button class="q4-c" data-v="b">b．I⁻</button>
+          <button class="q4-c" data-v="c">c．KI</button>
+          <button class="q4-c" data-v="d">d．H₂</button>
+        </div>
+        <div class="q4-exp">📘 オゾンがヨウ化物イオンI⁻を酸化すると，I₂（ヨウ素の単体）ができます。これがデンプンと反応して青色になります。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="c">
+        <div class="q4-no practice">練習②</div>
+        <div class="q4-text">Q. オゾンの検出に使われる試験紙は何ですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．リトマス紙</button>
+          <button class="q4-c" data-v="b">b．pH試験紙</button>
+          <button class="q4-c" data-v="c">c．ヨウ化カリウムデンプン紙</button>
+          <button class="q4-c" data-v="d">d．ろ紙</button>
+        </div>
+        <div class="q4-exp">📘 水にぬらしたヨウ化カリウムデンプン紙を使い，青色への変化でオゾンを検出します。</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">4</span>酸化物の分類</div>
+    <div class="stage">
+
+      <div class="read-box">酸素と結びついた化合物を酸化物といいます。酸化物は，性質によって3つに分類されます。</div>
+
+      <div class="tbl-wrap">
+        <table class="summary-tbl">
+          <tr><th>分類</th><th>特徴</th><th>例</th></tr>
+          <tr><td>酸性酸化物</td><td>非金属元素の酸化物に多い。水に溶けて酸になる／塩基と反応して塩と水になる</td><td>SO₂，CO₂</td></tr>
+          <tr><td>塩基性酸化物</td><td>金属元素の酸化物に多い。水に溶けて塩基になる／酸と反応して塩と水になる</td><td>Na₂O，CaO</td></tr>
+          <tr><td>両性酸化物</td><td>両性元素（Al・Zn・Sn・Pb）の酸化物。酸とも強塩基とも反応する</td><td>Al₂O₃，ZnO</td></tr>
+        </table>
+      </div>
+
+      <div class="eq">SO₂ ＋ H₂O → H₂SO₃（亜硫酸）</div>
+      <div class="eq">CO₂ ＋ 2NaOH → Na₂CO₃ ＋ H₂O</div>
+      <div class="eq">Na₂O ＋ H₂O → 2NaOH</div>
+      <div class="eq">CaO ＋ 2HCl → CaCl₂ ＋ H₂O</div>
+
+      <div class="key-box"><span class="tag">🔑 覚え方のヒント</span> 「非金属＝酸性」「金属＝塩基性」が基本パターンです。両性元素だけ例外で，「アルミAl・亜鉛Zn・スズSn・鉛Pb」の4つを覚えておきましょう。</div>
+
+      <div class="minitest" data-correct="x">
+        <div class="mt-text">Q. 金属元素の酸化物は，一般に酸性酸化物である。 ○か×か？</div>
+        <div class="mt-choices">
+          <button class="mt-c" data-v="o">○ 正しい</button>
+          <button class="mt-c" data-v="x">× 誤り</button>
+        </div>
+        <div class="mt-exp"></div>
+      </div>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">小テスト①</div>
+        <div class="q4-text">Q. 非金属元素の酸化物に多いのはどの分類ですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．酸性酸化物</button>
+          <button class="q4-c" data-v="b">b．塩基性酸化物</button>
+          <button class="q4-c" data-v="c">c．両性酸化物</button>
+          <button class="q4-c" data-v="d">d．いずれでもない</button>
+        </div>
+        <div class="q4-exp">📘 非金属元素の酸化物は，水に溶けて酸になったり，塩基と反応したりする「酸性酸化物」が多いです。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">小テスト②</div>
+        <div class="q4-text">Q. 「SO₂＋H₂O→（　）」。空欄に入るのはどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．H₂SO₄</button>
+          <button class="q4-c" data-v="b">b．H₂SO₃</button>
+          <button class="q4-c" data-v="c">c．H₂S</button>
+          <button class="q4-c" data-v="d">d．SO₃</button>
+        </div>
+        <div class="q4-exp">📘 SO₂＋H₂O→H₂SO₃（亜硫酸）です。SO₂が酸性酸化物であることを示す代表的な反応です。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">小テスト③</div>
+        <div class="q4-text">Q. 両性酸化物をつくる元素はどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．Al（アルミニウム）</button>
+          <button class="q4-c" data-v="b">b．Na（ナトリウム）</button>
+          <button class="q4-c" data-v="c">c．Ca（カルシウム）</button>
+          <button class="q4-c" data-v="d">d．K（カリウム）</button>
+        </div>
+        <div class="q4-exp">📘 両性元素はAl・Zn・Sn・Pbの4つです。Na・Ca・Kは塩基性酸化物をつくる金属元素です。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="d">
+        <div class="q4-no practice">小テスト④</div>
+        <div class="q4-text">Q. 「CaO＋2HCl→CaCl₂＋（　）」。空欄に入るのはどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．O₂</button>
+          <button class="q4-c" data-v="b">b．H₂</button>
+          <button class="q4-c" data-v="c">c．Ca(OH)₂</button>
+          <button class="q4-c" data-v="d">d．H₂O</button>
+        </div>
+        <div class="q4-exp">📘 塩基性酸化物CaOが酸HClと反応すると，塩（CaCl₂）と水ができます。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="c">
+        <div class="q4-no practice">小テスト⑤</div>
+        <div class="q4-text">Q. オキソ酸で，同じ元素のオキソ酸どうしを比べたとき，分子中の酸素原子の数が多いほどどうなりますか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．弱い酸になる</button>
+          <button class="q4-c" data-v="b">b．中性になる</button>
+          <button class="q4-c" data-v="c">c．強い酸になる</button>
+          <button class="q4-c" data-v="d">d．気体になる</button>
+        </div>
+        <div class="q4-exp">📘 HClO＜HClO₂＜HClO₃＜HClO₄のように，酸素原子の数が多いほど強い酸になります。</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">5</span>硫黄の同素体と二酸化硫黄SO₂</div>
+    <div class="stage">
+
+      <div class="read-box">硫黄Sは酸素と同じ16族の元素で，酸素とよく似た性質をもつ化合物をつくります。硫黄にも同素体があります。</div>
+
+      <div class="tbl-wrap">
+        <table class="summary-tbl">
+          <tr><th>同素体</th><th>特徴</th></tr>
+          <tr><td>斜方硫黄</td><td>常温で安定。黄色の結晶。S₈の環状分子</td></tr>
+          <tr><td>単斜硫黄</td><td>針状の結晶。S₈の環状分子</td></tr>
+          <tr><td>ゴム状硫黄</td><td>弾力性あり。結晶構造をもたず，二硫化炭素CS₂に溶けない</td></tr>
+        </table>
+      </div>
+
+      <div class="important-box"><span class="tag">⚠️ 注意</span> 斜方硫黄・単斜硫黄はどちらもS₈（硫黄原子8個の環状分子）からなります。ゴム状硫黄だけが結晶構造をもたない例外です。</div>
+
+      <h3>二酸化硫黄SO₂の性質</h3>
+      <div class="read-box">SO₂は刺激臭のある無色・有毒な気体で，水に溶けると亜硫酸H₂SO₃を生じて弱酸性を示します。</div>
+      <div class="eq">SO₂ ＋ H₂O → H⁺ ＋ HSO₃⁻</div>
+
+      <div class="key-box"><span class="tag">🔑 ポイント</span> SO₂はふつう還元剤としてはたらきますが，H₂Sのような「もっと強い還元剤」が相手のときだけ，逆に酸化剤としてはたらきます。相手によって役割が変わる点がSO₂最大の特徴です。</div>
+
+      <div class="tbl-wrap">
+        <table class="summary-tbl">
+          <tr><th>はたらき</th><th>半反応式</th><th>相手</th></tr>
+          <tr><td>還元剤</td><td>SO₂＋2H₂O→SO₄²⁻＋4H⁺＋2e⁻</td><td>ふつうの酸化剤（I₂など）</td></tr>
+          <tr><td>酸化剤</td><td>SO₂＋4H⁺＋4e⁻→S＋2H₂O</td><td>H₂Sのような強い還元剤</td></tr>
+        </table>
+      </div>
+
+      <div class="read-box"><b>半反応式からSO₂とH₂Sの反応式をつくる</b><br>SO₂が酸化剤，H₂Sが還元剤としてはたらきます。</div>
+      <div class="eq">SO₂ ＋ 4H⁺ ＋ 4e⁻ → S ＋ 2H₂O ……①</div>
+      <div class="eq">H₂S → 2H⁺ ＋ S ＋ 2e⁻ ……②</div>
+      <div class="read-box">電子の数をそろえるため，②を2倍してから①と足します。</div>
+      <div class="eq">① ＋ ②×2　→　2H₂S ＋ SO₂ → 3S ＋ 2H₂O</div>
+      <div class="important-box"><span class="tag">⚠️ 豆知識</span> 火山の噴火口付近でSO₂とH₂Sが出会うと，この反応で黄色い硫黄の結晶が付着します。</div>
+
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">小テスト①</div>
+        <div class="q4-text">Q. SO₂が水に溶けてできる酸は何ですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．硫酸H₂SO₄</button>
+          <button class="q4-c" data-v="b">b．亜硫酸H₂SO₃</button>
+          <button class="q4-c" data-v="c">c．硫化水素H₂S</button>
+          <button class="q4-c" data-v="d">d．チオ硫酸</button>
+        </div>
+        <div class="q4-exp">📘 SO₂＋H₂O→H⁺＋HSO₃⁻のように亜硫酸H₂SO₃を生じ，弱酸性を示します。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="c">
+        <div class="q4-no practice">小テスト②</div>
+        <div class="q4-text">Q. SO₂がH₂Sと反応するとき，SO₂はどちらとしてはたらきますか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．触媒</button>
+          <button class="q4-c" data-v="b">b．還元剤</button>
+          <button class="q4-c" data-v="c">c．酸化剤</button>
+          <button class="q4-c" data-v="d">d．塩基</button>
+        </div>
+        <div class="q4-exp">📘 H₂Sはふつうの還元剤より強力なので，この組み合わせではSO₂が例外的に酸化剤としてはたらきます。2H₂S＋SO₂→3S＋2H₂O。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">小テスト③</div>
+        <div class="q4-text">Q. 2H₂S＋SO₂→3S＋（　）。空欄に入るのはどれですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．2H₂O</button>
+          <button class="q4-c" data-v="b">b．2H₂SO₄</button>
+          <button class="q4-c" data-v="c">c．2H₂</button>
+          <button class="q4-c" data-v="d">d．O₂</button>
+        </div>
+        <div class="q4-exp">📘 原子の数を数えて確認しましょう。左辺のHが4個・Oが2個なので，右辺は2H₂Oになります。</div>
+      </div>
+
+      <div class="minitest" data-correct="x">
+        <div class="mt-text">Q. SO₂はどんな相手に対しても必ず還元剤としてはたらく。 ○か×か？</div>
+        <div class="mt-choices">
+          <button class="mt-c" data-v="o">○ 正しい</button>
+          <button class="mt-c" data-v="x">× 誤り</button>
+        </div>
+        <div class="mt-exp"></div>
+      </div>
+
+      <h3>SO₂の実験室的製法</h3>
+      <div class="flow-diagram">
+        <div class="flow-row">
+          <div class="flow-box">銅Cu<br><span style="font-weight:normal;">＋濃硫酸（加熱）</span></div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-box result">SO₂</div>
+          <div class="flow-arrow">＋</div>
+          <div class="flow-box byproduct">CuSO₄</div>
+        </div>
+        <div class="flow-note">Cu＋2H₂SO₄→CuSO₄＋SO₂＋2H₂O（熱濃硫酸の酸化作用を利用）</div>
+
+        <div class="flow-row">
+          <div class="flow-box">亜硫酸Na₂SO₃<br><span style="font-weight:normal;">＋希硫酸</span></div>
+          <div class="flow-arrow">→<span class="cond">弱酸遊離</span></div>
+          <div class="flow-box result">SO₂</div>
+          <div class="flow-arrow">＋</div>
+          <div class="flow-box byproduct">Na₂SO₄</div>
+        </div>
+        <div class="flow-note">Na₂SO₃＋H₂SO₄→Na₂SO₄＋SO₂＋H₂O（弱酸の塩に強酸を加えて弱酸の気体を追い出す）</div>
+      </div>
+
+      <div class="q4 mini" data-correct="d">
+        <div class="q4-no practice">小テスト④</div>
+        <div class="q4-text">Q. 亜硫酸ナトリウムに希硫酸を加えてSO₂を発生させる反応は，何という反応の一種ですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．中和反応</button>
+          <button class="q4-c" data-v="b">b．酸化還元反応</button>
+          <button class="q4-c" data-v="c">c．沈殿反応</button>
+          <button class="q4-c" data-v="d">d．弱酸遊離反応</button>
+        </div>
+        <div class="q4-exp">📘 弱酸の塩（Na₂SO₃）に強酸（H₂SO₄）を加えると，弱酸の気体（SO₂）が追い出されます。これを弱酸遊離反応といいます。</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">6</span>硫化水素H₂S</div>
+    <div class="stage">
+
+      <div class="read-box">硫化水素H₂Sは，火山ガスや温泉水にも含まれる腐卵臭（卵が腐ったようなにおい）のある有毒な気体です。水に少し溶けて弱酸性を示し，強力な還元剤としてはたらきます。</div>
+
+      <div class="eq">H₂S ⇄ H⁺ ＋ HS⁻（第一段階）　　HS⁻ ⇄ H⁺ ＋ S²⁻（第二段階）</div>
+
+      <h3>H₂Sの実験室的製法</h3>
+      <div class="flow-diagram">
+        <div class="flow-row">
+          <div class="flow-box">硫化鉄FeS<br><span style="font-weight:normal;">＋希硫酸</span></div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-box result">H₂S</div>
+          <div class="flow-arrow">＋</div>
+          <div class="flow-box byproduct">FeSO₄</div>
+        </div>
+        <div class="flow-note">FeS＋H₂SO₄→FeSO₄＋H₂S（キップの装置で必要な量だけ取り出せる）</div>
+      </div>
+
+      <div class="important-box"><span class="tag">⚠️ よくある間違い</span> H₂Sをつくるときに硝酸HNO₃は使えません。硝酸は酸化力が強く，H₂Sを酸化してしまうからです（HNO₃＋3H⁺＋3e⁻→NO＋2H₂Oの半反応式とH₂S→2H⁺＋S＋2e⁻が反応してしまいます）。乾燥剤にも，酸性のH₂Sを吸収してしまう塩基性の乾燥剤（ソーダ石灰など）は使えません。</div>
+
+      <h3>重金属イオンとの沈殿反応</h3>
+      <div class="read-box">H₂Sを重金属イオンの水溶液に通すと，硫化物の沈殿ができます。この色のちがいは，金属イオンの検出・分離に使われる重要な性質です。</div>
+
+      <div class="tbl-wrap">
+        <table class="summary-tbl">
+          <tr><th>イオン</th><th>沈殿</th><th>色</th></tr>
+          <tr><td>Ag⁺</td><td>Ag₂S</td><td>黒色</td></tr>
+          <tr><td>Cu²⁺</td><td>CuS</td><td>黒色</td></tr>
+          <tr><td>Pb²⁺</td><td>PbS</td><td>黒色</td></tr>
+          <tr><td>Zn²⁺</td><td>ZnS</td><td>白色</td></tr>
+        </table>
+      </div>
+
+      <div class="key-box"><span class="tag">🔑 ポイント</span> CuSやAgSは酸性の水溶液中でも沈殿しますが，ZnSは酸性では沈殿せず，中性・塩基性にしてはじめて沈殿します。この違いは金属イオンを系統的に分離するときの重要な手がかりになります。</div>
+
+      <div class="q4 mini" data-correct="c">
+        <div class="q4-no practice">小テスト①</div>
+        <div class="q4-text">Q. H₂Sの実験室的製法に硝酸を使えないのはなぜですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．硝酸は水に溶けないから</button>
+          <button class="q4-c" data-v="b">b．硝酸は塩基だから</button>
+          <button class="q4-c" data-v="c">c．硝酸がH₂Sを酸化してしまうから</button>
+          <button class="q4-c" data-v="d">d．硝酸は気体だから</button>
+        </div>
+        <div class="q4-exp">📘 硝酸は強い酸化剤なので，還元剤であるH₂Sを酸化してしまい，目的のH₂Sが得られません。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">小テスト②</div>
+        <div class="q4-text">Q. Cu²⁺を含む酸性水溶液にH₂Sを通すとできる沈殿の色は何色ですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．白色</button>
+          <button class="q4-c" data-v="b">b．黒色</button>
+          <button class="q4-c" data-v="c">c．黄色</button>
+          <button class="q4-c" data-v="d">d．青色</button>
+        </div>
+        <div class="q4-exp">📘 Cu²⁺＋S²⁻→CuS（黒色沈殿）。CuSは酸性水溶液中でも沈殿する点がポイントです。</div>
+      </div>
+
+      <div class="minitest" data-correct="o">
+        <div class="mt-text">Q. 硫化水素H₂Sは還元剤としてはたらく。 ○か×か？</div>
+        <div class="mt-choices">
+          <button class="mt-c" data-v="o">○ 正しい</button>
+          <button class="mt-c" data-v="x">× 誤り</button>
+        </div>
+        <div class="mt-exp"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">7</span>硫酸の工業的製法（接触法）と濃硫酸の性質</div>
+    <div class="stage">
+
+      <div class="read-box">硫酸H₂SO₄は工業的に「接触法」という3段階の方法でつくられます。合言葉は「硫黄→SO₂→SO₃→硫酸」と，酸素の数が1つずつ増えていくイメージです。</div>
+
+      <div class="flow-diagram">
+        <div class="flow-row">
+          <div class="flow-box">硫黄S<br><span style="font-weight:normal;">＋O₂</span></div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-box result">SO₂</div>
+        </div>
+        <div class="flow-note">① S＋O₂→SO₂（硫黄を燃焼）</div>
+
+        <div class="flow-row">
+          <div class="flow-box">SO₂<br><span style="font-weight:normal;">＋O₂（V₂O₅触媒）</span></div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-box result">SO₃</div>
+        </div>
+        <div class="flow-note">② 2SO₂＋O₂→2SO₃（五酸化バナジウムV₂O₅を触媒に，約500℃で酸化）</div>
+
+        <div class="flow-row">
+          <div class="flow-box">SO₃<br><span style="font-weight:normal;">＋濃硫酸→発煙硫酸</span></div>
+          <div class="flow-arrow">→<span class="cond">希硫酸でうすめる</span></div>
+          <div class="flow-box result">H₂SO₄</div>
+        </div>
+        <div class="flow-note">③ SO₃＋H₂O→H₂SO₄（実際はSO₃をいったん濃硫酸に吸収させ発煙硫酸にしてから希硫酸でうすめる）</div>
+      </div>
+
+      <div class="key-box"><span class="tag">🔑 ポイント</span> ①×2＋②＋③×2をまとめると，硫黄から直接硫酸ができる全体の反応式がつくれます：2S＋3O₂＋2H₂O→2H₂SO₄。</div>
+
+      <div class="q4 mini" data-correct="b">
+        <div class="q4-no practice">小テスト①</div>
+        <div class="q4-text">Q. 硫酸の工業的製法を何といいますか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．ハーバー・ボッシュ法</button>
+          <button class="q4-c" data-v="b">b．接触法</button>
+          <button class="q4-c" data-v="c">c．オストワルト法</button>
+          <button class="q4-c" data-v="d">d．アンモニアソーダ法</button>
+        </div>
+        <div class="q4-exp">📘 SO₂をV₂O₅触媒でSO₃に「接触」酸化させることから接触法と呼ばれます。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="c">
+        <div class="q4-no practice">小テスト②</div>
+        <div class="q4-text">Q. 接触法でSO₂をSO₃に酸化するときの触媒は何ですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．MnO₂</button>
+          <button class="q4-c" data-v="b">b．Fe（四酸化三鉄）</button>
+          <button class="q4-c" data-v="c">c．V₂O₅（五酸化バナジウム）</button>
+          <button class="q4-c" data-v="d">d．Pt（白金）</button>
+        </div>
+        <div class="q4-exp">📘 2SO₂＋O₂→2SO₃の反応には，五酸化バナジウムV₂O₅（酸化バナジウム(Ⅴ)）を触媒として使います。</div>
+      </div>
+
+      <h3>濃硫酸の4つの性質</h3>
+      <div class="tbl-wrap">
+        <table class="summary-tbl">
+          <tr><th>性質</th><th>内容</th><th>例</th></tr>
+          <tr><td>不揮発性</td><td>揮発性の酸の塩に加えると，揮発性の酸を追い出す</td><td>NaCl＋H₂SO₄→NaHSO₄＋HCl↑</td></tr>
+          <tr><td>酸化作用</td><td>熱濃硫酸はイオン化傾向の小さいCuも溶かす</td><td>Cu＋2H₂SO₄→CuSO₄＋2H₂O＋SO₂</td></tr>
+          <tr><td>吸湿作用</td><td>気体中の水蒸気を吸収する（乾燥剤）</td><td>酸性の気体の乾燥に使用</td></tr>
+          <tr><td>脱水作用</td><td>化合物からH・Oの原子をH₂Oの形で奪う</td><td>C₁₂H₂₂O₁₁→12C＋11H₂O（ショ糖が黒く炭化）</td></tr>
+        </table>
+      </div>
+
+      <div class="important-box"><span class="tag">⚠️ よくある間違い</span> 希硫酸をつくるときは，必ず「大量の水に濃硫酸を少しずつ加える」順番を守ります。逆に濃硫酸へ水を加えると，溶解熱で水が急に沸騰し，酸が飛び散って大変危険です。</div>
+
+      <div class="q4 mini" data-correct="d">
+        <div class="q4-no practice">小テスト③</div>
+        <div class="q4-text">Q. ショ糖に濃硫酸を加えると黒色に変化する現象は，濃硫酸のどの性質によるものですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．不揮発性</button>
+          <button class="q4-c" data-v="b">b．酸化作用</button>
+          <button class="q4-c" data-v="c">c．吸湿作用</button>
+          <button class="q4-c" data-v="d">d．脱水作用</button>
+        </div>
+        <div class="q4-exp">📘 濃硫酸がショ糖からH原子とO原子をH₂Oの形で奪うため，炭素Cだけが残って黒く炭化します（脱水作用）。</div>
+      </div>
+
+      <div class="q4 mini" data-correct="a">
+        <div class="q4-no practice">小テスト④</div>
+        <div class="q4-text">Q. NaCl＋H₂SO₄→NaHSO₄＋HClの反応は，濃硫酸のどの性質によるものですか。</div>
+        <div class="q4-choices">
+          <button class="q4-c" data-v="a">a．不揮発性</button>
+          <button class="q4-c" data-v="b">b．酸化作用</button>
+          <button class="q4-c" data-v="c">c．吸湿作用</button>
+          <button class="q4-c" data-v="d">d．脱水作用</button>
+        </div>
+        <div class="q4-exp">📘 不揮発性の濃硫酸が，揮発性の酸の塩（NaCl）から揮発性の酸（HCl）を追い出します。</div>
+      </div>
+
+      <div class="minitest" data-correct="x">
+        <div class="mt-text">Q. 希硫酸をつくるときは，濃硫酸に水を少しずつ加えればよい。 ○か×か？</div>
+        <div class="mt-choices">
+          <button class="mt-c" data-v="o">○ 正しい</button>
+          <button class="mt-c" data-v="x">× 誤り</button>
+        </div>
+        <div class="mt-exp"></div>
+      </div>
+
+      <button class="why-btn" data-popup="p2">🤔 なぜ濃硫酸に水を加えると危険なの？</button>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- ============ ② 穴埋めチャレンジ ============ -->
+<div class="tab-content" id="tab-fill">
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">✎</span>穴埋めチャレンジ</div>
+    <div class="stage">
+      <div class="read-box">下のチップをタップして，反応式の空欄をうめましょう。まちがえても大丈夫，「やり直す」でもう一度チャレンジできます。</div>
+    </div>
+  </div>
+
+  <div class="fill-item" data-fill="f1">
+    <div class="q-no">問1</div>
+    <div class="fill-sentence">酸素の実験室的製法①：2H₂O₂ → 2H₂O ＋ <span class="blank" data-blank="0" data-ans="O2">　</span></div>
+    <div class="chip-bank">
+      <span class="chip" data-val="O2">O₂</span>
+      <span class="chip" data-val="O3">O₃</span>
+      <span class="chip" data-val="H2">H₂</span>
+      <span class="chip" data-val="2O2">2O₂</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+
+  <div class="fill-item" data-fill="f2">
+    <div class="q-no">問2</div>
+    <div class="fill-sentence">酸素の実験室的製法②：2KClO₃ → 2KCl ＋ <span class="blank" data-blank="0" data-ans="3O2">　</span></div>
+    <div class="chip-bank">
+      <span class="chip" data-val="3O2">3O₂</span>
+      <span class="chip" data-val="O2">O₂</span>
+      <span class="chip" data-val="Cl2">Cl₂</span>
+      <span class="chip" data-val="KClO3">KClO₃</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+
+  <div class="fill-item" data-fill="f3">
+    <div class="q-no">問3</div>
+    <div class="fill-sentence">オゾンの生成：3O₂ → <span class="blank" data-blank="0" data-ans="2O3">　</span></div>
+    <div class="chip-bank">
+      <span class="chip" data-val="2O3">2O₃</span>
+      <span class="chip" data-val="O3">O₃</span>
+      <span class="chip" data-val="3O3">3O₃</span>
+      <span class="chip" data-val="O2">O₂</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+
+  <div class="fill-item" data-fill="f4">
+    <div class="q-no">問4</div>
+    <div class="fill-sentence">オゾンの検出：2KI ＋ O₃ ＋ H₂O → <span class="blank" data-blank="0" data-ans="I2">　</span> ＋ 2KOH ＋ <span class="blank" data-blank="1" data-ans="O2">　</span></div>
+    <div class="chip-bank">
+      <span class="chip" data-val="I2">I₂</span>
+      <span class="chip" data-val="O2">O₂</span>
+      <span class="chip" data-val="KI">KI</span>
+      <span class="chip" data-val="O3">O₃</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+
+  <div class="fill-item" data-fill="f5">
+    <div class="q-no">問5</div>
+    <div class="fill-sentence">酸性酸化物の例：SO₂ ＋ H₂O → <span class="blank" data-blank="0" data-ans="H2SO3">　</span></div>
+    <div class="chip-bank">
+      <span class="chip" data-val="H2SO3">H₂SO₃</span>
+      <span class="chip" data-val="H2SO4">H₂SO₄</span>
+      <span class="chip" data-val="H2S">H₂S</span>
+      <span class="chip" data-val="SO3">SO₃</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+
+  <div class="fill-item" data-fill="f6">
+    <div class="q-no">問6</div>
+    <div class="fill-sentence">SO₂とH₂Sの反応：2H₂S ＋ SO₂ → 3<span class="blank" data-blank="0" data-ans="S">　</span> ＋ 2<span class="blank" data-blank="1" data-ans="H2O">　</span></div>
+    <div class="chip-bank">
+      <span class="chip" data-val="S">S</span>
+      <span class="chip" data-val="H2O">H₂O</span>
+      <span class="chip" data-val="SO3">SO₃</span>
+      <span class="chip" data-val="O2">O₂</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+
+  <div class="fill-item" data-fill="f7">
+    <div class="q-no">問7</div>
+    <div class="fill-sentence">接触法：2SO₂ ＋ O₂ → 2<span class="blank" data-blank="0" data-ans="SO3">　</span>（触媒：<span class="blank" data-blank="1" data-ans="V2O5">　</span>）</div>
+    <div class="chip-bank">
+      <span class="chip" data-val="SO3">SO₃</span>
+      <span class="chip" data-val="V2O5">V₂O₅</span>
+      <span class="chip" data-val="SO2">SO₂</span>
+      <span class="chip" data-val="MnO2">MnO₂</span>
+    </div>
+    <button class="fill-check-btn">採点する</button>
+    <button class="fill-reset-btn">やり直す</button>
+    <div class="fill-feedback"></div>
+  </div>
+</div>
+
+<!-- ============ ③ 確認テスト ============ -->
+<div class="tab-content" id="tab-check">
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">✓</span>確認テスト（14問）</div>
+    <div class="stage">
+      <div class="read-box">すべての問題に答えると，結果が表示されます。自分のペースでゆっくり進めましょう。</div>
+    </div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="c">
+    <div class="q4-no">第1問</div>
+    <div class="q4-text">酸素O₂とオゾンO₃の関係を何といいますか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．異性体</button>
+      <button class="q4-c" data-v="b">b．同位体</button>
+      <button class="q4-c" data-v="c">c．同素体</button>
+      <button class="q4-c" data-v="d">d．化合物</button>
+    </div>
+    <div class="q4-exp">📘 同じ元素からできているのに性質が異なる単体どうしを同素体といいます。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="a">
+    <div class="q4-no">第2問</div>
+    <div class="q4-text">過酸化水素水にMnO₂を加えると発生する気体は何ですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．O₂</button>
+      <button class="q4-c" data-v="b">b．H₂</button>
+      <button class="q4-c" data-v="c">c．CO₂</button>
+      <button class="q4-c" data-v="d">d．N₂</button>
+    </div>
+    <div class="q4-exp">📘 2H₂O₂→2H₂O＋O₂ です。MnO₂は触媒です。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="a">
+    <div class="q4-no">第3問</div>
+    <div class="q4-text">塩素酸カリウムにMnO₂を加えて加熱すると発生する気体は何ですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．O₂</button>
+      <button class="q4-c" data-v="b">b．Cl₂</button>
+      <button class="q4-c" data-v="c">c．H₂</button>
+      <button class="q4-c" data-v="d">d．N₂</button>
+    </div>
+    <div class="q4-exp">📘 2KClO₃→2KCl＋3O₂ です。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="b">
+    <div class="q4-no">第4問</div>
+    <div class="q4-text">酸素の工業的製法で利用するのは何ですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．電気分解</button>
+      <button class="q4-c" data-v="b">b．液体空気の分留（沸点の差）</button>
+      <button class="q4-c" data-v="c">c．無声放電</button>
+      <button class="q4-c" data-v="d">d．紫外線照射</button>
+    </div>
+    <div class="q4-exp">📘 窒素と酸素の沸点の差を利用して分留します。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="c">
+    <div class="q4-no">第5問</div>
+    <div class="q4-text">オゾンの色は何色ですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．無色</button>
+      <button class="q4-c" data-v="b">b．黄緑色</button>
+      <button class="q4-c" data-v="c">c．淡青色</button>
+      <button class="q4-c" data-v="d">d．赤褐色</button>
+    </div>
+    <div class="q4-exp">📘 オゾンO₃は淡青色で特異臭をもつ気体です。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="b">
+    <div class="q4-no">第6問</div>
+    <div class="q4-text">オゾンの検出に使われる試験紙は何ですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．リトマス紙</button>
+      <button class="q4-c" data-v="b">b．ヨウ化カリウムデンプン紙</button>
+      <button class="q4-c" data-v="c">c．pH試験紙</button>
+      <button class="q4-c" data-v="d">d．ろ紙</button>
+    </div>
+    <div class="q4-exp">📘 水にぬらしたヨウ化カリウムデンプン紙でオゾンを検出します。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="a">
+    <div class="q4-no">第7問</div>
+    <div class="q4-text">オゾンに触れたヨウ化カリウムデンプン紙は何色に変化しますか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．青色</button>
+      <button class="q4-c" data-v="b">b．赤色</button>
+      <button class="q4-c" data-v="c">c．黄色</button>
+      <button class="q4-c" data-v="d">d．緑色</button>
+    </div>
+    <div class="q4-exp">📘 2KI＋O₃＋H₂O→I₂＋2KOH＋O₂ でできたI₂がデンプンと反応して青色になります。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="a">
+    <div class="q4-no">第8問</div>
+    <div class="q4-text">非金属元素の酸化物に多いのはどの分類ですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．酸性酸化物</button>
+      <button class="q4-c" data-v="b">b．塩基性酸化物</button>
+      <button class="q4-c" data-v="c">c．両性酸化物</button>
+      <button class="q4-c" data-v="d">d．いずれでもない</button>
+    </div>
+    <div class="q4-exp">📘 非金属元素の酸化物は酸性酸化物が多いです。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="a">
+    <div class="q4-no">第9問</div>
+    <div class="q4-text">両性酸化物をつくる元素はどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．Al（アルミニウム）</button>
+      <button class="q4-c" data-v="b">b．Na（ナトリウム）</button>
+      <button class="q4-c" data-v="c">c．Ca（カルシウム）</button>
+      <button class="q4-c" data-v="d">d．K（カリウム）</button>
+    </div>
+    <div class="q4-exp">📘 両性元素はAl・Zn・Sn・Pbの4つです。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="d">
+    <div class="q4-no">第10問</div>
+    <div class="q4-text">「CaO＋2HCl→CaCl₂＋（　）」。空欄に入るのはどれですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．O₂</button>
+      <button class="q4-c" data-v="b">b．H₂</button>
+      <button class="q4-c" data-v="c">c．Ca(OH)₂</button>
+      <button class="q4-c" data-v="d">d．H₂O</button>
+    </div>
+    <div class="q4-exp">📘 塩基性酸化物CaOが酸HClと反応すると，塩と水ができます。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="c">
+    <div class="q4-no">第11問</div>
+    <div class="q4-text">SO₂がH₂Sと反応するとき，SO₂はどちらとしてはたらきますか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．触媒</button>
+      <button class="q4-c" data-v="b">b．還元剤</button>
+      <button class="q4-c" data-v="c">c．酸化剤</button>
+      <button class="q4-c" data-v="d">d．塩基</button>
+    </div>
+    <div class="q4-exp">📘 H₂Sはより強力な還元剤なので，この組み合わせではSO₂が酸化剤としてはたらきます：2H₂S＋SO₂→3S＋2H₂O。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="c">
+    <div class="q4-no">第12問</div>
+    <div class="q4-text">Cu²⁺を含む酸性水溶液にH₂Sを通すとできる沈殿は何色ですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．白色</button>
+      <button class="q4-c" data-v="b">b．黄色</button>
+      <button class="q4-c" data-v="c">c．黒色</button>
+      <button class="q4-c" data-v="d">d．青色</button>
+    </div>
+    <div class="q4-exp">📘 Cu²⁺＋S²⁻→CuS（黒色沈殿）。CuSは酸性水溶液中でも沈殿します。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="b">
+    <div class="q4-no">第13問</div>
+    <div class="q4-text">硫酸の工業的製法（接触法）で，SO₂をSO₃に酸化する触媒は何ですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．酸化マンガン(Ⅳ) MnO₂</button>
+      <button class="q4-c" data-v="b">b．五酸化バナジウム V₂O₅</button>
+      <button class="q4-c" data-v="c">c．白金 Pt</button>
+      <button class="q4-c" data-v="d">d．鉄 Fe</button>
+    </div>
+    <div class="q4-exp">📘 2SO₂＋O₂→2SO₃の反応には，五酸化バナジウムV₂O₅を触媒として使います。</div>
+  </div>
+
+  <div class="q4 final-q4" data-correct="d">
+    <div class="q4-no">第14問</div>
+    <div class="q4-text">ショ糖に濃硫酸を加えると黒く炭化する現象は，濃硫酸のどの性質によるものですか。</div>
+    <div class="q4-choices">
+      <button class="q4-c" data-v="a">a．不揮発性</button>
+      <button class="q4-c" data-v="b">b．酸化作用</button>
+      <button class="q4-c" data-v="c">c．吸湿作用</button>
+      <button class="q4-c" data-v="d">d．脱水作用</button>
+    </div>
+    <div class="q4-exp">📘 濃硫酸がH原子とO原子をH₂Oの形で奪う脱水作用により，炭素だけが残って黒く炭化します。</div>
+  </div>
+
+  <div class="check-footer">
+    <div class="score-box" id="score-box" style="display:none;"></div>
+  </div>
+</div>
+
+<!-- ============ ④ フラッシュカード ============ -->
+<div class="tab-content" id="tab-cards">
+  <div class="unit">
+    <div class="unit-title"><span class="unit-num">4</span>反応式フラッシュカード</div>
+    <div class="stage">
+      <div class="read-box">カードをタップすると裏の反応式が見られます。自分でめくる「手動」のほか，「3秒後自動」「5秒後自動」を選ぶと，表→裏→次のカードと自動で進みます。</div>
+
+      <div class="card-mode-buttons">
+        <button class="mode-btn active" data-mode="manual">手動</button>
+        <button class="mode-btn" data-mode="3">3秒後自動</button>
+        <button class="mode-btn" data-mode="5">5秒後自動</button>
+      </div>
+
+      <div class="flash-progress"><span id="card-pos">1</span> / <span id="card-total">5</span></div>
+
+      <div class="flashcard-wrap">
+        <div class="flashcard" id="flashcard">
+          <span class="card-face-label" id="card-face-label">表（問題）</span>
+          <div class="card-text-front" id="card-text"></div>
+        </div>
+      </div>
+      <div class="flash-hint" id="flash-hint">カードをタップすると答えがめくれます</div>
+
+      <div class="flash-nav">
+        <button id="card-prev">◀ 前へ</button>
+        <button id="card-flip" class="flip-btn">めくる</button>
+        <button id="card-next">次へ ▶</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<div class="popup-overlay" id="popup-p1">
+  <div class="popup-box">
+    <button class="popup-close" data-close="p1">×</button>
+    <h4>🤔 なぜデンプン紙が青くなるの？</h4>
+    <p>オゾンO₃は酸化力が強いので，ヨウ化物イオンI⁻から電子を奪ってI⁻をI₂（ヨウ素の単体）に変えます。このI₂がデンプンと出会うと，デンプンのらせん構造の中にI₂が入り込み，青色（ヨウ素デンプン反応）を示します。</p>
+    <p>💡 つまり，色の変化はオゾンの強い酸化力を目に見える形で確認している，ということです。</p>
+  </div>
+</div>
+
+<div class="popup-overlay" id="popup-p2">
+  <div class="popup-box">
+    <button class="popup-close" data-close="p2">×</button>
+    <h4>🤔 なぜ濃硫酸に水を加えると危険なの？</h4>
+    <p>濃硫酸が水に溶けるとき，とても大きな溶解熱（熱エネルギー）が発生します。濃硫酸に水を少しずつ加えると，加えた水がその場で一気に沸騰し，熱くなった濃硫酸を周囲に飛び散らせてしまいます。</p>
+    <p>💡 一方，大量の水の中に濃硫酸を少しずつ加えると，発生した熱がすぐに大量の水全体に広がって吸収されるため，急激な沸騰が起こりません。「薄めるときは，濃い方を少しずつ」という順番がとても大切です。</p>
+  </div>
+</div>
+
+<div class="celebrate-msg" id="celebrate-msg">🎉 全問正解です！<br>よくできました！</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- タブ切替 ---------- */
+  var tabBtns = document.querySelectorAll(".tab-btn");
+  var tabContents = document.querySelectorAll(".tab-content");
+  for (var i=0;i<tabBtns.length;i++){
+    tabBtns[i].addEventListener("click", function(){
+      var target = this.getAttribute("data-tab");
+      for (var j=0;j<tabBtns.length;j++){ tabBtns[j].classList.remove("active"); }
+      for (var k=0;k<tabContents.length;k++){ tabContents[k].classList.remove("active"); }
+      this.classList.add("active");
+      document.getElementById("tab-"+target).classList.add("active");
+      window.scrollTo({top:0, behavior:"smooth"});
+      if (target !== "cards") stopCardAuto();
+    });
+  }
+
+  /* ---------- なぜ？ポップアップ ---------- */
+  var whyBtns = document.querySelectorAll(".why-btn");
+  for (var w=0;w<whyBtns.length;w++){
+    whyBtns[w].addEventListener("click", function(){
+      var id = this.getAttribute("data-popup");
+      document.getElementById("popup-"+id).classList.add("show");
+    });
+  }
+  var closeBtns = document.querySelectorAll(".popup-close");
+  for (var cb=0;cb<closeBtns.length;cb++){
+    closeBtns[cb].addEventListener("click", function(){
+      var id = this.getAttribute("data-close");
+      document.getElementById("popup-"+id).classList.remove("show");
+    });
+  }
+  var overlays = document.querySelectorAll(".popup-overlay");
+  for (var ov=0;ov<overlays.length;ov++){
+    overlays[ov].addEventListener("click", function(ev){
+      if (ev.target === this) this.classList.remove("show");
+    });
+  }
+
+  /* ---------- 穴埋めチャレンジ ---------- */
+  var fillItems = document.querySelectorAll(".fill-item");
+  for (var f=0; f<fillItems.length; f++){
+    (function(item){
+      var blanks = item.querySelectorAll(".blank");
+      var chips = item.querySelectorAll(".chip");
+      var feedback = item.querySelector(".fill-feedback");
+      var checkBtn = item.querySelector(".fill-check-btn");
+      var resetBtn = item.querySelector(".fill-reset-btn");
+
+      function nextEmptyBlank(){
+        for (var b=0;b<blanks.length;b++){
+          if (!blanks[b].classList.contains("filled")) return blanks[b];
+        }
+        return null;
+      }
+
+      for (var c=0;c<chips.length;c++){
+        chips[c].addEventListener("click", function(){
+          if (this.classList.contains("used")) return;
+          var target = nextEmptyBlank();
+          if (!target) return;
+          target.textContent = this.textContent;
+          target.classList.add("filled");
+          target.setAttribute("data-filled-val", this.getAttribute("data-val"));
+          this.classList.add("used");
+        });
+      }
+
+      checkBtn.addEventListener("click", function(){
+        var allFilled = true, allCorrect = true;
+        for (var b=0;b<blanks.length;b++){
+          if (!blanks[b].classList.contains("filled")){ allFilled = false; continue; }
+          var ok = blanks[b].getAttribute("data-filled-val") === blanks[b].getAttribute("data-ans");
+          blanks[b].classList.remove("correct","wrong");
+          blanks[b].classList.add(ok?"correct":"wrong");
+          if (!ok) allCorrect = false;
+        }
+        if (!allFilled){
+          feedback.textContent = "まだ空欄があります。チップをすべて置きましょう。";
+          feedback.className = "fill-feedback bad";
+          return;
+        }
+        if (allCorrect){
+          feedback.textContent = "✅ 正解です！この反応式を声に出して読んでみましょう。";
+          feedback.className = "fill-feedback ok";
+          launchConfetti(30);
+        } else {
+          feedback.textContent = "❌ ちがう場所があります。「やり直す」からもう一度挑戦しましょう。";
+          feedback.className = "fill-feedback bad";
+        }
+      });
+
+      resetBtn.addEventListener("click", function(){
+        for (var b=0;b<blanks.length;b++){
+          blanks[b].textContent = "　";
+          blanks[b].classList.remove("filled","correct","wrong");
+          blanks[b].removeAttribute("data-filled-val");
+        }
+        for (var c2=0;c2<chips.length;c2++){ chips[c2].classList.remove("used"); }
+        feedback.textContent = "";
+        feedback.className = "fill-feedback";
+      });
+    })(fillItems[f]);
+  }
+
+  /* ---------- q4（4択）共通処理 ---------- */
+  var finalTotal = document.querySelectorAll(".final-q4").length;
+  var finalAnsweredCount = 0;
+  var finalCorrectCount = 0;
+
+  var q4Blocks = document.querySelectorAll(".q4");
+  for (var q=0;q<q4Blocks.length;q++){
+    (function(block){
+      var correctV = block.getAttribute("data-correct");
+      var btns = block.querySelectorAll(".q4-c");
+      var exp = block.querySelector(".q4-exp");
+      var isFinal = block.classList.contains("final-q4");
+      var answered = false;
+      for (var b=0;b<btns.length;b++){
+        btns[b].addEventListener("click", function(){
+          if (answered) return;
+          answered = true;
+          var v = this.getAttribute("data-v");
+          var isCorrect = (v === correctV);
+          for (var x=0;x<btns.length;x++){
+            btns[x].classList.add("disabled");
+            if (btns[x].getAttribute("data-v") === correctV) btns[x].classList.add("correct");
+          }
+          if (!isCorrect) this.classList.add("wrong");
+          if (exp) exp.classList.add("show");
+          if (isCorrect) launchConfetti(isFinal?0:24);
+          if (isFinal){
+            finalAnsweredCount++;
+            if (isCorrect) finalCorrectCount++;
+            checkFinalDone();
+          }
+        });
+      }
+    })(q4Blocks[q]);
+  }
+
+  /* ---------- minitest（○×）共通処理 ---------- */
+  var mtBlocks = document.querySelectorAll(".minitest");
+  for (var m=0;m<mtBlocks.length;m++){
+    (function(block){
+      var correctV = block.getAttribute("data-correct");
+      var btns = block.querySelectorAll(".mt-c");
+      var exp = block.querySelector(".mt-exp");
+      var answered = false;
+      for (var b=0;b<btns.length;b++){
+        btns[b].addEventListener("click", function(){
+          if (answered) return;
+          answered = true;
+          var v = this.getAttribute("data-v");
+          var isCorrect = (v === correctV);
+          for (var x=0;x<btns.length;x++){
+            btns[x].classList.add("disabled");
+            if (btns[x].getAttribute("data-v") === correctV) btns[x].classList.add("correct");
+          }
+          if (!isCorrect) this.classList.add("wrong");
+          if (exp){
+            exp.textContent = isCorrect ? "📘 そのとおりです！よく理解できています。" : "📘 もう一度，上の説明を読み直してみましょう。";
+            exp.classList.add("show");
+          }
+          if (isCorrect) launchConfetti(24);
+        });
+      }
+    })(mtBlocks[m]);
+  }
+
+  function checkFinalDone(){
+    if (finalAnsweredCount < finalTotal) return;
+    var box = document.getElementById("score-box");
+    box.style.display = "inline-block";
+    box.textContent = "結果：" + finalTotal + "問中 " + finalCorrectCount + "問 正解！";
+    if (finalCorrectCount === finalTotal){
+      launchConfetti(80);
+      var msg = document.getElementById("celebrate-msg");
+      msg.style.display = "block";
+      setTimeout(function(){ msg.style.display = "none"; }, 2200);
+    }
+  }
+
+  /* ---------- コンフェッティ（DOM div方式） ---------- */
+  var CONFETTI_COLORS = ["#f472b6","#facc15","#34d399","#60a5fa","#f87171","#a78bfa","#fb923c","#2dd4bf"];
+
+  function launchConfetti(count){
+    if (!count) return;
+    for (var i=0;i<count;i++){
+      var piece = document.createElement("div");
+      piece.className = "confetti-piece";
+      var size = 6 + Math.random()*6;
+      piece.style.left = (Math.random()*100) + "vw";
+      piece.style.width = size + "px";
+      piece.style.height = (size*1.6) + "px";
+      piece.style.background = CONFETTI_COLORS[Math.floor(Math.random()*CONFETTI_COLORS.length)];
+      piece.style.borderRadius = (Math.random()<0.5 ? "50%" : "2px");
+      var duration = 1.8 + Math.random()*1.4;
+      piece.style.animationDuration = duration + "s";
+      piece.style.animationDelay = (Math.random()*0.3) + "s";
+      document.body.appendChild(piece);
+      (function(el, dur){
+        setTimeout(function(){ if (el.parentNode) el.parentNode.removeChild(el); }, (dur+0.5)*1000);
+      })(piece, duration);
+    }
+  }
+
+  /* ---------- フラッシュカード ---------- */
+  var CARDS = [
+    {front:"① 過酸化水素水からの酸素製法は？", back:"2H₂O₂ → 2H₂O ＋ O₂（MnO₂触媒）"},
+    {front:"② 塩素酸カリウムからの酸素製法は？", back:"2KClO₃ → 2KCl ＋ 3O₂（MnO₂触媒・加熱）"},
+    {front:"③ 酸素からオゾンができる反応は？", back:"3O₂ → 2O₃"},
+    {front:"④ オゾンの検出反応は？", back:"2KI ＋ O₃ ＋ H₂O → I₂ ＋ 2KOH ＋ O₂"},
+    {front:"⑤ 酸性酸化物の例（二酸化硫黄＋水）は？", back:"SO₂ ＋ H₂O → H₂SO₃"},
+    {front:"⑥ SO₂とH₂Sの反応式は？", back:"2H₂S ＋ SO₂ → 3S ＋ 2H₂O"},
+    {front:"⑦ H₂Sの実験室的製法は？", back:"FeS ＋ H₂SO₄ → FeSO₄ ＋ H₂S"},
+    {front:"⑧ 接触法のSO₂→SO₃の反応式は？", back:"2SO₂ ＋ O₂ → 2SO₃（V₂O₅触媒）"},
+    {front:"⑨ 硫黄から硫酸までの全体の反応式は？", back:"2S ＋ 3O₂ ＋ 2H₂O → 2H₂SO₄"},
+    {front:"⑩ ショ糖に濃硫酸を加えたときの反応式は？", back:"C₁₂H₂₂O₁₁ → 12C ＋ 11H₂O（脱水作用）"}
+  ];
+  var cardIndex = 0, cardFlipped = false, cardAutoTimer = null, cardAutoSeconds = 0;
+  var flashcardEl = document.getElementById("flashcard");
+  var cardTextEl = document.getElementById("card-text");
+  var cardLabelEl = document.getElementById("card-face-label");
+  var cardPosEl = document.getElementById("card-pos");
+  var cardTotalEl = document.getElementById("card-total");
+  var flashHintEl = document.getElementById("flash-hint");
+  var modeBtns = document.querySelectorAll(".mode-btn");
+
+  function renderCard(){
+    var c = CARDS[cardIndex];
+    cardPosEl.textContent = (cardIndex+1);
+    if (cardFlipped){
+      flashcardEl.classList.add("flipped");
+      cardLabelEl.textContent = "裏（答え）";
+      cardTextEl.className = "card-text-back";
+      cardTextEl.textContent = c.back;
+      flashHintEl.textContent = "タップ，または「次へ」で次のカードへ";
+    } else {
+      flashcardEl.classList.remove("flipped");
+      cardLabelEl.textContent = "表（問題）";
+      cardTextEl.className = "card-text-front";
+      cardTextEl.textContent = c.front;
+      flashHintEl.textContent = "カードをタップすると答えがめくれます";
+    }
+  }
+
+  function flipCardAnim(cb){
+    flashcardEl.classList.add("anim");
+    setTimeout(function(){
+      cb();
+      flashcardEl.classList.remove("anim");
+    }, 160);
+  }
+
+  function flipCard(){
+    flipCardAnim(function(){ cardFlipped = !cardFlipped; renderCard(); });
+  }
+  function nextCard(){
+    flipCardAnim(function(){
+      cardIndex = (cardIndex+1) % CARDS.length;
+      cardFlipped = false;
+      renderCard();
+    });
+  }
+  function prevCard(){
+    flipCardAnim(function(){
+      cardIndex = (cardIndex-1+CARDS.length) % CARDS.length;
+      cardFlipped = false;
+      renderCard();
+    });
+  }
+
+  function clearCardAutoTimer(){
+    if (cardAutoTimer){ clearInterval(cardAutoTimer); cardAutoTimer = null; }
+  }
+  function setActiveMode(mode){
+    for (var mb=0; mb<modeBtns.length; mb++){
+      modeBtns[mb].classList.toggle("active", modeBtns[mb].getAttribute("data-mode") === mode);
+    }
+  }
+  function startCardAuto(seconds){
+    clearCardAutoTimer();
+    cardAutoSeconds = seconds;
+    cardAutoTimer = setInterval(function(){
+      if (!cardFlipped){
+        flipCardAnim(function(){ cardFlipped = true; renderCard(); });
+      } else {
+        flipCardAnim(function(){
+          cardIndex = (cardIndex+1) % CARDS.length;
+          cardFlipped = false;
+          renderCard();
+        });
+      }
+    }, seconds*1000);
+  }
+  function stopAutoIfManualTap(){
+    if (cardAutoSeconds !== 0){
+      cardAutoSeconds = 0;
+      setActiveMode("manual");
+      clearCardAutoTimer();
+    }
+  }
+  function stopCardAuto(){
+    cardAutoSeconds = 0;
+    clearCardAutoTimer();
+    setActiveMode("manual");
+  }
+
+  if (cardTotalEl) cardTotalEl.textContent = CARDS.length;
+
+  if (flashcardEl){
+    flashcardEl.addEventListener("click", function(){ stopAutoIfManualTap(); flipCard(); });
+  }
+  var cardFlipBtn = document.getElementById("card-flip");
+  if (cardFlipBtn) cardFlipBtn.addEventListener("click", function(){ stopAutoIfManualTap(); flipCard(); });
+  var cardNextBtn = document.getElementById("card-next");
+  if (cardNextBtn) cardNextBtn.addEventListener("click", function(){ stopAutoIfManualTap(); nextCard(); });
+  var cardPrevBtn = document.getElementById("card-prev");
+  if (cardPrevBtn) cardPrevBtn.addEventListener("click", function(){ stopAutoIfManualTap(); prevCard(); });
+
+  for (var mb2=0; mb2<modeBtns.length; mb2++){
+    modeBtns[mb2].addEventListener("click", function(){
+      var mode = this.getAttribute("data-mode");
+      setActiveMode(mode);
+      if (mode === "manual"){
+        cardAutoSeconds = 0;
+        clearCardAutoTimer();
+      } else {
+        startCardAuto(parseInt(mode,10));
+      }
+    });
+  }
+
+  if (flashcardEl) renderCard();
+
+})();
+</script>
+
+</body>
+</html>
